@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 40% 98%;
+  --surface: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --muted-foreground: 215 16% 45%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 96%;
+  --muted: 210 20% 96%;
+  --accent: 221 83% 53%;
+  --accent2: 25 95% 53%;
+  --success: 142 71% 40%;
+  --success-bg: 142 71% 95%;
+  --danger: 0 72% 51%;
+  --danger-bg: 0 86% 97%;
+  --warning: 38 92% 45%;
+  --warning-bg: 38 100% 95%;
+  --border: 214 32% 89%;
+
+  --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ---------- Dark mode ---------- */
+html.dark {
+  --background: 222 47% 7%;
+  --surface: 222 40% 10%;
+  --foreground: 210 40% 96%;
+  --muted-foreground: 215 16% 65%;
+  --primary: 217 91% 63%;
+  --primary-foreground: 222 47% 8%;
+  --secondary: 222 30% 15%;
+  --muted: 222 30% 15%;
+  --accent: 217 91% 63%;
+  --accent2: 25 95% 58%;
+  --success: 142 55% 48%;
+  --success-bg: 142 40% 15%;
+  --danger: 0 72% 63%;
+  --danger-bg: 0 45% 18%;
+  --warning: 38 85% 58%;
+  --warning-bg: 38 55% 16%;
+  --border: 222 25% 20%;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.card, nav, input, select, textarea, button {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; }
+
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 3px;
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.18);
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.12);
+  border-color: hsl(var(--primary) / 0.35);
+  transform: translateY(-2px);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes counter-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .animate-fade-rise { animation: fade-rise 0.6s ease-out both; }
+  .animate-fade-rise-delay { animation: fade-rise 0.6s ease-out 0.1s both; }
+  .animate-fade-rise-delay-2 { animation: fade-rise 0.6s ease-out 0.2s both; }
+  .animate-fade-rise-delay-3 { animation: fade-rise 0.6s ease-out 0.3s both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Scrollbar (subtle, professional) ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(215 16% 75%); }
