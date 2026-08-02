@@ -10,7 +10,7 @@ export default function BookmarksTab() {
 
   const items = useMemo(() => {
     return getBookmarks()
-      .map((b) => findQuestionItem(b.subject, b.questionId))
+      .map((b) => findQuestionItem(b.questionId))
       .filter((it): it is NonNullable<typeof it> => it !== null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tick])

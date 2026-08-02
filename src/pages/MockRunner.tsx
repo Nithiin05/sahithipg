@@ -107,7 +107,7 @@ export default function MockRunner() {
       marksWrong: config.marksWrong,
       durationSec,
       sourceRoute: `/mock-tests/${config.id}`,
-      mockKind: config.kind ?? 'full',
+      mockKind: config.kind,
     })
     saveAttempt(attempt)
     navigate(`/mock-tests/${config.id}/result`, { state: { attempt } })

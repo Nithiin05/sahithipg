@@ -20,15 +20,17 @@ export default function DashboardTab({ attempts }: { attempts: AttemptRecord[] }
     let scorePcts: number[] = []
     let mockCompleted = 0
     let pyqCompleted = 0
+    let grandCompleted = 0
 
     for (const a of attempts) {
       totalCorrect += a.correct
       totalAttempted += a.attempted
       totalDurationSec += a.durationSec
       if (a.maxScore > 0) scorePcts.push((a.score / a.maxScore) * 100)
-      if (a.kind === 'mock') {
-        if (a.mockKind === 'previous-year') pyqCompleted++
-        else if (!a.mockKind || a.mockKind === 'full') mockCompleted++
+      if (a.kind === 'grand') grandCompleted++
+      else if (a.kind === 'mock') {
+        if (a.mockKind === 'pyq') pyqCompleted++
+        else mockCompleted++
       }
     }
 
@@ -48,6 +50,7 @@ export default function DashboardTab({ attempts }: { attempts: AttemptRecord[] }
       avgTimePerQuestion,
       mockCompleted,
       pyqCompleted,
+      grandCompleted,
     }
   }, [attempts])
 
@@ -131,7 +134,8 @@ export default function DashboardTab({ attempts }: { attempts: AttemptRecord[] }
     { label: 'Total Study Time', value: formatStudyTime(lifetimeStudySeconds) },
     { label: 'Study Streak', value: `${studyStreak} day${studyStreak === 1 ? '' : 's'}` },
     { label: 'Mock Tests Completed', value: stats.mockCompleted },
-    { label: 'PYQ Papers Completed', value: stats.pyqCompleted },
+    { label: 'Grand Tests Completed', value: stats.grandCompleted },
+    { label: 'PYQ Sets Completed', value: stats.pyqCompleted },
   ]
 
   return (

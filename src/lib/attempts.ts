@@ -1,7 +1,7 @@
 import type { AttemptRecord } from '../types'
 
-const KEY = 'one9:attempts'
-const MAX_STORED = 100
+const KEY = 'drsahithi:attempts'
+const MAX_STORED = 300
 
 export function getAttempts(): AttemptRecord[] {
   try {

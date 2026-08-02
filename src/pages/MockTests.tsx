@@ -6,10 +6,10 @@ import { mockTests, mockTotals, type MockTestConfig, type MockTestKind } from '.
 import { subjects } from '../data/subjects'
 
 const TABS: { key: MockTestKind; label: string }[] = [
-  { key: 'full', label: 'Full-Length Mocks' },
-  { key: 'sectional', label: 'Sectional Tests' },
-  { key: 'topic', label: 'Topic-Wise Tests' },
-  { key: 'previous-year', label: 'Previous Year Papers' },
+  { key: 'subject', label: 'Subject Tests' },
+  { key: 'topic', label: 'Topic Tests' },
+  { key: 'rapid-revision', label: 'Rapid Revision' },
+  { key: 'mixed', label: 'Mixed Tests' },
 ]
 
 function MockCard({ mock }: { mock: MockTestConfig }) {
@@ -17,12 +17,7 @@ function MockCard({ mock }: { mock: MockTestConfig }) {
   return (
     <div className="card p-6">
       <div className="flex flex-wrap items-center gap-2 mb-3">
-        <span className="tag bg-primary/10 text-primary">{mock.tier}</span>
-        {mock.year && <span className="tag bg-secondary text-muted-foreground">{mock.year}</span>}
-        {mock.shift && <span className="tag bg-secondary text-muted-foreground">{mock.shift}</span>}
-        <span className="tag bg-secondary text-muted-foreground">
-          +{mock.marksCorrect} / −{mock.marksWrong} marking
-        </span>
+        <span className="tag bg-primary/10 text-primary">+{mock.marksCorrect} / {mock.marksWrong} marking</span>
       </div>
       <h2 className="font-display font-bold text-xl mb-2">{mock.title}</h2>
       <p className="text-sm text-muted-foreground mb-5" style={{ lineHeight: 1.6 }}>
@@ -44,17 +39,9 @@ function MockCard({ mock }: { mock: MockTestConfig }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mb-6">
-        {mock.sections.map((s) => (
-          <span key={s.id} className="tag bg-secondary text-foreground border border-border">
-            {s.label} · {s.questionCount}Q · {s.minutes}m
-          </span>
-        ))}
-      </div>
-
       <Link
         to={`/mock-tests/${mock.id}`}
-        className="inline-block bg-primary text-primary-foreground rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90"
+        className="inline-block gradient-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90"
       >
         Start Test
       </Link>
@@ -82,8 +69,7 @@ function CrumbBar({ items }: { items: { label: string; onClick?: () => void }[] 
 }
 
 export default function MockTests() {
-  const [tab, setTab] = useState<MockTestKind>('full')
-  const [tierFilter, setTierFilter] = useState<'All' | 'Tier-I' | 'Tier-II'>('All')
+  const [tab, setTab] = useState<MockTestKind>('subject')
   const [drillSubject, setDrillSubject] = useState<string | null>(null)
   const [drillTopic, setDrillTopic] = useState<string | null>(null)
 
@@ -93,37 +79,30 @@ export default function MockTests() {
     setDrillTopic(null)
   }
 
-  const fullFiltered = useMemo(() => {
-    const list = mockTests.filter((m) => (m.kind ?? 'full') === 'full')
-    return tierFilter === 'All' ? list : list.filter((m) => m.tier === tierFilter)
-  }, [tierFilter])
+  const rapidList = useMemo(() => mockTests.filter((m) => m.kind === 'rapid-revision'), [])
+  const mixedList = useMemo(() => mockTests.filter((m) => m.kind === 'mixed'), [])
 
-  const previousYearList = useMemo(() => mockTests.filter((m) => m.kind === 'previous-year'), [])
-
-  const sectionalForSubject = useMemo(
-    () => (drillSubject ? mockTests.filter((m) => m.kind === 'sectional' && m.subjectSlug === drillSubject) : []),
-    [drillSubject]
+  const subjectSetsForSubject = useMemo(
+    () => (drillSubject ? mockTests.filter((m) => m.kind === 'subject' && m.subjectSlug === drillSubject) : []),
+    [drillSubject],
   )
 
-  const topicsForSubject = useMemo(
-    () => subjects.find((s) => s.slug === drillSubject)?.topics ?? [],
-    [drillSubject]
-  )
+  const topicsForSubject = useMemo(() => subjects.find((s) => s.slug === drillSubject)?.topics ?? [], [drillSubject])
 
   const setsForTopic = useMemo(
     () =>
       drillSubject && drillTopic
         ? mockTests.filter((m) => m.kind === 'topic' && m.subjectSlug === drillSubject && m.topicId === drillTopic)
         : [],
-    [drillSubject, drillTopic]
+    [drillSubject, drillTopic],
   )
 
   return (
     <div className="pb-20">
       <PageHeader
         eyebrow="Mock Tests"
-        title="Full-length, sectional-timed mocks"
-        description="Each mock uses a fresh, randomly-assembled question set and the exact section structure, timing, and marking scheme published for that tier."
+        title="Practice under real conditions"
+        description="Subject tests, topic tests, rapid-revision sprints, and mixed tests — all at the real NEET PG marking scheme (+1 per correct, 0 for wrong/unattempted, no negative marking)."
       />
 
       <ResumeBanner />
@@ -131,7 +110,7 @@ export default function MockTests() {
       <div className="max-w-4xl mx-auto px-6 flex flex-col gap-6">
         <div className="flex flex-wrap gap-2">
           {TABS.map((t) => {
-            const count = mockTests.filter((m) => (m.kind ?? 'full') === t.key).length
+            const count = mockTests.filter((m) => m.kind === t.key).length
             return (
               <button
                 key={t.key}
@@ -146,57 +125,36 @@ export default function MockTests() {
           })}
         </div>
 
-        {/* Full-length mocks: flat list with a tier filter */}
-        {tab === 'full' && (
-          <>
-            <div className="flex flex-wrap gap-2">
-              {(['All', 'Tier-I', 'Tier-II'] as const).map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTierFilter(t)}
-                  className={`tag border transition-colors ${
-                    tierFilter === t ? 'bg-foreground text-background border-foreground' : 'border-border text-muted-foreground hover:bg-secondary'
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-            {fullFiltered.map((mock) => (
-              <MockCard key={mock.id} mock={mock} />
-            ))}
-          </>
-        )}
-
-        {/* Sectional tests: pick a subject, then see its sets */}
-        {tab === 'sectional' && !drillSubject && (
+        {/* Subject tests: pick a subject, then see its sets */}
+        {tab === 'subject' && !drillSubject && (
           <div className="grid gap-4 sm:grid-cols-2">
             {subjects.map((s) => {
-              const count = mockTests.filter((m) => m.kind === 'sectional' && m.subjectSlug === s.slug).length
+              const count = mockTests.filter((m) => m.kind === 'subject' && m.subjectSlug === s.slug).length
+              if (count === 0) return null
               return (
                 <button key={s.slug} onClick={() => setDrillSubject(s.slug)} className="card card-hover p-5 text-left">
                   <h3 className="font-semibold">{s.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{count} sectional tests</p>
+                  <p className="text-sm text-muted-foreground mt-1">{count} subject tests</p>
                 </button>
               )
             })}
           </div>
         )}
-        {tab === 'sectional' && drillSubject && (
+        {tab === 'subject' && drillSubject && (
           <>
             <CrumbBar
               items={[
-                { label: 'Sectional Tests', onClick: () => setDrillSubject(null) },
+                { label: 'Subject Tests', onClick: () => setDrillSubject(null) },
                 { label: subjects.find((s) => s.slug === drillSubject)?.name ?? '' },
               ]}
             />
-            {sectionalForSubject.map((mock) => (
+            {subjectSetsForSubject.map((mock) => (
               <MockCard key={mock.id} mock={mock} />
             ))}
           </>
         )}
 
-        {/* Topic-wise tests: pick a subject, then a topic, then see its sets */}
+        {/* Topic tests: pick a subject, then a topic, then see its sets */}
         {tab === 'topic' && !drillSubject && (
           <div className="grid gap-4 sm:grid-cols-2">
             {subjects.map((s) => (
@@ -209,7 +167,7 @@ export default function MockTests() {
         )}
         {tab === 'topic' && drillSubject && !drillTopic && (
           <>
-            <CrumbBar items={[{ label: 'Topic-Wise Tests', onClick: () => setDrillSubject(null) }, { label: subjects.find((s) => s.slug === drillSubject)?.name ?? '' }]} />
+            <CrumbBar items={[{ label: 'Topic Tests', onClick: () => setDrillSubject(null) }, { label: subjects.find((s) => s.slug === drillSubject)?.name ?? '' }]} />
             <div className="flex flex-col gap-3">
               {topicsForSubject.map((topic) => {
                 const count = mockTests.filter((m) => m.kind === 'topic' && m.subjectSlug === drillSubject && m.topicId === topic.id).length
@@ -230,7 +188,7 @@ export default function MockTests() {
           <>
             <CrumbBar
               items={[
-                { label: 'Topic-Wise Tests', onClick: () => setDrillSubject(null) },
+                { label: 'Topic Tests', onClick: () => setDrillSubject(null) },
                 { label: subjects.find((s) => s.slug === drillSubject)?.name ?? '', onClick: () => setDrillTopic(null) },
                 { label: topicsForSubject.find((t) => t.id === drillTopic)?.name ?? '' },
               ]}
@@ -241,22 +199,12 @@ export default function MockTests() {
           </>
         )}
 
-        {/* Previous year pattern exams */}
-        {tab === 'previous-year' && (
-          <>
-            {previousYearList.map((mock) => (
-              <MockCard key={mock.id} mock={mock} />
-            ))}
-            <p className="text-xs text-muted-foreground text-center -mt-2">
-              These are pattern-based practice exams matching each year's known structure, timing, and marking scheme —
-              not verbatim reproductions of the official paper.
-            </p>
-          </>
-        )}
+        {tab === 'rapid-revision' && rapidList.map((mock) => <MockCard key={mock.id} mock={mock} />)}
+        {tab === 'mixed' && mixedList.map((mock) => <MockCard key={mock.id} mock={mock} />)}
 
         <p className="text-xs text-muted-foreground text-center mt-2">
-          Timings and marking are based on the publicly published SSC CGL exam pattern. Always confirm the latest
-          details against the official notification before your exam.
+          NEET PG has no negative marking — reflected exactly here. Looking for a full 200-question exam simulation
+          with a single continuous timer? Try a <Link to="/grand-tests" className="text-primary font-medium hover:underline">Grand Test</Link>.
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-const KEY = 'one9:theme'
+const KEY = 'drsahithi:theme'
 export type Theme = 'light' | 'dark'
 
 function getStoredTheme(): Theme | null {

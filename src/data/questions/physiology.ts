@@ -1,0 +1,218 @@
+import type { Topic } from '../../types'
+
+export const physiologyTopics: Topic[] = [
+  {
+    id: 'cvs-resp',
+    name: 'Cardiovascular & Respiratory Physiology',
+    description: 'Cardiac cycle, cardiac output, lung volumes, and gas exchange.',
+    questions: [
+      {
+        id: 'phys-1',
+        text: 'Which phase of the cardiac cycle corresponds to isovolumetric contraction?',
+        options: [
+          'Both AV and semilunar valves are closed, ventricular pressure rises with no volume change',
+          'AV valves open, ventricles fill passively',
+          'Semilunar valves open, blood ejected',
+          'Atrial systole tops off ventricular filling',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Isovolumetric contraction occurs after AV valve closure but before semilunar valve opening — both sets of valves are shut, so ventricular pressure rises sharply while volume stays constant.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['cardiac-cycle'],
+      },
+      {
+        id: 'phys-2',
+        text: 'A patient on a ventilator has a tidal volume of 500 mL and anatomical dead space of 150 mL, breathing 12 times/min. What is the alveolar ventilation?',
+        options: ['4200 mL/min', '6000 mL/min', '1800 mL/min', '3500 mL/min'],
+        correctIndex: 0,
+        explanation:
+          'Alveolar ventilation = (Tidal volume − Dead space) × Respiratory rate = (500 − 150) × 12 = 350 × 12 = 4200 mL/min.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['ventilation', 'calculation'],
+        isPYQ: true,
+        year: 2023,
+        highYieldNote: 'Alveolar ventilation, not total minute ventilation, determines gas exchange efficiency.',
+      },
+      {
+        id: 'phys-3',
+        text: 'A left shift of the oxygen-hemoglobin dissociation curve is caused by all of the following EXCEPT:',
+        options: ['Increased 2,3-DPG', 'Decreased temperature', 'Decreased H+ (alkalosis)', 'Fetal hemoglobin (HbF)'],
+        correctIndex: 0,
+        explanation:
+          'Increased 2,3-DPG shifts the curve to the RIGHT (decreasing hemoglobin\'s oxygen affinity, favoring unloading to tissues). Decreased temperature, alkalosis, and HbF all shift the curve LEFT (increased affinity).',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['oxygen-dissociation-curve'],
+        clinicalPearl: 'Right shift = "CADET, face Right": CO2, Acid, 2,3-DPG, Exercise, Temperature.',
+      },
+      {
+        id: 'phys-4',
+        text: 'Assertion (A): Cardiac output increases substantially during moderate dynamic exercise.\nReason (R): Sympathetic stimulation increases heart rate and stroke volume while venous return is augmented by the skeletal muscle pump.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'During exercise, sympathetic drive raises heart rate and contractility, while rhythmic muscle contraction (skeletal muscle pump) and the respiratory pump increase venous return, together substantially raising cardiac output via the Frank-Starling mechanism and chronotropy.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['cardiac-output', 'exercise-physiology'],
+      },
+    ],
+  },
+  {
+    id: 'renal-endocrine',
+    name: 'Renal & Endocrine Physiology',
+    description: 'GFR regulation, tubular transport, and hormone axes.',
+    questions: [
+      {
+        id: 'phys-5',
+        text: 'Which substance is used to measure glomerular filtration rate (GFR) because it is freely filtered and neither reabsorbed nor secreted?',
+        options: ['Inulin', 'Glucose', 'Urea', 'PAH (para-aminohippurate)'],
+        correctIndex: 0,
+        explanation:
+          'Inulin is the gold-standard GFR marker: it is freely filtered at the glomerulus and undergoes no tubular reabsorption or secretion, so its clearance equals GFR exactly. Creatinine clearance is the practical clinical surrogate.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['gfr', 'renal-clearance'],
+      },
+      {
+        id: 'phys-6',
+        text: 'A patient with uncontrolled diabetes mellitus develops polyuria despite hyperglycemia. This is best explained by:',
+        options: [
+          'Osmotic diuresis from glucose exceeding the tubular reabsorptive (transport) maximum',
+          'Increased ADH secretion',
+          'Decreased GFR',
+          'Primary polydipsia',
+        ],
+        correctIndex: 0,
+        explanation:
+          'When plasma glucose exceeds the renal threshold (~180 mg/dL), the tubular transport maximum for glucose reabsorption is exceeded, so glucose remains in the tubule and osmotically drags water with it — osmotic diuresis.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['osmotic-diuresis', 'diabetes'],
+        isPYQ: true,
+        year: 2022,
+      },
+      {
+        id: 'phys-7',
+        text: 'In the hypothalamic-pituitary-thyroid axis, which hormone provides negative feedback predominantly at the level of the anterior pituitary?',
+        options: ['Free T3/T4 on TSH secretion', 'TRH on TSH', 'TSH on TRH', 'Free T3/T4 on TRH only, with no effect on TSH'],
+        correctIndex: 0,
+        explanation:
+          'Circulating free T3 and T4 exert negative feedback predominantly on the anterior pituitary thyrotrophs, suppressing TSH secretion, and to a lesser extent on hypothalamic TRH neurons.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['thyroid-axis', 'feedback'],
+      },
+      {
+        id: 'phys-8',
+        text: 'Match the hormone with its primary site of action/effect:',
+        options: [
+          'Aldosterone → Na+ reabsorption in distal tubule/collecting duct',
+          'ADH → glucose reabsorption in proximal tubule',
+          'PTH → phosphate reabsorption in kidney',
+          'Atrial natriuretic peptide → Na+ retention',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Aldosterone acts on principal cells of the distal tubule and collecting duct to increase Na+ reabsorption (and K+/H+ secretion). ADH promotes water reabsorption via aquaporins; PTH increases phosphate excretion (not reabsorption); ANP promotes natriuresis, not retention.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Expert',
+        type: 'match-following',
+        tags: ['aldosterone', 'renal-hormones'],
+        matchPairs: [
+          { left: 'Aldosterone', right: 'Distal tubule Na+ reabsorption' },
+          { left: 'ADH', right: 'Collecting duct water reabsorption' },
+          { left: 'PTH', right: 'Increases renal phosphate excretion' },
+          { left: 'ANP', right: 'Promotes natriuresis' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'nerve-muscle-cns',
+    name: 'Nerve-Muscle & CNS Physiology',
+    description: 'Action potentials, neuromuscular transmission, and reflex arcs.',
+    questions: [
+      {
+        id: 'phys-9',
+        text: 'The rising phase (depolarization) of a neuronal action potential is primarily due to:',
+        options: ['Rapid opening of voltage-gated Na+ channels', 'Opening of voltage-gated K+ channels', 'Ca2+ influx at the synapse', 'Closure of leak K+ channels'],
+        correctIndex: 0,
+        explanation:
+          'Depolarization results from the rapid opening of voltage-gated Na+ channels causing a fast influx of Na+; repolarization follows from Na+ channel inactivation plus delayed opening of voltage-gated K+ channels.',
+        reference: "Guyton & Hall Textbook of Medical Physiology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['action-potential'],
+      },
+      {
+        id: 'phys-10',
+        text: 'A patient with myasthenia gravis has fatigable ptosis and diplopia worsening through the day. The underlying defect is:',
+        options: [
+          'Autoantibodies against post-synaptic nicotinic acetylcholine receptors at the neuromuscular junction',
+          'Autoantibodies against presynaptic voltage-gated calcium channels',
+          'Demyelination of peripheral motor axons',
+          'Deficiency of acetylcholinesterase',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Myasthenia gravis is caused by autoantibodies against post-synaptic nicotinic ACh receptors (or MuSK), reducing effective neuromuscular transmission and causing fatigable weakness. (Presynaptic VGCC antibodies cause Lambert-Eaton syndrome instead.)',
+        reference: "Ganong's Review of Medical Physiology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['neuromuscular-junction', 'myasthenia'],
+        isPYQ: true,
+        year: 2024,
+      },
+      {
+        id: 'phys-11',
+        text: 'The stretch (myotatic) reflex, such as the knee-jerk, is monosynaptic because:',
+        options: [
+          'The Ia afferent from the muscle spindle synapses directly onto the alpha motor neuron',
+          'It requires an interneuron relay in the dorsal horn',
+          'It involves the corticospinal tract',
+          'It is mediated by Golgi tendon organs',
+        ],
+        correctIndex: 0,
+        explanation:
+          'The myotatic (stretch) reflex arc is the simplest spinal reflex: the Ia afferent fiber from the muscle spindle synapses directly on the alpha motor neuron supplying the same muscle, with no interneuron — hence "monosynaptic."',
+        reference: "Ganong's Review of Medical Physiology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['reflex-arc', 'muscle-spindle'],
+      },
+      {
+        id: 'phys-12',
+        text: 'Assertion (A): Golgi tendon organs protect muscle from excessive tension by causing reflex relaxation.\nReason (R): They are located in series with extrafusal muscle fibers at the musculotendinous junction and signal via Ib afferents.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Golgi tendon organs sit in series with extrafusal fibers at the musculotendinous junction, sensing tension via Ib afferents; high tension triggers autogenic inhibition (reflex relaxation) via inhibitory interneurons, protecting the muscle-tendon unit.',
+        reference: "Ganong's Review of Medical Physiology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['golgi-tendon-organ'],
+      },
+    ],
+  },
+]

@@ -1,8 +1,8 @@
-const KEY = 'one9:resume-test'
+const KEY = 'drsahithi:resume-test'
 
 export interface ResumeState {
   /** Which runner this belongs to. */
-  kind: 'mock' | 'practice'
+  kind: 'mock' | 'practice' | 'grand'
   /** Route to navigate to in order to resume. */
   route: string
   /** Human-readable label shown on the "Resume Last Test" prompt. */

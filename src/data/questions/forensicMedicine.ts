@@ -1,0 +1,221 @@
+import type { Topic } from '../../types'
+
+export const forensicMedicineTopics: Topic[] = [
+  {
+    id: 'thanatology',
+    name: 'Forensic Pathology (Thanatology)',
+    description: 'Postmortem changes, time since death, and asphyxial deaths.',
+    questions: [
+      {
+        id: 'fmt-1',
+        text: 'Rigor mortis typically begins to appear (in a temperate climate) after death within approximately:',
+        options: ['1-2 hours, complete by 12 hours', '30 minutes, complete by 2 hours', '12-24 hours, complete by 48 hours', 'Immediately at the moment of death'],
+        correctIndex: 0,
+        explanation:
+          'Rigor mortis classically begins within 1-2 hours after death (starting in small muscles, e.g., face/jaw, per the "law of Nysten"), becomes complete by about 12 hours, persists roughly 12-24 hours more, then resolves in the same order it appeared.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['rigor-mortis', 'time-since-death'],
+      },
+      {
+        id: 'fmt-2',
+        text: 'A drowning victim\'s autopsy shows fine, moist, mushroom-shaped froth at the mouth/nostrils. This finding is:',
+        options: [
+          'A classic (though not absolute) sign supportive of death by drowning',
+          'Diagnostic only of strangulation',
+          'Seen exclusively in postmortem submersion with no relation to cause of death',
+          'Specific for poisoning',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Fine, white/pink, mushroom-shaped froth at the mouth and nostrils (from mixing of air, water, mucus, and surfactant) is a classic supportive — though not absolutely pathognomonic — sign of drowning, and often reappears if wiped away.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['drowning', 'asphyxia'],
+        isPYQ: true,
+        year: 2023,
+      },
+      {
+        id: 'fmt-3',
+        text: 'A ligature mark that is oblique, non-continuous, and situated above the thyroid cartilage is most typical of:',
+        options: ['Hanging', 'Strangulation by ligature', 'Manual strangulation (throttling)', 'Postmortem artifact from clothing'],
+        correctIndex: 0,
+        explanation:
+          'In hanging, the ligature mark is classically oblique, non-continuous (interrupted at the point of suspension), and situated above the thyroid cartilage, reflecting the upward pull of the noose by body weight — contrasting with the typically horizontal, complete mark of ligature strangulation.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['hanging', 'asphyxia'],
+      },
+      {
+        id: 'fmt-4',
+        text: 'Assertion (A): Livor mortis (postmortem lividity) can help estimate time since death and detect body movement after death.\nReason (R): Lividity is "fixed" once it fails to blanch on pressure, typically after 6-12 hours.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Livor mortis appears due to gravitational pooling of blood and becomes "fixed" (non-blanching) after roughly 6-12 hours; before fixation, lividity shifts if the body is moved, so its pattern and fixation status help estimate time since death and detect post-death movement/repositioning.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['livor-mortis'],
+      },
+    ],
+  },
+  {
+    id: 'medical-jurisprudence',
+    name: 'Medical Jurisprudence',
+    description: 'Consent, medical negligence, and documentation.',
+    questions: [
+      {
+        id: 'fmt-5',
+        text: 'The legal doctrine "res ipsa loquitur" ("the thing speaks for itself"), sometimes invoked in medical negligence cases, means:',
+        options: [
+          'Negligence can be inferred from the very nature of the injury without direct evidence of a specific negligent act',
+          'The patient must always provide expert testimony to prove negligence',
+          'The doctrine that consent, once given, cannot be withdrawn',
+          'A rule requiring double documentation of every procedure',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Res ipsa loquitur allows an inference of negligence purely from the occurrence of an injury that would not normally happen without negligence (e.g., a surgical instrument left inside a patient), shifting the burden to the defendant to explain.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['negligence'],
+      },
+      {
+        id: 'fmt-6',
+        text: 'An unconscious trauma patient requires emergency life-saving surgery and cannot provide consent, with no relative available. The applicable legal principle is:',
+        options: [
+          'The doctrine of implied/emergency consent — treatment may proceed in the patient\'s best interest',
+          'Treatment must be withheld until a court order is obtained',
+          'Consent must be obtained from any bystander present',
+          'The hospital administrator must personally authorize every such case',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Under the emergency/implied consent doctrine, a physician may proceed with necessary life-saving treatment for an unconscious patient without explicit consent, since a reasonable person would be presumed to consent to treatment that preserves life or prevents serious harm.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['consent', 'emergency-care'],
+        isPYQ: true,
+        year: 2022,
+      },
+      {
+        id: 'fmt-7',
+        text: 'A dying declaration recorded by a magistrate is admissible in an Indian court of law primarily because:',
+        options: [
+          'It is presumed a person facing imminent death has no reason to lie',
+          'It requires no witness or corroboration ever',
+          'It is legally equivalent to sworn courtroom testimony under oath',
+          'It can only be recorded by a treating doctor, never a magistrate',
+        ],
+        correctIndex: 0,
+        explanation:
+          'A dying declaration is admissible under the principle "nemo moriturus praesumitur mentire" — a person on the verge of death is presumed unlikely to lie — and can be recorded by a magistrate, doctor, or police officer if the person is conscious and fit to make a statement.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['dying-declaration'],
+      },
+      {
+        id: 'fmt-8',
+        text: 'Match each type of medico-legal document/procedure with its correct description:',
+        options: [
+          'Informed consent → disclosure of risks/benefits/alternatives before a procedure; Medical certificate → formal statement of a fact examined by a doctor; Dying declaration → statement by a person believing death is imminent',
+          'Informed consent → statement after death; Dying declaration → given before any procedure',
+          'Medical certificate → only used for birth registration',
+          'All three terms are legally interchangeable',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Informed consent requires disclosing the nature, risks, benefits, and alternatives of a proposed intervention; a medical certificate is a formal written statement of examined fact (e.g., fitness, cause of injury); a dying declaration is a statement of a person who believes death is imminent, related to the cause of their impending death.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Expert',
+        type: 'match-following',
+        tags: ['medico-legal-documents'],
+        matchPairs: [
+          { left: 'Informed consent', right: 'Pre-procedure risk/benefit disclosure' },
+          { left: 'Medical certificate', right: 'Formal statement of examined fact' },
+          { left: 'Dying declaration', right: 'Statement believing death is imminent' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'toxicology',
+    name: 'Toxicology',
+    description: 'Common poisonings and their antidotes.',
+    questions: [
+      {
+        id: 'fmt-9',
+        text: 'A patient presents with pinpoint pupils, respiratory depression, and reduced consciousness after a suspected opioid overdose. The specific antidote is:',
+        options: ['Naloxone', 'Flumazenil', 'Atropine', 'N-acetylcysteine'],
+        correctIndex: 0,
+        explanation:
+          'Naloxone is a competitive opioid receptor antagonist used to reverse opioid-induced respiratory depression and CNS depression; flumazenil reverses benzodiazepines, atropine treats organophosphate/cholinergic toxicity, and N-acetylcysteine treats paracetamol overdose.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Easy',
+        type: 'clinical-case',
+        tags: ['antidotes', 'opioid-toxicity'],
+      },
+      {
+        id: 'fmt-10',
+        text: 'A farmer presents with excessive salivation, lacrimation, urination, diarrhea, GI distress, and emesis (the "SLUDGE" syndrome) after pesticide exposure. The most likely toxin and its antidote are:',
+        options: [
+          'Organophosphate poisoning; treated with atropine and pralidoxime',
+          'Aluminium phosphide poisoning; treated with N-acetylcysteine',
+          'Paraquat poisoning; treated with naloxone',
+          'Carbon monoxide poisoning; treated with atropine',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Organophosphates inhibit acetylcholinesterase, causing cholinergic excess (SLUDGE symptoms plus bronchospasm/bronchorrhea). Atropine reverses muscarinic effects; pralidoxime (2-PAM) reactivates acetylcholinesterase if given early, before "aging" of the enzyme-inhibitor complex.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['organophosphate-poisoning'],
+        isPYQ: true,
+        year: 2024,
+        clinicalPearl: 'Pralidoxime is most effective when given early, before enzyme "aging" makes the block irreversible.',
+      },
+      {
+        id: 'fmt-11',
+        text: 'Cherry-red discoloration of skin/mucosa and blood at autopsy is classically associated with poisoning by:',
+        options: ['Carbon monoxide', 'Cyanide (also can cause cherry-red but classically CO)', 'Arsenic', 'Lead'],
+        correctIndex: 0,
+        explanation:
+          'Carbon monoxide poisoning classically produces cherry-red livor and blood discoloration due to carboxyhemoglobin formation (though cyanide poisoning can also occasionally show a similar cherry-red hue) — an important autopsy clue in suspected CO poisoning/fire deaths.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['carbon-monoxide'],
+      },
+      {
+        id: 'fmt-12',
+        text: 'Assertion (A): Aluminium phosphide poisoning carries a very high mortality rate.\nReason (R): It releases phosphine gas on contact with moisture/gastric acid, causing cellular hypoxia through mitochondrial cytochrome oxidase inhibition.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Aluminium phosphide (a common grain fumigant/rodenticide) reacts with gastric HCl and moisture to release phosphine gas, which inhibits mitochondrial cytochrome c oxidase, causing severe cellular hypoxia, refractory shock, and myocarditis — with no proven specific antidote, hence very high mortality.',
+        reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['aluminium-phosphide'],
+      },
+    ],
+  },
+]

@@ -1,92 +1,34 @@
+import type { SubjectSlug } from '../types'
+
 export interface BookResource {
   title: string
   author: string
-  subject: 'Quant' | 'Reasoning' | 'English' | 'General Awareness' | 'Previous Papers'
+  subject: SubjectSlug | 'General'
   description: string
-  /**
-   * Optional filename of a PDF placed in `public/books/`. When set, "Find This
-   * Book" opens that PDF directly in the browser's built-in viewer instead of
-   * linking out. Leave unset (the default) to fall back to an external search
-   * link — that's the case for every book today, since no PDFs ship with the
-   * project yet. To enable the in-app viewer for a book: drop the file in
-   * `public/books/<file>.pdf` and set this field to `<file>.pdf`.
-   */
   pdfFile?: string
 }
 
 export const books: BookResource[] = [
-  {
-    title: 'Fast Track Objective Arithmetic',
-    author: 'Rajesh Verma',
-    subject: 'Quant',
-    description: 'Concept-first arithmetic book with shortcut methods, widely used for Tier-I speed building.',
-  },
-  {
-    title: 'Quantitative Aptitude for Competitive Examinations',
-    author: 'R.S. Aggarwal',
-    subject: 'Quant',
-    description: 'The most widely used all-round quant reference, with a huge bank of practice problems by topic.',
-  },
-  {
-    title: 'Magical Book on Quicker Maths',
-    author: 'M. Tyra',
-    subject: 'Quant',
-    description: 'Focused on calculation shortcuts and speed techniques for arithmetic-heavy sections.',
-  },
-  {
-    title: 'A Modern Approach to Verbal & Non-Verbal Reasoning',
-    author: 'R.S. Aggarwal',
-    subject: 'Reasoning',
-    description: 'Comprehensive coverage of both verbal and non-verbal reasoning types asked in Tier-I & Tier-II.',
-  },
-  {
-    title: 'Analytical Reasoning',
-    author: 'M.K. Pandey',
-    subject: 'Reasoning',
-    description: 'Strong on puzzles, seating arrangement, and analytical-style reasoning questions.',
-  },
-  {
-    title: 'Objective General English',
-    author: 'S.P. Bakshi',
-    subject: 'English',
-    description: 'SSC-focused English prep with grammar rules explained alongside topic-wise practice sets.',
-  },
-  {
-    title: 'High School English Grammar and Composition',
-    author: 'Wren & Martin',
-    subject: 'English',
-    description: 'The classic grammar foundation book — useful for clearing fundamentals before topic practice.',
-  },
-  {
-    title: 'Word Power Made Easy',
-    author: 'Norman Lewis',
-    subject: 'English',
-    description: 'A structured way to build vocabulary for synonym/antonym and one-word substitution questions.',
-  },
-  {
-    title: "Lucent's General Knowledge",
-    author: 'Lucent Publications',
-    subject: 'General Awareness',
-    description: 'The standard static GK reference covering history, polity, geography, economy, and science.',
-  },
-  {
-    title: 'Manorama Yearbook',
-    author: 'Malayala Manorama',
-    subject: 'General Awareness',
-    description: 'An annual reference for current affairs, awards, sports, and general knowledge updates.',
-  },
-  {
-    title: 'SSC CGL Previous Year Solved Papers',
-    author: 'Kiran Prakashan',
-    subject: 'Previous Papers',
-    description: 'Chapter-wise and year-wise solved papers — the best way to get used to real exam difficulty.',
-  },
-  {
-    title: 'SSC CGL Tier-I & Tier-II Complete Guide',
-    author: 'Arihant Experts',
-    subject: 'Previous Papers',
-    description: 'Full-syllabus guide combining theory, practice sets, and mock papers in one volume.',
-  },
+  { title: "BD Chaurasia's Human Anatomy", author: 'BD Chaurasia', subject: 'anatomy', description: 'The standard, most widely used Indian anatomy reference across all three volumes.' },
+  { title: 'Textbook of Medical Physiology', author: 'Guyton & Hall', subject: 'physiology', description: 'The definitive physiology reference, covering every organ system in depth.' },
+  { title: "Harper's Illustrated Biochemistry", author: 'Various (Lange series)', subject: 'biochemistry', description: 'Concise, high-yield coverage of metabolism, molecular biology, and clinical correlations.' },
+  { title: 'Robbins Basic Pathology', author: 'Kumar, Abbas & Aster', subject: 'pathology', description: 'The gold-standard pathology text — general and systemic pathology with excellent clinical correlation.' },
+  { title: 'Essentials of Medical Pharmacology', author: 'KD Tripathi', subject: 'pharmacology', description: 'The most widely used Indian pharmacology textbook, known for its clarity and exam-oriented style.' },
+  { title: "Ananthanarayan and Paniker's Textbook of Microbiology", author: 'CK Jayaram Paniker', subject: 'microbiology', description: 'Standard Indian microbiology reference covering bacteriology, virology, and parasitology.' },
+  { title: 'The Essentials of Forensic Medicine and Toxicology', author: 'KS Narayan Reddy', subject: 'forensic-medicine', description: 'The classic Indian forensic medicine and toxicology text, widely used for exam prep.' },
+  { title: 'Park\'s Textbook of Preventive and Social Medicine', author: 'K Park', subject: 'community-medicine', description: 'The definitive Indian community medicine reference — epidemiology, biostatistics, and national health programs.' },
+  { title: "Harrison's Principles of Internal Medicine", author: 'Various (McGraw Hill)', subject: 'medicine', description: 'The world\'s leading internal medicine reference, covering every major clinical topic in depth.' },
+  { title: "Bailey & Love's Short Practice of Surgery", author: 'Norman Williams et al.', subject: 'surgery', description: 'The classic comprehensive general surgery reference used worldwide.' },
+  { title: 'Williams Obstetrics', author: 'F. Gary Cunningham et al.', subject: 'obg', description: 'The definitive obstetrics reference, complemented by DC Dutta\'s Textbook of Gynecology for gynec topics.' },
+  { title: 'Nelson Textbook of Pediatrics', author: 'Robert Kliegman et al.', subject: 'pediatrics', description: 'The leading global pediatrics reference, alongside Ghai Essential Pediatrics for the Indian context.' },
+  { title: "Apley's System of Orthopaedics and Fractures", author: 'Louis Solomon et al.', subject: 'orthopedics', description: 'A comprehensive, clearly illustrated orthopedics and trauma reference.' },
+  { title: "Dhingra's Diseases of Ear, Nose and Throat", author: 'PL Dhingra', subject: 'ent', description: 'The standard Indian ENT textbook, concise and exam-focused.' },
+  { title: "Parson's Diseases of the Eye", author: 'Various (Elsevier)', subject: 'ophthalmology', description: 'A classic, comprehensive ophthalmology reference, alongside AK Khurana\'s Ophthalmology.' },
+  { title: 'IADVL Textbook of Dermatology', author: 'Indian Association of Dermatologists', subject: 'dermatology', description: 'The authoritative Indian dermatology, venereology, and leprology reference.' },
+  { title: "Kaplan & Sadock's Synopsis of Psychiatry", author: 'Benjamin Sadock et al.', subject: 'psychiatry', description: 'The most widely used psychiatry reference for clinical and exam preparation.' },
+  { title: "Grainger & Allison's Diagnostic Radiology", author: 'Various (Elsevier)', subject: 'radiology', description: 'A comprehensive radiology reference covering imaging patterns across every organ system.' },
+  { title: "Miller's Anesthesia", author: 'Ronald Miller et al.', subject: 'anesthesia', description: 'The definitive anesthesiology reference, covering general, regional, and critical care anesthesia.' },
+  { title: 'Self Assessment & Review series (subject-wise)', author: 'Various authors', subject: 'General', description: 'Subject-wise MCQ review books commonly used alongside standard textbooks for exam-pattern practice.' },
 ]
 
 export function bookSearchUrl(book: BookResource) {

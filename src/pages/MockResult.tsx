@@ -36,7 +36,7 @@ export default function MockResult() {
   return (
     <div className="pb-20">
       <PageHeader
-        eyebrow={config.tier}
+        eyebrow="Mock Test"
         title={`${config.title} — Result`}
         actions={
           <div className="flex gap-2">

@@ -3,7 +3,7 @@ import type { QuizQuestionItem } from './quizEngine'
 import { newAttemptId } from './attempts'
 
 export function computeAttempt(params: {
-  kind: 'practice' | 'mock'
+  kind: AttemptRecord['kind']
   label: string
   items: QuizQuestionItem[]
   answers: Record<string, number | undefined>
@@ -12,14 +12,18 @@ export function computeAttempt(params: {
   durationSec: number
   sourceRoute?: string
   mockKind?: AttemptRecord['mockKind']
+  grandTestId?: string
+  /** Per-question time spent, keyed by question id — enables speed vs. accuracy analytics. */
+  timeSpent?: Record<string, number | undefined>
 }): AttemptRecord {
-  const { kind, label, items, answers, marksCorrect, marksWrong, durationSec, sourceRoute, mockKind } = params
+  const { kind, label, items, answers, marksCorrect, marksWrong, durationSec, sourceRoute, mockKind, grandTestId, timeSpent } = params
   let correct = 0
   let wrong = 0
   let skipped = 0
 
   const answerList: AnswerRecord[] = items.map((item) => {
     const selected = answers[item.question.id]
+    const timeSpentSec = timeSpent?.[item.question.id]
     if (selected === undefined || selected === null) {
       skipped++
       return {
@@ -30,6 +34,7 @@ export function computeAttempt(params: {
         selectedIndex: null,
         correctIndex: item.question.correctIndex,
         isCorrect: null,
+        timeSpentSec,
       }
     }
     const isCorrect = selected === item.question.correctIndex
@@ -43,6 +48,7 @@ export function computeAttempt(params: {
       selectedIndex: selected,
       correctIndex: item.question.correctIndex,
       isCorrect,
+      timeSpentSec,
     }
   })
 
@@ -65,6 +71,7 @@ export function computeAttempt(params: {
     answers: answerList,
     sourceRoute,
     mockKind,
+    grandTestId,
     marksCorrect,
     marksWrong,
   }

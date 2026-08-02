@@ -1,23 +1,17 @@
 import { useMemo, useState } from 'react'
 import PageHeader from '../components/PageHeader'
 import { books, bookLinkTarget } from '../data/resources'
-import { resourceGroups } from '../data/learningHub'
+import { resourceGroups, additionalHubs } from '../data/learningHub'
+import { getAllHighYieldItems } from '../lib/highYield'
+import { Lightbulb, Sparkles, PlayCircle } from 'lucide-react'
 
-const BOOK_FILTERS = ['All', 'Quant', 'Reasoning', 'English', 'General Awareness', 'Previous Papers'] as const
-
-function YouTubeIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
-      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
-    </svg>
-  )
-}
+const BOOK_FILTER_ALL = 'All'
 
 function VideoHub() {
   return (
     <div className="grid gap-5 sm:grid-cols-2">
-      {resourceGroups.map((group) => (
-        <div key={group.id} className="card p-5 flex flex-col">
+      {[...resourceGroups, ...additionalHubs].map((group) => (
+        <div key={group.id} className="card gradient-card p-5 flex flex-col">
           <h3 className="font-display font-bold text-lg mb-1">{group.title}</h3>
           <p className="text-sm text-muted-foreground mb-4" style={{ lineHeight: 1.6 }}>
             {group.description}
@@ -33,15 +27,12 @@ function VideoHub() {
               >
                 <span className="flex items-center gap-2 min-w-0">
                   <span className="w-6 h-6 rounded-md bg-danger-bg text-danger flex items-center justify-center shrink-0">
-                    <YouTubeIcon />
+                    <PlayCircle size={14} />
                   </span>
-                  <span className="min-w-0">
-                    <span className="block font-medium truncate">{r.label}</span>
-                    {r.creator && <span className="block text-xs text-muted-foreground truncate">{r.creator}</span>}
-                  </span>
+                  <span className="min-w-0 truncate font-medium">{r.label}</span>
                 </span>
                 <span className="flex items-center gap-1.5 shrink-0">
-                  {r.recommended && <span className="tag bg-warning-bg text-warning">&#9733; Recommended</span>}
+                  {r.recommended && <span className="tag bg-warning-bg text-warning">&#9733; Search</span>}
                   <span className="text-muted-foreground">&rarr;</span>
                 </span>
               </a>
@@ -54,17 +45,15 @@ function VideoHub() {
 }
 
 function BookLibrary() {
-  const [filter, setFilter] = useState<(typeof BOOK_FILTERS)[number]>('All')
+  const filters = [BOOK_FILTER_ALL, ...new Set(books.map((b) => b.subject))]
+  const [filter, setFilter] = useState<string>(BOOK_FILTER_ALL)
 
-  const filtered = useMemo(
-    () => (filter === 'All' ? books : books.filter((b) => b.subject === filter)),
-    [filter]
-  )
+  const filtered = useMemo(() => (filter === BOOK_FILTER_ALL ? books : books.filter((b) => b.subject === filter)), [filter])
 
   return (
     <div>
       <div className="flex flex-wrap gap-2 mb-6">
-        {BOOK_FILTERS.map((f) => (
+        {filters.map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
@@ -104,9 +93,48 @@ function BookLibrary() {
   )
 }
 
+function FlashcardsOneLiners() {
+  const items = useMemo(() => getAllHighYieldItems(), [])
+  const [flippedId, setFlippedId] = useState<string | null>(null)
+
+  if (items.length === 0) {
+    return <div className="card p-10 text-center text-muted-foreground">No flashcards yet — check back as more questions are added.</div>
+  }
+
+  return (
+    <div>
+      <p className="text-sm text-muted-foreground mb-6">
+        {items.length} high-yield one-liners &amp; clinical pearls, pulled directly from the question bank. Tap a
+        card to flip it.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => {
+          const flipped = flippedId === item.id
+          return (
+            <button
+              key={item.id}
+              onClick={() => setFlippedId(flipped ? null : item.id)}
+              className="card card-hover text-left p-5 min-h-[140px] flex flex-col"
+            >
+              <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                {item.kind === 'pearl' ? <Lightbulb size={13} className="text-warning" /> : <Sparkles size={13} className="text-primary" />}
+                {item.subjectName} · {item.topic}
+              </span>
+              <span className="text-sm flex-1" style={{ lineHeight: 1.6 }}>
+                {flipped ? item.text : 'Tap to reveal'}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 const TABS = [
   { key: 'videos', label: 'Video Learning Hub' },
   { key: 'books', label: 'Book Library' },
+  { key: 'flashcards', label: 'Flashcards & One-Liners' },
 ] as const
 
 export default function Resources() {
@@ -116,12 +144,12 @@ export default function Resources() {
     <div className="pb-20">
       <PageHeader
         eyebrow="Resources"
-        title="The SSC CGL learning hub"
-        description="Curated YouTube educators and playlists organized by subject, plus the standard books most toppers use."
+        title="The NEET PG learning hub"
+        description="Standard textbook references, subject-wise video search hubs, and flashcards built from the question bank's clinical pearls."
       />
 
       <div className="max-w-5xl mx-auto px-6">
-        <div className="inline-flex bg-secondary rounded-lg p-1 gap-1 mb-8">
+        <div className="inline-flex bg-secondary rounded-lg p-1 gap-1 mb-8 flex-wrap">
           {TABS.map((t) => (
             <button
               key={t.key}
@@ -135,11 +163,14 @@ export default function Resources() {
           ))}
         </div>
 
-        {tab === 'videos' ? <VideoHub /> : <BookLibrary />}
+        {tab === 'videos' && <VideoHub />}
+        {tab === 'books' && <BookLibrary />}
+        {tab === 'flashcards' && <FlashcardsOneLiners />}
 
         <p className="text-xs text-muted-foreground mt-10 text-center">
-          These are independent, third-party educators and channels — not affiliated with One9. Always verify a
-          channel is currently active before committing to a full course.
+          Video links are search results, not endorsements of any specific channel — always verify a source is
+          currently active and accurate. Textbooks listed are standard references widely used in Indian medical
+          education, not affiliated with this platform.
         </p>
       </div>
     </div>

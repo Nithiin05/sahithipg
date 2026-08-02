@@ -42,20 +42,21 @@ export function getRecommendations(attempts: AttemptRecord[]): Recommendation[] 
       id: `weak-${t.subjectSlug}-${t.topic}`,
       message: `Your ${t.topic} accuracy is only ${t.accuracy}%. Spend your next session practicing ${t.topic}.`,
       actionLabel: `Practice ${subject?.shortName ?? t.subject}`,
-      actionRoute: `/practice/${t.subjectSlug}`,
+      actionRoute: `/subjects/${t.subjectSlug}`,
       tone: 'weakness',
     })
   }
 
-  // 2. Marks lost to negative marking, across mock attempts in the last 30 days.
-  const recentMocks = attempts.filter((a) => a.kind === 'mock' && daysAgo(a.date) <= 30)
-  const marksLost = recentMocks.reduce((sum, a) => sum + a.wrong * (a.marksWrong ?? 0), 0)
-  if (marksLost >= 5) {
+  // 2. Wrong-answer rate across mock/grand tests in the last 30 days.
+  const recentMocks = attempts.filter((a) => (a.kind === 'mock' || a.kind === 'grand') && daysAgo(a.date) <= 30)
+  const recentWrong = recentMocks.reduce((sum, a) => sum + a.wrong, 0)
+  const recentAttempted = recentMocks.reduce((sum, a) => sum + a.attempted, 0)
+  if (recentAttempted >= 20 && recentWrong / recentAttempted >= 0.35) {
     recs.push({
-      id: 'negative-marking',
-      message: `You've lost ${Math.round(marksLost * 10) / 10} marks to negative marking in your recent mocks. Try an Easy-difficulty accuracy set before your next mock.`,
+      id: 'accuracy-focus',
+      message: `You've gotten ${recentWrong} of ${recentAttempted} attempted questions wrong in your recent mocks/grand tests. Try an Easy-difficulty revision set to rebuild accuracy before your next test.`,
       actionLabel: 'Practice for accuracy',
-      actionRoute: '/practice',
+      actionRoute: '/subjects',
       tone: 'warning',
     })
   }

@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import Stats from '../components/Stats'
 import Features from '../components/Features'
 import ExamPattern from '../components/ExamPattern'
 import HowItWorks from '../components/HowItWorks'
@@ -10,12 +11,13 @@ export default function Home() {
     <>
       <Hero />
       <ResumeBanner />
+      <Stats />
       <Features />
       <ExamPattern />
       <HowItWorks />
       <FinalCTA />
       <p className="text-center text-sm text-muted-foreground pb-10 px-6">
-        Ee Sala CGL Namde! ❤️👑
+        Every Question Matters. 🩺
       </p>
     </>
   )

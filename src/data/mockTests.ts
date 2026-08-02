@@ -1,99 +1,66 @@
 import type { SubjectSlug } from '../types'
 import { subjects } from './subjects'
+import { pyqYears, pooledPYQQuestions } from '../lib/quizEngine'
 
 export interface MockSection {
   id: string
   label: string
-  subject: SubjectSlug
-  /** Restrict pooling to a single topic within the subject (used for sectional/topic-wise tests). */
+  /** Omit for mixed/rapid-revision sections that pool across every subject. */
+  subject?: SubjectSlug
+  /** Restrict pooling to a single topic within the subject (used for topic-wise tests). */
   topicId?: string
   questionCount: number
   minutes: number
 }
 
-export type MockTestKind = 'full' | 'sectional' | 'topic' | 'previous-year'
+export type MockTestKind = 'subject' | 'topic' | 'rapid-revision' | 'mixed' | 'pyq' | 'daily-challenge' | 'smart-revision'
 
 export interface MockTestConfig {
   id: string
   title: string
-  tier: 'Tier-I' | 'Tier-II'
-  /** Defaults to 'full' when omitted, for backwards compatibility. */
-  kind?: MockTestKind
-  /** Which subject this test belongs to — only set for 'sectional' and 'topic' kinds. */
+  kind: MockTestKind
+  /** Which subject this test belongs to — only set for 'subject' and 'topic' kinds. */
   subjectSlug?: SubjectSlug
   /** Which topic this test belongs to — only set for 'topic' kind. */
   topicId?: string
-  /** Previous-year-pattern metadata, only set when kind === 'previous-year'. */
+  /** PYQ-style metadata, only set when kind === 'pyq'. */
   year?: number
-  shift?: string
-  session?: string
   description: string
   marksCorrect: number
   marksWrong: number
   sections: MockSection[]
 }
 
-// ---------------------------------------------------------------------------
-// Full-length mocks — SSC CGL's published Tier-I / Tier-II structure, timing,
-// and marking scheme. Every mock draws a fresh, non-repeating, shuffled
-// question set from the subject pools each time it's attempted.
-// ---------------------------------------------------------------------------
-
-function tier1Sections(): MockSection[] {
-  return [
-    { id: 'sec-reasoning', label: 'General Intelligence & Reasoning', subject: 'reasoning', questionCount: 25, minutes: 15 },
-    { id: 'sec-quant', label: 'Quantitative Aptitude', subject: 'quant', questionCount: 25, minutes: 15 },
-    { id: 'sec-english', label: 'English Comprehension', subject: 'english', questionCount: 25, minutes: 15 },
-    { id: 'sec-ga', label: 'General Awareness', subject: 'general-awareness', questionCount: 25, minutes: 15 },
-  ]
-}
-
-function tier2Sections(): MockSection[] {
-  return [
-    { id: 'sec-quant', label: 'Module-I: Mathematical Abilities', subject: 'quant', questionCount: 30, minutes: 45 },
-    { id: 'sec-reasoning', label: 'Module-II: Reasoning & General Intelligence', subject: 'reasoning', questionCount: 30, minutes: 45 },
-    { id: 'sec-english', label: 'Module-I: English Language & Comprehension', subject: 'english', questionCount: 45, minutes: 45 },
-    { id: 'sec-ga', label: 'Module-II: General Awareness', subject: 'general-awareness', questionCount: 25, minutes: 20 },
-  ]
-}
-
-function buildFullMocks(tier: 'Tier-I' | 'Tier-II', count: number): MockTestConfig[] {
-  const isT1 = tier === 'Tier-I'
-  return Array.from({ length: count }, (_, idx) => {
-    const n = idx + 1
-    return {
-      id: `${isT1 ? 'tier1' : 'tier2'}-full-${n}`,
-      title: `SSC CGL ${tier} Full Mock ${n}`,
-      tier,
-      kind: 'full' as const,
-      description: isT1
-        ? '100 questions across 4 sections, 25 each, with an independent 15-minute timer per section that locks automatically — matching the real Tier-I pattern. A fresh, randomly-assembled set every attempt.'
-        : '130 scored questions across 4 modules, each with its own timer, using the higher-stakes Tier-II marking scheme (+3 / −1). A fresh, randomly-assembled set every attempt.',
-      marksCorrect: isT1 ? 2 : 3,
-      marksWrong: isT1 ? 0.5 : 1,
-      sections: isT1 ? tier1Sections() : tier2Sections(),
-    }
-  })
-}
+/**
+ * NEET PG itself carries NO negative marking (+1 per correct answer, 0 for
+ * wrong/unattempted) — unlike SSC/INI-CET style exams. Every test on this
+ * platform reflects that real marking scheme for accuracy.
+ */
+const MARKS_CORRECT = 1
+const MARKS_WRONG = 0
 
 // ---------------------------------------------------------------------------
-// Sectional tests — one subject at a time, full syllabus, exam-style timing.
+// Subject Tests — full-syllabus, single-subject, timed tests.
 // ---------------------------------------------------------------------------
 
-function buildSectionalTests(perSubject: number): MockTestConfig[] {
+function buildSubjectTests(setsPerSubject: number): MockTestConfig[] {
   const out: MockTestConfig[] = []
   for (const subject of subjects) {
-    for (let i = 1; i <= perSubject; i++) {
+    const pool = subject.topics.reduce((s, t) => s + t.questions.length, 0)
+    const questionCount = Math.min(15, pool)
+    if (questionCount === 0) continue
+    for (let i = 1; i <= setsPerSubject; i++) {
       out.push({
-        id: `sectional-${subject.slug}-${i}`,
-        title: `${subject.name} Sectional Test ${i}`,
-        tier: 'Tier-I',
-        kind: 'sectional',
+        id: `subject-${subject.slug}-${i}`,
+        title: `${subject.name} — Subject Test ${i}`,
+        kind: 'subject',
         subjectSlug: subject.slug,
-        description: `A standalone, timed sectional test covering the full ${subject.name} syllabus — set ${i} of ${perSubject}.`,
-        marksCorrect: 2,
-        marksWrong: 0.5,
-        sections: [{ id: `sec-${subject.slug}`, label: subject.name, subject: subject.slug, questionCount: 25, minutes: 15 }],
+        description: `A ${questionCount}-question, full-syllabus subject test for ${subject.name} — set ${i} of ${setsPerSubject}. Freshly shuffled from the ${subject.shortName} question bank on every attempt.`,
+        marksCorrect: MARKS_CORRECT,
+        marksWrong: MARKS_WRONG,
+        sections: [
+          { id: `sec-${subject.slug}`, label: subject.name, subject: subject.slug, questionCount, minutes: Math.max(15, questionCount) },
+        ],
       })
     }
   }
@@ -101,36 +68,29 @@ function buildSectionalTests(perSubject: number): MockTestConfig[] {
 }
 
 // ---------------------------------------------------------------------------
-// Topic-wise practice tests — every topic across every subject, chopped into
-// multiple timed, scored sets so users never run out of drills for a topic.
+// Topic Tests — every topic across every subject, chopped into multiple
+// timed, scored sets so students never run out of focused drills.
 // ---------------------------------------------------------------------------
 
 function buildTopicTests(setsPerTopic: number): MockTestConfig[] {
   const out: MockTestConfig[] = []
   for (const subject of subjects) {
     for (const topic of subject.topics) {
-      const questionCount = Math.min(15, topic.questions.length)
-      const minutes = Math.max(10, questionCount)
+      const questionCount = Math.min(6, topic.questions.length)
+      if (questionCount === 0) continue
+      const minutes = Math.max(8, questionCount * 1.5)
       for (let i = 1; i <= setsPerTopic; i++) {
         out.push({
           id: `topic-${subject.slug}-${topic.id}-${i}`,
           title: `${topic.name} — Practice Set ${i}`,
-          tier: 'Tier-I',
           kind: 'topic',
           subjectSlug: subject.slug,
           topicId: topic.id,
           description: `${questionCount}-question topic-wise practice set for ${topic.name} (${subject.name}) — set ${i} of ${setsPerTopic}.`,
-          marksCorrect: 1,
-          marksWrong: 0,
+          marksCorrect: MARKS_CORRECT,
+          marksWrong: MARKS_WRONG,
           sections: [
-            {
-              id: `sec-${topic.id}`,
-              label: topic.name,
-              subject: subject.slug,
-              topicId: topic.id,
-              questionCount,
-              minutes,
-            },
+            { id: `sec-${topic.id}`, label: topic.name, subject: subject.slug, topicId: topic.id, questionCount, minutes },
           ],
         })
       }
@@ -140,50 +100,77 @@ function buildTopicTests(setsPerTopic: number): MockTestConfig[] {
 }
 
 // ---------------------------------------------------------------------------
-// Previous-year-pattern exams. These are NOT reproductions of the official
-// SSC CGL papers — they are freshly generated exams that match the publicly
-// known structure, timing, and marking scheme reported for that year/tier/
-// shift, clearly labeled as such.
+// Rapid Revision Tests — quick, high-yield, subject-agnostic sprints.
 // ---------------------------------------------------------------------------
 
-const PYP_YEARS: { year: number; tier: 'Tier-I' | 'Tier-II'; shift: string }[] = [
-  { year: 2025, tier: 'Tier-I', shift: 'Shift 1' },
-  { year: 2025, tier: 'Tier-I', shift: 'Shift 2' },
-  { year: 2024, tier: 'Tier-I', shift: 'Shift 1' },
-  { year: 2024, tier: 'Tier-I', shift: 'Shift 2' },
-  { year: 2024, tier: 'Tier-II', shift: 'Shift 1' },
-  { year: 2023, tier: 'Tier-I', shift: 'Shift 1' },
-  { year: 2023, tier: 'Tier-I', shift: 'Shift 2' },
-  { year: 2023, tier: 'Tier-II', shift: 'Shift 1' },
-  { year: 2022, tier: 'Tier-I', shift: 'Shift 1' },
-  { year: 2022, tier: 'Tier-I', shift: 'Shift 2' },
-  { year: 2021, tier: 'Tier-I', shift: 'Shift 1' },
-]
-
-function buildPreviousYearTests(): MockTestConfig[] {
-  return PYP_YEARS.map(({ year, tier, shift }) => {
-    const isT1 = tier === 'Tier-I'
+function buildRapidRevisionTests(count: number): MockTestConfig[] {
+  return Array.from({ length: count }, (_, idx) => {
+    const n = idx + 1
+    const questionCount = 10
     return {
-      id: `pyp-${year}-${isT1 ? 'tier1' : 'tier2'}-${shift.toLowerCase().replace(' ', '')}`,
-      title: `SSC CGL ${year} ${tier} — ${shift} (Pattern)`,
-      tier,
-      kind: 'previous-year' as const,
+      id: `rapid-${n}`,
+      title: `Rapid Revision — Set ${n}`,
+      kind: 'rapid-revision' as const,
+      description: `A quick ${questionCount}-question sprint pooled across all 19 subjects — perfect for a short revision burst between study blocks.`,
+      marksCorrect: MARKS_CORRECT,
+      marksWrong: MARKS_WRONG,
+      sections: [{ id: `sec-rapid-${n}`, label: 'Rapid Revision', questionCount, minutes: 10 }],
+    }
+  })
+}
+
+// ---------------------------------------------------------------------------
+// Mixed Tests — 50 / 100 / 200 question tests pooled across every subject,
+// mirroring the size options students expect from a real prep platform.
+// ---------------------------------------------------------------------------
+
+function buildMixedTests(sizes: number[], perSize: number): MockTestConfig[] {
+  const out: MockTestConfig[] = []
+  for (const size of sizes) {
+    for (let i = 1; i <= perSize; i++) {
+      out.push({
+        id: `mixed-${size}-${i}`,
+        title: `Mixed Test — ${size} Questions (Set ${i})`,
+        kind: 'mixed',
+        description: `A ${size}-question test pooled across all subjects and categories, at the same +1/0 marking scheme as NEET PG — set ${i} of ${perSize}.`,
+        marksCorrect: MARKS_CORRECT,
+        marksWrong: MARKS_WRONG,
+        sections: [{ id: `sec-mixed-${size}-${i}`, label: 'Mixed (All Subjects)', questionCount: size, minutes: size }],
+      })
+    }
+  }
+  return out
+}
+
+// ---------------------------------------------------------------------------
+// PYQ-style tests, grouped by year. These are ORIGINAL practice questions
+// written in the pattern/style reported for that year — never a reproduction
+// of an official paper. Only years with authored content appear here; the
+// PYQs page still lists every year so students can see what's coming.
+// ---------------------------------------------------------------------------
+
+function buildPYQTests(): MockTestConfig[] {
+  return pyqYears().map((year) => {
+    const count = pooledPYQQuestions(undefined, year).length
+    return {
+      id: `pyq-${year}`,
+      title: `NEET PG ${year} — PYQ-Style Practice`,
+      kind: 'pyq' as const,
       year,
-      shift,
-      description: `A pattern-based practice exam matching the structure, timing, and marking scheme reported for the ${year} ${tier} exam (${shift}). Questions are freshly generated in the same style — not a reproduction of the official paper.`,
-      marksCorrect: isT1 ? 2 : 3,
-      marksWrong: isT1 ? 0.5 : 1,
-      sections: isT1 ? tier1Sections() : tier2Sections(),
+      description: `${count} original, pattern-based practice questions written in the structure/style reported for ${year} — not a reproduction of any official paper.`,
+      marksCorrect: MARKS_CORRECT,
+      marksWrong: MARKS_WRONG,
+      sections: [{ id: `sec-pyq-${year}`, label: `PYQ Style — ${year}`, questionCount: count, minutes: Math.max(10, count) }],
     }
   })
 }
 
 export const mockTests: MockTestConfig[] = [
-  ...buildFullMocks('Tier-I', 100),
-  ...buildFullMocks('Tier-II', 75),
-  ...buildSectionalTests(40),
-  ...buildTopicTests(9),
-  ...buildPreviousYearTests(),
+  ...buildSubjectTests(3),
+  ...buildTopicTests(3),
+  ...buildRapidRevisionTests(15),
+  ...buildMixedTests([50, 100, 200], 3),
+  ...buildPYQTests(),
 ]
 
 export function getMockTest(id: string) {

@@ -1,99 +1,58 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import QuestionCard from '../components/QuestionCard'
 import QuestionPalette from '../components/QuestionPalette'
 import ProgressBar from '../components/ProgressBar'
-import FloatingCalculator from '../components/FloatingCalculator'
-import { getTopic } from '../data/subjects'
-import { buildTopicQuiz } from '../lib/quizEngine'
+import { getSubject } from '../data/subjects'
+import { buildDifficultyQuiz } from '../lib/quizEngine'
 import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
-import { clearResumeState, readResumeStateFor, saveResumeState } from '../lib/testResume'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
-import type { AttemptRecord, SubjectSlug } from '../types'
+import type { AttemptRecord, Difficulty, SubjectSlug } from '../types'
 
-export default function Quiz() {
-  const { subject: subjectSlug, topic: topicId } = useParams()
-  const { subject, topic } = getTopic(subjectSlug ?? '', topicId ?? '')
-  const route = `/practice/${subjectSlug}/${topicId}`
-
-  const initialResume = useMemo(
-    () => readResumeStateFor((s) => s.kind === 'practice' && s.route === route),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [subjectSlug, topicId],
-  )
+/** Runs one Easy/Medium/Hard/Expert difficulty set for a subject. */
+export default function DifficultySetQuiz() {
+  const { subject: subjectSlug, difficulty, setNumber } = useParams<{ subject: string; difficulty?: string; setNumber: string }>()
+  const subject = getSubject(subjectSlug ?? '')
+  const diff = difficulty as Difficulty | undefined
+  const set = parseInt(setNumber ?? '1', 10) || 1
 
   const [attemptKey, setAttemptKey] = useState(0)
   const items = useMemo(
-    () => (subjectSlug ? buildTopicQuiz(subjectSlug as SubjectSlug, topicId ?? '') : []),
+    () => (subject && diff ? buildDifficultyQuiz(subject.slug as SubjectSlug, diff, set) : []),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [subjectSlug, topicId, attemptKey]
+    [subject?.slug, diff, set, attemptKey],
   )
 
-  const [current, setCurrent] = useState(() => initialResume?.currentIndex ?? 0)
-  const [answers, setAnswers] = useState<Record<string, number>>(() => initialResume?.answers ?? {})
-  const [markedForReview, setMarkedForReview] = useState<Record<string, boolean>>(() => {
-    const m: Record<string, boolean> = {}
-    initialResume?.markedForReview?.forEach((id) => {
-      m[id] = true
-    })
-    return m
-  })
+  const [current, setCurrent] = useState(0)
+  const [answers, setAnswers] = useState<Record<string, number>>({})
   const [startTime, setStartTime] = useState(() => Date.now())
   const [result, setResult] = useState<AttemptRecord | null>(null)
-  const [calculatorOpen, setCalculatorOpen] = useState(() => initialResume?.calculatorOpen ?? false)
   const [, setBookmarkTick] = useState(0)
 
-  // Reset all quiz state whenever the subject/topic in the URL changes,
-  // so navigating directly from one topic's result to another starts fresh.
-  // (The very first run just records the route — it must NOT wipe out state
-  // that was restored from a resumed session on initial mount.)
-  const prevRouteKeyRef = useRef<string | null>(null)
   useEffect(() => {
-    const key = `${subjectSlug}:${topicId}`
-    if (prevRouteKeyRef.current !== null && prevRouteKeyRef.current !== key) {
-      setCurrent(0)
-      setAnswers({})
-      setMarkedForReview({})
-      setResult(null)
-      setStartTime(Date.now())
-    }
-    prevRouteKeyRef.current = key
-  }, [subjectSlug, topicId])
-
-  // Persist progress continuously so refreshing, switching tabs, or leaving
-  // the site doesn't lose an in-progress topic quiz.
-  useEffect(() => {
-    if (!subject || !topic || result) return
-    saveResumeState({
-      kind: 'practice',
-      route,
-      label: `${subject.shortName} · ${topic.name}`,
-      answers,
-      markedForReview: Object.keys(markedForReview).filter((k) => markedForReview[k]),
-      currentIndex: current,
-      calculatorOpen,
-    })
+    setCurrent(0)
+    setAnswers({})
+    setResult(null)
+    setStartTime(Date.now())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subject, topic, answers, markedForReview, current, calculatorOpen, result])
+  }, [subjectSlug, diff, set])
 
-  if (!subject || !topic) return <Navigate to="/practice" replace />
+  if (!subject) return <Navigate to="/subjects" replace />
+  if (!diff) return <Navigate to={`/subjects/${subject.slug}`} replace />
   if (items.length === 0) return null
+
+  const backPath = `/subjects/${subject.slug}/level/${diff}`
+  const label = `${subject.shortName} · ${diff} · Set ${set}`
 
   const currentItem = items[current]
   const answeredMask = items.map((it) => answers[it.question.id] !== undefined)
-  const markedMask = items.map((it) => !!markedForReview[it.question.id])
   const answeredCount = answeredMask.filter(Boolean).length
-  const isMarked = !!markedForReview[currentItem.question.id]
 
   const select = (i: number) => {
     if (result) return
     setAnswers((prev) => ({ ...prev, [currentItem.question.id]: i }))
-  }
-
-  const toggleMark = () => {
-    setMarkedForReview((prev) => ({ ...prev, [currentItem.question.id]: !prev[currentItem.question.id] }))
   }
 
   const toggleCurrentBookmark = () => {
@@ -105,23 +64,21 @@ export default function Quiz() {
     const durationSec = Math.round((Date.now() - startTime) / 1000)
     const attempt = computeAttempt({
       kind: 'practice',
-      label: `${subject.shortName} · ${topic.name}`,
+      label,
       items,
       answers,
       marksCorrect: 1,
       marksWrong: 0,
       durationSec,
-      sourceRoute: route,
+      sourceRoute: `/subjects/${subject.slug}/level/${diff}/${set}`,
     })
     saveAttempt(attempt)
-    clearResumeState()
     setResult(attempt)
   }
 
   const retake = () => {
     setResult(null)
     setAnswers({})
-    setMarkedForReview({})
     setCurrent(0)
     setAttemptKey((k) => k + 1)
   }
@@ -131,15 +88,15 @@ export default function Quiz() {
     return (
       <div className="pb-20">
         <PageHeader
-          eyebrow={`${subject.shortName} · ${topic.name}`}
+          eyebrow={label}
           title="Quiz results"
           actions={
             <div className="flex gap-2">
               <button onClick={retake} className="border border-border rounded-lg px-4 py-2 text-sm font-medium hover:bg-secondary">
                 Retake
               </button>
-              <Link to={`/practice/${subject.slug}`} className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold">
-                Back to topics
+              <Link to={backPath} className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold">
+                Back to sets
               </Link>
             </div>
           }
@@ -173,11 +130,6 @@ export default function Quiz() {
                 total={items.length}
                 selectedIndex={answers[item.question.id] ?? null}
                 showResult
-                bookmarked={isBookmarked(item.question.id)}
-                onToggleBookmark={() => {
-                  toggleBookmark(item.question.id, item.subject)
-                  setBookmarkTick((t) => t + 1)
-                }}
               />
             ))}
           </div>
@@ -189,8 +141,8 @@ export default function Quiz() {
   return (
     <div className="pb-20">
       <PageHeader
-        eyebrow={`${subject.shortName} · ${topic.name}`}
-        title="Topic quiz"
+        eyebrow={label}
+        title="Practice set"
         description={`${items.length} questions · untimed · answer at your own pace`}
         actions={
           <button
@@ -221,24 +173,14 @@ export default function Quiz() {
               bookmarked={isBookmarked(currentItem.question.id)}
               onToggleBookmark={toggleCurrentBookmark}
             />
-            <div className="flex flex-wrap justify-between items-center gap-3 mt-5">
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setCurrent((c) => Math.max(0, c - 1))}
-                  disabled={current === 0}
-                  className="border border-border rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-40 hover:bg-secondary"
-                >
-                  &larr; Previous
-                </button>
-                <button
-                  onClick={toggleMark}
-                  className={`border rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                    isMarked ? 'border-warning bg-warning-bg text-warning' : 'border-border hover:bg-secondary'
-                  }`}
-                >
-                  {isMarked ? '★ Marked' : '☆ Mark for Review'}
-                </button>
-              </div>
+            <div className="flex justify-between mt-5">
+              <button
+                onClick={() => setCurrent((c) => Math.max(0, c - 1))}
+                disabled={current === 0}
+                className="border border-border rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-40 hover:bg-secondary"
+              >
+                &larr; Previous
+              </button>
               {current < items.length - 1 ? (
                 <button
                   onClick={() => setCurrent((c) => Math.min(items.length - 1, c + 1))}
@@ -254,16 +196,9 @@ export default function Quiz() {
             </div>
           </div>
 
-          <QuestionPalette
-            count={items.length}
-            currentIndex={current}
-            answeredMask={answeredMask}
-            markedMask={markedMask}
-            onJump={setCurrent}
-          />
+          <QuestionPalette count={items.length} currentIndex={current} answeredMask={answeredMask} onJump={setCurrent} />
         </div>
       </div>
-      <FloatingCalculator initialOpen={calculatorOpen} onOpenChange={setCalculatorOpen} />
     </div>
   )
 }

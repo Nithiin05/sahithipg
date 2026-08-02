@@ -1,4 +1,4 @@
-const KEY = 'one9:study-timer'
+const KEY = 'drsahithi:study-timer'
 
 export interface StudyTimerState {
   /** ISO date (YYYY-MM-DD) the "today" fields below apply to. */

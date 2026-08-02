@@ -5,7 +5,7 @@ import { findQuestionItem } from '../../lib/quizEngine'
 import type { AttemptRecord } from '../../types'
 
 type SortKey = 'date' | 'score' | 'accuracy'
-type FilterKey = 'all' | 'practice' | 'mock'
+type FilterKey = 'all' | 'practice' | 'mock' | 'grand'
 
 function accuracyOf(a: AttemptRecord) {
   return a.attempted > 0 ? Math.round((a.correct / a.attempted) * 100) : 0
@@ -36,7 +36,7 @@ export default function HistoryTab({ attempts }: { attempts: AttemptRecord[] }) 
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div className="flex flex-wrap gap-2">
-          {(['all', 'practice', 'mock'] as const).map((f) => (
+          {(['all', 'practice', 'mock', 'grand'] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilterKey(f)}
@@ -105,7 +105,7 @@ export default function HistoryTab({ attempts }: { attempts: AttemptRecord[] }) 
                       <td colSpan={6} className="bg-secondary/30 px-4 py-5">
                         <div className="flex flex-col gap-4 max-w-3xl">
                           {a.answers.map((ans, i) => {
-                            const item = findQuestionItem(ans.subject, ans.questionId)
+                            const item = findQuestionItem(ans.questionId)
                             if (!item) return null
                             return (
                               <QuestionCard
@@ -129,7 +129,8 @@ export default function HistoryTab({ attempts }: { attempts: AttemptRecord[] }) 
         </div>
       </div>
       <p className="text-xs text-muted-foreground mt-4">
-        Rank isn't shown — One9 is a self-paced local tool with no shared leaderboard to rank against.
+        Want to compare scores over time? Check your{' '}
+        <Link to="/leaderboard" className="text-primary font-medium hover:underline">personal leaderboard</Link>.
       </p>
     </div>
   )

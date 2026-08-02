@@ -2,30 +2,21 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import DashboardTab from '../components/analytics/DashboardTab'
-import BookmarksTab from '../components/analytics/BookmarksTab'
-import MistakesTab from '../components/analytics/MistakesTab'
 import DailyChallengeTab from '../components/analytics/DailyChallengeTab'
-import AchievementsTab from '../components/analytics/AchievementsTab'
+import SmartRevisionTab from '../components/analytics/SmartRevisionTab'
 import HistoryTab from '../components/analytics/HistoryTab'
 import { getAttempts, clearAttempts } from '../lib/attempts'
-import { getBookmarks } from '../lib/bookmarks'
-import { getMistakes } from '../lib/mistakes'
 
 const TABS = [
   { key: 'dashboard', label: 'Dashboard' },
   { key: 'daily', label: 'Daily Challenge' },
+  { key: 'revision', label: 'Smart Revision' },
   { key: 'history', label: 'Test History' },
-  { key: 'achievements', label: 'Achievements' },
-  { key: 'bookmarks', label: 'Bookmarked Questions' },
-  { key: 'mistakes', label: 'Mistake Notebook' },
 ] as const
 
 export default function Analytics() {
   const [attempts, setAttempts] = useState(() => getAttempts())
   const [tab, setTab] = useState<(typeof TABS)[number]['key']>('dashboard')
-
-  const bookmarkCount = getBookmarks().length
-  const mistakeCount = getMistakes().length
 
   return (
     <div className="pb-20">
@@ -61,8 +52,6 @@ export default function Analytics() {
               }`}
             >
               {t.label}
-              {t.key === 'bookmarks' && bookmarkCount > 0 && ` · ${bookmarkCount}`}
-              {t.key === 'mistakes' && mistakeCount > 0 && ` · ${mistakeCount}`}
             </button>
           ))}
         </div>
@@ -78,25 +67,23 @@ export default function Analytics() {
                 history will show up here.
               </p>
               <div className="flex justify-center gap-3">
-                <Link to="/practice" className="bg-primary text-primary-foreground rounded-lg px-5 py-2.5 text-sm font-semibold">
+                <Link to="/subjects" className="gradient-primary text-white rounded-lg px-5 py-2.5 text-sm font-semibold">
                   Start practicing
                 </Link>
-                <Link to="/mock-tests" className="border border-border rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-secondary">
-                  Take a mock test
+                <Link to="/grand-tests" className="border border-border rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-secondary">
+                  Take a Grand Test
                 </Link>
               </div>
             </div>
           ))}
         {tab === 'daily' && <DailyChallengeTab />}
+        {tab === 'revision' && <SmartRevisionTab attempts={attempts} />}
         {tab === 'history' &&
           (attempts.length > 0 ? (
             <HistoryTab attempts={attempts} />
           ) : (
             <div className="card p-10 text-center text-muted-foreground">No tests attempted yet.</div>
           ))}
-        {tab === 'achievements' && <AchievementsTab attempts={attempts} />}
-        {tab === 'bookmarks' && <BookmarksTab />}
-        {tab === 'mistakes' && <MistakesTab />}
       </div>
     </div>
   )

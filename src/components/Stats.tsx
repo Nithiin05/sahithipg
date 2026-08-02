@@ -1,40 +1,31 @@
 import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
+import { subjects, totalPYQCount, totalQuestionsAcrossAllSubjects, totalTopicsAcrossAllSubjects } from '../data/subjects'
+import { grandTests } from '../data/grandTests'
 
 const STATS = [
-  { value: 100, suffix: '', label: 'Tier-I questions' },
-  { value: -0.5, suffix: '', label: 'Marks per wrong answer (Tier-I)', isDecimal: true },
-  { value: 4, suffix: '', label: 'Core sections tested' },
-  { value: 60, suffix: ' min', label: 'Tier-I total duration' },
+  { value: subjects.length, suffix: '', label: 'Subjects covered' },
+  { value: totalQuestionsAcrossAllSubjects(), suffix: '+', label: 'High-yield questions' },
+  { value: totalTopicsAcrossAllSubjects(), suffix: '', label: 'Focused topics' },
+  { value: grandTests.length, suffix: '+', label: 'Grand Tests' },
+  { value: totalPYQCount(), suffix: '', label: 'PYQ-style questions' },
+  { value: 20, suffix: '/day', label: 'Daily Challenge questions' },
 ]
 
-function StatItem({
-  value,
-  suffix,
-  label,
-  isDecimal,
-  trigger,
-}: {
-  value: number
-  suffix: string
-  label: string
-  isDecimal?: boolean
-  trigger: boolean
-}) {
-  const { value: count, done } = useCountUp(isDecimal ? Math.abs(value * 10) : Math.abs(value), trigger)
-  const display = isDecimal ? (value < 0 ? '−' : '') + (count / 10).toFixed(1) : (value < 0 ? '−' : '') + count
+function StatItem({ value, suffix, label, trigger }: { value: number; suffix: string; label: string; trigger: boolean }) {
+  const { value: count, done } = useCountUp(value, trigger)
 
   return (
     <div className="text-center">
       <div
-        className="font-display font-extrabold text-primary"
+        className="font-display font-extrabold gradient-text"
         style={{
           fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
           letterSpacing: '-0.02em',
           animation: done ? 'counter-bounce 0.4s ease-out' : 'none',
         }}
       >
-        {display}
+        {count}
         {suffix}
       </div>
       <p className="text-sm text-muted-foreground mt-1">{label}</p>
@@ -49,17 +40,17 @@ export default function Stats() {
     <section ref={ref} className="py-16 px-6 text-center border-y border-border">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.4rem, 3.5vw, 1.9rem)' }}>
-          The pattern, straight from the exam notice
+          A growing bank, built to scale — and 100% free
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-12">
           {STATS.map((s) => (
             <StatItem key={s.label} {...s} trigger={inView} />
           ))}
         </div>
-        <p className="text-xs text-muted-foreground mt-8 max-w-lg mx-auto">
-          Based on the publicly published SSC CGL exam pattern. Always cross-check details against the
-          official notification closer to your exam date.
+        <p className="text-xs text-muted-foreground mt-8 max-w-2xl mx-auto">
+          These are live counts from the current question bank — no inflated numbers. The platform is
+          architected to scale to tens of thousands of questions as more are added. No sign-up, no paywalls, ever.
         </p>
       </div>
     </section>

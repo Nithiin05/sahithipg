@@ -21,10 +21,19 @@ export default {
         warning: 'hsl(var(--warning))',
         'warning-bg': 'hsl(var(--warning-bg))',
         border: 'hsl(var(--border))',
+        navy: 'hsl(var(--navy))',
       },
       fontFamily: {
         display: ['var(--font-display)'],
         body: ['var(--font-body)'],
+        mono: ['var(--font-mono)'],
+      },
+      backgroundImage: {
+        'grid-faint':
+          'linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px)',
+      },
+      backgroundSize: {
+        grid: '32px 32px',
       },
     },
   },

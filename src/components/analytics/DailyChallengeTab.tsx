@@ -56,7 +56,7 @@ export default function DailyChallengeTab() {
           <div>
             <h2 className="font-display font-bold text-lg mb-1">Today's Daily Challenge</h2>
             <p className="text-sm text-muted-foreground">
-              10 Quant · 10 Reasoning · 10 English · 10 General Awareness — {items.length} questions total.
+              {items.length} fresh questions pooled across all 19 subjects — same set for everyone today.
             </p>
           </div>
           {todayResult ? (

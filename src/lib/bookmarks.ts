@@ -1,6 +1,6 @@
 import type { SubjectSlug } from '../types'
 
-const KEY = 'one9:bookmarks'
+const KEY = 'drsahithi:bookmarks'
 
 export interface BookmarkEntry {
   questionId: string

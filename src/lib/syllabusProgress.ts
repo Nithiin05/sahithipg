@@ -1,4 +1,8 @@
-const KEY = 'one9:syllabus-progress'
+/**
+ * Tracks which topics a student has manually marked "reviewed" — powers the
+ * completion % shown on each Subject's topic list. Keyed by `${subjectSlug}:${topicId}`.
+ */
+const KEY = 'drsahithi:topic-progress'
 
 function read(): Record<string, boolean> {
   try {

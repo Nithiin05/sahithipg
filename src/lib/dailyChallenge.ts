@@ -1,9 +1,8 @@
-import type { SubjectSlug } from '../types'
-import { pooledSubjectQuestions, type QuizQuestionItem } from './quizEngine'
+import { pooledAllSubjectsQuestions, type QuizQuestionItem } from './quizEngine'
 
-const HISTORY_KEY = 'one9:daily-challenge-history'
-const SUBJECTS: SubjectSlug[] = ['quant', 'reasoning', 'english', 'general-awareness']
-const PER_SUBJECT = 10
+const HISTORY_KEY = 'drsahithi:daily-challenge-history'
+/** Spec target: 20 fresh questions/day, pooled across all 19 subjects. */
+const DAILY_COUNT = 20
 
 export function todayKey(): string {
   return new Date().toISOString().slice(0, 10)
@@ -33,15 +32,11 @@ function seededShuffle<T>(arr: T[], rand: () => number): T[] {
   return copy
 }
 
-/** 10 Quant + 10 Reasoning + 10 English + 10 GA questions, stable for a given date. */
+/** 20 questions pooled across all subjects, stable for a given date (same set all day, everywhere). */
 export function getDailyChallengeItems(date: string = todayKey()): QuizQuestionItem[] {
   const rand = seededRandom(date)
-  const items: QuizQuestionItem[] = []
-  for (const subject of SUBJECTS) {
-    const pool = seededShuffle(pooledSubjectQuestions(subject), rand)
-    items.push(...pool.slice(0, PER_SUBJECT))
-  }
-  return items
+  const pool = seededShuffle(pooledAllSubjectsQuestions(), rand)
+  return pool.slice(0, DAILY_COUNT)
 }
 
 export interface DailyChallengeResult {

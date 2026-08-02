@@ -4,29 +4,29 @@ import { useInView } from '../hooks/useInView'
 const STEPS = [
   {
     n: '01',
-    title: 'Map the syllabus',
-    desc: 'See every Tier-I and Tier-II topic laid out clearly, so nothing catches you by surprise on exam day.',
-    to: '/syllabus',
-    cta: 'Open the syllabus tracker',
+    title: 'Set your study plan',
+    desc: 'Enter your exam date (default: NEET PG 2026, August 30), pick focus subjects, and set a daily question/time goal.',
+    to: '/planner',
+    cta: 'Open the Study Planner',
   },
   {
     n: '02',
-    title: 'Practice by topic',
-    desc: 'Work through difficulty-tagged sets in Quant, Reasoning, English, and GA, building speed one topic at a time.',
-    to: '/practice',
-    cta: 'Start topic-wise practice',
+    title: 'Practice by subject & topic',
+    desc: 'Work through all 19 subjects — Easy to Expert — plus clinical cases, image-based questions, and PYQ-style sets.',
+    to: '/subjects',
+    cta: 'Start subject-wise practice',
   },
   {
     n: '03',
     title: 'Simulate the real exam',
-    desc: 'Sit full-length mocks with the same sectional timers and negative marking as the actual Tier-I and Tier-II papers.',
-    to: '/mock-tests',
-    cta: 'Take a mock test',
+    desc: 'Sit full-length Grand Tests — up to 200 questions, one 3.5-hour timer, question palette, mark-for-review.',
+    to: '/grand-tests',
+    cta: 'Take a Grand Test',
   },
   {
     n: '04',
-    title: 'Track and improve',
-    desc: 'Review your weak-topic breakdown, revise the gaps, and retest — until your accuracy holds under time pressure.',
+    title: 'Review, revise, repeat',
+    desc: 'See your weak-topic breakdown, run a Smart Revision test targeting the gaps, and retest until it sticks.',
     to: '/analytics',
     cta: 'View your analytics',
   },
@@ -68,7 +68,7 @@ export default function HowItWorks() {
       <div className="max-w-3xl mx-auto">
         <span className="block text-xs uppercase tracking-widest text-primary font-semibold mb-3">Your prep path</span>
         <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.7rem, 4vw, 2.2rem)' }}>
-          From open syllabus to exam-day ready
+          From day one to exam-day ready
         </h2>
 
         <div className="mt-6">

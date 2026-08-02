@@ -1,0 +1,222 @@
+import type { Topic } from '../../types'
+
+export const pharmacologyTopics: Topic[] = [
+  {
+    id: 'ans-cvs-pharm',
+    name: 'Autonomic & Cardiovascular Pharmacology',
+    description: 'Adrenergic/cholinergic drugs and cardiovascular agents.',
+    questions: [
+      {
+        id: 'pharm-1',
+        text: 'A patient is given a non-selective beta-blocker for hypertension. Which adverse effect is more likely than with a cardioselective (beta-1 selective) agent?',
+        options: ['Bronchospasm in an asthmatic patient', 'Reflex tachycardia', 'Increased renin release', 'Hyperglycemia unmasking'],
+        correctIndex: 0,
+        explanation:
+          'Non-selective beta-blockers (e.g., propranolol) also block beta-2 receptors in bronchial smooth muscle, risking bronchospasm in asthma/COPD — a key reason cardioselective agents (e.g., metoprolol, atenolol) are preferred in such patients.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['beta-blockers'],
+      },
+      {
+        id: 'pharm-2',
+        text: 'A patient with pheochromocytoma is started on phenoxybenzamine before surgery. What is the pharmacologic rationale?',
+        options: [
+          'Irreversible non-selective alpha-blockade prevents catecholamine-induced hypertensive crisis during tumor manipulation',
+          'It directly reduces catecholamine synthesis',
+          'It selectively blocks beta-1 receptors to prevent tachycardia',
+          'It is a direct vasodilator acting via nitric oxide',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Phenoxybenzamine is an irreversible, non-selective alpha-blocker used pre-operatively in pheochromocytoma to prevent a hypertensive crisis from catecholamine surges during tumor handling; a beta-blocker is added only AFTER adequate alpha-blockade to avoid unopposed alpha stimulation.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['alpha-blockers', 'pheochromocytoma'],
+        isPYQ: true,
+        year: 2023,
+        clinicalPearl: 'Never give a beta-blocker before alpha-blockade in pheochromocytoma — risk of unopposed alpha-mediated hypertensive crisis.',
+      },
+      {
+        id: 'pharm-3',
+        text: 'ACE inhibitors cause a dry cough in some patients primarily due to:',
+        options: ['Accumulation of bradykinin', 'Direct histamine release', 'Increased angiotensin II levels', 'Hyperkalemia-induced airway irritation'],
+        correctIndex: 0,
+        explanation:
+          'ACE (kininase II) normally degrades bradykinin; ACE inhibitors reduce bradykinin breakdown, and its accumulation in the airway is thought to cause the characteristic dry, persistent cough — an effect not seen with ARBs.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['ace-inhibitors'],
+      },
+      {
+        id: 'pharm-4',
+        text: 'Assertion (A): Digoxin toxicity risk is increased by hypokalemia.\nReason (R): Digoxin and potassium compete for the same binding site on Na+/K+-ATPase.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Digoxin binds the same site on the Na+/K+-ATPase pump as extracellular K+; low serum potassium reduces competition and increases digoxin binding, potentiating its effect and toxicity (arrhythmias, GI and visual disturbances).',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['digoxin'],
+      },
+    ],
+  },
+  {
+    id: 'chemo-antimicrobials',
+    name: 'Chemotherapy & Antimicrobials',
+    description: 'Antibiotic mechanisms, resistance, and anticancer drugs.',
+    questions: [
+      {
+        id: 'pharm-5',
+        text: 'Which class of antibiotics acts by inhibiting bacterial cell wall synthesis through binding penicillin-binding proteins?',
+        options: ['Beta-lactams (penicillins, cephalosporins)', 'Aminoglycosides', 'Macrolides', 'Fluoroquinolones'],
+        correctIndex: 0,
+        explanation:
+          'Beta-lactam antibiotics (penicillins, cephalosporins, carbapenems) inhibit transpeptidase enzymes ("penicillin-binding proteins") that cross-link peptidoglycan, weakening the bacterial cell wall and causing lysis.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['antibiotics', 'beta-lactams'],
+      },
+      {
+        id: 'pharm-6',
+        text: 'A patient on isoniazid develops peripheral neuropathy. This is due to interference with metabolism of which vitamin, and how is it prevented?',
+        options: [
+          'Pyridoxine (B6) depletion — prevented by co-administering pyridoxine',
+          'Thiamine (B1) depletion — prevented by co-administering thiamine',
+          'Cobalamin (B12) depletion — prevented by folate',
+          'Niacin (B3) depletion — prevented by tryptophan',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Isoniazid increases renal excretion of pyridoxine (vitamin B6) and can inhibit its activation, reducing GABA synthesis in peripheral nerves and causing neuropathy; prophylactic pyridoxine supplementation prevents this.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['antitubercular-drugs', 'isoniazid'],
+        isPYQ: true,
+        year: 2022,
+      },
+      {
+        id: 'pharm-7',
+        text: 'Vancomycin resistance in Enterococcus most commonly arises from which mechanism?',
+        options: [
+          'Altered D-Ala-D-Ala peptidoglycan precursor to D-Ala-D-Lactate, reducing vancomycin binding',
+          'Efflux pump overexpression',
+          'Beta-lactamase production',
+          'Ribosomal protection proteins',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Vancomycin-resistant enterococci (VRE) modify the peptidoglycan precursor terminus from D-Ala-D-Ala to D-Ala-D-Lactate (van genes), drastically reducing vancomycin\'s binding affinity and conferring high-level resistance.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['antibiotic-resistance', 'vancomycin'],
+      },
+      {
+        id: 'pharm-8',
+        text: 'Match the anticancer drug with its characteristic dose-limiting toxicity:',
+        options: [
+          'Doxorubicin → cardiotoxicity; Cisplatin → nephrotoxicity/ototoxicity; Bleomycin → pulmonary fibrosis; Vincristine → peripheral neuropathy',
+          'Doxorubicin → nephrotoxicity; Cisplatin → cardiotoxicity; Bleomycin → neuropathy; Vincristine → pulmonary fibrosis',
+          'Cisplatin → cardiotoxicity only',
+          'All anticancer drugs share identical toxicity profiles',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Classic dose-limiting toxicities: doxorubicin causes dilated cardiomyopathy (cumulative dose-related), cisplatin causes nephrotoxicity and ototoxicity, bleomycin causes pulmonary fibrosis, and vincristine causes peripheral neuropathy — all frequently tested pairings.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Expert',
+        type: 'match-following',
+        tags: ['anticancer-drugs', 'toxicity'],
+        matchPairs: [
+          { left: 'Doxorubicin', right: 'Cardiotoxicity' },
+          { left: 'Cisplatin', right: 'Nephrotoxicity / ototoxicity' },
+          { left: 'Bleomycin', right: 'Pulmonary fibrosis' },
+          { left: 'Vincristine', right: 'Peripheral neuropathy' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cns-pharm',
+    name: 'CNS Pharmacology',
+    description: 'Anesthetics, antiepileptics, and psychotropic drugs.',
+    questions: [
+      {
+        id: 'pharm-9',
+        text: 'Benzodiazepines potentiate the action of GABA at the GABA-A receptor by:',
+        options: [
+          'Increasing the frequency of chloride channel opening',
+          'Increasing the duration of chloride channel opening',
+          'Directly activating the channel independent of GABA',
+          'Blocking GABA reuptake',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Benzodiazepines are positive allosteric modulators that increase the FREQUENCY of GABA-A chloride channel opening (in the presence of GABA), whereas barbiturates increase the DURATION of channel opening — a classic distinguishing point.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['benzodiazepines', 'gaba'],
+      },
+      {
+        id: 'pharm-10',
+        text: 'A pregnant woman on phenytoin for epilepsy is counseled about teratogenic risk. Which syndrome is associated with fetal phenytoin exposure?',
+        options: ['Fetal hydantoin syndrome (craniofacial anomalies, nail/digit hypoplasia)', 'Fetal alcohol syndrome', 'Warfarin embryopathy', 'Thalidomide-associated phocomelia'],
+        correctIndex: 0,
+        explanation:
+          'Fetal hydantoin syndrome from in-utero phenytoin exposure includes craniofacial dysmorphism, distal digit/nail hypoplasia, and intellectual disability — an important teratogenicity consideration when managing epilepsy in pregnancy.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['antiepileptics', 'teratogenicity'],
+        isPYQ: true,
+        year: 2024,
+      },
+      {
+        id: 'pharm-11',
+        text: 'Sodium valproate\'s major mechanism(s) of antiepileptic action include:',
+        options: [
+          'Blocking voltage-gated Na+ channels and increasing GABA levels',
+          'Selective NMDA receptor antagonism only',
+          'Pure GABA-B receptor agonism',
+          'Blocking T-type calcium channels exclusively (like ethosuximide)',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Valproate has multiple mechanisms: use-dependent blockade of voltage-gated Na+ channels, and increasing GABA levels (by inhibiting GABA transaminase), giving it broad-spectrum efficacy across generalized and focal seizures.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Hard',
+        type: 'standard',
+        tags: ['valproate'],
+      },
+      {
+        id: 'pharm-12',
+        text: 'Assertion (A): Atypical antipsychotics (e.g., olanzapine, clozapine) cause fewer extrapyramidal symptoms than typical antipsychotics.\nReason (R): Atypical agents show relatively greater serotonin (5-HT2A) than dopamine (D2) receptor antagonism.',
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Atypical antipsychotics have a higher 5-HT2A : D2 antagonism ratio than typical agents; the relatively lower D2 blockade in the nigrostriatal pathway is thought to explain their reduced extrapyramidal side-effect burden, at the cost of metabolic side effects.',
+        reference: "Katzung's Basic & Clinical Pharmacology",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['antipsychotics'],
+      },
+    ],
+  },
+]

@@ -12,7 +12,7 @@ export default function MistakesTab() {
   const rows = useMemo(
     () =>
       mistakes
-        .map((m) => ({ mistake: m, item: findQuestionItem(m.subject, m.questionId) }))
+        .map((m) => ({ mistake: m, item: findQuestionItem(m.questionId) }))
         .filter((r): r is { mistake: (typeof mistakes)[number]; item: NonNullable<ReturnType<typeof findQuestionItem>> } => r.item !== null),
     [mistakes],
   )

@@ -1,0 +1,195 @@
+import type { Topic } from '../../types'
+
+export const entTopics: Topic[] = [
+  {
+    id: 'ear-disorders',
+    name: 'Ear Disorders',
+    description: 'Otitis media, hearing loss, and vertigo.',
+    questions: [
+      {
+        id: 'ent-1',
+        text: 'A Rinne test shows bone conduction louder than air conduction (negative Rinne) in the left ear, and Weber lateralizes to the same (left) ear. This suggests:',
+        options: ['Conductive hearing loss in the left ear', 'Sensorineural hearing loss in the left ear', 'Normal hearing bilaterally', 'Sensorineural hearing loss in the right ear'],
+        correctIndex: 0,
+        explanation:
+          'A negative Rinne (BC > AC) indicates conductive hearing loss in that ear; Weber lateralizing TO the affected ear confirms a conductive process (sound is perceived louder in the ear with impaired air conduction pathway). In sensorineural loss, Weber lateralizes AWAY from the affected ear.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['hearing-tests'],
+      },
+      {
+        id: 'ent-2',
+        text: 'A child with recurrent acute otitis media develops a retracted, dull tympanic membrane with a foul-smelling discharge and a visible attic perforation. This raises concern for:',
+        options: ['Cholesteatoma', 'Simple acute otitis media without complication', 'Otitis externa alone', 'Eustachian tube dysfunction without infection'],
+        correctIndex: 0,
+        explanation:
+          'Cholesteatoma (abnormal keratinizing squamous epithelium in the middle ear) classically presents with a foul-smelling discharge and an attic (pars flaccida) perforation/retraction pocket, and can erode adjacent bone — requiring surgical management to prevent complications like mastoiditis or intracranial spread.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['cholesteatoma'],
+        isPYQ: true,
+        year: 2023,
+      },
+      {
+        id: 'ent-3',
+        text: 'A patient presents with sudden severe vertigo, nausea, and horizontal nystagmus lasting seconds to minutes, triggered by head position changes (e.g., rolling over in bed), with a positive Dix-Hallpike test. The diagnosis is:',
+        options: ['Benign paroxysmal positional vertigo (BPPV)', "Meniere's disease", 'Vestibular schwannoma', 'Acute vestibular neuritis'],
+        correctIndex: 0,
+        explanation:
+          'BPPV, caused by displaced otoconia in the semicircular canals, produces brief, positionally-triggered vertigo confirmed by a positive Dix-Hallpike maneuver; it is managed with canalith repositioning maneuvers (e.g., Epley maneuver) rather than long-term medication.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Hard',
+        type: 'clinical-case',
+        tags: ['bppv', 'vertigo'],
+      },
+      {
+        id: 'ent-4',
+        text: "Assertion (A): Meniere's disease presents with the triad of episodic vertigo, sensorineural hearing loss, and tinnitus.\nReason (R): It results from endolymphatic hydrops (excess endolymph in the inner ear).",
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 0,
+        explanation:
+          "Meniere's disease is attributed to endolymphatic hydrops — excess accumulation of endolymph distending the membranous labyrinth — producing the classic triad of episodic vertigo, fluctuating low-frequency sensorineural hearing loss, and tinnitus, often with a sensation of aural fullness.",
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['menieres-disease'],
+      },
+    ],
+  },
+  {
+    id: 'nose-paranasal-sinuses',
+    name: 'Nose & Paranasal Sinuses',
+    description: 'Sinusitis, epistaxis, and nasal polyps.',
+    questions: [
+      {
+        id: 'ent-5',
+        text: 'The most common site of epistaxis (nosebleed), especially in children, is:',
+        options: ["Little's area (Kiesselbach's plexus) on the anterior nasal septum", 'Posterior nasal cavity via the sphenopalatine artery exclusively', 'The nasal bridge skin', 'The nasopharynx'],
+        correctIndex: 0,
+        explanation:
+          "Little's area (Kiesselbach's plexus), a vascular watershed zone on the anterior nasal septum, is the source of over 90% of epistaxis cases, particularly in children, and is usually amenable to direct pressure/cautery.",
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Easy',
+        type: 'standard',
+        tags: ['epistaxis'],
+      },
+      {
+        id: 'ent-6',
+        text: 'A patient with facial pain/pressure over the maxillary region, purulent nasal discharge, and symptoms persisting beyond 10 days is most likely diagnosed with:',
+        options: ['Acute bacterial rhinosinusitis', 'Simple viral upper respiratory infection lasting under 5 days', 'Allergic rhinitis alone', 'Nasal foreign body'],
+        correctIndex: 0,
+        explanation:
+          'Persistent purulent nasal discharge and facial pain beyond 10 days (or worsening after initial improvement — "double-worsening") favors acute bacterial rhinosinusitis over a simple viral URI, which typically improves within 7-10 days.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['sinusitis'],
+        isPYQ: true,
+        year: 2022,
+      },
+      {
+        id: 'ent-7',
+        text: 'Bilateral nasal polyps in a young patient, together with recurrent sinopulmonary infections, should raise suspicion for underlying:',
+        options: ['Cystic fibrosis', 'Simple allergic rhinitis alone', 'Nasal septal deviation', 'Adenoid hypertrophy only'],
+        correctIndex: 0,
+        explanation:
+          'Bilateral nasal polyps in a child/young adult, especially with recurrent chest infections and failure to thrive, should prompt evaluation for cystic fibrosis, which causes thick mucus predisposing to chronic sinonasal and pulmonary disease.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Hard',
+        type: 'clinical-case',
+        tags: ['nasal-polyps', 'cystic-fibrosis'],
+      },
+      {
+        id: 'ent-8',
+        text: 'Match each paranasal sinus with the age at which it is present/pneumatized:',
+        options: [
+          'Maxillary and ethmoid sinuses → present at birth; Frontal sinus → develops by 7-8 years; Sphenoid sinus → pneumatizes fully by adolescence',
+          'Frontal sinus → present at birth',
+          'Maxillary sinus → develops only after puberty',
+          'All sinuses are fully developed at birth',
+        ],
+        correctIndex: 0,
+        explanation:
+          'Maxillary and ethmoid sinuses are present (though small) at birth; the frontal sinus begins developing around age 7-8 and continues into adolescence; the sphenoid sinus pneumatizes gradually, reaching adult size around puberty — relevant to why frontal/sphenoid sinusitis is rare in young children.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Expert',
+        type: 'match-following',
+        tags: ['paranasal-sinus-development'],
+        matchPairs: [
+          { left: 'Maxillary & ethmoid sinuses', right: 'Present at birth' },
+          { left: 'Frontal sinus', right: 'Develops by ~7-8 years' },
+          { left: 'Sphenoid sinus', right: 'Pneumatizes fully by adolescence' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'throat-head-neck',
+    name: 'Throat & Head-Neck',
+    description: 'Tonsillitis, laryngeal disease, and head-neck malignancy.',
+    questions: [
+      {
+        id: 'ent-9',
+        text: 'A child has recurrent severe tonsillitis (7+ episodes/year) causing school absence. The most appropriate management per standard indications is:',
+        options: ['Tonsillectomy (per Paradise criteria)', 'Lifelong prophylactic antibiotics as the only option', 'Immediate radiotherapy', 'No treatment is ever indicated regardless of frequency'],
+        correctIndex: 0,
+        explanation:
+          'Tonsillectomy is indicated for recurrent tonsillitis meeting criteria such as the Paradise criteria (e.g., ≥7 episodes in 1 year, or ≥5/year for 2 years, or ≥3/year for 3 years) due to significant impact on quality of life/school attendance.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Easy',
+        type: 'guideline',
+        tags: ['tonsillectomy'],
+      },
+      {
+        id: 'ent-10',
+        text: 'A patient with hoarseness for over 3 weeks, especially a smoker, should be evaluated urgently for which condition?',
+        options: ['Laryngeal carcinoma', 'Simple viral laryngitis only', 'Allergic rhinitis', 'Vocal cord nodules exclusively'],
+        correctIndex: 0,
+        explanation:
+          'Hoarseness persisting beyond 2-3 weeks, particularly in smokers/heavy alcohol users, is a red flag warranting laryngoscopy to exclude laryngeal carcinoma, since early glottic cancers often present with isolated, persistent voice change.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Medium',
+        type: 'clinical-case',
+        tags: ['laryngeal-cancer'],
+        isPYQ: true,
+        year: 2024,
+      },
+      {
+        id: 'ent-11',
+        text: 'A patient with a peritonsillar abscess (quinsy) classically presents with:',
+        options: ['Trismus, muffled ("hot potato") voice, and uvular deviation away from the affected side', 'No pain and normal voice', 'Bilateral symmetric tonsillar swelling without deviation', 'Isolated ear pain with a normal oropharynx'],
+        correctIndex: 0,
+        explanation:
+          'Peritonsillar abscess classically causes trismus (difficulty opening the mouth from pterygoid muscle irritation), a muffled "hot potato" voice, severe throat pain, and deviation of the uvula away from the affected, bulging peritonsillar region — requiring drainage plus antibiotics.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat",
+        difficulty: 'Hard',
+        type: 'clinical-case',
+        tags: ['peritonsillar-abscess'],
+      },
+      {
+        id: 'ent-12',
+        text: "Assertion (A): Most head and neck squamous cell carcinomas are strongly associated with tobacco and alcohol use.\nReason (R): HPV-related oropharyngeal cancer (particularly HPV-16) is an increasingly recognized subtype with a distinct risk profile and generally better prognosis.",
+        options: [
+          'Both A and R are true, and R is the correct explanation of A',
+          'Both A and R are true, but R is NOT the correct explanation of A',
+          'A is true but R is false',
+          'A is false but R is true',
+        ],
+        correctIndex: 1,
+        explanation:
+          'Both statements are independently true — tobacco/alcohol remain the classic risk factors for most head and neck squamous cell carcinomas, and HPV-16 driven oropharyngeal cancer is a distinct, growing subgroup with better prognosis — but R describes a separate epidemiological subtype rather than explaining WHY tobacco/alcohol-related cancers occur, so it is not the direct explanation of A.',
+        reference: "Dhingra's Diseases of Ear, Nose and Throat / Harrison's",
+        difficulty: 'Expert',
+        type: 'assertion-reason',
+        tags: ['head-neck-cancer', 'hpv'],
+      },
+    ],
+  },
+]
