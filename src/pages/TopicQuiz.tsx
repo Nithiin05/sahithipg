@@ -99,8 +99,8 @@ export default function TopicQuiz() {
       label: `${subject.shortName} · ${topic.name}`,
       items,
       answers,
-      marksCorrect: 1,
-      marksWrong: 0,
+      marksCorrect: 4,
+      marksWrong: 1,
       durationSec,
       sourceRoute: route,
     })

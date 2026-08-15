@@ -37,8 +37,8 @@ export const grandTests: GrandTestConfig[] = Array.from({ length: GRAND_TEST_COU
     kind: 'mixed' as const,
     description:
       'A full-length, exam-simulation Grand Test: up to 200 questions pooled across all 19 subjects, one continuous 3.5-hour timer, question palette with "Mark for Review", and a detailed performance report with an estimated national percentile and predicted rank.',
-    marksCorrect: 1,
-    marksWrong: 0,
+    marksCorrect: 4,
+    marksWrong: 1,
     durationMinutes: DURATION_MINUTES,
     sections: [grandTestSection(n)],
   }

@@ -6,8 +6,8 @@ import { SubjectIcon, SUBJECT_COLOR_CLASSES } from './icons'
 const GRAND_TEST_STATS = [
   { value: 200, suffix: '', label: 'Max questions per Grand Test' },
   { value: 3.5, suffix: ' hrs', label: 'Total duration', isDecimal: true },
-  { value: 1, suffix: '', label: 'Mark per correct answer' },
-  { value: 0, suffix: '', label: 'Negative marking (matches real NEET PG)' },
+  { value: 4, suffix: '', label: 'Mark per correct answer' },
+  { value: 1, suffix: '', label: 'Negative marking (matches real NEET PG)' },
 ]
 
 function StatItem({
@@ -56,7 +56,7 @@ export default function ExamPattern() {
             Grand Tests built to feel like the real thing
           </h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
-            NEET PG itself carries no negative marking (+1 per correct answer, 0 for wrong/unattempted) — reflected
+            NEET PG itself carries no negative marking (+4 per correct answer, -1 for wrong/unattempted) — reflected
             exactly here.
           </p>
         </div>

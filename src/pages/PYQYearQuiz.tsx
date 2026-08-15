@@ -65,8 +65,8 @@ export default function PYQYearQuiz() {
       label,
       items,
       answers,
-      marksCorrect: 1,
-      marksWrong: 0,
+      marksCorrect: 4,
+      marksWrong: 1,
       durationSec,
       sourceRoute: `/pyqs/${year}${subjectSlug ? `?subject=${subjectSlug}` : ''}`,
     })

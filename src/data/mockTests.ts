@@ -36,8 +36,8 @@ export interface MockTestConfig {
  * wrong/unattempted) — unlike SSC/INI-CET style exams. Every test on this
  * platform reflects that real marking scheme for accuracy.
  */
-const MARKS_CORRECT = 1
-const MARKS_WRONG = 0
+const MARKS_CORRECT = 4
+const MARKS_WRONG = 1
 
 // ---------------------------------------------------------------------------
 // Subject Tests — full-syllabus, single-subject, timed tests.
@@ -132,7 +132,7 @@ function buildMixedTests(sizes: number[], perSize: number): MockTestConfig[] {
         id: `mixed-${size}-${i}`,
         title: `Mixed Test — ${size} Questions (Set ${i})`,
         kind: 'mixed',
-        description: `A ${size}-question test pooled across all subjects and categories, at the same +1/0 marking scheme as NEET PG — set ${i} of ${perSize}.`,
+        description: `A ${size}-question test pooled across all subjects and categories, at the same +4/-1 marking scheme as NEET PG — set ${i} of ${perSize}.`,
         marksCorrect: MARKS_CORRECT,
         marksWrong: MARKS_WRONG,
         sections: [{ id: `sec-mixed-${size}-${i}`, label: 'Mixed (All Subjects)', questionCount: size, minutes: size }],

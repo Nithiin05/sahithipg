@@ -49,8 +49,8 @@ export default function AdHocQuiz({
       label,
       items,
       answers,
-      marksCorrect: 1,
-      marksWrong: 0,
+      marksCorrect: 4,
+      marksWrong: 1,
       durationSec,
     })
     saveAttempt(attempt)

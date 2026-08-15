@@ -67,8 +67,8 @@ export default function DifficultySetQuiz() {
       label,
       items,
       answers,
-      marksCorrect: 1,
-      marksWrong: 0,
+      marksCorrect: 4,
+      marksWrong: 1,
       durationSec,
       sourceRoute: `/subjects/${subject.slug}/level/${diff}/${set}`,
     })
