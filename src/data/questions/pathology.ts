@@ -9,10 +9,15 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-1',
         text: 'Coagulative necrosis, with preservation of the basic cell/tissue outline for several days, is characteristic of infarction in which organ?',
-        options: ['Heart, kidney, spleen (most solid organs except brain)', 'Brain', 'Pancreas (acute pancreatitis)', 'Lung with tuberculosis'],
-        correctIndex: 0,
+        options: [
+          'Lung (tuberculosis)',
+          'Pancreas (acute pancreatitis)',
+          'Kidney (ischemic infarct)',
+          'Brain (ischemic infarct)',
+        ],
+        correctIndex: 2,
         explanation:
-          'Coagulative necrosis (protein denaturation predominates over enzymatic digestion, preserving tissue architecture) is the pattern of ischemic infarction in most solid organs. The brain undergoes liquefactive necrosis instead, and caseous necrosis is classic for TB.',
+          'The kidney, like most solid organs (e.g., heart, spleen), undergoes coagulative necrosis after ischemic infarction — protein denaturation predominates over enzymatic digestion, so the basic tissue architecture is preserved for several days. In contrast, the brain undergoes liquefactive necrosis after infarction, pancreatic parenchymal destruction in acute pancreatitis is enzymatic fat necrosis, and caseous necrosis is the classic pattern in tuberculosis.',
         reference: 'Robbins Basic Pathology',
         difficulty: 'Easy',
         type: 'standard',
@@ -21,8 +26,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-2',
         text: 'A biopsy shows granulomas with central caseous necrosis and Langhans giant cells. This is most consistent with:',
-        options: ['Tuberculosis', 'Sarcoidosis', 'Crohn disease', 'Wegener granulomatosis (GPA)'],
-        correctIndex: 0,
+        options: [
+          'Sarcoidosis',
+          'Wegener granulomatosis (GPA)',
+          'Tuberculosis',
+          'Crohn disease',
+        ],
+        correctIndex: 2,
         explanation:
           'Caseating granulomas with Langhans giant cells are the classic histologic hallmark of tuberculosis. Sarcoidosis and Crohn disease typically show NON-caseating granulomas.',
         reference: 'Robbins Basic Pathology',
@@ -38,9 +48,9 @@ export const pathologyTopics: Topic[] = [
         text: 'The p53 tumor suppressor gene\'s primary function, when lost, contributes to carcinogenesis mainly by:',
         options: [
           'Failure to arrest the cell cycle or trigger apoptosis in cells with DNA damage',
+          'Loss of E-cadherin mediated cell adhesion',
           'Overactivation of RAS signaling',
           'Direct telomerase inhibition',
-          'Loss of E-cadherin mediated cell adhesion',
         ],
         correctIndex: 0,
         explanation:
@@ -77,7 +87,12 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-5',
         text: 'Which type of myocardial infarction is classically associated with ST-elevation and full-thickness (transmural) necrosis?',
-        options: ['Transmural infarct from complete coronary occlusion', 'Subendocardial infarct from global hypoperfusion', 'Contraction band necrosis only', 'Reperfusion injury without occlusion'],
+        options: [
+          'Transmural infarct from complete coronary occlusion',
+          'Reperfusion injury without occlusion',
+          'Contraction band necrosis only',
+          'Subendocardial infarct from global hypoperfusion',
+        ],
         correctIndex: 0,
         explanation:
           'Transmural (full-thickness) infarcts result from complete, sustained occlusion of a coronary artery (typically thrombosis over a ruptured plaque), correlating with ST-elevation MI. Subendocardial infarcts follow severe but incomplete/global hypoperfusion.',
@@ -89,8 +104,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-6',
         text: 'A renal biopsy in a child with nephrotic syndrome shows normal light microscopy but diffuse podocyte foot process effacement on electron microscopy. The diagnosis is:',
-        options: ['Minimal change disease', 'Membranous nephropathy', 'Focal segmental glomerulosclerosis', 'Diffuse proliferative glomerulonephritis'],
-        correctIndex: 0,
+        options: [
+          'Focal segmental glomerulosclerosis',
+          'Membranous nephropathy',
+          'Minimal change disease',
+          'Diffuse proliferative glomerulonephritis',
+        ],
+        correctIndex: 2,
         explanation:
           'Minimal change disease is the most common cause of nephrotic syndrome in children, showing normal glomeruli on light microscopy with diffuse foot process effacement only visible on electron microscopy; it is typically steroid-responsive.',
         reference: 'Robbins Basic Pathology',
@@ -103,8 +123,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-7',
         text: 'Apple-green birefringence under polarized light after Congo red staining is diagnostic of:',
-        options: ['Amyloidosis', 'Hemochromatosis', 'Gout (monosodium urate deposition)', 'Pseudogout (CPPD)'],
-        correctIndex: 0,
+        options: [
+          'Hemochromatosis',
+          'Pseudogout (CPPD)',
+          'Gout (monosodium urate deposition)',
+          'Amyloidosis',
+        ],
+        correctIndex: 3,
         explanation:
           'Congo red staining of amyloid deposits shows characteristic apple-green birefringence under polarized light, the classic confirmatory test for amyloidosis regardless of the underlying amyloid protein subtype.',
         reference: 'Robbins Basic Pathology',
@@ -116,12 +141,12 @@ export const pathologyTopics: Topic[] = [
         id: 'path-8',
         text: 'Match each glomerular disease with its characteristic light-microscopy/immunofluorescence finding:',
         options: [
+          'Membranous nephropathy → crescents; IgA nephropathy → subepithelial humps',
           'Post-streptococcal GN → subepithelial "humps"; Membranous nephropathy → diffuse GBM thickening with spikes; IgA nephropathy → mesangial IgA deposits',
           'Post-streptococcal GN → mesangial IgA deposits; Membranous nephropathy → subepithelial humps; IgA nephropathy → GBM spikes',
-          'Membranous nephropathy → crescents; IgA nephropathy → subepithelial humps',
           'All three show identical linear IgG deposition',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Post-streptococcal GN shows subepithelial "hump-shaped" immune deposits; membranous nephropathy shows diffuse GBM thickening with subepithelial spikes on silver stain; IgA nephropathy (Berger disease) shows mesangial IgA deposition, the most common cause of GN worldwide.',
         reference: 'Robbins Basic Pathology',
@@ -144,8 +169,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-9',
         text: 'A peripheral smear shows microcytic, hypochromic red cells with target cells and a raised RBC count relative to the degree of anemia. This pattern favors:',
-        options: ['Beta-thalassemia trait', 'Iron deficiency anemia', 'Megaloblastic anemia', 'Hemolytic anemia (warm AIHA)'],
-        correctIndex: 0,
+        options: [
+          'Megaloblastic anemia',
+          'Beta-thalassemia trait',
+          'Iron deficiency anemia',
+          'Hemolytic anemia (warm AIHA)',
+        ],
+        correctIndex: 1,
         explanation:
           'Thalassemia trait classically shows microcytosis disproportionate to the mild anemia, with a normal or raised RBC count (Mentzer index low), target cells, and basophilic stippling — distinguishing it from iron deficiency, where RBC count is typically reduced.',
         reference: 'Robbins Basic Pathology / Wintrobe\'s Clinical Hematology',
@@ -156,8 +186,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-10',
         text: 'A 55-year-old presents with fatigue and massive splenomegaly. Peripheral smear shows marked leukocytosis with a full spectrum of granulocytic maturation and basophilia. This is most consistent with:',
-        options: ['Chronic myeloid leukemia (CML)', 'Acute myeloid leukemia', 'Chronic lymphocytic leukemia', 'Myelodysplastic syndrome'],
-        correctIndex: 0,
+        options: [
+          'Myelodysplastic syndrome',
+          'Acute myeloid leukemia',
+          'Chronic lymphocytic leukemia',
+          'Chronic myeloid leukemia (CML)',
+        ],
+        correctIndex: 3,
         explanation:
           'CML classically presents with marked leukocytosis showing the full spectrum of myeloid maturation (myeloblasts to mature neutrophils), basophilia, and massive splenomegaly; it is driven by the BCR-ABL1 (Philadelphia chromosome) fusion.',
         reference: 'Robbins Basic Pathology',
@@ -171,8 +206,13 @@ export const pathologyTopics: Topic[] = [
       {
         id: 'path-11',
         text: 'Reed-Sternberg cells (large binucleate cells with prominent "owl-eye" nucleoli) are the diagnostic hallmark of:',
-        options: ['Classical Hodgkin lymphoma', 'Diffuse large B-cell lymphoma', 'Burkitt lymphoma', 'Follicular lymphoma'],
-        correctIndex: 0,
+        options: [
+          'Diffuse large B-cell lymphoma',
+          'Burkitt lymphoma',
+          'Follicular lymphoma',
+          'Classical Hodgkin lymphoma',
+        ],
+        correctIndex: 3,
         explanation:
           'Reed-Sternberg cells with their characteristic "owl-eye" binucleate appearance are pathognomonic of classical Hodgkin lymphoma, typically embedded in a background of reactive inflammatory cells.',
         reference: 'Robbins Basic Pathology',

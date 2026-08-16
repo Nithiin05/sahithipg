@@ -10,12 +10,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-1',
         text: 'A 58-year-old with crushing chest pain has an ECG showing ST-segment elevation in leads II, III, and aVF. Which coronary artery territory and infarct location does this represent?',
         options: [
+          'Left main coronary artery — global ischemia',
           'Right coronary artery — inferior wall MI',
           'Left anterior descending artery — anterior wall MI',
           'Left circumflex artery — lateral wall MI',
-          'Left main coronary artery — global ischemia',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Leads II, III, and aVF are the inferior leads; ST elevation here indicates an inferior wall MI, most often due to right coronary artery occlusion (which also frequently supplies the AV node, risking heart block).',
         reference: "Harrison's Principles of Internal Medicine",
@@ -30,9 +30,9 @@ export const medicineTopics: Topic[] = [
         text: 'A patient with acute heart failure has an S3 gallop on auscultation. What does this finding suggest?',
         options: [
           'Rapid ventricular filling into a volume-overloaded/non-compliant ventricle',
-          'Mitral valve opening snap from stenosis',
-          'A physiological finding always seen in healthy elderly adults',
           'Aortic valve closure occurring earlier than normal',
+          'A physiological finding always seen in healthy elderly adults',
+          'Mitral valve opening snap from stenosis',
         ],
         correctIndex: 0,
         explanation:
@@ -49,9 +49,9 @@ export const medicineTopics: Topic[] = [
         text: 'Which class of drugs has been shown to reduce mortality in heart failure with reduced ejection fraction (HFrEF) via neurohormonal blockade?',
         options: [
           'ACE inhibitors/ARNI, beta-blockers, and mineralocorticoid receptor antagonists',
-          'Loop diuretics alone',
-          'Short-acting nitrates alone',
-          'Non-dihydropyridine calcium channel blockers',
+          'Loop diuretics, thiazide diuretics, and short-acting nitrates',
+          'Digoxin, loop diuretics, and central alpha-2 agonists',
+          'Non-dihydropyridine calcium channel blockers and short-acting nitrates',
         ],
         correctIndex: 0,
         explanation:
@@ -89,12 +89,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-5',
         text: 'An arterial blood gas shows pH 7.28, PaCO2 25 mmHg, HCO3- 12 mEq/L. This represents:',
         options: [
+          'Primary respiratory alkalosis',
           'Primary metabolic acidosis with respiratory compensation',
           'Primary respiratory acidosis',
-          'Primary respiratory alkalosis',
           'Primary metabolic alkalosis',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Low pH (acidemia) with low HCO3- indicates a primary metabolic acidosis; the appropriately low PaCO2 reflects respiratory compensation (hyperventilation blowing off CO2) — consistent with Winter\'s formula for expected compensation.',
         reference: "Harrison's Principles of Internal Medicine",
@@ -106,12 +106,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-6',
         text: 'A patient with type 1 diabetes presents with polyuria, vomiting, Kussmaul breathing, and fruity breath odor, with blood glucose 450 mg/dL and serum ketones positive. First-line management priorities include:',
         options: [
+          'IV insulin bolus and continuous infusion alone, without fluid resuscitation',
           'IV isotonic fluids first, then insulin infusion with careful potassium monitoring/replacement',
-          'Oral hypoglycemics immediately',
-          'Insulin bolus alone without fluids',
-          'Immediate sodium bicarbonate infusion regardless of pH',
+          'Immediate IV sodium bicarbonate infusion followed by insulin, irrespective of arterial pH',
+          'Oral hypoglycemic agents with fluids given only if the patient becomes hypotensive',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'DKA management begins with aggressive isotonic fluid resuscitation (correcting volume depletion), followed by an insulin infusion; because insulin drives potassium intracellularly, serum potassium must be monitored closely and replaced before/alongside insulin if low-normal, to prevent life-threatening hypokalemia.',
         reference: "Harrison's Principles of Internal Medicine",
@@ -125,8 +125,13 @@ export const medicineTopics: Topic[] = [
       {
         id: 'med-7',
         text: 'A patient with hyperthyroidism, exophthalmos, and a diffusely enlarged, non-tender thyroid with a bruit most likely has:',
-        options: ["Graves disease (diffuse toxic goiter)", "Subacute (de Quervain) thyroiditis", "Toxic multinodular goiter", "Hashimoto thyroiditis"],
-        correctIndex: 0,
+        options: [
+          "Toxic multinodular goiter",
+          "Subacute (de Quervain) thyroiditis",
+          "Hashimoto thyroiditis",
+          "Graves disease (diffuse toxic goiter)",
+        ],
+        correctIndex: 3,
         explanation:
           'Graves disease, an autoimmune condition driven by TSH-receptor stimulating antibodies, classically presents with diffuse goiter (often with an audible bruit from hypervascularity), hyperthyroidism, and unique extrathyroidal features like exophthalmos and pretibial myxedema.',
         reference: "Harrison's Principles of Internal Medicine",
@@ -138,12 +143,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-8',
         text: 'Match each acid-base disorder with its classic clinical scenario:',
         options: [
-          'Metabolic acidosis with high anion gap → DKA/lactic acidosis; Metabolic alkalosis → prolonged vomiting; Respiratory acidosis → COPD with CO2 retention; Respiratory alkalosis → anxiety-induced hyperventilation',
-          'Metabolic acidosis → vomiting; Metabolic alkalosis → DKA',
           'Respiratory acidosis → hyperventilation; Respiratory alkalosis → COPD',
+          'Metabolic acidosis → vomiting; Metabolic alkalosis → DKA',
+          'Metabolic acidosis with high anion gap → DKA/lactic acidosis; Metabolic alkalosis → prolonged vomiting; Respiratory acidosis → COPD with CO2 retention; Respiratory alkalosis → anxiety-induced hyperventilation',
           'All disorders present identically on ABG',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'High anion-gap metabolic acidosis is classic for DKA, lactic acidosis, and toxin ingestion ("MUDPILES"); metabolic alkalosis follows loss of gastric acid (vomiting) or diuretic use; respiratory acidosis reflects CO2 retention from hypoventilation (e.g., COPD); respiratory alkalosis follows hyperventilation (e.g., anxiety, high altitude, PE).',
         reference: "Harrison's Principles of Internal Medicine",
@@ -168,12 +173,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-9',
         text: 'Under the current India TB program (NTEP), the first-line intensive-phase regimen for a new drug-sensitive pulmonary TB case typically includes:',
         options: [
-          'Isoniazid, Rifampicin, Pyrazinamide, and Ethambutol (HRZE)',
           'Isoniazid and Rifampicin only',
-          'Streptomycin, Ethambutol, and Pyrazinamide only, without Rifampicin',
           'A single-drug Isoniazid regimen',
+          'Streptomycin, Ethambutol, and Pyrazinamide only, without Rifampicin',
+          'Isoniazid, Rifampicin, Pyrazinamide, and Ethambutol (HRZE)',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'The standard intensive phase for new drug-sensitive TB combines four first-line drugs — Isoniazid, Rifampicin, Pyrazinamide, Ethambutol (HRZE) — to rapidly reduce bacillary load and prevent resistance, followed by a continuation phase.',
         reference: 'Harrison\'s Principles of Internal Medicine / India NTEP guidelines',
@@ -185,12 +190,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-10',
         text: 'A 65-year-old smoker with COPD presents with an acute exacerbation — increased dyspnea, increased sputum volume, and purulence. Initial management includes:',
         options: [
-          'Bronchodilators, systemic corticosteroids, and antibiotics if criteria for bacterial exacerbation are met',
-          'Immediate mechanical ventilation for all exacerbations regardless of severity',
           'Antibiotics only, without bronchodilators',
+          'Immediate mechanical ventilation for all exacerbations regardless of severity',
+          'Bronchodilators, systemic corticosteroids, and antibiotics if criteria for bacterial exacerbation are met',
           'High-flow 100% oxygen without monitoring in all COPD patients',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Acute COPD exacerbations are managed with short-acting bronchodilators, a short course of systemic corticosteroids, and antibiotics when at least two of the classic Anthonisen criteria (increased dyspnea, sputum volume, sputum purulence) are met; oxygen must be titrated carefully to avoid worsening CO2 retention in some patients.',
         reference: "Harrison's Principles of Internal Medicine / GOLD Guidelines",
@@ -204,12 +209,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-11',
         text: 'A community-acquired pneumonia patient has a CURB-65 score of 3. This indicates:',
         options: [
-          'Severe pneumonia, warranting hospital (often ICU-level) admission',
           'Safe for outpatient management',
           'The score is irrelevant to management decisions',
+          'Severe pneumonia, warranting hospital (often ICU-level) admission',
           'Guaranteed need for mechanical ventilation regardless of other findings',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'CURB-65 (Confusion, Urea >7 mmol/L, Respiratory rate ≥30, low Blood pressure, age ≥65) scores ≥3 indicate severe pneumonia with substantially increased mortality risk, warranting hospital admission and consideration of higher-level (ICU) care.',
         reference: "Harrison's Principles of Internal Medicine",

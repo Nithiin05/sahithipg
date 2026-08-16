@@ -10,12 +10,12 @@ export const ophthalmologyTopics: Topic[] = [
         id: 'oph-1',
         text: 'A patient with myopia (near-sightedness) has an eyeball that is typically:',
         options: [
+          'Too short (axial length decreased) so light focuses behind the retina',
+          'Normal in length but with an unusually thin, weak lens, so light focuses behind the retina',
           'Too long (axial length increased) so light focuses in front of the retina',
-          'Too short so light focuses behind the retina',
-          'Normal in length but the lens is absent',
-          'Abnormally spherical with no refractive consequence',
+          'Normal in length but with an unusually flat cornea, so light focuses behind the retina',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Myopia most commonly results from an eyeball that is too long (axial myopia), causing parallel light rays to focus in front of the retina; concave (diverging) lenses correct this by moving the focal point back onto the retina.',
         reference: "Parson's Diseases of the Eye / AK Khurana Ophthalmology",
@@ -25,9 +25,14 @@ export const ophthalmologyTopics: Topic[] = [
       },
       {
         id: 'oph-2',
-        text: 'A contact lens wearer presents with a painful red eye, photophobia, and a corneal ulcer with a ring infiltrate. The most likely causative organism is:',
-        options: ['Pseudomonas aeruginosa', 'Staphylococcus epidermidis (typically less aggressive)', 'Herpes simplex virus exclusively', 'Candida albicans exclusively'],
-        correctIndex: 0,
+        text: 'A contact lens wearer presents with an acutely painful red eye, photophobia, and a rapidly progressive central corneal ulcer with purulent greenish-yellow discharge and stromal haze. The most likely causative organism is:',
+        options: [
+          'Staphylococcus epidermidis',
+          'Herpes simplex virus',
+          'Pseudomonas aeruginosa',
+          'Candida albicans',
+        ],
+        correctIndex: 2,
         explanation:
           'Pseudomonas aeruginosa is a classic and particularly aggressive cause of bacterial keratitis in contact lens wearers, capable of rapid corneal melting/perforation if not treated promptly with intensive topical antipseudomonal antibiotics.',
         reference: "Parson's Diseases of the Eye",
@@ -41,8 +46,13 @@ export const ophthalmologyTopics: Topic[] = [
       {
         id: 'oph-3',
         text: 'A dendritic corneal ulcer, best visualized with fluorescein staining, is the classic finding of:',
-        options: ['Herpes simplex keratitis', 'Bacterial (Pseudomonas) keratitis', 'Fungal keratitis', 'Acanthamoeba keratitis'],
-        correctIndex: 0,
+        options: [
+          'Fungal keratitis',
+          'Herpes simplex keratitis',
+          'Bacterial (Pseudomonas) keratitis',
+          'Acanthamoeba keratitis',
+        ],
+        correctIndex: 1,
         explanation:
           'Herpes simplex keratitis classically produces a branching, dendritic corneal ulcer best seen with fluorescein staining under cobalt blue light; topical corticosteroids are contraindicated as monotherapy since they can worsen the ulcer, and antiviral therapy (e.g., topical acyclovir/ganciclovir) is required.',
         reference: "Parson's Diseases of the Eye",
@@ -78,12 +88,12 @@ export const ophthalmologyTopics: Topic[] = [
         id: 'oph-5',
         text: 'Primary open-angle glaucoma typically presents as:',
         options: [
-          'A chronic, painless, progressive condition often detected only on routine exam or when peripheral vision loss is advanced',
           'Sudden severe eye pain with a red eye and rock-hard globe',
+          'A chronic, painless, progressive optic neuropathy detected late, often when peripheral vision loss is already advanced',
+          'Gradual painless blurring of near vision only, fully correctable with reading glasses',
           'Acute painful vision loss with halos around lights over hours',
-          'Isolated eyelid swelling without visual symptoms',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Primary open-angle glaucoma is typically asymptomatic and slowly progressive, silently damaging the optic nerve and peripheral visual field — earning it the nickname "silent thief of sight" — in contrast to acute angle-closure glaucoma, which presents dramatically.',
         reference: "Parson's Diseases of the Eye",
@@ -95,12 +105,12 @@ export const ophthalmologyTopics: Topic[] = [
         id: 'oph-6',
         text: 'A patient presents with sudden severe unilateral eye pain, blurred vision, halos around lights, nausea/vomiting, a mid-dilated fixed pupil, and a rock-hard eyeball on palpation. Immediate management includes:',
         options: [
+          'Immediate surgery without any medical therapy first',
+          'Topical corticosteroids alone',
           'Urgent IOP-lowering therapy (e.g., topical timolol/pilocarpine, IV acetazolamide, hyperosmotic agents) followed by laser peripheral iridotomy',
           'Reassurance, as this is a self-limited condition',
-          'Topical corticosteroids alone',
-          'Immediate surgery without any medical therapy first',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'This is acute angle-closure glaucoma — an ophthalmic emergency. Immediate medical therapy (topical beta-blockers, pilocarpine to constrict the pupil, IV acetazolamide, and hyperosmotic agents) rapidly lowers intraocular pressure, followed by definitive laser peripheral iridotomy once the acute attack is controlled.',
         reference: "Parson's Diseases of the Eye",
@@ -113,8 +123,13 @@ export const ophthalmologyTopics: Topic[] = [
       {
         id: 'oph-7',
         text: 'Cupping of the optic disc (increased cup-to-disc ratio) with characteristic visual field loss (e.g., arcuate scotomas, nasal step) is the hallmark of:',
-        options: ['Glaucomatous optic neuropathy', 'Optic neuritis', 'Papilledema from raised intracranial pressure', 'Central retinal artery occlusion'],
-        correctIndex: 0,
+        options: [
+          'Central retinal artery occlusion',
+          'Optic neuritis',
+          'Papilledema from raised intracranial pressure',
+          'Glaucomatous optic neuropathy',
+        ],
+        correctIndex: 3,
         explanation:
           'Glaucoma causes progressive optic nerve cupping (enlarged cup-to-disc ratio, often >0.6 or asymmetric between eyes) correlating with characteristic visual field defects like arcuate scotomas and nasal steps, reflecting retinal ganglion cell loss from raised or fluctuating intraocular pressure.',
         reference: "Parson's Diseases of the Eye",
@@ -127,9 +142,9 @@ export const ophthalmologyTopics: Topic[] = [
         text: 'Match each glaucoma-related drug class with its mechanism of lowering IOP:',
         options: [
           'Timolol (beta-blocker) → decreases aqueous humor production; Pilocarpine (cholinergic agonist) → increases aqueous outflow via trabecular meshwork; Latanoprost (prostaglandin analog) → increases uveoscleral outflow',
-          'Timolol → increases aqueous production',
-          'Pilocarpine → decreases uveoscleral outflow',
-          'Latanoprost → decreases aqueous outflow entirely',
+          'Timolol (beta-blocker) → increases aqueous humor production; Pilocarpine (cholinergic agonist) → increases aqueous outflow via trabecular meshwork; Latanoprost (prostaglandin analog) → increases uveoscleral outflow',
+          'Timolol (beta-blocker) → decreases aqueous humor production; Pilocarpine (cholinergic agonist) → increases aqueous outflow via trabecular meshwork; Latanoprost (prostaglandin analog) → decreases uveoscleral outflow',
+          'Timolol (beta-blocker) → decreases aqueous humor production; Pilocarpine (cholinergic agonist) → decreases aqueous outflow via trabecular meshwork; Latanoprost (prostaglandin analog) → increases uveoscleral outflow',
         ],
         correctIndex: 0,
         explanation:
@@ -154,8 +169,13 @@ export const ophthalmologyTopics: Topic[] = [
       {
         id: 'oph-9',
         text: 'A diabetic patient\'s fundus exam shows microaneurysms, dot-blot hemorrhages, and hard exudates, without neovascularization. This represents:',
-        options: ['Non-proliferative diabetic retinopathy (NPDR)', 'Proliferative diabetic retinopathy (PDR)', 'Central retinal vein occlusion', 'Retinitis pigmentosa'],
-        correctIndex: 0,
+        options: [
+          'Central retinal vein occlusion',
+          'Retinitis pigmentosa',
+          'Proliferative diabetic retinopathy (PDR)',
+          'Non-proliferative diabetic retinopathy (NPDR)',
+        ],
+        correctIndex: 3,
         explanation:
           'Non-proliferative diabetic retinopathy features microaneurysms, dot-blot hemorrhages, hard exudates, and cotton-wool spots without neovascularization; proliferative diabetic retinopathy is distinguished by the presence of neovascularization, which carries a much higher risk of vitreous hemorrhage and vision loss.',
         reference: "Parson's Diseases of the Eye",
@@ -166,7 +186,12 @@ export const ophthalmologyTopics: Topic[] = [
       {
         id: 'oph-10',
         text: 'A patient reports sudden onset of floaters, flashes of light, and a "curtain coming down" over part of their vision. This presentation is most concerning for:',
-        options: ['Rhegmatogenous retinal detachment', 'Simple refractive error change', 'Chronic open-angle glaucoma', 'Dry eye syndrome'],
+        options: [
+          'Rhegmatogenous retinal detachment',
+          'Chronic open-angle glaucoma',
+          'Dry eye syndrome',
+          'Simple refractive error change',
+        ],
         correctIndex: 0,
         explanation:
           'The classic triad of floaters, photopsia (flashes), and a curtain-like visual field defect signals retinal detachment (typically rhegmatogenous, from a retinal tear) — an ophthalmic emergency requiring urgent evaluation and surgical repair to prevent permanent vision loss.',
@@ -180,8 +205,13 @@ export const ophthalmologyTopics: Topic[] = [
       {
         id: 'oph-11',
         text: 'The most common type of age-related cataract, characterized by a yellow-brown discoloration of the lens nucleus, is:',
-        options: ['Nuclear sclerotic cataract', 'Posterior subcapsular cataract', 'Congenital cataract', 'Traumatic cataract'],
-        correctIndex: 0,
+        options: [
+          'Congenital cataract',
+          'Nuclear sclerotic cataract',
+          'Posterior subcapsular cataract',
+          'Traumatic cataract',
+        ],
+        correctIndex: 1,
         explanation:
           'Nuclear sclerotic cataract, the most common age-related type, causes progressive yellow-brown discoloration and hardening of the central lens nucleus, often producing a temporary myopic shift ("second sight") before progressive vision decline.',
         reference: "Parson's Diseases of the Eye",

@@ -9,8 +9,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-1',
         text: 'A child falls on an outstretched hand and has a fracture of the distal radius with dorsal angulation of the distal fragment. This classic injury is called:',
-        options: ['Colles fracture', "Smith's fracture", 'Galeazzi fracture', 'Monteggia fracture'],
-        correctIndex: 0,
+        options: [
+          'Galeazzi fracture',
+          'Monteggia fracture',
+          'Colles fracture',
+          "Smith's fracture",
+        ],
+        correctIndex: 2,
         explanation:
           'A Colles fracture is a distal radius fracture with dorsal displacement/angulation of the distal fragment ("dinner-fork deformity"), typically from a fall on an outstretched hand. Smith\'s fracture is the reverse (volar angulation).',
         reference: 'Apley\'s System of Orthopaedics and Fractures',
@@ -24,9 +29,9 @@ export const orthopedicsTopics: Topic[] = [
         text: 'A patient with a supracondylar fracture of the humerus develops a pale, pulseless, painful forearm with progressive weakness. This raises concern for:',
         options: [
           'Compartment syndrome / brachial artery injury (risk of Volkmann ischemic contracture)',
-          'Simple nerve contusion with full spontaneous recovery expected',
-          'Normal post-fracture swelling requiring no urgent action',
-          'Isolated skin bruising only',
+          'Cubitus varus malunion (late cosmetic deformity, no acute vascular compromise)',
+          'Isolated radial nerve palsy (wrist drop, pulses and capillary refill normal)',
+          'Isolated median (anterior interosseous) nerve injury with normal distal pulses',
         ],
         correctIndex: 0,
         explanation:
@@ -42,8 +47,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-3',
         text: 'Which stage of fracture healing is characterized by formation of a soft, cartilaginous callus bridging the fracture ends?',
-        options: ['Soft callus (fibrocartilaginous callus) formation stage', 'Hematoma formation stage', 'Hard (bony) callus formation stage', 'Remodeling stage'],
-        correctIndex: 0,
+        options: [
+          'Hard (bony) callus formation stage',
+          'Hematoma formation stage',
+          'Soft callus (fibrocartilaginous callus) formation stage',
+          'Remodeling stage',
+        ],
+        correctIndex: 2,
         explanation:
           'Fracture healing progresses through: hematoma formation → soft (fibrocartilaginous) callus → hard (bony) callus (via endochondral ossification) → remodeling. The soft callus stage provides initial, though weak, stability bridging the fracture gap.',
         reference: "Apley's System of Orthopaedics and Fractures",
@@ -78,8 +88,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-5',
         text: 'The most common causative organism of acute hematogenous osteomyelitis in children (without sickle cell disease) is:',
-        options: ['Staphylococcus aureus', 'Salmonella species', 'Pseudomonas aeruginosa', 'Mycobacterium tuberculosis'],
-        correctIndex: 0,
+        options: [
+          'Pseudomonas aeruginosa',
+          'Mycobacterium tuberculosis',
+          'Salmonella species',
+          'Staphylococcus aureus',
+        ],
+        correctIndex: 3,
         explanation:
           'Staphylococcus aureus is the most common cause of acute hematogenous osteomyelitis across most age groups; Salmonella is classically associated with osteomyelitis in patients with sickle cell disease, though S. aureus remains common even in that population.',
         reference: "Apley's System of Orthopaedics and Fractures",
@@ -90,8 +105,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-6',
         text: 'A 4-year-old presents with acute hip pain, refusal to bear weight, fever, and a hip held in flexion/abduction/external rotation, with elevated ESR/CRP. Emergency management priority is to rule out:',
-        options: ['Septic arthritis of the hip (requiring urgent aspiration/drainage)', 'Transient synovitis without any urgency', 'Simple muscle strain', 'Developmental dysplasia of the hip presenting acutely'],
-        correctIndex: 0,
+        options: [
+          'Transient synovitis of the hip (self-limited, no urgent aspiration needed)',
+          'Slipped capital femoral epiphysis (typically presents in adolescents, not this age group)',
+          'Septic arthritis of the hip (requiring urgent aspiration/drainage)',
+          'Legg-Calvé-Perthes disease (avascular necrosis of the femoral head)',
+        ],
+        correctIndex: 2,
         explanation:
           'Septic arthritis of the hip is an orthopedic emergency because rapid cartilage destruction can occur within hours; the Kocher criteria (fever, non-weight-bearing, elevated ESR/CRP, elevated WBC) help distinguish it from the more benign, self-limited transient synovitis, but suspicion should prompt urgent joint aspiration.',
         reference: "Apley's System of Orthopaedics and Fractures",
@@ -104,8 +124,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-7',
         text: 'Chronic osteomyelitis is characterized radiographically by the presence of:',
-        options: ['Sequestrum (dead bone) and involucrum (new bone formation around it)', 'Only soft tissue swelling with normal bone', 'Isolated joint space narrowing without bone changes', 'Pure osteopenia without any bone destruction'],
-        correctIndex: 0,
+        options: [
+          'Onion-skin periosteal reaction (lamellated periosteal new bone, classic for Ewing sarcoma)',
+          'Sequestrum (dead bone) and involucrum (new bone formation around it)',
+          'Ground-glass appearance with bone expansion (classic for fibrous dysplasia)',
+          'Codman triangle (periosteal reaction at the tumor margin, classic for osteosarcoma)',
+        ],
+        correctIndex: 1,
         explanation:
           'Chronic osteomyelitis classically shows a sequestrum (necrotic, devascularized bone fragment) surrounded by an involucrum (living reactive new bone laid down by the periosteum), reflecting a persistent, walled-off infection resistant to antibiotics alone and often requiring surgical debridement.',
         reference: "Apley's System of Orthopaedics and Fractures",
@@ -117,12 +142,12 @@ export const orthopedicsTopics: Topic[] = [
         id: 'ortho-8',
         text: 'Match each bone/joint infection scenario with its most likely organism:',
         options: [
+          'Sickle cell disease patient with osteomyelitis → Pasteurella multocida; IV drug user with vertebral osteomyelitis → Salmonella; Cat/dog bite wound infection → Staphylococcus aureus',
           'Sickle cell disease patient with osteomyelitis → Salmonella; IV drug user with vertebral osteomyelitis → Staphylococcus aureus (most common overall); Cat/dog bite wound infection → Pasteurella multocida',
-          'Sickle cell disease → Pasteurella; IV drug user → Salmonella',
-          'Cat bite → Staphylococcus aureus exclusively',
-          'All bone infections are caused by a single universal organism',
+          'Sickle cell disease patient with osteomyelitis → Staphylococcus aureus only; IV drug user with vertebral osteomyelitis → Pseudomonas aeruginosa exclusively; Cat/dog bite wound infection → Streptococcus pyogenes',
+          'Sickle cell disease patient with osteomyelitis → Salmonella; IV drug user with vertebral osteomyelitis → Pasteurella multocida; Cat/dog bite wound infection → Staphylococcus aureus',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Salmonella osteomyelitis is classically over-represented in sickle cell disease (though S. aureus remains the single most common cause even here); IV drug users are at risk for vertebral osteomyelitis (often S. aureus, sometimes Pseudomonas); Pasteurella multocida is classic after cat/dog bites due to oral flora inoculation.',
         reference: "Apley's System of Orthopaedics and Fractures / Harrison's",
@@ -145,8 +170,13 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-9',
         text: 'A toddler presents with bowing of the legs, widened wrists, a "rachitic rosary," and delayed closure of fontanelles. This is classic for:',
-        options: ['Rickets (vitamin D deficiency)', 'Osteogenesis imperfecta', 'Achondroplasia', 'Scurvy'],
-        correctIndex: 0,
+        options: [
+          'Scurvy',
+          'Osteogenesis imperfecta',
+          'Achondroplasia',
+          'Rickets (vitamin D deficiency)',
+        ],
+        correctIndex: 3,
         explanation:
           'Rickets (vitamin D or calcium/phosphate deficiency, or renal/hepatic causes) impairs mineralization of the growing skeleton, causing bowing of long bones, widened wrists/ankles (metaphyseal flaring), rachitic rosary (costochondral junction swelling), and delayed fontanelle closure.',
         reference: 'Nelson Textbook of Pediatrics / Apley\'s System of Orthopaedics',
@@ -157,7 +187,12 @@ export const orthopedicsTopics: Topic[] = [
       {
         id: 'ortho-10',
         text: 'A postmenopausal woman has a DEXA T-score of -2.7 at the femoral neck. This corresponds to:',
-        options: ['Osteoporosis (T-score ≤ -2.5)', 'Normal bone density', 'Osteopenia only (T-score -1.0 to -2.5)', 'Osteomalacia specifically'],
+        options: [
+          'Osteoporosis (T-score ≤ -2.5)',
+          'Normal bone density',
+          'Osteomalacia specifically',
+          'Osteopenia only (T-score -1.0 to -2.5)',
+        ],
         correctIndex: 0,
         explanation:
           'WHO criteria define osteoporosis as a T-score of -2.5 or lower; osteopenia is defined as a T-score between -1.0 and -2.5. A T-score of -2.7 therefore meets criteria for osteoporosis, warranting consideration of pharmacologic therapy (e.g., bisphosphonates) alongside calcium/vitamin D.',
@@ -172,12 +207,12 @@ export const orthopedicsTopics: Topic[] = [
         id: 'ortho-11',
         text: 'Osteomalacia differs from osteoporosis primarily in that osteomalacia involves:',
         options: [
+          'Only affects cortical bone, never trabecular bone',
           'Defective mineralization of normally-formed osteoid (bone matrix)',
           'Reduced overall bone mass with normal mineralization',
-          'Only affects cortical bone, never trabecular bone',
           'Is exclusively a pediatric condition',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Osteomalacia (the adult counterpart of rickets) involves impaired mineralization of newly formed osteoid — typically from vitamin D deficiency or phosphate wasting — leaving excess unmineralized bone matrix; osteoporosis, by contrast, involves reduced bone mass with normally mineralized bone.',
         reference: "Harrison's Principles of Internal Medicine",
@@ -205,3 +240,4 @@ export const orthopedicsTopics: Topic[] = [
     ],
   },
 ]
+

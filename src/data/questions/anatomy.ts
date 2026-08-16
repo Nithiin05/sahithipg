@@ -9,8 +9,13 @@ export const anatomyTopics: Topic[] = [
       {
         id: 'anat-1',
         text: 'A mid-shaft fracture of the humerus is most likely to injure which nerve, resulting in wrist drop?',
-        options: ['Median nerve', 'Ulnar nerve', 'Radial nerve', 'Axillary nerve'],
-        correctIndex: 2,
+        options: [
+          'Ulnar nerve',
+          'Radial nerve',
+          'Median nerve',
+          'Axillary nerve',
+        ],
+        correctIndex: 1,
         explanation:
           "The radial nerve runs in the spiral (radial) groove on the posterior surface of the humeral shaft, making it vulnerable in mid-shaft fractures. Injury classically causes wrist drop from loss of wrist and finger extensors.",
         reference: "BD Chaurasia's Human Anatomy, Vol. 1",
@@ -22,8 +27,13 @@ export const anatomyTopics: Topic[] = [
       {
         id: 'anat-2',
         text: 'A 28-year-old sustains a penetrating injury to the axilla. On examination, pushing against a wall causes prominent winging of the scapula. Which nerve is most likely injured?',
-        options: ['Long thoracic nerve', 'Thoracodorsal nerve', 'Dorsal scapular nerve', 'Suprascapular nerve'],
-        correctIndex: 0,
+        options: [
+          'Dorsal scapular nerve',
+          'Suprascapular nerve',
+          'Long thoracic nerve',
+          'Thoracodorsal nerve',
+        ],
+        correctIndex: 2,
         explanation:
           'The long thoracic nerve (C5-C7, roots) supplies serratus anterior, which holds the scapula against the thoracic wall. Its injury causes classic medial winging of the scapula, exaggerated on forward pushing.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 1",
@@ -56,9 +66,9 @@ export const anatomyTopics: Topic[] = [
         text: 'The quadrangular space in the axilla transmits which structures?',
         options: [
           'Axillary nerve and posterior circumflex humeral vessels',
+          'Suprascapular nerve and suprascapular vessels',
+          'Thoracodorsal nerve and subscapular vessels',
           'Radial nerve and profunda brachii vessels',
-          'Thoracodorsal nerve and vessels',
-          'Musculocutaneous nerve',
         ],
         correctIndex: 0,
         explanation:
@@ -79,12 +89,12 @@ export const anatomyTopics: Topic[] = [
         id: 'anat-5',
         text: 'The hepatic portal vein is formed by the union of which two veins?',
         options: [
+          'Left gastric and splenic veins',
+          'Superior and inferior mesenteric veins',
           'Splenic vein and superior mesenteric vein',
           'Splenic vein and inferior mesenteric vein',
-          'Superior and inferior mesenteric veins',
-          'Left gastric and splenic veins',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'The portal vein forms behind the neck of the pancreas by the union of the splenic vein and superior mesenteric vein; the inferior mesenteric vein usually drains into the splenic vein first.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 2",
@@ -96,12 +106,12 @@ export const anatomyTopics: Topic[] = [
         id: 'anat-6',
         text: 'A patient with cirrhosis and portal hypertension develops dilated, tortuous veins radiating from the umbilicus ("caput medusae"). These result from dilation of which channel?',
         options: [
-          'Paraumbilical veins connecting the portal and systemic systems',
-          'Superior epigastric veins alone',
+          'Superior epigastric veins',
           'Azygos venous system',
-          'Internal thoracic veins alone',
+          'Paraumbilical veins',
+          'Internal thoracic veins',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Portal hypertension re-opens the paraumbilical veins (of the ligamentum teres), which anastomose with superficial abdominal wall veins — a classic porto-systemic anastomosis producing caput medusae.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 2",
@@ -116,12 +126,12 @@ export const anatomyTopics: Topic[] = [
         id: 'anat-7',
         text: "McBurney's point, the site of maximal tenderness in appendicitis, lies at:",
         options: [
-          'Junction of the lateral 1/3 and medial 2/3 of a line from the right ASIS to the umbilicus',
           'The midpoint of the inguinal ligament',
           'The midpoint of a line joining both ASIS',
           'Junction of the medial 1/3 and lateral 2/3 of the same ASIS-umbilicus line',
+          'Junction of the lateral 1/3 and medial 2/3 of a line from the right ASIS to the umbilicus',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           "McBurney's point is classically described at the junction of the lateral third and medial two-thirds of the line joining the right anterior superior iliac spine (ASIS) to the umbilicus.",
         reference: "BD Chaurasia's Human Anatomy, Vol. 2",
@@ -132,8 +142,13 @@ export const anatomyTopics: Topic[] = [
       {
         id: 'anat-8',
         text: 'At which vertebral level does the abdominal aorta typically bifurcate into the common iliac arteries?',
-        options: ['L4', 'L1', 'L3', 'S1'],
-        correctIndex: 0,
+        options: [
+          'L1',
+          'L3',
+          'S1',
+          'L4',
+        ],
+        correctIndex: 3,
         explanation:
           'The abdominal aorta bifurcates at the level of the L4 vertebra (transpyloric-adjacent landmark, roughly at the level of the iliac crests), continuing as the right and left common iliac arteries.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 2",
@@ -152,8 +167,13 @@ export const anatomyTopics: Topic[] = [
       {
         id: 'anat-9',
         text: 'The afferent limb of the corneal reflex is carried by which cranial nerve?',
-        options: ['CN V (trigeminal)', 'CN VII (facial)', 'CN III (oculomotor)', 'CN X (vagus)'],
-        correctIndex: 0,
+        options: [
+          'CN III (oculomotor)',
+          'CN V (trigeminal)',
+          'CN X (vagus)',
+          'CN VII (facial)',
+        ],
+        correctIndex: 1,
         explanation:
           'Corneal sensation is carried by the ophthalmic division (V1) of the trigeminal nerve (afferent limb); the facial nerve (CN VII) supplies orbicularis oculi and mediates the efferent (blink) limb.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 3",
@@ -167,8 +187,8 @@ export const anatomyTopics: Topic[] = [
         options: [
           'A lower motor neuron (LMN) facial nerve palsy',
           'An upper motor neuron (UMN) facial palsy from a cortical stroke',
-          'Trigeminal neuralgia',
-          'Vestibular neuritis',
+          'Bilateral upper motor neuron (pseudobulbar) facial weakness',
+          'Isolated injury to a peripheral branch of the facial nerve',
         ],
         correctIndex: 0,
         explanation:
@@ -185,12 +205,12 @@ export const anatomyTopics: Topic[] = [
         id: 'anat-11',
         text: 'Within the lateral wall of the cavernous sinus, cranial nerves are arranged from superior to inferior as:',
         options: [
-          'CN III, CN IV, CN V1, CN V2',
           'CN III, CN VI, CN V1, CN V2',
           'CN IV, CN III, CN V2, CN V1',
           'CN VI, CN III, CN IV, CN V1',
+          'CN III, CN IV, CN V1, CN V2',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'The lateral wall of the cavernous sinus contains, from top to bottom: oculomotor (III), trochlear (IV), ophthalmic (V1), and maxillary (V2) nerves. The abducens (VI) runs within the sinus itself, not the lateral wall.',
         reference: "BD Chaurasia's Human Anatomy, Vol. 3",

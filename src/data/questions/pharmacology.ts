@@ -9,8 +9,13 @@ export const pharmacologyTopics: Topic[] = [
       {
         id: 'pharm-1',
         text: 'A patient is given a non-selective beta-blocker for hypertension. Which adverse effect is more likely than with a cardioselective (beta-1 selective) agent?',
-        options: ['Bronchospasm in an asthmatic patient', 'Reflex tachycardia', 'Increased renin release', 'Hyperglycemia unmasking'],
-        correctIndex: 0,
+        options: [
+          'Reflex tachycardia',
+          'Bronchospasm in an asthmatic patient',
+          'Hyperglycemia unmasking',
+          'Increased renin release',
+        ],
+        correctIndex: 1,
         explanation:
           'Non-selective beta-blockers (e.g., propranolol) also block beta-2 receptors in bronchial smooth muscle, risking bronchospasm in asthma/COPD — a key reason cardioselective agents (e.g., metoprolol, atenolol) are preferred in such patients.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -22,12 +27,12 @@ export const pharmacologyTopics: Topic[] = [
         id: 'pharm-2',
         text: 'A patient with pheochromocytoma is started on phenoxybenzamine before surgery. What is the pharmacologic rationale?',
         options: [
-          'Irreversible non-selective alpha-blockade prevents catecholamine-induced hypertensive crisis during tumor manipulation',
-          'It directly reduces catecholamine synthesis',
-          'It selectively blocks beta-1 receptors to prevent tachycardia',
-          'It is a direct vasodilator acting via nitric oxide',
+          'It is a direct arteriolar vasodilator acting through nitric oxide release',
+          'It selectively blocks beta-1 receptors to prevent reflex tachycardia',
+          'It directly inhibits catecholamine biosynthesis within the tumor before surgery',
+          'Irreversible, non-selective alpha-blockade prevents a catecholamine-induced hypertensive crisis during tumor handling',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'Phenoxybenzamine is an irreversible, non-selective alpha-blocker used pre-operatively in pheochromocytoma to prevent a hypertensive crisis from catecholamine surges during tumor handling; a beta-blocker is added only AFTER adequate alpha-blockade to avoid unopposed alpha stimulation.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -41,7 +46,12 @@ export const pharmacologyTopics: Topic[] = [
       {
         id: 'pharm-3',
         text: 'ACE inhibitors cause a dry cough in some patients primarily due to:',
-        options: ['Accumulation of bradykinin', 'Direct histamine release', 'Increased angiotensin II levels', 'Hyperkalemia-induced airway irritation'],
+        options: [
+          'Accumulation of bradykinin',
+          'Increased angiotensin II levels',
+          'Hyperkalemia-induced airway irritation',
+          'Direct histamine release',
+        ],
         correctIndex: 0,
         explanation:
           'ACE (kininase II) normally degrades bradykinin; ACE inhibitors reduce bradykinin breakdown, and its accumulation in the airway is thought to cause the characteristic dry, persistent cough — an effect not seen with ARBs.',
@@ -77,8 +87,13 @@ export const pharmacologyTopics: Topic[] = [
       {
         id: 'pharm-5',
         text: 'Which class of antibiotics acts by inhibiting bacterial cell wall synthesis through binding penicillin-binding proteins?',
-        options: ['Beta-lactams (penicillins, cephalosporins)', 'Aminoglycosides', 'Macrolides', 'Fluoroquinolones'],
-        correctIndex: 0,
+        options: [
+          'Macrolides — inhibit the 50S ribosomal subunit',
+          'Fluoroquinolones — inhibit DNA gyrase/topoisomerase IV',
+          'Aminoglycosides — inhibit the 30S ribosomal subunit',
+          'Beta-lactams (penicillins, cephalosporins) — inhibit peptidoglycan cross-linking',
+        ],
+        correctIndex: 3,
         explanation:
           'Beta-lactam antibiotics (penicillins, cephalosporins, carbapenems) inhibit transpeptidase enzymes ("penicillin-binding proteins") that cross-link peptidoglycan, weakening the bacterial cell wall and causing lysis.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -109,12 +124,12 @@ export const pharmacologyTopics: Topic[] = [
         id: 'pharm-7',
         text: 'Vancomycin resistance in Enterococcus most commonly arises from which mechanism?',
         options: [
-          'Altered D-Ala-D-Ala peptidoglycan precursor to D-Ala-D-Lactate, reducing vancomycin binding',
-          'Efflux pump overexpression',
-          'Beta-lactamase production',
-          'Ribosomal protection proteins',
+          'Production of beta-lactamase enzymes that hydrolyze the drug',
+          'Altered peptidoglycan precursor terminus, from D-Ala-D-Ala to D-Ala-D-Lactate, reducing vancomycin binding',
+          'Acquisition of ribosomal protection proteins that block drug binding',
+          'Overexpression of efflux pumps that actively extrude the drug from the cell',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Vancomycin-resistant enterococci (VRE) modify the peptidoglycan precursor terminus from D-Ala-D-Ala to D-Ala-D-Lactate (van genes), drastically reducing vancomycin\'s binding affinity and conferring high-level resistance.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -126,12 +141,12 @@ export const pharmacologyTopics: Topic[] = [
         id: 'pharm-8',
         text: 'Match the anticancer drug with its characteristic dose-limiting toxicity:',
         options: [
+          'Doxorubicin → nephrotoxicity/ototoxicity; Cisplatin → cardiotoxicity; Bleomycin → peripheral neuropathy; Vincristine → pulmonary fibrosis',
+          'Doxorubicin → peripheral neuropathy; Cisplatin → pulmonary fibrosis; Bleomycin → nephrotoxicity/ototoxicity; Vincristine → cardiotoxicity',
           'Doxorubicin → cardiotoxicity; Cisplatin → nephrotoxicity/ototoxicity; Bleomycin → pulmonary fibrosis; Vincristine → peripheral neuropathy',
-          'Doxorubicin → nephrotoxicity; Cisplatin → cardiotoxicity; Bleomycin → neuropathy; Vincristine → pulmonary fibrosis',
-          'Cisplatin → cardiotoxicity only',
-          'All anticancer drugs share identical toxicity profiles',
+          'Doxorubicin → pulmonary fibrosis; Cisplatin → peripheral neuropathy; Bleomycin → cardiotoxicity; Vincristine → nephrotoxicity/ototoxicity',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Classic dose-limiting toxicities: doxorubicin causes dilated cardiomyopathy (cumulative dose-related), cisplatin causes nephrotoxicity and ototoxicity, bleomycin causes pulmonary fibrosis, and vincristine causes peripheral neuropathy — all frequently tested pairings.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -157,9 +172,9 @@ export const pharmacologyTopics: Topic[] = [
         text: 'Benzodiazepines potentiate the action of GABA at the GABA-A receptor by:',
         options: [
           'Increasing the frequency of chloride channel opening',
-          'Increasing the duration of chloride channel opening',
           'Directly activating the channel independent of GABA',
-          'Blocking GABA reuptake',
+          'Blocking presynaptic reuptake of GABA at the nerve terminal',
+          'Increasing the duration of chloride channel opening',
         ],
         correctIndex: 0,
         explanation:
@@ -172,8 +187,13 @@ export const pharmacologyTopics: Topic[] = [
       {
         id: 'pharm-10',
         text: 'A pregnant woman on phenytoin for epilepsy is counseled about teratogenic risk. Which syndrome is associated with fetal phenytoin exposure?',
-        options: ['Fetal hydantoin syndrome (craniofacial anomalies, nail/digit hypoplasia)', 'Fetal alcohol syndrome', 'Warfarin embryopathy', 'Thalidomide-associated phocomelia'],
-        correctIndex: 0,
+        options: [
+          'Warfarin embryopathy (nasal hypoplasia, stippled epiphyses)',
+          'Fetal hydantoin syndrome (craniofacial anomalies, nail/digit hypoplasia)',
+          'Fetal alcohol syndrome (microcephaly, smooth philtrum, thin vermilion border)',
+          'Thalidomide-associated phocomelia (limb reduction defects)',
+        ],
+        correctIndex: 1,
         explanation:
           'Fetal hydantoin syndrome from in-utero phenytoin exposure includes craniofacial dysmorphism, distal digit/nail hypoplasia, and intellectual disability — an important teratogenicity consideration when managing epilepsy in pregnancy.',
         reference: "Katzung's Basic & Clinical Pharmacology",
@@ -187,12 +207,12 @@ export const pharmacologyTopics: Topic[] = [
         id: 'pharm-11',
         text: 'Sodium valproate\'s major mechanism(s) of antiepileptic action include:',
         options: [
-          'Blocking voltage-gated Na+ channels and increasing GABA levels',
-          'Selective NMDA receptor antagonism only',
           'Pure GABA-B receptor agonism',
           'Blocking T-type calcium channels exclusively (like ethosuximide)',
+          'Blocking voltage-gated Na+ channels and increasing GABA levels',
+          'Selective NMDA receptor antagonism only',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Valproate has multiple mechanisms: use-dependent blockade of voltage-gated Na+ channels, and increasing GABA levels (by inhibiting GABA transaminase), giving it broad-spectrum efficacy across generalized and focal seizures.',
         reference: "Katzung's Basic & Clinical Pharmacology",

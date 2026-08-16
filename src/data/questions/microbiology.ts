@@ -9,8 +9,13 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-1',
         text: 'A throat swab grows beta-hemolytic, catalase-negative, Gram-positive cocci in chains, sensitive to bacitracin. This organism is most likely:',
-        options: ['Streptococcus pyogenes (Group A strep)', 'Staphylococcus aureus', 'Streptococcus agalactiae (Group B)', 'Enterococcus faecalis'],
-        correctIndex: 0,
+        options: [
+          'Staphylococcus aureus',
+          'Streptococcus agalactiae (Group B)',
+          'Enterococcus faecalis',
+          'Streptococcus pyogenes (Group A strep)',
+        ],
+        correctIndex: 3,
         explanation:
           'Streptococcus pyogenes (Group A strep) is beta-hemolytic, catalase-negative, and characteristically bacitracin-sensitive — the classic organism causing streptococcal pharyngitis, scarlet fever, and post-infectious complications like rheumatic fever.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -22,12 +27,12 @@ export const microbiologyTopics: Topic[] = [
         id: 'micro-2',
         text: 'A child develops a pseudomembrane over the tonsils along with myocarditis. The exotoxin responsible acts by:',
         options: [
+          'Inhibition of acetylcholine release at the neuromuscular junction',
+          'Formation of pores in the cell membrane',
           'ADP-ribosylation of elongation factor-2 (EF-2), halting protein synthesis',
           'Superantigen-mediated massive T-cell activation',
-          'Formation of pores in the cell membrane',
-          'Inhibition of acetylcholine release at the neuromuscular junction',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Corynebacterium diphtheriae exotoxin (phage-encoded) ADP-ribosylates EF-2, halting host cell protein synthesis — causing the classic grey pseudomembrane and systemic effects like myocarditis and neuropathy.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -41,7 +46,12 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-3',
         text: 'Ghon complex (a subpleural lesion plus ipsilateral hilar lymph node involvement) is the hallmark of:',
-        options: ['Primary pulmonary tuberculosis', 'Secondary (reactivation) tuberculosis', 'Miliary tuberculosis', 'Pneumocystis pneumonia'],
+        options: [
+          'Primary pulmonary tuberculosis',
+          'Miliary tuberculosis',
+          'Secondary (reactivation) tuberculosis',
+          'Pneumocystis pneumonia',
+        ],
         correctIndex: 0,
         explanation:
           'The Ghon complex — a peripheral (often subpleural) parenchymal lesion with ipsilateral hilar/mediastinal lymphadenopathy — represents primary TB infection. Secondary (reactivation) TB classically affects the lung apices (Simon focus) without prominent lymphadenopathy.',
@@ -77,8 +87,13 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-5',
         text: 'HIV uses reverse transcriptase to convert its genome from:',
-        options: ['Single-stranded RNA to double-stranded DNA', 'Double-stranded DNA to RNA', 'Single-stranded DNA to RNA', 'RNA directly into protein without a DNA intermediate'],
-        correctIndex: 0,
+        options: [
+          'Single-stranded DNA to RNA',
+          'Single-stranded RNA to double-stranded DNA',
+          'RNA directly into protein without a DNA intermediate',
+          'Double-stranded DNA to RNA',
+        ],
+        correctIndex: 1,
         explanation:
           'HIV is a retrovirus: its reverse transcriptase converts the single-stranded RNA genome into double-stranded proviral DNA, which integrates into the host genome via integrase — the basis for reverse-transcriptase inhibitor drugs.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -92,8 +107,8 @@ export const microbiologyTopics: Topic[] = [
         options: [
           'High viral replication and high infectivity',
           'Complete immunity/clearance of infection',
-          'Vaccination status only, not natural infection',
           'Co-infection with hepatitis D exclusively',
+          'Vaccination status only, not natural infection',
         ],
         correctIndex: 0,
         explanation:
@@ -108,8 +123,13 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-7',
         text: 'Which virus is the classic cause of subacute sclerosing panencephalitis (SSPE), a late fatal complication years after primary infection?',
-        options: ['Measles virus', 'Mumps virus', 'Rubella virus', 'Varicella-zoster virus'],
-        correctIndex: 0,
+        options: [
+          'Varicella-zoster virus',
+          'Rubella virus',
+          'Measles virus',
+          'Mumps virus',
+        ],
+        correctIndex: 2,
         explanation:
           'SSPE is a rare, fatal, delayed complication of measles (rubeola) infection, caused by a persistent, defective measles virus in the CNS, presenting years after the acute illness with progressive neurologic deterioration.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -121,12 +141,12 @@ export const microbiologyTopics: Topic[] = [
         id: 'micro-8',
         text: 'Match each virus family with a member and its key disease association:',
         options: [
-          'Flavivirus → Dengue virus → hemorrhagic fever; Togavirus → Rubella → congenital rubella syndrome; Picornavirus → Poliovirus → flaccid paralysis',
-          'Flavivirus → Poliovirus → flaccid paralysis',
-          'Togavirus → Dengue virus → hemorrhagic fever',
-          'All arboviruses belong to a single unclassified family',
+          'Flavivirus → Poliovirus → flaccid paralysis; Togavirus → Dengue virus → hemorrhagic fever; Picornavirus → Rubella virus → congenital rubella syndrome',
+          'Flavivirus → Dengue virus → congenital rubella syndrome; Togavirus → Rubella virus → flaccid paralysis; Picornavirus → Poliovirus → hemorrhagic fever',
+          'Flavivirus → Dengue virus → hemorrhagic fever; Togavirus → Rubella virus → congenital rubella syndrome; Picornavirus → Poliovirus → flaccid paralysis',
+          'Flavivirus → Rubella virus → congenital rubella syndrome; Togavirus → Poliovirus → flaccid paralysis; Picornavirus → Dengue virus → hemorrhagic fever',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Dengue virus (Flaviviridae) causes dengue fever/hemorrhagic fever; Rubella virus (Togaviridae) causes congenital rubella syndrome when acquired in early pregnancy; Poliovirus (Picornaviridae) causes asymmetric flaccid paralysis via anterior horn cell destruction.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -148,11 +168,16 @@ export const microbiologyTopics: Topic[] = [
     questions: [
       {
         id: 'micro-9',
-        text: 'A patient returning from a malaria-endemic area has cyclical fever every 48 hours with banana-shaped gametocytes on smear. This suggests infection with:',
-        options: ['Plasmodium falciparum', 'Plasmodium vivax', 'Plasmodium malariae', 'Plasmodium ovale'],
+        text: 'A patient returning from a malaria-endemic area has high, irregular fever with banana/crescent-shaped gametocytes on peripheral smear. This suggests infection with:',
+        options: [
+          'Plasmodium falciparum',
+          'Plasmodium vivax',
+          'Plasmodium ovale',
+          'Plasmodium malariae',
+        ],
         correctIndex: 0,
         explanation:
-          'Banana/crescent-shaped gametocytes are characteristic of Plasmodium falciparum, which classically (though not always strictly) shows a roughly 48-hour (tertian) fever pattern and carries the highest risk of severe/cerebral malaria.',
+          'Banana/crescent-shaped gametocytes are pathognomonic of Plasmodium falciparum, which also typically produces a high, irregular (rather than sharply cyclical) fever due to asynchronous erythrocytic schizogony, and carries the highest risk of severe/cerebral malaria. P. vivax and P. ovale gametocytes are round, and their fever is classically a well-defined 48-hour tertian pattern.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology / CDC Malaria",
         difficulty: 'Easy',
         type: 'clinical-case',
@@ -161,8 +186,13 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-10',
         text: 'A neutropenic patient develops invasive pulmonary disease with septate, acute-angle branching hyphae on biopsy. The likely organism is:',
-        options: ['Aspergillus species', 'Mucor/Rhizopus (mucormycosis)', 'Candida albicans', 'Cryptococcus neoformans'],
-        correctIndex: 0,
+        options: [
+          'Cryptococcus neoformans',
+          'Aspergillus species',
+          'Mucor/Rhizopus (mucormycosis)',
+          'Candida albicans',
+        ],
+        correctIndex: 1,
         explanation:
           'Aspergillus shows septate hyphae branching at acute (~45°) angles, classically causing invasive disease in neutropenic/immunocompromised hosts. Mucor/Rhizopus, by contrast, show broad, ribbon-like, non-septate hyphae branching at wide (~90°) angles.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
@@ -175,8 +205,13 @@ export const microbiologyTopics: Topic[] = [
       {
         id: 'micro-11',
         text: 'Adult Wuchereria bancrofti worms residing in lymphatics cause which classic clinical syndrome?',
-        options: ['Lymphatic filariasis (elephantiasis)', 'Cutaneous larva migrans', 'Visceral leishmaniasis', 'Onchocerciasis (river blindness)'],
-        correctIndex: 0,
+        options: [
+          'Onchocerciasis (river blindness)',
+          'Cutaneous larva migrans',
+          'Visceral leishmaniasis',
+          'Lymphatic filariasis (elephantiasis)',
+        ],
+        correctIndex: 3,
         explanation:
           'Wuchereria bancrofti (transmitted by Culex mosquitoes) causes lymphatic filariasis, with chronic lymphatic obstruction leading to lymphedema and elephantiasis, often accompanied by tropical pulmonary eosinophilia.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",

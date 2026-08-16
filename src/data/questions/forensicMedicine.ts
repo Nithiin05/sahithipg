@@ -9,8 +9,13 @@ export const forensicMedicineTopics: Topic[] = [
       {
         id: 'fmt-1',
         text: 'Rigor mortis typically begins to appear (in a temperate climate) after death within approximately:',
-        options: ['1-2 hours, complete by 12 hours', '30 minutes, complete by 2 hours', '12-24 hours, complete by 48 hours', 'Immediately at the moment of death'],
-        correctIndex: 0,
+        options: [
+          '12-24 hours, complete by 48 hours',
+          'Immediately at the moment of death',
+          '1-2 hours, complete by 12 hours',
+          '30 minutes, complete by 2 hours',
+        ],
+        correctIndex: 2,
         explanation:
           'Rigor mortis classically begins within 1-2 hours after death (starting in small muscles, e.g., face/jaw, per the "law of Nysten"), becomes complete by about 12 hours, persists roughly 12-24 hours more, then resolves in the same order it appeared.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -23,9 +28,9 @@ export const forensicMedicineTopics: Topic[] = [
         text: 'A drowning victim\'s autopsy shows fine, moist, mushroom-shaped froth at the mouth/nostrils. This finding is:',
         options: [
           'A classic (though not absolute) sign supportive of death by drowning',
-          'Diagnostic only of strangulation',
-          'Seen exclusively in postmortem submersion with no relation to cause of death',
           'Specific for poisoning',
+          'Seen exclusively in postmortem submersion with no relation to cause of death',
+          'Diagnostic only of strangulation',
         ],
         correctIndex: 0,
         explanation:
@@ -40,7 +45,12 @@ export const forensicMedicineTopics: Topic[] = [
       {
         id: 'fmt-3',
         text: 'A ligature mark that is oblique, non-continuous, and situated above the thyroid cartilage is most typical of:',
-        options: ['Hanging', 'Strangulation by ligature', 'Manual strangulation (throttling)', 'Postmortem artifact from clothing'],
+        options: [
+          'Hanging',
+          'Strangulation by ligature',
+          'Manual strangulation (throttling)',
+          'Postmortem artifact from clothing',
+        ],
         correctIndex: 0,
         explanation:
           'In hanging, the ligature mark is classically oblique, non-continuous (interrupted at the point of suspension), and situated above the thyroid cartilage, reflecting the upward pull of the noose by body weight — contrasting with the typically horizontal, complete mark of ligature strangulation.',
@@ -77,12 +87,12 @@ export const forensicMedicineTopics: Topic[] = [
         id: 'fmt-5',
         text: 'The legal doctrine "res ipsa loquitur" ("the thing speaks for itself"), sometimes invoked in medical negligence cases, means:',
         options: [
-          'Negligence can be inferred from the very nature of the injury without direct evidence of a specific negligent act',
-          'The patient must always provide expert testimony to prove negligence',
-          'The doctrine that consent, once given, cannot be withdrawn',
           'A rule requiring double documentation of every procedure',
+          'Negligence can be inferred from the very nature of the injury without direct evidence of a specific negligent act',
+          'The doctrine that consent, once given, cannot be withdrawn',
+          'The patient must always provide expert testimony to prove negligence',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Res ipsa loquitur allows an inference of negligence purely from the occurrence of an injury that would not normally happen without negligence (e.g., a surgical instrument left inside a patient), shifting the burden to the defendant to explain.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -95,9 +105,9 @@ export const forensicMedicineTopics: Topic[] = [
         text: 'An unconscious trauma patient requires emergency life-saving surgery and cannot provide consent, with no relative available. The applicable legal principle is:',
         options: [
           'The doctrine of implied/emergency consent — treatment may proceed in the patient\'s best interest',
-          'Treatment must be withheld until a court order is obtained',
           'Consent must be obtained from any bystander present',
           'The hospital administrator must personally authorize every such case',
+          'Treatment must be withheld until a court order is obtained',
         ],
         correctIndex: 0,
         explanation:
@@ -113,12 +123,12 @@ export const forensicMedicineTopics: Topic[] = [
         id: 'fmt-7',
         text: 'A dying declaration recorded by a magistrate is admissible in an Indian court of law primarily because:',
         options: [
-          'It is presumed a person facing imminent death has no reason to lie',
           'It requires no witness or corroboration ever',
+          'It is presumed a person facing imminent death has no reason to lie',
           'It is legally equivalent to sworn courtroom testimony under oath',
           'It can only be recorded by a treating doctor, never a magistrate',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'A dying declaration is admissible under the principle "nemo moriturus praesumitur mentire" — a person on the verge of death is presumed unlikely to lie — and can be recorded by a magistrate, doctor, or police officer if the person is conscious and fit to make a statement.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -130,12 +140,12 @@ export const forensicMedicineTopics: Topic[] = [
         id: 'fmt-8',
         text: 'Match each type of medico-legal document/procedure with its correct description:',
         options: [
-          'Informed consent → disclosure of risks/benefits/alternatives before a procedure; Medical certificate → formal statement of a fact examined by a doctor; Dying declaration → statement by a person believing death is imminent',
-          'Informed consent → statement after death; Dying declaration → given before any procedure',
           'Medical certificate → only used for birth registration',
+          'Informed consent → statement after death; Dying declaration → given before any procedure',
           'All three terms are legally interchangeable',
+          'Informed consent → disclosure of risks/benefits/alternatives before a procedure; Medical certificate → formal statement of a fact examined by a doctor; Dying declaration → statement by a person believing death is imminent',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'Informed consent requires disclosing the nature, risks, benefits, and alternatives of a proposed intervention; a medical certificate is a formal written statement of examined fact (e.g., fitness, cause of injury); a dying declaration is a statement of a person who believes death is imminent, related to the cause of their impending death.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -158,8 +168,13 @@ export const forensicMedicineTopics: Topic[] = [
       {
         id: 'fmt-9',
         text: 'A patient presents with pinpoint pupils, respiratory depression, and reduced consciousness after a suspected opioid overdose. The specific antidote is:',
-        options: ['Naloxone', 'Flumazenil', 'Atropine', 'N-acetylcysteine'],
-        correctIndex: 0,
+        options: [
+          'Flumazenil',
+          'Naloxone',
+          'N-acetylcysteine',
+          'Atropine',
+        ],
+        correctIndex: 1,
         explanation:
           'Naloxone is a competitive opioid receptor antagonist used to reverse opioid-induced respiratory depression and CNS depression; flumazenil reverses benzodiazepines, atropine treats organophosphate/cholinergic toxicity, and N-acetylcysteine treats paracetamol overdose.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -171,12 +186,12 @@ export const forensicMedicineTopics: Topic[] = [
         id: 'fmt-10',
         text: 'A farmer presents with excessive salivation, lacrimation, urination, diarrhea, GI distress, and emesis (the "SLUDGE" syndrome) after pesticide exposure. The most likely toxin and its antidote are:',
         options: [
-          'Organophosphate poisoning; treated with atropine and pralidoxime',
-          'Aluminium phosphide poisoning; treated with N-acetylcysteine',
           'Paraquat poisoning; treated with naloxone',
+          'Aluminium phosphide poisoning; treated with N-acetylcysteine',
           'Carbon monoxide poisoning; treated with atropine',
+          'Organophosphate poisoning; treated with atropine and pralidoxime',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'Organophosphates inhibit acetylcholinesterase, causing cholinergic excess (SLUDGE symptoms plus bronchospasm/bronchorrhea). Atropine reverses muscarinic effects; pralidoxime (2-PAM) reactivates acetylcholinesterase if given early, before "aging" of the enzyme-inhibitor complex.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",
@@ -190,8 +205,13 @@ export const forensicMedicineTopics: Topic[] = [
       {
         id: 'fmt-11',
         text: 'Cherry-red discoloration of skin/mucosa and blood at autopsy is classically associated with poisoning by:',
-        options: ['Carbon monoxide', 'Cyanide (also can cause cherry-red but classically CO)', 'Arsenic', 'Lead'],
-        correctIndex: 0,
+        options: [
+          'Cyanide',
+          'Arsenic',
+          'Carbon monoxide',
+          'Lead',
+        ],
+        correctIndex: 2,
         explanation:
           'Carbon monoxide poisoning classically produces cherry-red livor and blood discoloration due to carboxyhemoglobin formation (though cyanide poisoning can also occasionally show a similar cherry-red hue) — an important autopsy clue in suspected CO poisoning/fire deaths.',
         reference: "Reddy's The Essentials of Forensic Medicine and Toxicology",

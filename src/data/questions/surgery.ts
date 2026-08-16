@@ -9,8 +9,13 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-1',
         text: 'A surgical wound closed primarily and healing without complication, forming a thin linear scar, is an example of healing by:',
-        options: ['Primary intention', 'Secondary intention', 'Tertiary intention (delayed primary closure)', 'Granulation without epithelialization'],
-        correctIndex: 0,
+        options: [
+          'Tertiary intention (delayed primary closure)',
+          'Healing by epithelialization alone (as in a superficial abrasion)',
+          'Secondary intention',
+          'Primary intention',
+        ],
+        correctIndex: 3,
         explanation:
           'Primary intention healing occurs when clean, well-approximated wound edges (as in a surgically closed incision) heal with minimal granulation tissue and a fine scar. Secondary intention involves healing by granulation and contraction in an open wound left to close on its own.',
         reference: "Bailey & Love's Short Practice of Surgery",
@@ -21,8 +26,13 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-2',
         text: 'A trauma patient has a heart rate of 130/min, BP 85/60, and is confused, with an estimated blood loss of 35% of blood volume. This corresponds to which class of hemorrhagic shock?',
-        options: ['Class III', 'Class I', 'Class II', 'Class IV'],
-        correctIndex: 0,
+        options: [
+          'Class II',
+          'Class III',
+          'Class IV',
+          'Class I',
+        ],
+        correctIndex: 1,
         explanation:
           'ATLS classification: Class III hemorrhagic shock involves 30-40% blood loss, with tachycardia >120, hypotension, and altered mental status (confusion) — requiring prompt crystalloid AND blood product resuscitation, unlike the more insidious Class I-II.',
         reference: 'ATLS (Advanced Trauma Life Support) Guidelines / Bailey & Love',
@@ -37,12 +47,12 @@ export const surgeryTopics: Topic[] = [
         id: 'surg-3',
         text: 'In the ATLS primary survey (ABCDE), which step takes priority when a trauma patient has both a compromised airway and active external hemorrhage?',
         options: [
-          'Airway (with cervical spine control) is addressed first, before circulation/hemorrhage control',
           'Circulation (hemorrhage control) always takes priority over airway',
-          'Disability (neurological) assessment takes priority over both',
           'Exposure/environmental control takes priority over airway',
+          'Disability (neurological) assessment takes priority over both',
+          'Airway (with cervical spine control) is addressed first, before circulation/hemorrhage control',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'The ATLS primary survey follows strict ABCDE priority: Airway (with C-spine protection) first, then Breathing, then Circulation (including hemorrhage control), then Disability, then Exposure — because airway compromise kills faster than most other injuries.',
         reference: 'ATLS (Advanced Trauma Life Support) Guidelines',
@@ -77,8 +87,13 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-5',
         text: 'A patient presents with sudden severe epigastric pain, board-like rigidity, and free air under the diaphragm on erect chest X-ray. This most likely represents:',
-        options: ['Perforated peptic ulcer', 'Acute uncomplicated appendicitis', 'Simple biliary colic', 'Uncomplicated gastroenteritis'],
-        correctIndex: 0,
+        options: [
+          'Biliary colic',
+          'Perforated peptic ulcer',
+          'Acute appendicitis',
+          'Acute gastroenteritis',
+        ],
+        correctIndex: 1,
         explanation:
           'Perforated peptic ulcer classically presents with sudden severe pain, a rigid ("board-like") abdomen from chemical peritonitis, and pneumoperitoneum (free air under the diaphragm) on an erect chest X-ray — a surgical emergency.',
         reference: "Bailey & Love's Short Practice of Surgery",
@@ -89,8 +104,13 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-6',
         text: 'A patient with right upper quadrant pain, fever, and jaundice (Charcot\'s triad) most likely has:',
-        options: ['Acute cholangitis', 'Uncomplicated biliary colic', 'Acute pancreatitis alone', 'Acute viral hepatitis'],
-        correctIndex: 0,
+        options: [
+          'Acute pancreatitis alone',
+          'Acute viral hepatitis',
+          'Acute cholangitis',
+          'Uncomplicated biliary colic',
+        ],
+        correctIndex: 2,
         explanation:
           "Charcot's triad (RUQ pain, fever, jaundice) suggests acute cholangitis from biliary obstruction with infection — a surgical/endoscopic emergency requiring urgent biliary decompression (e.g., ERCP) plus antibiotics. Reynolds' pentad adds hypotension and altered mental status, signaling septic shock.",
         reference: "Bailey & Love's Short Practice of Surgery",
@@ -105,12 +125,12 @@ export const surgeryTopics: Topic[] = [
         id: 'surg-7',
         text: 'An indirect inguinal hernia passes through which anatomical landmark, distinguishing it from a direct hernia?',
         options: [
-          'Deep (internal) inguinal ring, lateral to the inferior epigastric vessels',
-          'Hesselbach\'s triangle, medial to the inferior epigastric vessels',
           'The femoral canal below the inguinal ligament',
+          'Deep (internal) inguinal ring, lateral to the inferior epigastric vessels',
           'The obturator canal',
+          'Hesselbach\'s triangle, medial to the inferior epigastric vessels',
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
           'Indirect inguinal hernias follow the processus vaginalis through the deep inguinal ring, lateral to the inferior epigastric vessels, and can traverse the whole inguinal canal into the scrotum. Direct hernias bulge through Hesselbach\'s triangle, medial to the inferior epigastric vessels.',
         reference: "Bailey & Love's Short Practice of Surgery",
@@ -122,12 +142,12 @@ export const surgeryTopics: Topic[] = [
         id: 'surg-8',
         text: 'Match each acute abdomen presentation with its most likely diagnosis:',
         options: [
+          'Migratory periumbilical-to-RIF pain with Rovsing sign → Acute cholecystitis; Colicky flank pain radiating to groin with hematuria → Acute appendicitis; RUQ pain worse after fatty meals with positive Murphy sign → Renal/ureteric colic',
+          'Migratory periumbilical-to-RIF pain with Rovsing sign → Renal/ureteric colic; Colicky flank pain radiating to groin with hematuria → Acute cholecystitis; RUQ pain worse after fatty meals with positive Murphy sign → Acute appendicitis',
           'Migratory periumbilical-to-RIF pain with Rovsing sign → Acute appendicitis; Colicky flank pain radiating to groin with hematuria → Renal/ureteric colic; RUQ pain worse after fatty meals with positive Murphy sign → Acute cholecystitis',
-          'Acute appendicitis → RUQ pain with Murphy sign',
-          'Renal colic → periumbilical migratory pain',
-          'Acute cholecystitis → flank pain with hematuria',
+          'Migratory periumbilical-to-RIF pain with Rovsing sign → Acute appendicitis; Colicky flank pain radiating to groin with hematuria → Acute cholecystitis; RUQ pain worse after fatty meals with positive Murphy sign → Renal/ureteric colic',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'Classic surgical vignettes: appendicitis presents with pain migrating from periumbilical region to the right iliac fossa (McBurney\'s point) with Rovsing sign; renal/ureteric colic causes colicky flank-to-groin pain with hematuria; acute cholecystitis causes RUQ pain (worse with fatty food) with a positive Murphy sign.',
         reference: "Bailey & Love's Short Practice of Surgery",
@@ -150,7 +170,12 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-9',
         text: 'The most common composition of urinary tract stones is:',
-        options: ['Calcium oxalate', 'Uric acid', 'Struvite (magnesium ammonium phosphate)', 'Cystine'],
+        options: [
+          'Calcium oxalate',
+          'Struvite (magnesium ammonium phosphate)',
+          'Cystine',
+          'Uric acid',
+        ],
         correctIndex: 0,
         explanation:
           'Calcium oxalate stones are the most common type of urinary calculi overall (roughly 70-80%), often radio-opaque on plain X-ray, followed by struvite (associated with urease-producing organisms like Proteus), uric acid (radiolucent), and rare cystine stones.',
@@ -162,7 +187,12 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-10',
         text: 'An elderly man presents with progressive lower urinary tract symptoms (hesitancy, weak stream, nocturia) and a smooth, uniformly enlarged prostate on digital rectal exam without nodularity. This is most consistent with:',
-        options: ['Benign prostatic hyperplasia (BPH)', 'Prostate carcinoma', 'Acute bacterial prostatitis', 'Prostatic abscess'],
+        options: [
+          'Benign prostatic hyperplasia (BPH)',
+          'Acute bacterial prostatitis',
+          'Prostatic abscess',
+          'Prostate carcinoma',
+        ],
         correctIndex: 0,
         explanation:
           'BPH classically causes a smooth, firm, symmetrically enlarged prostate with obstructive/irritative LUTS; a hard, nodular, asymmetric prostate would raise suspicion for prostate carcinoma, which usually arises in the peripheral zone (unlike BPH, which arises in the transition zone).',
@@ -176,8 +206,13 @@ export const surgeryTopics: Topic[] = [
       {
         id: 'surg-11',
         text: 'Painless gross hematuria in an elderly smoker should raise strong suspicion for:',
-        options: ['Bladder carcinoma (urothelial/transitional cell carcinoma)', 'Simple cystitis only', 'Benign prostatic hyperplasia alone', 'Renal tuberculosis exclusively'],
-        correctIndex: 0,
+        options: [
+          'Acute cystitis (urinary tract infection)',
+          'Benign prostatic hyperplasia (BPH)',
+          'Bladder carcinoma (urothelial/transitional cell carcinoma)',
+          'Renal tuberculosis',
+        ],
+        correctIndex: 2,
         explanation:
           'Painless gross hematuria, especially in an older smoker, is a red-flag symptom for urothelial (transitional cell) carcinoma of the bladder — smoking is the single strongest modifiable risk factor — and warrants prompt cystoscopic evaluation.',
         reference: "Smith's General Urology",

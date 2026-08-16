@@ -10,10 +10,10 @@ export const physiologyTopics: Topic[] = [
         id: 'phys-1',
         text: 'Which phase of the cardiac cycle corresponds to isovolumetric contraction?',
         options: [
-          'Both AV and semilunar valves are closed, ventricular pressure rises with no volume change',
-          'AV valves open, ventricles fill passively',
-          'Semilunar valves open, blood ejected',
-          'Atrial systole tops off ventricular filling',
+          'AV and semilunar valves are both closed while ventricular pressure rises sharply',
+          'Atrial contraction is topping off end-diastolic ventricular volume',
+          'AV valves are open while ventricles fill passively down a pressure gradient',
+          'Semilunar valves are open while blood is rapidly ejected into the great vessels',
         ],
         correctIndex: 0,
         explanation:
@@ -26,8 +26,13 @@ export const physiologyTopics: Topic[] = [
       {
         id: 'phys-2',
         text: 'A patient on a ventilator has a tidal volume of 500 mL and anatomical dead space of 150 mL, breathing 12 times/min. What is the alveolar ventilation?',
-        options: ['4200 mL/min', '6000 mL/min', '1800 mL/min', '3500 mL/min'],
-        correctIndex: 0,
+        options: [
+          '1800 mL/min',
+          '3500 mL/min',
+          '4200 mL/min',
+          '6000 mL/min',
+        ],
+        correctIndex: 2,
         explanation:
           'Alveolar ventilation = (Tidal volume − Dead space) × Respiratory rate = (500 − 150) × 12 = 350 × 12 = 4200 mL/min.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -41,8 +46,13 @@ export const physiologyTopics: Topic[] = [
       {
         id: 'phys-3',
         text: 'A left shift of the oxygen-hemoglobin dissociation curve is caused by all of the following EXCEPT:',
-        options: ['Increased 2,3-DPG', 'Decreased temperature', 'Decreased H+ (alkalosis)', 'Fetal hemoglobin (HbF)'],
-        correctIndex: 0,
+        options: [
+          'Fetal hemoglobin (HbF)',
+          'Decreased H+ (alkalosis)',
+          'Increased 2,3-DPG',
+          'Decreased temperature',
+        ],
+        correctIndex: 2,
         explanation:
           'Increased 2,3-DPG shifts the curve to the RIGHT (decreasing hemoglobin\'s oxygen affinity, favoring unloading to tissues). Decreased temperature, alkalosis, and HbF all shift the curve LEFT (increased affinity).',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -78,8 +88,13 @@ export const physiologyTopics: Topic[] = [
       {
         id: 'phys-5',
         text: 'Which substance is used to measure glomerular filtration rate (GFR) because it is freely filtered and neither reabsorbed nor secreted?',
-        options: ['Inulin', 'Glucose', 'Urea', 'PAH (para-aminohippurate)'],
-        correctIndex: 0,
+        options: [
+          'PAH (para-aminohippurate)',
+          'Inulin',
+          'Urea',
+          'Glucose',
+        ],
+        correctIndex: 1,
         explanation:
           'Inulin is the gold-standard GFR marker: it is freely filtered at the glomerulus and undergoes no tubular reabsorption or secretion, so its clearance equals GFR exactly. Creatinine clearance is the practical clinical surrogate.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -91,10 +106,10 @@ export const physiologyTopics: Topic[] = [
         id: 'phys-6',
         text: 'A patient with uncontrolled diabetes mellitus develops polyuria despite hyperglycemia. This is best explained by:',
         options: [
-          'Osmotic diuresis from glucose exceeding the tubular reabsorptive (transport) maximum',
-          'Increased ADH secretion',
-          'Decreased GFR',
-          'Primary polydipsia',
+          'Osmotic diuresis caused by glucose exceeding the renal tubular transport maximum',
+          'Increased ADH secretion driven by the hyperosmolar hyperglycemic state',
+          'Decreased glomerular filtration rate reducing the kidney\'s concentrating ability',
+          'Primary polydipsia from psychogenic excessive water intake',
         ],
         correctIndex: 0,
         explanation:
@@ -109,8 +124,13 @@ export const physiologyTopics: Topic[] = [
       {
         id: 'phys-7',
         text: 'In the hypothalamic-pituitary-thyroid axis, which hormone provides negative feedback predominantly at the level of the anterior pituitary?',
-        options: ['Free T3/T4 on TSH secretion', 'TRH on TSH', 'TSH on TRH', 'Free T3/T4 on TRH only, with no effect on TSH'],
-        correctIndex: 0,
+        options: [
+          'TRH on TSH',
+          'TSH on TRH',
+          'Free T3/T4 on TRH only, with no effect on TSH',
+          'Free T3/T4 on TSH secretion',
+        ],
+        correctIndex: 3,
         explanation:
           'Circulating free T3 and T4 exert negative feedback predominantly on the anterior pituitary thyrotrophs, suppressing TSH secretion, and to a lesser extent on hypothalamic TRH neurons.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -122,12 +142,12 @@ export const physiologyTopics: Topic[] = [
         id: 'phys-8',
         text: 'Match the hormone with its primary site of action/effect:',
         options: [
-          'Aldosterone → Na+ reabsorption in distal tubule/collecting duct',
           'ADH → glucose reabsorption in proximal tubule',
-          'PTH → phosphate reabsorption in kidney',
           'Atrial natriuretic peptide → Na+ retention',
+          'PTH → phosphate reabsorption in kidney',
+          'Aldosterone → Na+ reabsorption in distal tubule/collecting duct',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'Aldosterone acts on principal cells of the distal tubule and collecting duct to increase Na+ reabsorption (and K+/H+ secretion). ADH promotes water reabsorption via aquaporins; PTH increases phosphate excretion (not reabsorption); ANP promotes natriuresis, not retention.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -151,8 +171,13 @@ export const physiologyTopics: Topic[] = [
       {
         id: 'phys-9',
         text: 'The rising phase (depolarization) of a neuronal action potential is primarily due to:',
-        options: ['Rapid opening of voltage-gated Na+ channels', 'Opening of voltage-gated K+ channels', 'Ca2+ influx at the synapse', 'Closure of leak K+ channels'],
-        correctIndex: 0,
+        options: [
+          'Ca2+ influx at the synapse',
+          'Rapid opening of voltage-gated Na+ channels',
+          'Opening of voltage-gated K+ channels',
+          'Closure of leak K+ channels',
+        ],
+        correctIndex: 1,
         explanation:
           'Depolarization results from the rapid opening of voltage-gated Na+ channels causing a fast influx of Na+; repolarization follows from Na+ channel inactivation plus delayed opening of voltage-gated K+ channels.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
@@ -164,12 +189,12 @@ export const physiologyTopics: Topic[] = [
         id: 'phys-10',
         text: 'A patient with myasthenia gravis has fatigable ptosis and diplopia worsening through the day. The underlying defect is:',
         options: [
-          'Autoantibodies against post-synaptic nicotinic acetylcholine receptors at the neuromuscular junction',
-          'Autoantibodies against presynaptic voltage-gated calcium channels',
-          'Demyelination of peripheral motor axons',
-          'Deficiency of acetylcholinesterase',
+          'Segmental demyelination of peripheral motor axons impairing conduction',
+          'Congenital deficiency of acetylcholinesterase at the motor endplate',
+          'Autoantibodies against presynaptic voltage-gated calcium channels impairing ACh release',
+          'Autoantibodies against postsynaptic nicotinic ACh receptors at the neuromuscular junction',
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
           'Myasthenia gravis is caused by autoantibodies against post-synaptic nicotinic ACh receptors (or MuSK), reducing effective neuromuscular transmission and causing fatigable weakness. (Presynaptic VGCC antibodies cause Lambert-Eaton syndrome instead.)',
         reference: "Ganong's Review of Medical Physiology",
@@ -183,12 +208,12 @@ export const physiologyTopics: Topic[] = [
         id: 'phys-11',
         text: 'The stretch (myotatic) reflex, such as the knee-jerk, is monosynaptic because:',
         options: [
-          'The Ia afferent from the muscle spindle synapses directly onto the alpha motor neuron',
-          'It requires an interneuron relay in the dorsal horn',
-          'It involves the corticospinal tract',
-          'It is mediated by Golgi tendon organs',
+          'The reflex is mediated by descending fibers of the corticospinal tract',
+          'The reflex is triggered by tension-sensing Golgi tendon organs in the tendon',
+          'The Ia afferent from the muscle spindle synapses directly on the alpha motor neuron',
+          'The reflex requires an interneuron relay within the dorsal horn of the spinal cord',
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
           'The myotatic (stretch) reflex arc is the simplest spinal reflex: the Ia afferent fiber from the muscle spindle synapses directly on the alpha motor neuron supplying the same muscle, with no interneuron — hence "monosynaptic."',
         reference: "Ganong's Review of Medical Physiology",
