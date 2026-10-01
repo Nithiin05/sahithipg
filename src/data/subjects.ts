@@ -1,4 +1,5 @@
 import type { Subject } from '../types'
+import { randomizeOptions } from '../lib/optionShuffle'
 import { anatomyTopics } from './questions/anatomy'
 import { physiologyTopics } from './questions/physiology'
 import { biochemistryTopics } from './questions/biochemistry'
@@ -19,7 +20,7 @@ import { psychiatryTopics } from './questions/psychiatry'
 import { radiologyTopics } from './questions/radiology'
 import { anesthesiaTopics } from './questions/anesthesia'
 
-export const subjects: Subject[] = [
+const rawSubjects: Subject[] = [
   // ---------------------------------------------------------------- Pre-Clinical
   {
     slug: 'anatomy',
@@ -215,6 +216,12 @@ export const subjects: Subject[] = [
   },
 ]
 
+/** Subjects with every question's options position-randomized (see lib/optionShuffle.ts). */
+export const subjects: Subject[] = rawSubjects.map((s) => ({
+  ...s,
+  topics: s.topics.map((t) => ({ ...t, questions: t.questions.map(randomizeOptions) })),
+}))
+
 export function getSubject(slug: string) {
   return subjects.find((s) => s.slug === slug)
 }
@@ -262,7 +269,7 @@ export function totalClinicalCaseCount() {
 export function totalImageBasedCount() {
   const imageTypes = new Set(['image', 'radiology', 'ecg', 'histopath', 'anatomy-image', 'instrument'])
   return subjects.reduce(
-    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.type && imageTypes.has(q.type)).length, 0),
+    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.imageUrl && q.type && imageTypes.has(q.type)).length, 0),
     0,
   )
 }

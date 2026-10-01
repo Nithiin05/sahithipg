@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Bookmark, Lightbulb, Maximize2, Sparkles, X } from 'lucide-react'
-import type { Question } from '../types'
+import type { Question, SourceType } from '../types'
+import { SOURCE_LABELS, sourceLine, sourceTypeOf } from '../lib/questionSource'
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
@@ -17,6 +18,14 @@ const TYPE_LABELS: Record<string, string> = {
   guideline: 'Guideline Based',
   aiims: 'AIIMS Pattern',
   inicet: 'INI-CET Pattern',
+}
+
+const SOURCE_STYLES: Record<SourceType, string> = {
+  PYQ: 'bg-success-bg text-success',
+  PYQ_PATTERN: 'bg-primary/10 text-primary',
+  PRACTICE: 'bg-secondary text-muted-foreground',
+  IMAGE: 'bg-accent/10 text-accent',
+  INTEGRATED: 'bg-warning-bg text-warning',
 }
 
 function ImageViewer({ src, alt, onClose }: { src: string; alt?: string; onClose: () => void }) {
@@ -52,6 +61,7 @@ export default function QuestionCard({
 }) {
   const [zoomed, setZoomed] = useState(false)
   const typeLabel = question.type && question.type !== 'standard' ? TYPE_LABELS[question.type] : undefined
+  const source = sourceTypeOf(question)
 
   return (
     <div className="card p-6">
@@ -62,7 +72,10 @@ export default function QuestionCard({
           </span>
           {typeLabel && <span className="tag bg-accent/10 text-accent font-semibold">{typeLabel}</span>}
           {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{question.difficulty}</span>}
-          {question.isPYQ && <span className="tag bg-primary/10 text-primary font-semibold">PYQ-style{question.year ? ` · ${question.year}` : ''}</span>}
+          <span className={`tag font-semibold ${SOURCE_STYLES[source]}`} title={sourceLine(question)}>
+            {SOURCE_LABELS[source].label}
+            {source === 'PYQ' && question.sourceDetail ? ` · ${question.sourceDetail}` : ''}
+          </span>
         </div>
         {onToggleBookmark && (
           <button
@@ -84,11 +97,13 @@ export default function QuestionCard({
       </p>
 
       {question.imageUrl && (
-        <div className="relative mb-6 inline-block">
+        <figure className="relative mb-6 inline-block max-w-full">
           <img
             src={question.imageUrl}
             alt={question.imageAlt ?? 'Question image'}
-            className="max-w-full rounded-lg border border-border cursor-zoom-in"
+            loading="lazy"
+            decoding="async"
+            className="max-w-full max-h-[420px] rounded-lg border border-border cursor-zoom-in bg-white"
             onClick={() => setZoomed(true)}
           />
           <button
@@ -99,7 +114,14 @@ export default function QuestionCard({
           >
             <Maximize2 size={14} />
           </button>
-        </div>
+          {(question.imageCaption || question.imageSource) && (
+            <figcaption className="mt-1.5 text-xs text-muted-foreground">
+              {question.imageCaption}
+              {question.imageCaption && question.imageSource ? ' · ' : ''}
+              {question.imageSource && <span className="italic">Source: {question.imageSource}</span>}
+            </figcaption>
+          )}
+        </figure>
       )}
       {zoomed && question.imageUrl && (
         <ImageViewer src={question.imageUrl} alt={question.imageAlt} onClose={() => setZoomed(false)} />
@@ -152,6 +174,9 @@ export default function QuestionCard({
             <span className="font-semibold text-foreground">Explanation: </span>
             {question.explanation}
             {question.reference && <p className="mt-2 text-xs italic">Reference: {question.reference}</p>}
+            <p className="mt-1 text-xs">
+              <span className="font-semibold">{SOURCE_LABELS[source].label}:</span> {sourceLine(question)}
+            </p>
           </div>
           {question.clinicalPearl && (
             <div className="rounded-lg bg-warning-bg px-4 py-3 text-sm flex gap-2.5">

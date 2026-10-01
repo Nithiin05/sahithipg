@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { BarChart3, BookOpen, BrainCircuit, CalendarClock, FileStack, Layers } from 'lucide-react'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 const FEATURES = [
   {
     title: 'Grand Tests — Exam Simulation',
-    desc: 'Up to 200 questions, one continuous 3.5-hour timer, question palette, and "Mark for Review" — just like the real exam.',
+    desc: `${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and "Mark for Review" — like the real exam.`,
     to: '/grand-tests',
     cta: 'Take a Grand Test',
     Icon: FileStack,
@@ -17,7 +18,7 @@ const FEATURES = [
     Icon: Layers,
   },
   {
-    title: 'AI-Powered Analytics',
+    title: 'Performance Analytics',
     desc: 'Accuracy trends, subject heatmaps, weak-topic detection, and a personalized study summary generated from your attempts.',
     to: '/analytics',
     cta: 'View analytics',
@@ -70,7 +71,7 @@ export default function Features() {
       <div className="max-w-6xl mx-auto">
         <span className="block text-xs uppercase tracking-widest text-primary font-semibold mb-3">Platform</span>
         <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.7rem, 4vw, 2.4rem)' }}>
-          Everything your NEET PG 2026 prep needs
+          Everything your INI-CET prep needs
         </h2>
 
         <div className="grid gap-5 mt-10" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>

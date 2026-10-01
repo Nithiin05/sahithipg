@@ -10,12 +10,14 @@ import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { clearResumeState, readResumeStateFor, saveResumeState } from '../lib/testResume'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 /** Full-length Grand Test runner — a single continuous timer across all questions (no per-section stepping). */
 export default function GrandTestRunner() {
   const { grandId } = useParams()
   const navigate = useNavigate()
   const config = getGrandTest(grandId ?? '')
+  usePageTitle(config?.title ?? 'Grand Test')
 
   const initialResume = useMemo(
     () => (config ? readResumeStateFor((s) => s.kind === 'grand' && s.mockId === config.id) : null),

@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader'
 import ResumeBanner from '../components/ResumeBanner'
 import { mockTests, mockTotals, type MockTestConfig, type MockTestKind } from '../data/mockTests'
 import { subjects } from '../data/subjects'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 const TABS: { key: MockTestKind; label: string }[] = [
   { key: 'subject', label: 'Subject Tests' },
@@ -102,7 +103,7 @@ export default function MockTests() {
       <PageHeader
         eyebrow="Mock Tests"
         title="Practice under real conditions"
-        description="Subject tests, topic tests, rapid-revision sprints, and mixed tests — all at the real NEET PG marking scheme (+1 per correct, 0 for wrong/unattempted, no negative marking)."
+        description={`Subject tests, topic tests, rapid-revision sprints and mixed tests — all at the INI-CET marking scheme (${markingLabel()}).`}
       />
 
       <ResumeBanner />
@@ -203,8 +204,8 @@ export default function MockTests() {
         {tab === 'mixed' && mixedList.map((mock) => <MockCard key={mock.id} mock={mock} />)}
 
         <p className="text-xs text-muted-foreground text-center mt-2">
-          NEET PG has no negative marking — reflected exactly here. Looking for a full 200-question exam simulation
-          with a single continuous timer? Try a <Link to="/grand-tests" className="text-primary font-medium hover:underline">Grand Test</Link>.
+          Every test uses INI-CET negative marking ({markingLabel()}). Looking for a full {examConfig.totalQuestions}-question
+          simulation with a single {examConfig.durationMinutes}-minute timer? Try a <Link to="/grand-tests" className="text-primary font-medium hover:underline">Grand Test</Link>.
         </p>
       </div>
     </div>

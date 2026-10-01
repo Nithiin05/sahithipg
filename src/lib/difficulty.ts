@@ -22,7 +22,7 @@ export function questionDifficulty(q: Question): Difficulty {
 
 export const DIFFICULTY_DESCRIPTIONS: Record<Difficulty, string> = {
   Easy: 'Foundational, single-concept recall questions to build accuracy.',
-  Medium: 'Standard NEET PG-level questions mixing two or more concepts.',
+  Medium: 'Standard exam-level questions mixing two or more concepts.',
   Hard: 'Applied, clinically-integrated questions at real exam difficulty.',
-  Expert: 'AIIMS/INI-CET-caliber questions testing deep integration and reasoning.',
+  Expert: 'INI-CET-level questions testing multi-step integration and clinical reasoning.',
 }

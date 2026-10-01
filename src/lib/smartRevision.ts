@@ -29,7 +29,7 @@ export function getWeakTopics(attempts: AttemptRecord[], minSample = 2): WeakTop
 }
 
 /**
- * AI-style Smart Revision: builds a test weighted toward weak topics (from
+ * Smart Revision: builds a test weighted toward weak topics (from
  * attempt history) and previously-wrong questions, backfilling with a
  * general pool if there isn't enough weak-topic material yet.
  */

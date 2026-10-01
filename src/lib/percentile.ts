@@ -6,12 +6,12 @@
  * numbers are a modeled ESTIMATE only (assuming a bell-curve score
  * distribution loosely typical of large competitive exams) — always labeled
  * as such in the UI. They are meant to give a directional sense of
- * performance, not a guarantee of actual NEET PG rank.
+ * performance, not a guarantee of actual INI-CET rank.
  */
 
 const ASSUMED_MEAN_PCT = 50
 const ASSUMED_SD_PCT = 16
-/** Rough order-of-magnitude NEET PG applicant pool size, for illustrative rank estimates only. */
+/** Rough order-of-magnitude applicant pool size, for illustrative rank estimates only. */
 const ASSUMED_COHORT_SIZE = 200000
 
 function erf(x: number): number {

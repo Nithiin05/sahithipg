@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import ResumeBanner from '../components/ResumeBanner'
 import { grandTests, grandTestTotals } from '../data/grandTests'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 const PAGE_SIZE = 24
 
@@ -16,7 +17,7 @@ export default function GrandTests() {
       <PageHeader
         eyebrow="Grand Tests"
         title="Full-length exam simulation"
-        description={`${grandTests.length}+ Grand Tests — up to 200 questions pooled across all 19 subjects, one continuous 3.5-hour timer, question palette, "Mark for Review", and a detailed performance report with an estimated percentile & rank. No negative marking, matching real NEET PG.`}
+        description={`Full-length INI-CET simulations — ${examConfig.totalQuestions} questions across all 19 subjects, one ${examConfig.durationMinutes}-minute timer, question palette, "Mark for Review" and ${markingLabel()} marking, followed by a subject-wise performance report.`}
       />
 
       <ResumeBanner />

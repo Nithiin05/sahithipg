@@ -1,6 +1,7 @@
 import type { SubjectSlug } from '../types'
 import { subjects } from './subjects'
 import { pyqYears, pooledPYQQuestions } from '../lib/quizEngine'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 export interface MockSection {
   id: string
@@ -31,13 +32,9 @@ export interface MockTestConfig {
   sections: MockSection[]
 }
 
-/**
- * NEET PG itself carries NO negative marking (+1 per correct answer, 0 for
- * wrong/unattempted) — unlike SSC/INI-CET style exams. Every test on this
- * platform reflects that real marking scheme for accuracy.
- */
-const MARKS_CORRECT = 4
-const MARKS_WRONG = 1
+/** Marking comes from the central exam config (INI-CET: +1 / −⅓). */
+const MARKS_CORRECT = examConfig.marking.correct
+const MARKS_WRONG = examConfig.marking.wrong
 
 // ---------------------------------------------------------------------------
 // Subject Tests — full-syllabus, single-subject, timed tests.
@@ -132,7 +129,7 @@ function buildMixedTests(sizes: number[], perSize: number): MockTestConfig[] {
         id: `mixed-${size}-${i}`,
         title: `Mixed Test — ${size} Questions (Set ${i})`,
         kind: 'mixed',
-        description: `A ${size}-question test pooled across all subjects and categories, at the same +4/-1 marking scheme as NEET PG — set ${i} of ${perSize}.`,
+        description: `A ${size}-question test pooled across all subjects and categories, at the INI-CET ${markingLabel()} marking — set ${i} of ${perSize}.`,
         marksCorrect: MARKS_CORRECT,
         marksWrong: MARKS_WRONG,
         sections: [{ id: `sec-mixed-${size}-${i}`, label: 'Mixed (All Subjects)', questionCount: size, minutes: size }],
@@ -154,13 +151,13 @@ function buildPYQTests(): MockTestConfig[] {
     const count = pooledPYQQuestions(undefined, year).length
     return {
       id: `pyq-${year}`,
-      title: `NEET PG ${year} — PYQ-Style Practice`,
+      title: `PYQ Pattern — ${year} concepts`,
       kind: 'pyq' as const,
       year,
-      description: `${count} original, pattern-based practice questions written in the structure/style reported for ${year} — not a reproduction of any official paper.`,
+      description: `${count} original, pattern-based practice questions modelled on concepts tested around ${year} — not actual INI-CET paper questions.`,
       marksCorrect: MARKS_CORRECT,
       marksWrong: MARKS_WRONG,
-      sections: [{ id: `sec-pyq-${year}`, label: `PYQ Style — ${year}`, questionCount: count, minutes: Math.max(10, count) }],
+      sections: [{ id: `sec-pyq-${year}`, label: `PYQ Pattern — ${year}`, questionCount: count, minutes: Math.max(10, count) }],
     }
   })
 }

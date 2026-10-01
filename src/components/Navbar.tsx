@@ -32,7 +32,7 @@ function Navbar() {
             <Stethoscope size={19} strokeWidth={2.25} />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display font-extrabold text-[15px] tracking-tight">Dr. Sahithi Preparation</span>
+            <span className="font-display font-extrabold text-[15px] tracking-tight">INI-CET Preparation</span>
             <span className="text-[10px] text-muted-foreground font-medium tracking-wide hidden sm:block">Every Question Matters.</span>
           </span>
         </Link>

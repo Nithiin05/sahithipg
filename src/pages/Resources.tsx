@@ -144,7 +144,7 @@ export default function Resources() {
     <div className="pb-20">
       <PageHeader
         eyebrow="Resources"
-        title="The NEET PG learning hub"
+        title="The INI-CET learning hub"
         description="Standard textbook references, subject-wise video search hubs, and flashcards built from the question bank's clinical pearls."
       />
 

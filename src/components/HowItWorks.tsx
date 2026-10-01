@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useInView } from '../hooks/useInView'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 const STEPS = [
   {
     n: '01',
     title: 'Set your study plan',
-    desc: 'Enter your exam date (default: NEET PG 2026, August 30), pick focus subjects, and set a daily question/time goal.',
+    desc: 'Enter your exam date (default: INI-CET, 1 November 2026), pick focus subjects, and set a daily question/time goal.',
     to: '/planner',
     cta: 'Open the Study Planner',
   },
@@ -19,7 +20,7 @@ const STEPS = [
   {
     n: '03',
     title: 'Simulate the real exam',
-    desc: 'Sit full-length Grand Tests — up to 200 questions, one 3.5-hour timer, question palette, mark-for-review.',
+    desc: `Sit full-length INI-CET Grand Tests — ${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and mark-for-review.`,
     to: '/grand-tests',
     cta: 'Take a Grand Test',
   },

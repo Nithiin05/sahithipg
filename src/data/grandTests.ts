@@ -1,14 +1,10 @@
 import type { MockSection, MockTestConfig } from './mockTests'
 import { pooledAllSubjectsQuestions } from '../lib/quizEngine'
+import { examConfig } from '../config/examConfig'
 
 /**
- * Grand Tests simulate the full NEET PG exam experience: up to 200 questions
- * pooled across every subject, a single 3.5-hour timer, a full question
- * palette with "Mark for Review", and a detailed post-test analysis
- * (percentile/rank estimate, subject-wise breakdown, weak areas).
- *
- * NEET PG itself has NO negative marking (+1 per correct, 0 for wrong or
- * unattempted) — reflected here for accuracy.
+ * Grand Tests simulate the full INI-CET paper. Question count, duration and
+ * marking all come from src/config/examConfig.ts.
  */
 
 export interface GrandTestConfig extends MockTestConfig {
@@ -16,8 +12,8 @@ export interface GrandTestConfig extends MockTestConfig {
 }
 
 const GRAND_TEST_COUNT = 150
-const QUESTIONS_PER_TEST = 200
-const DURATION_MINUTES = 210 // 3.5 hours
+const QUESTIONS_PER_TEST = examConfig.totalQuestions
+const DURATION_MINUTES = examConfig.durationMinutes
 
 function grandTestSection(n: number): MockSection {
   const poolSize = pooledAllSubjectsQuestions().length
@@ -33,12 +29,12 @@ export const grandTests: GrandTestConfig[] = Array.from({ length: GRAND_TEST_COU
   const n = idx + 1
   return {
     id: `grand-${n}`,
-    title: `NEET PG Grand Test ${n}`,
+    title: `INI-CET Grand Test ${n}`,
     kind: 'mixed' as const,
     description:
-      'A full-length, exam-simulation Grand Test: up to 200 questions pooled across all 19 subjects, one continuous 3.5-hour timer, question palette with "Mark for Review", and a detailed performance report with an estimated national percentile and predicted rank.',
-    marksCorrect: 4,
-    marksWrong: 1,
+      `A full-length INI-CET simulation: up to ${QUESTIONS_PER_TEST} questions across all 19 subjects, one ${DURATION_MINUTES}-minute timer, question palette with "Mark for Review", and a subject-wise performance report.`,
+    marksCorrect: examConfig.marking.correct,
+    marksWrong: examConfig.marking.wrong,
     durationMinutes: DURATION_MINUTES,
     sections: [grandTestSection(n)],
   }

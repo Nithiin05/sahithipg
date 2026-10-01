@@ -25,9 +25,9 @@ export const resourceGroups: ResourceGroup[] = subjects.map((s) => ({
   title: s.name,
   description: s.description,
   resources: [
-    { label: `${s.name} — Complete Course`, url: ytSearch(`NEET PG ${s.name} complete course lectures`), recommended: true },
-    { label: `${s.name} — High Yield Topics`, url: ytSearch(`NEET PG ${s.name} high yield topics revision`) },
-    { label: `${s.name} — One-Shot Revision`, url: ytSearch(`NEET PG ${s.name} one shot revision`) },
+    { label: `${s.name} — Complete Course`, url: ytSearch(`INI-CET ${s.name} complete course lectures`), recommended: true },
+    { label: `${s.name} — High Yield Topics`, url: ytSearch(`INI-CET ${s.name} high yield topics revision`) },
+    { label: `${s.name} — One-Shot Revision`, url: ytSearch(`INI-CET ${s.name} one shot revision`) },
   ],
 }))
 
@@ -37,7 +37,7 @@ export const additionalHubs: ResourceGroup[] = [
     title: 'PYQ Discussion & Analysis',
     description: 'Previous-year-style question walkthroughs — a fast way to calibrate to real exam difficulty.',
     resources: [
-      { label: 'NEET PG PYQ Discussion', url: ytSearch('NEET PG previous year questions discussion') },
+      { label: 'INI-CET PYQ Discussion', url: ytSearch('INI-CET previous year questions discussion') },
       { label: 'INI-CET Pattern Questions', url: ytSearch('INI-CET pattern questions discussion') },
     ],
   },
@@ -46,8 +46,8 @@ export const additionalHubs: ResourceGroup[] = [
     title: 'Grand Test Strategy & Analysis',
     description: 'How toppers triage a 200-question paper, manage time, and avoid common traps.',
     resources: [
-      { label: 'NEET PG Grand Test Strategy', url: ytSearch('NEET PG grand test strategy time management') },
-      { label: 'Last Month Revision Strategy', url: ytSearch('NEET PG last month revision strategy') },
+      { label: 'INI-CET Mock Strategy', url: ytSearch('INI-CET exam strategy time management negative marking') },
+      { label: 'Last Month Revision Strategy', url: ytSearch('INI-CET last month revision strategy') },
     ],
   },
 ]

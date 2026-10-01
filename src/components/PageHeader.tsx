@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function PageHeader({
   eyebrow,
@@ -11,6 +12,7 @@ export default function PageHeader({
   description?: string
   actions?: ReactNode
 }) {
+  usePageTitle(eyebrow && eyebrow !== title ? `${title} — ${eyebrow}` : title)
   return (
     <div className="max-w-6xl mx-auto px-6 pt-12 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>

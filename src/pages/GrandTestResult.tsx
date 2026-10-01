@@ -97,7 +97,7 @@ export default function GrandTestResult() {
           <h2 className="font-display font-bold text-lg mb-1">Estimated National Percentile & Rank</h2>
           <p className="text-xs text-muted-foreground mb-5">
             This app is fully local with no real candidate pool to compare against — these figures are a modeled
-            estimate (not a guarantee of your actual NEET PG rank), assuming a typical bell-curve score distribution.
+            estimate (not a guarantee of your actual INI-CET rank), assuming a typical bell-curve score distribution.
           </p>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="rounded-lg bg-secondary py-4">

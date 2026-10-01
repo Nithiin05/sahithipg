@@ -13,7 +13,7 @@ export default function Subjects() {
       <PageHeader
         eyebrow="Subjects"
         title="Pick a subject, then a topic"
-        description="All 19 NEET PG subjects — Pre-Clinical, Para-Clinical, and Clinical — with topic-wise practice, difficulty tiers from Easy to Expert, and PYQ-style sets."
+        description="All 19 MBBS subjects tested in INI-CET — Pre-Clinical, Para-Clinical and Clinical — with topic-wise practice, difficulty tiers and PYQ-pattern sets."
       />
 
       <div className="max-w-6xl mx-auto px-6 flex flex-col gap-12">

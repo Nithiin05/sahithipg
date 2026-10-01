@@ -1,13 +1,16 @@
 import type { StudyPlanState, SubjectSlug } from '../types'
+import { examConfig } from '../config/examConfig'
 
 const KEY = 'drsahithi:study-plan'
 
-/** NEET PG 2026 exam date, used as the default countdown target. */
-export const NEET_PG_2026_EXAM_DATE = '2026-08-30'
+/** Default countdown target (YYYY-MM-DD), taken from the central exam config. */
+export const DEFAULT_EXAM_DATE = examConfig.examDateTime.slice(0, 10)
+/** Exam date saved by the old NEET PG build — replaced with the INI-CET date. */
+const LEGACY_EXAM_DATE = '2026-08-30'
 
 function defaultPlan(): StudyPlanState {
   return {
-    examDate: NEET_PG_2026_EXAM_DATE,
+    examDate: DEFAULT_EXAM_DATE,
     dailyGoalMinutes: 180,
     dailyGoalQuestions: 50,
     focusSubjects: [],
@@ -19,7 +22,9 @@ export function getStudyPlan(): StudyPlanState {
   try {
     const raw = localStorage.getItem(KEY)
     if (!raw) return defaultPlan()
-    return { ...defaultPlan(), ...(JSON.parse(raw) as Partial<StudyPlanState>) }
+    const plan = { ...defaultPlan(), ...(JSON.parse(raw) as Partial<StudyPlanState>) }
+    if (plan.examDate === LEGACY_EXAM_DATE) plan.examDate = DEFAULT_EXAM_DATE
+    return plan
   } catch {
     return defaultPlan()
   }

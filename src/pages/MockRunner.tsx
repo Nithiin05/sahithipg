@@ -10,11 +10,13 @@ import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { clearResumeState, readResumeStateFor, saveResumeState } from '../lib/testResume'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function MockRunner() {
   const { mockId } = useParams()
   const navigate = useNavigate()
   const config = getMockTest(mockId ?? '')
+  usePageTitle(config?.title ?? 'Mock Test')
 
   // Only trust a saved resume record if it belongs to this exact mock test.
   const initialResume = useMemo(
