@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom'
-import { FloatingMedicalIcons, GradientBlobs } from './MedicalMotifs'
 import ExamCountdown from './ExamCountdown'
 import { examConfig, markingLabel } from '../config/examConfig'
 
 export default function Hero() {
   return (
     <section className="relative px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 overflow-hidden">
-      <GradientBlobs />
-      <FloatingMedicalIcons />
 
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
         <span className="tag glass text-primary font-semibold animate-fade-rise">
@@ -33,16 +30,16 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-rise-delay-3">
           <Link
-            to="/grand-tests"
+            to="/tests"
             className="gradient-primary text-white rounded-lg px-6 py-3 text-sm font-semibold hover:opacity-90 transition-opacity glow-primary"
           >
             Start a Full Mock
           </Link>
           <Link
-            to="/subjects"
+            to="/dashboard"
             className="glass text-sm font-medium text-foreground hover:text-primary transition-colors px-6 py-3 rounded-lg"
           >
-            Browse Subjects &rarr;
+            Open your dashboard &rarr;
           </Link>
         </div>
 

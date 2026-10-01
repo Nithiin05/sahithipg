@@ -14,7 +14,7 @@ export default function FinalCTA() {
           Completely free — no sign-up, no paywalls. Open a full INI-CET mock and see where you stand.
         </p>
         <Link
-          to="/grand-tests"
+          to="/tests"
           className="inline-block mt-8 gradient-primary text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm"
         >
           Start Free Mock

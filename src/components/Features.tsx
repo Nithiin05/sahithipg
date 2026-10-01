@@ -4,30 +4,30 @@ import { examConfig, markingLabel } from '../config/examConfig'
 
 const FEATURES = [
   {
-    title: 'Grand Tests — Exam Simulation',
+    title: 'Full INI-CET Mock & Grand Tests',
     desc: `${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and "Mark for Review" — like the real exam.`,
-    to: '/grand-tests',
+    to: '/tests',
     cta: 'Take a Grand Test',
     Icon: FileStack,
   },
   {
     title: 'Subject-Wise & Topic-Wise Practice',
-    desc: 'All 19 subjects across Pre-Clinical, Para-Clinical, and Clinical years — difficulty-tagged from Easy to Expert.',
+    desc: 'All 19 subjects mapped to the INI-CET syllabus, with clinical vignettes, integrated and image-based questions graded Easy to INI-CET Level.',
     to: '/subjects',
     cta: 'Browse subjects',
     Icon: Layers,
   },
   {
     title: 'Performance Analytics',
-    desc: 'Accuracy trends, subject heatmaps, weak-topic detection, and a personalized study summary generated from your attempts.',
+    desc: 'Accuracy over time, subject and topic accuracy, time per question, weak-area detection and mock-score trends — from your own attempts.',
     to: '/analytics',
     cta: 'View analytics',
     Icon: BarChart3,
   },
   {
-    title: 'Smart Revision & Mistake Notebook',
-    desc: 'Every wrong answer is saved automatically, and Smart Revision builds fresh tests weighted toward your weak topics.',
-    to: '/mistakes',
+    title: 'My Revision',
+    desc: 'Incorrect, marked and weak-topic questions in one place, plus “Revise again” with spaced repetition at 1, 3, 7, 14 and 30 days.',
+    to: '/revision?list=incorrect',
     cta: 'Open Mistake Notebook',
     Icon: BrainCircuit,
   },
@@ -40,7 +40,7 @@ const FEATURES = [
   },
   {
     title: 'Curated Resource Library',
-    desc: 'Standard textbook references, high-yield notes, mnemonics, flashcards, and one-liners — organized by subject.',
+    desc: 'Standard textbook references, subject-wise video searches and flashcards built from the question bank’s clinical pearls.',
     to: '/resources',
     cta: 'Browse library',
     Icon: BookOpen,

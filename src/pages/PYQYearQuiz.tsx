@@ -10,6 +10,7 @@ import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
 import type { AttemptRecord, SubjectSlug } from '../types'
+import { examConfig } from '../config/examConfig'
 
 export default function PYQYearQuiz() {
   const { year: yearParam } = useParams()
@@ -65,8 +66,8 @@ export default function PYQYearQuiz() {
       label,
       items,
       answers,
-      marksCorrect: 4,
-      marksWrong: 1,
+      marksCorrect: examConfig.marking.correct,
+      marksWrong: examConfig.marking.wrong,
       durationSec,
       sourceRoute: `/pyqs/${year}${subjectSlug ? `?subject=${subjectSlug}` : ''}`,
     })

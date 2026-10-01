@@ -21,7 +21,7 @@ const STEPS = [
     n: '03',
     title: 'Simulate the real exam',
     desc: `Sit full-length INI-CET Grand Tests — ${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and mark-for-review.`,
-    to: '/grand-tests',
+    to: '/tests',
     cta: 'Take a Grand Test',
   },
   {

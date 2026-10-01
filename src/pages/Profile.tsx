@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { getProfileName, setProfileName } from '../lib/profile'
 import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import AchievementsTab from '../components/analytics/AchievementsTab'
@@ -9,6 +10,7 @@ import { getStudyHistoryDays, getStudyStreak, getLifetimeStudySeconds, formatStu
 import { getStudyPlan, examCountdownParts } from '../lib/studyPlanner'
 
 export default function Profile() {
+  const [name, setName] = useState(() => getProfileName())
   const attempts = useMemo(() => getAttempts(), [])
   const bookmarkCount = getBookmarks().length
   const mistakeCount = getMistakes().length
@@ -44,6 +46,17 @@ export default function Profile() {
           ))}
         </div>
 
+        <label className="card p-5 flex flex-wrap items-center gap-3 text-sm font-semibold">
+          Your name
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onBlur={() => setProfileName(name)}
+            placeholder="Shown in your dashboard greeting"
+            className="flex-1 min-w-[200px] border border-border rounded-lg px-3 py-2 bg-surface font-normal"
+          />
+        </label>
+
         <div className="grid sm:grid-cols-2 gap-4">
           <Link to="/bookmarks" className="card card-hover p-5 flex items-center justify-between">
             <div>
@@ -52,9 +65,9 @@ export default function Profile() {
             </div>
             <span className="tag bg-secondary text-muted-foreground">{bookmarkCount}</span>
           </Link>
-          <Link to="/mistakes" className="card card-hover p-5 flex items-center justify-between">
+          <Link to="/revision?list=incorrect" className="card card-hover p-5 flex items-center justify-between">
             <div>
-              <h3 className="font-semibold">Mistake Notebook</h3>
+              <h3 className="font-semibold">Incorrect questions</h3>
               <p className="text-sm text-muted-foreground mt-1">Questions to revisit</p>
             </div>
             <span className="tag bg-secondary text-muted-foreground">{mistakeCount}</span>
@@ -77,7 +90,7 @@ export default function Profile() {
         <div className="card p-6">
           <h2 className="font-display font-bold text-lg mb-5">Recent activity</h2>
           {recent.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No attempts yet — take a practice set, mock test, or Grand Test to get started.</p>
+            <p className="text-sm text-muted-foreground">No attempts yet — take a practice set or a test to get started.</p>
           ) : (
             <div className="flex flex-col gap-3">
               {recent.map((a) => (

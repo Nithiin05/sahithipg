@@ -144,10 +144,29 @@ export interface AnswerRecord {
   isCorrect: boolean | null
   /** Seconds spent on this specific question, when tracked by the runner. */
   timeSpentSec?: number
+  /** True if the question was marked for review when the attempt was submitted. */
+  marked?: boolean
 }
 
 export type AttemptKind = 'practice' | 'mock' | 'grand'
-export type MockTestKind = 'subject' | 'topic' | 'rapid-revision' | 'mixed' | 'pyq' | 'daily-challenge' | 'smart-revision'
+export type MockTestKind =
+  | 'full'
+  | 'grand'
+  | 'subject'
+  | 'system'
+  | 'rapid'
+  | 'image'
+  | 'pyq'
+  | 'pyq-pattern'
+  | 'custom'
+  | 'practice'
+  | 'revision'
+  // legacy values that may exist in older saved attempts
+  | 'topic'
+  | 'rapid-revision'
+  | 'mixed'
+  | 'daily-challenge'
+  | 'smart-revision'
 
 export interface AttemptRecord {
   id: string
@@ -169,15 +188,23 @@ export interface AttemptRecord {
   mockKind?: MockTestKind
   /** Set for kind === 'grand'. */
   grandTestId?: string
+  /** Test catalogue id, for attempts from the test engine. */
+  testId?: string
   /** Marking scheme used for this attempt — enables computing marks lost to negative marking later. */
   marksCorrect?: number
   marksWrong?: number
 }
 
+export type PrepLevel = 'beginner' | 'intermediate' | 'advanced'
+
 export interface StudyPlanState {
   examDate: string
   dailyGoalMinutes: number
   dailyGoalQuestions: number
+  /** Subjects the student marked as weak — prioritised by the planner. */
   focusSubjects: SubjectSlug[]
+  /** Subjects the student marked as strong — scheduled less often. */
+  strongSubjects?: SubjectSlug[]
+  prepLevel?: PrepLevel
   createdAt: string
 }

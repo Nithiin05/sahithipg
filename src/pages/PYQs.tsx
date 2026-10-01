@@ -89,7 +89,7 @@ export default function PYQs() {
           </div>
           <p className="text-sm text-muted-foreground">Original questions modelled on concepts seen in past INI-CET papers — not actual paper questions.</p>
           {pattern.length > 0 ? (
-            <Link to="/mock-tests" className="inline-block mt-4 text-sm font-semibold text-primary hover:underline">
+            <Link to="/tests/pyq-pattern-test" className="inline-block mt-4 text-sm font-semibold text-primary hover:underline">
               Practise PYQ-pattern tests →
             </Link>
           ) : (

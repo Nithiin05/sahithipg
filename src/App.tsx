@@ -1,29 +1,39 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import StudyStopwatch from './components/StudyStopwatch'
 import Home from './pages/Home'
-import Subjects from './pages/Subjects'
-import SubjectDetail from './pages/SubjectDetail'
-import DifficultySetList from './pages/DifficultySetList'
-import DifficultySetQuiz from './pages/DifficultySetQuiz'
-import TopicQuiz from './pages/TopicQuiz'
-import PYQs from './pages/PYQs'
-import PYQYearQuiz from './pages/PYQYearQuiz'
-import MockTests from './pages/MockTests'
-import MockRunner from './pages/MockRunner'
-import MockResult from './pages/MockResult'
-import GrandTests from './pages/GrandTests'
-import GrandTestRunner from './pages/GrandTestRunner'
-import GrandTestResult from './pages/GrandTestResult'
-import Analytics from './pages/Analytics'
-import Resources from './pages/Resources'
-import Bookmarks from './pages/Bookmarks'
-import Mistakes from './pages/Mistakes'
-import Leaderboard from './pages/Leaderboard'
-import StudyPlanner from './pages/StudyPlanner'
-import Profile from './pages/Profile'
-import NotFound from './pages/NotFound'
+
+// Every page except the landing page is code-split so the first load stays small.
+const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Subjects = lazy(() => import('./pages/Subjects'))
+const SubjectDetail = lazy(() => import('./pages/SubjectDetail'))
+const DifficultySetList = lazy(() => import('./pages/DifficultySetList'))
+const DifficultySetQuiz = lazy(() => import('./pages/DifficultySetQuiz'))
+const TopicQuiz = lazy(() => import('./pages/TopicQuiz'))
+const PYQs = lazy(() => import('./pages/PYQs'))
+const PYQYearQuiz = lazy(() => import('./pages/PYQYearQuiz'))
+const QuestionBank = lazy(() => import('./pages/QuestionBank'))
+const QuestionView = lazy(() => import('./pages/QuestionView'))
+const Tests = lazy(() => import('./pages/Tests'))
+const TestRunner = lazy(() => import('./pages/TestRunner'))
+const TestResult = lazy(() => import('./pages/TestResult'))
+const Analytics = lazy(() => import('./pages/Analytics'))
+const Revision = lazy(() => import('./pages/Revision'))
+const Resources = lazy(() => import('./pages/Resources'))
+const Bookmarks = lazy(() => import('./pages/Bookmarks'))
+const StudyPlanner = lazy(() => import('./pages/StudyPlanner'))
+const Profile = lazy(() => import('./pages/Profile'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+function Loading() {
+  return (
+    <div className="max-w-lg mx-auto px-6 py-24 text-center text-sm text-muted-foreground" role="status">
+      Loading…
+    </div>
+  )
+}
 
 export default function App() {
   return (
@@ -31,36 +41,42 @@ export default function App() {
       <div className="relative min-h-screen font-body overflow-x-hidden">
         <ScrollToTop />
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/subjects" element={<Subjects />} />
-          <Route path="/subjects/:subject" element={<SubjectDetail />} />
-          <Route path="/subjects/:subject/level/:difficulty" element={<DifficultySetList />} />
-          <Route path="/subjects/:subject/level/:difficulty/:setNumber" element={<DifficultySetQuiz />} />
-          <Route path="/subjects/:subject/:topic" element={<TopicQuiz />} />
+            <Route path="/subjects" element={<Subjects />} />
+            <Route path="/subjects/:subject" element={<SubjectDetail />} />
+            <Route path="/subjects/:subject/level/:difficulty" element={<DifficultySetList />} />
+            <Route path="/subjects/:subject/level/:difficulty/:setNumber" element={<DifficultySetQuiz />} />
+            <Route path="/subjects/:subject/:topic" element={<TopicQuiz />} />
 
-          <Route path="/pyqs" element={<PYQs />} />
-          <Route path="/pyqs/:year" element={<PYQYearQuiz />} />
+            <Route path="/pyqs" element={<PYQs />} />
+            <Route path="/pyqs/:year" element={<PYQYearQuiz />} />
+            <Route path="/question-bank" element={<QuestionBank />} />
+            <Route path="/question/:questionId" element={<QuestionView />} />
 
-          <Route path="/mock-tests" element={<MockTests />} />
-          <Route path="/mock-tests/:mockId" element={<MockRunner />} />
-          <Route path="/mock-tests/:mockId/result" element={<MockResult />} />
+            <Route path="/tests" element={<Tests />} />
+            <Route path="/tests/:testId" element={<TestRunner />} />
+            <Route path="/tests/:testId/result" element={<TestResult />} />
 
-          <Route path="/grand-tests" element={<GrandTests />} />
-          <Route path="/grand-tests/:grandId" element={<GrandTestRunner />} />
-          <Route path="/grand-tests/:grandId/result" element={<GrandTestResult />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/revision" element={<Revision />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/planner" element={<StudyPlanner />} />
+            <Route path="/profile" element={<Profile />} />
 
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/bookmarks" element={<Bookmarks />} />
-          <Route path="/mistakes" element={<Mistakes />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/planner" element={<StudyPlanner />} />
-          <Route path="/profile" element={<Profile />} />
+            {/* Old URLs from the previous version */}
+            <Route path="/mock-tests/*" element={<Navigate to="/tests" replace />} />
+            <Route path="/grand-tests/*" element={<Navigate to="/tests?tab=full-grand" replace />} />
+            <Route path="/mistakes" element={<Navigate to="/revision?list=incorrect" replace />} />
+            <Route path="/leaderboard" element={<Navigate to="/analytics" replace />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
         <StudyStopwatch />
       </div>
     </BrowserRouter>

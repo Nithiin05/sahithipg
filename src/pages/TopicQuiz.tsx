@@ -11,6 +11,7 @@ import { saveAttempt } from '../lib/attempts'
 import { clearResumeState, readResumeStateFor, saveResumeState } from '../lib/testResume'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
 import type { AttemptRecord, SubjectSlug } from '../types'
+import { examConfig } from '../config/examConfig'
 
 export default function TopicQuiz() {
   const { subject: subjectSlug, topic: topicId } = useParams()
@@ -99,8 +100,8 @@ export default function TopicQuiz() {
       label: `${subject.shortName} · ${topic.name}`,
       items,
       answers,
-      marksCorrect: 4,
-      marksWrong: 1,
+      marksCorrect: examConfig.marking.correct,
+      marksWrong: examConfig.marking.wrong,
       durationSec,
       sourceRoute: route,
     })
