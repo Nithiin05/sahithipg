@@ -86,6 +86,15 @@ const TOPIC_SYSTEM: Record<string, SystemName> = {
   'radiology:chest-cardiac-imaging': 'Respiratory',
   'radiology:abdominal-imaging': 'Gastrointestinal',
   'radiology:neuroimaging': 'Nervous system',
+  'surgery:trauma-burns': 'Musculoskeletal',
+  'surgery:breast-endocrine-surgery': 'Endocrine',
+  'pediatrics:pediatric-cardiology': 'Paediatrics',
+  'orthopedics:bone-tumours-paediatric-ortho': 'Musculoskeletal',
+  'anatomy:embryology-lower-limb': 'Musculoskeletal',
+  'biochemistry:inborn-errors': 'Paediatrics',
+  'community-medicine:occupational-environmental': 'Community health',
+  'ophthalmology:neuro-ophthalmology': 'Eye',
+  'psychiatry:neurocognitive': 'Psychiatry',
 }
 
 /** Aliases so a question-level `system` string written slightly differently still maps. */
@@ -130,7 +139,7 @@ export const CATEGORY_INFO: Record<QuestionCategory, { label: string; descriptio
   image: { label: 'Image-Based', description: 'ECGs, imaging, histopathology, clinical photographs and diagrams.' },
   conceptual: { label: 'Conceptual', description: 'Core MBBS concepts and mechanisms.' },
   integrated: { label: 'Integrated', description: 'Questions that deliberately combine two or more subjects.' },
-  'high-yield': { label: 'High-Yield', description: 'Questions on topics flagged High Yield in the INI-CET syllabus.' },
+  'high-yield': { label: 'High-Yield', description: 'Questions with an exam pearl, on topics flagged High Yield in the INI-CET syllabus.' },
   rapid: { label: 'Rapid Revision', description: 'Short, quick questions for final-week revision.' },
 }
 
@@ -161,8 +170,11 @@ const HIGH_YIELD_TOPICS: Set<string> = (() => {
   return set
 })()
 
+/** High-yield = carries an author's clinical pearl / high-yield note AND sits in a High Yield syllabus topic. */
 export function isHighYield(item: QuizQuestionItem): boolean {
-  return !!item.topicId && HIGH_YIELD_TOPICS.has(`${item.subject}:${item.topicId}`)
+  const q = item.question
+  const flagged = !!(q.clinicalPearl || q.highYieldNote || q.tags?.includes('high-yield'))
+  return flagged && !!item.topicId && HIGH_YIELD_TOPICS.has(`${item.subject}:${item.topicId}`)
 }
 
 export function isRapid(q: Question): boolean {

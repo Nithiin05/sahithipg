@@ -58,9 +58,13 @@ const NAV: (NavItem | NavGroup)[] = [
 
 const isGroup = (n: NavItem | NavGroup): n is NavGroup => 'items' in n
 
-function Dropdown({ group, activePath }: { group: NavGroup; activePath: string }) {
+function Dropdown({ group, activePath, activeSearch }: { group: NavGroup; activePath: string; activeSearch: string }) {
   const [open, setOpen] = useState(false)
-  const active = group.items.some((i) => activePath.startsWith(i.to.split('?')[0]))
+  // Links with a query (e.g. /question-bank?cat=high-yield) only count as active on that exact query.
+  const active = group.items.some((i) => {
+    const [p, q] = i.to.split('?')
+    return q ? activePath === p && activeSearch.includes(q) : activePath.startsWith(p)
+  })
   return (
     <div className="relative" onMouseLeave={() => setOpen(false)}>
       <button
@@ -94,7 +98,7 @@ function Dropdown({ group, activePath }: { group: NavGroup; activePath: string }
 
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
 
   return (
     <nav className="sticky top-0 z-30 glass border-b border-border">
@@ -109,7 +113,7 @@ function Navbar() {
         <div className="hidden lg:flex items-center gap-0.5 text-sm font-medium">
           {NAV.map((n) =>
             isGroup(n) ? (
-              <Dropdown key={n.label} group={n} activePath={pathname} />
+              <Dropdown key={n.label} group={n} activePath={pathname} activeSearch={search} />
             ) : (
               <NavLink
                 key={n.to}

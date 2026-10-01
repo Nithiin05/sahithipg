@@ -44,12 +44,12 @@ export const dermatologyTopics: Topic[] = [
         id: 'derm-3',
         text: 'A well-demarcated, annular, scaly plaque with central clearing and an active, raised border on the trunk suggests:',
         options: [
-          'Pityriasis rosea',
-          'Tinea corporis (dermatophyte infection)',
-          'Nummular eczema',
-          'Psoriasis vulgaris',
+          "Tinea corporis",
+          "Pityriasis rosea",
+          "Nummular eczema",
+          "Psoriasis vulgaris",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           'Tinea corporis classically presents as an annular, scaly plaque with a raised, active border and central clearing, confirmed by potassium hydroxide (KOH) microscopy showing septate hyphae; treatment is topical or oral antifungals depending on extent.',
         reference: 'IADVL Textbook of Dermatology',

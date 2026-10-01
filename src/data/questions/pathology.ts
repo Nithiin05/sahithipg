@@ -45,10 +45,10 @@ export const pathologyTopics: Topic[] = [
         id: 'path-3',
         text: 'The p53 tumor suppressor gene\'s primary function, when lost, contributes to carcinogenesis mainly by:',
         options: [
-          'Failure to arrest the cell cycle or trigger apoptosis in cells with DNA damage',
-          'Loss of E-cadherin mediated cell adhesion',
-          'Overactivation of RAS signaling',
-          'Direct telomerase inhibition',
+          "Loss of DNA-damage cell-cycle arrest and apoptosis",
+          "Direct inhibition of telomerase activity",
+          "Loss of E-cadherin-mediated cell adhesion",
+          "Constitutive overactivation of RAS signalling",
         ],
         correctIndex: 0,
         explanation:

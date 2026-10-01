@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 450" width="520" height="450" role="img" aria-label="Pure-tone audiogram of the right ear">
+<title>Right-ear audiogram: air conduction around 30–45 dB HL, bone conduction near normal except a dip to 25 dB at 2 kHz</title>
+<rect width="100%" height="100%" fill="#fff"/>
+<rect x="70" y="40" width="420" height="350" fill="#fff" stroke="#999"/>
+<line x1="70" x2="490" y1="40.0" y2="40.0" stroke="#ddd"/>
+<text x="62" y="44.0" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">-10</text>
+<line x1="70" x2="490" y1="66.9" y2="66.9" stroke="#ddd"/>
+<text x="62" y="70.9" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">0</text>
+<line x1="70" x2="490" y1="93.8" y2="93.8" stroke="#ddd"/>
+<text x="62" y="97.8" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">10</text>
+<line x1="70" x2="490" y1="120.8" y2="120.8" stroke="#ddd"/>
+<text x="62" y="124.8" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">20</text>
+<line x1="70" x2="490" y1="147.7" y2="147.7" stroke="#ddd"/>
+<text x="62" y="151.7" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">30</text>
+<line x1="70" x2="490" y1="174.6" y2="174.6" stroke="#ddd"/>
+<text x="62" y="178.6" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">40</text>
+<line x1="70" x2="490" y1="201.5" y2="201.5" stroke="#ddd"/>
+<text x="62" y="205.5" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">50</text>
+<line x1="70" x2="490" y1="228.5" y2="228.5" stroke="#ddd"/>
+<text x="62" y="232.5" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">60</text>
+<line x1="70" x2="490" y1="255.4" y2="255.4" stroke="#ddd"/>
+<text x="62" y="259.4" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">70</text>
+<line x1="70" x2="490" y1="282.3" y2="282.3" stroke="#ddd"/>
+<text x="62" y="286.3" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">80</text>
+<line x1="70" x2="490" y1="309.2" y2="309.2" stroke="#ddd"/>
+<text x="62" y="313.2" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">90</text>
+<line x1="70" x2="490" y1="336.2" y2="336.2" stroke="#ddd"/>
+<text x="62" y="340.2" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">100</text>
+<line x1="70" x2="490" y1="363.1" y2="363.1" stroke="#ddd"/>
+<text x="62" y="367.1" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">110</text>
+<line x1="70" x2="490" y1="390.0" y2="390.0" stroke="#ddd"/>
+<text x="62" y="394.0" text-anchor="end" font-size="11" font-family="Arial, sans-serif" fill="#555">120</text>
+<line x1="70.0" x2="70.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="70.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">250</text>
+<line x1="154.0" x2="154.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="154.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">500</text>
+<line x1="238.0" x2="238.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="238.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">1k</text>
+<line x1="322.0" x2="322.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="322.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">2k</text>
+<line x1="406.0" x2="406.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="406.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">4k</text>
+<line x1="490.0" x2="490.0" y1="40" y2="390" stroke="#ddd"/>
+<text x="490.0" y="30" text-anchor="middle" font-size="11" font-family="Arial, sans-serif" fill="#555">8k</text>
+<polyline points="70.0,188.1 154.0,188.1 238.0,174.6 322.0,161.2 406.0,147.7 490.0,147.7" fill="none" stroke="#c0392b" stroke-width="2"/>
+<circle cx="70.0" cy="188.1" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="154.0" cy="188.1" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="238.0" cy="174.6" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="322.0" cy="161.2" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="406.0" cy="147.7" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="490.0" cy="147.7" r="7" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<polyline points="58.0,80.4 142.0,80.4 226.0,93.8 310.0,134.2 394.0,93.8" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5 4"/>
+<polyline points="63.0,72.4 58.0,72.4 58.0,88.4 63.0,88.4" fill="none" stroke="#c0392b" stroke-width="2"/>
+<polyline points="147.0,72.4 142.0,72.4 142.0,88.4 147.0,88.4" fill="none" stroke="#c0392b" stroke-width="2"/>
+<polyline points="231.0,85.8 226.0,85.8 226.0,101.8 231.0,101.8" fill="none" stroke="#c0392b" stroke-width="2"/>
+<polyline points="315.0,126.2 310.0,126.2 310.0,142.2 315.0,142.2" fill="none" stroke="#c0392b" stroke-width="2"/>
+<polyline points="399.0,85.8 394.0,85.8 394.0,101.8 399.0,101.8" fill="none" stroke="#c0392b" stroke-width="2"/>
+<text x="280.0" y="16" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#333">Frequency (Hz) — RIGHT ear</text>
+<text x="18" y="215.0" text-anchor="middle" font-size="12" font-family="Arial, sans-serif" fill="#333" transform="rotate(-90 18 215.0)">Hearing level (dB HL)</text>
+<circle cx="80" cy="432" r="6" fill="#fff" stroke="#c0392b" stroke-width="2"/><text x="92" y="436" font-size="11" font-family="Arial, sans-serif" fill="#333">Air conduction</text>
+<polyline points="212,424 207,424 207,440 212,440" fill="none" stroke="#c0392b" stroke-width="2"/><text x="220" y="436" font-size="11" font-family="Arial, sans-serif" fill="#333">Bone conduction (masked)</text>
+</svg>

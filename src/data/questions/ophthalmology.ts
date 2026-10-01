@@ -103,12 +103,12 @@ export const ophthalmologyTopics: Topic[] = [
         id: 'oph-6',
         text: 'A patient presents with sudden severe unilateral eye pain, blurred vision, halos around lights, nausea/vomiting, a mid-dilated fixed pupil, and a rock-hard eyeball on palpation. Immediate management includes:',
         options: [
-          'Immediate surgery without any medical therapy first',
-          'Topical corticosteroids alone',
-          'Urgent IOP-lowering therapy (e.g., topical timolol/pilocarpine, IV acetazolamide, hyperosmotic agents) followed by laser peripheral iridotomy',
-          'Reassurance, as this is a self-limited condition',
+          "Urgent medical IOP lowering, then laser iridotomy",
+          "Immediate surgery without any medical therapy first",
+          "Topical corticosteroid drops alone",
+          "Reassurance, as the attack is self-limiting",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           'This is acute angle-closure glaucoma — an ophthalmic emergency. Immediate medical therapy (topical beta-blockers, pilocarpine to constrict the pupil, IV acetazolamide, and hyperosmotic agents) rapidly lowers intraocular pressure, followed by definitive laser peripheral iridotomy once the acute attack is controlled.',
         reference: "Parson's Diseases of the Eye",

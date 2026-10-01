@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://sahithipg.vercel.app/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://sahithipg.vercel.app/dashboard</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://sahithipg.vercel.app/subjects</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://sahithipg.vercel.app/question-bank</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://sahithipg.vercel.app/pyqs</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://sahithipg.vercel.app/mock-tests</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://sahithipg.vercel.app/grand-tests</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://sahithipg.vercel.app/tests</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://sahithipg.vercel.app/revision</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://sahithipg.vercel.app/analytics</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://sahithipg.vercel.app/resources</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://sahithipg.vercel.app/planner</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://sahithipg.vercel.app/resources</loc><lastmod>2026-10-01</lastmod></url>
 </urlset>

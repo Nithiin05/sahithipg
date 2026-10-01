@@ -27,10 +27,10 @@ export const biochemistryTopics: Topic[] = [
         id: 'bioc-2',
         text: 'The rate-limiting, committed step of glycolysis is catalyzed by:',
         options: [
-          'Phosphofructokinase-1 (PFK-1)',
-          'Hexokinase',
-          'Aldolase',
-          'Pyruvate kinase',
+          "Phosphofructokinase-1",
+          "Pyruvate kinase",
+          "Aldolase",
+          "Hexokinase",
         ],
         correctIndex: 0,
         explanation:
@@ -197,12 +197,12 @@ export const biochemistryTopics: Topic[] = [
         id: 'bioc-11',
         text: 'A patient with carcinoid syndrome develops pellagra-like symptoms (dermatitis, diarrhea, dementia). This is because:',
         options: [
-          'Serotonin inhibits niacin absorption in the gut',
-          'Carcinoid tumors directly destroy niacin stores',
-          'Excess tryptophan is diverted to serotonin synthesis, leaving less for niacin production',
-          'Carcinoid syndrome causes selective thiamine deficiency',
+          "Tryptophan is diverted to serotonin synthesis",
+          "Carcinoid syndrome causes selective thiamine deficiency",
+          "Serotonin directly blocks niacin absorption from the gut",
+          "Carcinoid tumours destroy the body’s niacin stores",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           'In carcinoid syndrome, tumor cells shunt large amounts of dietary tryptophan toward serotonin synthesis, depleting the tryptophan otherwise available for endogenous niacin (vitamin B3) synthesis, precipitating a pellagra-like state.',
         reference: "Harrison's Principles of Internal Medicine",

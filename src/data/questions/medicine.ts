@@ -87,12 +87,12 @@ export const medicineTopics: Topic[] = [
         id: 'med-5',
         text: 'An arterial blood gas shows pH 7.28, PaCO2 25 mmHg, HCO3- 12 mEq/L. This represents:',
         options: [
-          'Primary respiratory alkalosis',
-          'Primary metabolic acidosis with respiratory compensation',
-          'Primary respiratory acidosis',
-          'Primary metabolic alkalosis',
+          "Metabolic acidosis, compensated",
+          "Primary metabolic alkalosis",
+          "Primary respiratory acidosis",
+          "Primary respiratory alkalosis",
         ],
-        correctIndex: 1,
+        correctIndex: 0,
         explanation:
           'Low pH (acidemia) with low HCO3- indicates a primary metabolic acidosis; the appropriately low PaCO2 reflects respiratory compensation (hyperventilation blowing off CO2) — consistent with Winter\'s formula for expected compensation.',
         reference: "Harrison's Principles of Internal Medicine",

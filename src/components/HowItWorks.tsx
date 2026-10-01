@@ -6,7 +6,7 @@ const STEPS = [
   {
     n: '01',
     title: 'Set your study plan',
-    desc: 'Enter your exam date (default: INI-CET, 1 November 2026), pick focus subjects, and set a daily question/time goal.',
+    desc: 'Enter your exam date (default: INI-CET, 1 November 2026), mark weak and strong subjects and your hours per day — the planner builds each day’s tasks.',
     to: '/planner',
     cta: 'Open the Study Planner',
   },
@@ -20,14 +20,14 @@ const STEPS = [
   {
     n: '03',
     title: 'Simulate the real exam',
-    desc: `Sit full-length INI-CET Grand Tests — ${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and mark-for-review.`,
+    desc: `Sit the full INI-CET mock — ${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and mark-for-review.`,
     to: '/tests',
     cta: 'Take a Grand Test',
   },
   {
     n: '04',
     title: 'Review, revise, repeat',
-    desc: 'See your weak-topic breakdown, run a Smart Revision test targeting the gaps, and retest until it sticks.',
+    desc: 'See your weak areas, revise incorrect and marked questions in My Revision, and use “Revise again” to space repeats until they stick.',
     to: '/analytics',
     cta: 'View your analytics',
   },

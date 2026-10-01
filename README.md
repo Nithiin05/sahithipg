@@ -22,10 +22,26 @@ npm run check:questions  # question-bank integrity check
 | `src/data/questions/batches/*.ts` | New INI-CET-level question batches (vignettes, integrated, image). Correct answer is written first; display order is randomised. |
 | `src/data/syllabus.ts` | INI-CET syllabus tree: subject → module → focus areas, linked to practice topics. |
 | `scripts/diagrams/` | Generators for original diagrams (e.g. ECG strips) used by image questions. |
-| `src/data/subjects.ts` | Subject list; applies answer-position randomization to every question. |
+| `src/data/subjects.ts` | Subject list; merges question batches and applies answer-position randomization. |
+| `src/data/taxonomy.ts` | Organ systems (for system tests) and Question Bank categories (clinical, image, integrated, high-yield, rapid…). |
+| `src/lib/testEngine.ts` | Every test definition (full mock, grand, subject, system, rapid, image, PYQ, custom) and how questions are drawn. |
+| `src/pages/TestRunner.tsx` | Computer-based-test runner: timers, sections, navigation rules, palette, mark for review, auto-submit, resume. |
+| `src/lib/stats.ts` | All analytics: accuracy, subject/topic performance, weak areas, timing, streaks, mock scores. |
+| `src/lib/studyPlanner.ts` | Adaptive daily plan. |
+| `src/lib/revisionQueue.ts` | "Revise again" spaced repetition (1, 3, 7, 14, 30 days). |
+| `src/lib/search.ts` | Global search index (Ctrl/⌘ K). |
 | `src/lib/optionShuffle.ts` | Seeded per-question option shuffling (answer key preserved). |
 | `src/lib/questionSource.ts` | Source classification shown on every question. |
 | `scripts/check-question-bank.ts` | Duplicate, answer-key, answer-distribution and PYQ-labelling checks. |
+
+## Adding questions
+
+Add a new file in `src/data/questions/batches/` (copy the pattern in `batch2.ts`), write each question with the `q()` helper — **correct answer first** — and add the batch to `BATCHES` in `src/data/subjects.ts`. Link any new topic from a module in `src/data/syllabus.ts`, then run `npm run check:questions`. The check fails on duplicate ids or text, broken answer keys, unattributed images or PYQs without a named session, and warns about answer-position bias, assertion–reason imbalance, untagged difficulty, and the correct option being the longest too often.
+
+Difficulty is assigned by reasoning steps, never randomly:
+- **Easy** — one-step recall. **Moderate** — one interpretation step or calculation.
+- **Difficult** — two or more steps, close differentials, or judging a causal link.
+- **INI-CET Level** — full vignette with labs/imaging, several steps, integration across subjects.
 
 ## Content rules
 

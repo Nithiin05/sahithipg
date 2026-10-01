@@ -2,6 +2,9 @@ import type { Subject, SubjectSlug } from '../types'
 import { randomizeOptions } from '../lib/optionShuffle'
 import { sourceTypeOf } from '../lib/questionSource'
 import { batch1, type BatchAdditions } from './questions/batches/batch1'
+import { batch2 } from './questions/batches/batch2'
+import { batch3 } from './questions/batches/batch3'
+import { batch4 } from './questions/batches/batch4'
 import { anatomyTopics } from './questions/anatomy'
 import { physiologyTopics } from './questions/physiology'
 import { biochemistryTopics } from './questions/biochemistry'
@@ -219,7 +222,7 @@ const rawSubjects: Subject[] = [
 ]
 
 /** Question batches (structured data files under questions/batches), applied in order. */
-const BATCHES: Partial<Record<SubjectSlug, BatchAdditions>>[] = [batch1]
+const BATCHES: Partial<Record<SubjectSlug, BatchAdditions>>[] = [batch1, batch2, batch3, batch4]
 
 function withBatches(subject: Subject): Subject {
   let topics = subject.topics

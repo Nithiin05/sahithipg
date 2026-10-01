@@ -44,12 +44,12 @@ export const entTopics: Topic[] = [
         id: 'ent-3',
         text: 'A patient presents with sudden severe vertigo, nausea, and brief episodes of torsional (rotatory) nystagmus lasting seconds to a minute, triggered by head position changes (e.g., rolling over in bed), with a positive Dix-Hallpike test. The diagnosis is:',
         options: [
-          'Vestibular schwannoma',
-          'Acute vestibular neuritis',
-          "Meniere's disease",
-          'Benign paroxysmal positional vertigo (BPPV)',
+          "Benign paroxysmal positional vertigo",
+          "Acute vestibular neuritis",
+          "Ménière's disease",
+          "Vestibular schwannoma",
         ],
-        correctIndex: 3,
+        correctIndex: 0,
         explanation:
           'BPPV, caused by displaced otoconia (canalithiasis) in the semicircular canals — most commonly the posterior canal — produces brief, positionally-triggered vertigo with torsional, upbeating nystagmus, confirmed by a positive Dix-Hallpike maneuver; it is managed with canalith repositioning maneuvers (e.g., Epley maneuver) rather than long-term medication.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",

@@ -46,12 +46,12 @@ export const orthopedicsTopics: Topic[] = [
         id: 'ortho-3',
         text: 'Which stage of fracture healing is characterized by formation of a soft, cartilaginous callus bridging the fracture ends?',
         options: [
-          'Hard (bony) callus formation stage',
-          'Hematoma formation stage',
-          'Soft callus (fibrocartilaginous callus) formation stage',
-          'Remodeling stage',
+          "Soft (fibrocartilaginous) callus",
+          "Hard (bony) callus",
+          "Haematoma and inflammation",
+          "Remodelling",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           'Fracture healing progresses through: hematoma formation → soft (fibrocartilaginous) callus → hard (bony) callus (via endochondral ossification) → remodeling. The soft callus stage provides initial, though weak, stability bridging the fracture gap.',
         reference: "Apley's System of Orthopaedics and Fractures",

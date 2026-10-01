@@ -202,12 +202,12 @@ export const surgeryTopics: Topic[] = [
         id: 'surg-11',
         text: 'Painless gross hematuria in an elderly smoker should raise strong suspicion for:',
         options: [
-          'Acute cystitis (urinary tract infection)',
-          'Benign prostatic hyperplasia (BPH)',
-          'Bladder carcinoma (urothelial/transitional cell carcinoma)',
-          'Renal tuberculosis',
+          "Urothelial carcinoma of the bladder",
+          "Benign prostatic hyperplasia",
+          "Renal tuberculosis",
+          "Acute bacterial cystitis",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
           'Painless gross hematuria, especially in an older smoker, is a red-flag symptom for urothelial (transitional cell) carcinoma of the bladder — smoking is the single strongest modifiable risk factor — and warrants prompt cystoscopic evaluation.',
         reference: "Smith's General Urology",

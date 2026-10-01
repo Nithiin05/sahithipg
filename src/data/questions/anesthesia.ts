@@ -45,12 +45,12 @@ export const anesthesiaTopics: Topic[] = [
         id: 'anes-3',
         text: 'The Mallampati classification is used pre-operatively to assess:',
         options: [
-          'Renal function before contrast administration',
-          'Cardiac risk before non-cardiac surgery',
-          'Severity of chronic obstructive pulmonary disease',
-          'Predicted difficulty of endotracheal intubation based on oropharyngeal visibility',
+          "Likely difficulty of laryngoscopy and intubation",
+          "Cardiac risk before non-cardiac surgery",
+          "Renal function before contrast administration",
+          "Severity of chronic obstructive pulmonary disease",
         ],
-        correctIndex: 3,
+        correctIndex: 0,
         explanation:
           'The Mallampati classification grades the visibility of oropharyngeal structures (soft palate, uvula, tonsillar pillars) with the mouth open and tongue protruded, in a seated patient — higher grades correlate with more difficult laryngoscopy/intubation, aiding pre-operative airway assessment.',
         reference: "Miller's Anesthesia",
@@ -120,10 +120,10 @@ export const anesthesiaTopics: Topic[] = [
         id: 'anes-7',
         text: 'A patient develops perioral tingling, tinnitus, and then seizures shortly after an inadvertent intravascular injection during a peripheral nerve block. This is most consistent with:',
         options: [
-          'Local anesthetic systemic toxicity (LAST)',
-          'Malignant hyperthermia',
-          'Simple vasovagal syncope',
-          'Normal post-block paresthesia',
+          "Local anaesthetic systemic toxicity",
+          "Malignant hyperthermia",
+          "Normal post-block paraesthesia",
+          "Vasovagal syncope",
         ],
         correctIndex: 0,
         explanation:
