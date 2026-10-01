@@ -1,6 +1,7 @@
-import type { Subject } from '../types'
+import type { Subject, SubjectSlug } from '../types'
 import { randomizeOptions } from '../lib/optionShuffle'
 import { sourceTypeOf } from '../lib/questionSource'
+import { batch1, type BatchAdditions } from './questions/batches/batch1'
 import { anatomyTopics } from './questions/anatomy'
 import { physiologyTopics } from './questions/physiology'
 import { biochemistryTopics } from './questions/biochemistry'
@@ -217,8 +218,22 @@ const rawSubjects: Subject[] = [
   },
 ]
 
-/** Subjects with every question's options position-randomized (see lib/optionShuffle.ts). */
-export const subjects: Subject[] = rawSubjects.map((s) => ({
+/** Question batches (structured data files under questions/batches), applied in order. */
+const BATCHES: Partial<Record<SubjectSlug, BatchAdditions>>[] = [batch1]
+
+function withBatches(subject: Subject): Subject {
+  let topics = subject.topics
+  for (const batch of BATCHES) {
+    const add = batch[subject.slug]
+    if (!add) continue
+    topics = topics.map((t) => (add.addTo?.[t.id] ? { ...t, questions: [...t.questions, ...add.addTo[t.id]] } : t))
+    if (add.newTopics) topics = [...topics, ...add.newTopics]
+  }
+  return { ...subject, topics }
+}
+
+/** Subjects with batches merged and every question's options position-randomized (see lib/optionShuffle.ts). */
+export const subjects: Subject[] = rawSubjects.map(withBatches).map((s) => ({
   ...s,
   topics: s.topics.map((t) => ({ ...t, questions: t.questions.map(randomizeOptions) })),
 }))

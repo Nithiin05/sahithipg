@@ -15,6 +15,8 @@ const sequence: number[] = []
 const sourceCounts: Record<string, number> = {}
 const arKey = [0, 0, 0, 0]
 const diffCounts: Record<string, number> = {}
+let longestCorrect = 0
+let lengthChecked = 0
 let total = 0
 
 for (const s of subjects) {
@@ -43,6 +45,12 @@ for (const s of subjects) {
       diffCounts[q.difficulty ?? 'untagged'] = (diffCounts[q.difficulty ?? 'untagged'] ?? 0) + 1
       if (!q.difficulty) warnings.push(`${where}: no explicit difficulty`)
       if (q.type === 'assertion-reason') arKey[q.correctIndex]++
+      if (q.type !== 'assertion-reason' && q.type !== 'match-following') {
+        const lens = q.options.map((o) => o.length)
+        const c = lens[q.correctIndex]
+        lengthChecked++
+        if (c === Math.max(...lens) && lens.filter((l) => l === c).length === 1) longestCorrect++
+      }
       if (q.type !== 'assertion-reason') {
         positions[q.correctIndex]++
         sequence.push(q.correctIndex)
@@ -68,6 +76,9 @@ console.log(
 )
 console.log(`Longest same-position run in bank order: ${maxRun}`)
 console.log('Difficulty:', diffCounts)
+const longestPct = (longestCorrect / lengthChecked) * 100
+console.log(`Correct option is the uniquely longest: ${longestCorrect}/${lengthChecked} (${longestPct.toFixed(0)}%, chance ≈ 25%)`)
+if (longestPct > 35) warnings.push(`Correct option is the longest in ${longestPct.toFixed(0)}% of questions — a test-wiseness giveaway`)
 const arTotal = arKey.reduce((a, b) => a + b, 0)
 console.log(`Assertion–reason key (fixed order) A/B/C/D: ${arKey.join(' / ')}`)
 arKey.forEach((c, i) => {

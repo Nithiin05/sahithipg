@@ -19,6 +19,9 @@ npm run check:questions  # question-bank integrity check
 | --- | --- |
 | `src/config/examConfig.ts` | **The only place exam-pattern numbers live** — date, duration, question count, marking, sections, navigation rules, verification status. |
 | `src/data/questions/*.ts` | Question bank, one file per subject. Edit content here without touching UI code. |
+| `src/data/questions/batches/*.ts` | New INI-CET-level question batches (vignettes, integrated, image). Correct answer is written first; display order is randomised. |
+| `src/data/syllabus.ts` | INI-CET syllabus tree: subject → module → focus areas, linked to practice topics. |
+| `scripts/diagrams/` | Generators for original diagrams (e.g. ECG strips) used by image questions. |
 | `src/data/subjects.ts` | Subject list; applies answer-position randomization to every question. |
 | `src/lib/optionShuffle.ts` | Seeded per-question option shuffling (answer key preserved). |
 | `src/lib/questionSource.ts` | Source classification shown on every question. |

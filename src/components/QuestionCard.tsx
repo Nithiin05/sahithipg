@@ -35,7 +35,7 @@ function ImageViewer({ src, alt, onClose }: { src: string; alt?: string; onClose
       <button className="absolute top-5 right-5 text-white/80 hover:text-white" onClick={onClose} aria-label="Close">
         <X size={28} />
       </button>
-      <img src={src} alt={alt ?? ''} className="max-w-full max-h-full rounded-lg" onClick={(e) => e.stopPropagation()} />
+      <img src={src} alt={alt ?? ''} className="w-full max-w-6xl max-h-full object-contain rounded-lg bg-white" onClick={(e) => e.stopPropagation()} />
     </div>
   )
 }
@@ -98,23 +98,25 @@ export default function QuestionCard({
       </p>
 
       {question.imageUrl && (
-        <figure className="relative mb-6 inline-block max-w-full">
-          <img
-            src={question.imageUrl}
-            alt={question.imageAlt ?? 'Question image'}
-            loading="lazy"
-            decoding="async"
-            className="max-w-full max-h-[420px] rounded-lg border border-border cursor-zoom-in bg-white"
-            onClick={() => setZoomed(true)}
-          />
-          <button
-            type="button"
-            onClick={() => setZoomed(true)}
-            className="absolute bottom-2 right-2 bg-black/60 text-white rounded-md p-1.5 hover:bg-black/80"
-            aria-label="Zoom image"
-          >
-            <Maximize2 size={14} />
-          </button>
+        <figure className="mb-6 max-w-full">
+          <div className="relative w-full max-w-2xl">
+            <img
+              src={question.imageUrl}
+              alt={question.imageAlt ?? 'Question image'}
+              loading="lazy"
+              decoding="async"
+              className="block w-full h-auto max-h-[460px] object-contain rounded-lg border border-border cursor-zoom-in bg-white"
+              onClick={() => setZoomed(true)}
+            />
+            <button
+              type="button"
+              onClick={() => setZoomed(true)}
+              className="absolute bottom-2 right-2 bg-black/60 text-white rounded-md p-1.5 hover:bg-black/80"
+              aria-label="Zoom image"
+            >
+              <Maximize2 size={14} />
+            </button>
+          </div>
           {(question.imageCaption || question.imageSource) && (
             <figcaption className="mt-1.5 text-xs text-muted-foreground">
               {question.imageCaption}
