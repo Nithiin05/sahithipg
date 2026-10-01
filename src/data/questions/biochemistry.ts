@@ -36,11 +36,9 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'PFK-1 (fructose-6-phosphate → fructose-1,6-bisphosphate) is the key rate-limiting and regulated step of glycolysis, allosterically activated by AMP/F2,6BP and inhibited by ATP/citrate.',
         reference: 'Lippincott Illustrated Reviews: Biochemistry',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['glycolysis'],
-        isPYQ: true,
-        year: 2023,
         highYieldNote: 'PFK-1 is the single most important regulatory enzyme of glycolysis.',
       },
       {
@@ -56,7 +54,7 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'Von Gierke disease (GSD type I) is caused by glucose-6-phosphatase deficiency, preventing the final step of both glycogenolysis and gluconeogenesis, causing severe fasting hypoglycemia, hepatomegaly, and lactic acidosis.',
         reference: 'Harper\'s Illustrated Biochemistry',
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['glycogen-storage-disease'],
         clinicalPearl: 'Pompe (Type II, lysosomal alpha-glucosidase) is the one GSD with cardiomegaly; McArdle (Type V) presents with exercise intolerance and myalgia, not hypoglycemia.',
@@ -74,7 +72,7 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'Arsenite binds and inactivates the lipoic acid (lipoamide) cofactor shared by pyruvate dehydrogenase and alpha-ketoglutarate dehydrogenase, both lipoic acid-dependent multienzyme complexes with an analogous E1-E2-E3 architecture. Within the TCA cycle itself, alpha-ketoglutarate dehydrogenase is the enzyme poisoned, halting the cycle at the alpha-ketoglutarate step and producing the energy failure characteristic of arsenic toxicity.',
         reference: "Harper's Illustrated Biochemistry",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'standard',
         tags: ['tca-cycle', 'toxicology'],
       },
@@ -115,11 +113,9 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'Lynch syndrome arises from germline mutations in mismatch repair genes (MLH1, MSH2, MSH6, PMS2), leading to microsatellite instability and increased colorectal and endometrial cancer risk.',
         reference: 'Robbins Basic Pathology',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['mismatch-repair', 'cancer-genetics'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'bioc-7',
@@ -134,24 +130,24 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'For a daughter to be affected by an X-linked recessive condition, she must inherit a mutant allele from both parents: an affected father (who necessarily passes his single mutant X to all daughters) combined with a carrier mother.',
         reference: "Harper's Illustrated Biochemistry",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'standard',
         tags: ['inheritance-patterns'],
       },
       {
         id: 'bioc-8',
-        text: 'Assertion (A): mtDNA disorders show maternal (not Mendelian) inheritance.\nReason (R): Mitochondria (and their DNA) in the zygote are contributed almost exclusively by the ovum.',
+        text: "Assertion (A): Mitochondrial DNA disorders show maternal (non-Mendelian) inheritance.\nReason (R): Mitochondrial DNA has a higher mutation rate than nuclear DNA because it lacks protective histones and has limited repair.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
-          'Sperm mitochondria are largely eliminated after fertilization, so essentially all mitochondrial DNA in offspring comes from the mother — explaining why mitochondrial disorders (e.g., Leber hereditary optic neuropathy) are transmitted only maternally.',
+          "Both statements are true, but R does not explain A. Maternal inheritance occurs because the zygote's mitochondria come almost entirely from the ovum (sperm mitochondria are eliminated after fertilisation). R explains why mtDNA mutates frequently, not how it is transmitted.",
         reference: "Harper's Illustrated Biochemistry",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['mitochondrial-inheritance'],
       },
@@ -193,11 +189,9 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'Both B12 and folate deficiency cause megaloblastic anemia, but only B12 deficiency causes neurological findings (subacute combined degeneration — dorsal column and corticospinal tract demyelination) due to impaired methylmalonyl-CoA metabolism.',
         reference: "Harrison's Principles of Internal Medicine",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['b12-deficiency'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'bioc-11',
@@ -212,7 +206,7 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'In carcinoid syndrome, tumor cells shunt large amounts of dietary tryptophan toward serotonin synthesis, depleting the tryptophan otherwise available for endogenous niacin (vitamin B3) synthesis, precipitating a pellagra-like state.',
         reference: "Harrison's Principles of Internal Medicine",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['niacin', 'carcinoid'],
       },
@@ -229,7 +223,7 @@ export const biochemistryTopics: Topic[] = [
         explanation:
           'Vitamin C deficiency causes scurvy (impaired collagen hydroxylation), vitamin D deficiency causes rickets in children/osteomalacia in adults, and vitamin K deficiency impairs synthesis of clotting factors II, VII, IX, X causing a bleeding diathesis.',
         reference: "Harper's Illustrated Biochemistry",
-        difficulty: 'Expert',
+        difficulty: 'Easy',
         type: 'match-following',
         tags: ['vitamin-deficiency'],
         matchPairs: [

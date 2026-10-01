@@ -39,8 +39,6 @@ export const ophthalmologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['corneal-ulcer'],
-        isPYQ: true,
-        year: 2023,
         clinicalPearl: 'Never patch a contact-lens-related corneal ulcer — patching creates a warm, moist environment that favors Pseudomonas growth.',
       },
       {
@@ -56,7 +54,7 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'Herpes simplex keratitis classically produces a branching, dendritic corneal ulcer best seen with fluorescein staining under cobalt blue light; topical corticosteroids are contraindicated as monotherapy since they can worsen the ulcer, and antiviral therapy (e.g., topical acyclovir/ganciclovir) is required.',
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['herpes-keratitis'],
       },
@@ -73,7 +71,7 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'Steroids suppress local immune/inflammatory defenses; if the underlying cause is fungal or herpes simplex keratitis (not yet identified), steroids can accelerate organism proliferation and corneal destruction — hence the strict rule to confirm/rule out these etiologies before considering steroids in any corneal ulcer.',
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['corneal-ulcer', 'steroids'],
       },
@@ -117,8 +115,6 @@ export const ophthalmologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['angle-closure-glaucoma'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'oph-7',
@@ -133,7 +129,7 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'Glaucoma causes progressive optic nerve cupping (enlarged cup-to-disc ratio, often >0.6 or asymmetric between eyes) correlating with characteristic visual field defects like arcuate scotomas and nasal steps, reflecting retinal ganglion cell loss from raised or fluctuating intraocular pressure.',
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['optic-disc-cupping'],
       },
@@ -150,7 +146,7 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'Beta-blockers (timolol) reduce aqueous humor production by the ciliary body; cholinergic agonists (pilocarpine) contract the ciliary muscle, opening the trabecular meshwork to increase conventional outflow; prostaglandin analogs (latanoprost) increase uveoscleral (unconventional) outflow — three distinct, commonly tested mechanisms.',
         reference: "Parson's Diseases of the Eye / Katzung's Pharmacology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['glaucoma-pharmacology'],
         matchPairs: [
@@ -196,11 +192,9 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'The classic triad of floaters, photopsia (flashes), and a curtain-like visual field defect signals retinal detachment (typically rhegmatogenous, from a retinal tear) — an ophthalmic emergency requiring urgent evaluation and surgical repair to prevent permanent vision loss.',
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['retinal-detachment'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'oph-11',
@@ -215,24 +209,24 @@ export const ophthalmologyTopics: Topic[] = [
         explanation:
           'Nuclear sclerotic cataract, the most common age-related type, causes progressive yellow-brown discoloration and hardening of the central lens nucleus, often producing a temporary myopic shift ("second sight") before progressive vision decline.',
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['cataract'],
       },
       {
         id: 'oph-12',
-        text: 'Assertion (A): Proliferative diabetic retinopathy is treated with panretinal (scatter) laser photocoagulation.\nReason (R): This reduces the retinal oxygen demand of ischemic peripheral retina, decreasing the VEGF drive for pathological neovascularization.',
+        text: "Assertion (A): Proliferative diabetic retinopathy is best treated with topical corticosteroids.\nReason (R): Panretinal photocoagulation reduces the VEGF drive from ischaemic peripheral retina.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
-          'Panretinal photocoagulation destroys ischemic peripheral retinal tissue that would otherwise secrete high levels of VEGF; by reducing the metabolically active, hypoxic retinal area, the VEGF drive for abnormal neovascularization falls, reducing risk of vitreous hemorrhage and tractional retinal detachment in PDR.',
+          "A is false: proliferative diabetic retinopathy is treated with panretinal photocoagulation and/or intravitreal anti-VEGF agents; topical steroids have no role. R is true: ablating ischaemic peripheral retina lowers VEGF production and causes new vessels to regress.",
         reference: "Parson's Diseases of the Eye",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['proliferative-diabetic-retinopathy'],
       },

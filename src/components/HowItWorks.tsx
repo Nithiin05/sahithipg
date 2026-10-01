@@ -13,7 +13,7 @@ const STEPS = [
   {
     n: '02',
     title: 'Practice by subject & topic',
-    desc: 'Work through all 19 subjects — Easy to Expert — plus clinical cases, image-based questions, and PYQ-style sets.',
+    desc: 'Work through all 19 subjects by syllabus module and difficulty — Easy to INI-CET Level — with clinical cases and image-based questions.',
     to: '/subjects',
     cta: 'Start subject-wise practice',
   },

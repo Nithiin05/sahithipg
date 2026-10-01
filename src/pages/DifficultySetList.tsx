@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import { getSubject } from '../data/subjects'
 import { difficultySetCount, DIFFICULTY_SET_SIZE } from '../lib/quizEngine'
-import { DIFFICULTIES, DIFFICULTY_DESCRIPTIONS } from '../lib/difficulty'
+import { DIFFICULTIES, DIFFICULTY_DESCRIPTIONS, DIFFICULTY_LABELS } from '../lib/difficulty'
 import type { Difficulty, SubjectSlug } from '../types'
 
 /** Lists the practice sets for one subject + difficulty tier. */
@@ -18,7 +18,7 @@ export default function DifficultySetList() {
 
   return (
     <div className="pb-20">
-      <PageHeader eyebrow={subject.shortName} title={`${diff} sets`} description={DIFFICULTY_DESCRIPTIONS[diff]} />
+      <PageHeader eyebrow={subject.shortName} title={`${DIFFICULTY_LABELS[diff]} sets`} description={DIFFICULTY_DESCRIPTIONS[diff]} />
 
       <div className="max-w-4xl mx-auto px-6">
         {setCount === 0 ? (

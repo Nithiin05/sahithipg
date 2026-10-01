@@ -1,5 +1,6 @@
 import type { Subject } from '../types'
 import { randomizeOptions } from '../lib/optionShuffle'
+import { sourceTypeOf } from '../lib/questionSource'
 import { anatomyTopics } from './questions/anatomy'
 import { physiologyTopics } from './questions/physiology'
 import { biochemistryTopics } from './questions/biochemistry'
@@ -254,7 +255,7 @@ export function totalTopicsAcrossAllSubjects() {
 
 export function totalPYQCount() {
   return subjects.reduce(
-    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.isPYQ).length, 0),
+    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => ['PYQ', 'PYQ_PATTERN'].includes(sourceTypeOf(q))).length, 0),
     0,
   )
 }

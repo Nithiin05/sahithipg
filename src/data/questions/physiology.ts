@@ -39,8 +39,6 @@ export const physiologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['ventilation', 'calculation'],
-        isPYQ: true,
-        year: 2023,
         highYieldNote: 'Alveolar ventilation, not total minute ventilation, determines gas exchange efficiency.',
       },
       {
@@ -56,7 +54,7 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'Increased 2,3-DPG shifts the curve to the RIGHT (decreasing hemoglobin\'s oxygen affinity, favoring unloading to tissues). Decreased temperature, alkalosis, and HbF all shift the curve LEFT (increased affinity).',
         reference: "Guyton & Hall Textbook of Medical Physiology",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'standard',
         tags: ['oxygen-dissociation-curve'],
         clinicalPearl: 'Right shift = "CADET, face Right": CO2, Acid, 2,3-DPG, Exercise, Temperature.',
@@ -74,7 +72,7 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'During exercise, sympathetic drive raises heart rate and contractility, while rhythmic muscle contraction (skeletal muscle pump) and the respiratory pump increase venous return, together substantially raising cardiac output via the Frank-Starling mechanism and chronotropy.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['cardiac-output', 'exercise-physiology'],
       },
@@ -118,8 +116,6 @@ export const physiologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['osmotic-diuresis', 'diabetes'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'phys-7',
@@ -134,7 +130,7 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'Circulating free T3 and T4 exert negative feedback predominantly on the anterior pituitary thyrotrophs, suppressing TSH secretion, and to a lesser extent on hypothalamic TRH neurons.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['thyroid-axis', 'feedback'],
       },
@@ -151,7 +147,7 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'Aldosterone acts on principal cells of the distal tubule and collecting duct to increase Na+ reabsorption (and K+/H+ secretion). ADH promotes water reabsorption via aquaporins; PTH increases phosphate excretion (not reabsorption); ANP promotes natriuresis, not retention.',
         reference: "Guyton & Hall Textbook of Medical Physiology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['aldosterone', 'renal-hormones'],
         matchPairs: [
@@ -198,11 +194,9 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'Myasthenia gravis is caused by autoantibodies against post-synaptic nicotinic ACh receptors (or MuSK), reducing effective neuromuscular transmission and causing fatigable weakness. (Presynaptic VGCC antibodies cause Lambert-Eaton syndrome instead.)',
         reference: "Ganong's Review of Medical Physiology",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['neuromuscular-junction', 'myasthenia'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'phys-11',
@@ -217,24 +211,24 @@ export const physiologyTopics: Topic[] = [
         explanation:
           'The myotatic (stretch) reflex arc is the simplest spinal reflex: the Ia afferent fiber from the muscle spindle synapses directly on the alpha motor neuron supplying the same muscle, with no interneuron — hence "monosynaptic."',
         reference: "Ganong's Review of Medical Physiology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['reflex-arc', 'muscle-spindle'],
       },
       {
         id: 'phys-12',
-        text: 'Assertion (A): Golgi tendon organs protect muscle from excessive tension by causing reflex relaxation.\nReason (R): They are located in series with extrafusal muscle fibers at the musculotendinous junction and signal via Ib afferents.',
+        text: "Assertion (A): Golgi tendon organs protect muscle from excessive tension by causing reflex relaxation.\nReason (R): They lie in parallel with extrafusal fibres and signal changes in muscle length through group II afferents.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
-          'Golgi tendon organs sit in series with extrafusal fibers at the musculotendinous junction, sensing tension via Ib afferents; high tension triggers autogenic inhibition (reflex relaxation) via inhibitory interneurons, protecting the muscle-tendon unit.',
+          "A is true: Golgi tendon organs mediate autogenic inhibition, relaxing the muscle when tension rises. R is false: they lie in SERIES with extrafusal fibres at the musculotendinous junction and signal TENSION through Ib afferents. Receptors in parallel that signal length (via Ia and group II afferents) are muscle spindles.",
         reference: "Ganong's Review of Medical Physiology",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['golgi-tendon-organ'],
       },

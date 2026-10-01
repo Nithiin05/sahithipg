@@ -36,11 +36,9 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Scabies classically causes intensely pruritic (especially nocturnal) burrows in the finger web spaces, wrists, and other characteristic sites, often affecting multiple household/close contacts simultaneously; treatment includes topical permethrin with treatment of close contacts.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['scabies'],
-        isPYQ: true,
-        year: 2023,
       },
       {
         id: 'derm-3',
@@ -55,24 +53,24 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Tinea corporis classically presents as an annular, scaly plaque with a raised, active border and central clearing, confirmed by potassium hydroxide (KOH) microscopy showing septate hyphae; treatment is topical or oral antifungals depending on extent.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['tinea-corporis'],
       },
       {
         id: 'derm-4',
-        text: 'Assertion (A): Leprosy (Hansen disease) can cause anesthetic skin patches.\nReason (R): Mycobacterium leprae preferentially infects Schwann cells and peripheral nerves, particularly in cooler body areas.',
+        text: "Assertion (A): Leprosy can cause anaesthetic skin patches.\nReason (R): Leprosy is transmitted mainly by nasal droplets from untreated multibacillary patients.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
-          'Mycobacterium leprae has a tropism for Schwann cells and grows preferentially in cooler areas of the body (skin, superficial nerves, extremities), causing nerve damage that produces the characteristic anesthetic (sensory-loss) hypopigmented skin patches of leprosy.',
+          "Both are true, but R does not explain A. The patches are anaesthetic because Mycobacterium leprae infects Schwann cells and damages cutaneous nerves, especially in cooler areas. R describes how the disease spreads.",
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['leprosy'],
       },
@@ -116,8 +114,6 @@ export const dermatologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['pemphigus-vulgaris'],
-        isPYQ: true,
-        year: 2022,
         clinicalPearl: 'Pemphigus vulgaris: flaccid bullae, Nikolsky POSITIVE, suprabasal split. Bullous pemphigoid: tense bullae, Nikolsky NEGATIVE, subepidermal split.',
       },
       {
@@ -133,7 +129,7 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Lichen planus classically presents with the "6 Ps" (Pruritic, Purple, Polygonal, Planar, Papules, Plaques) and Wickham striae — fine white lace-like lines on the papule surface, best seen with mineral oil application.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['lichen-planus'],
       },
@@ -150,7 +146,7 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Pemphigus vulgaris shows suprabasal acantholysis (intraepidermal split) with flaccid bullae and positive Nikolsky sign; bullous pemphigoid shows a subepidermal split producing tense, intact bullae with negative Nikolsky; psoriasis shows epidermal hyperproliferation with silvery scale and a positive Auspitz sign.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['bullous-disorders'],
         matchPairs: [
@@ -196,11 +192,9 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Mild-to-moderate acne is typically managed first with topical retinoids (comedolytic) combined with topical benzoyl peroxide and/or topical antibiotics; oral isotretinoin is reserved for severe, nodulocystic, or treatment-resistant acne given its side-effect profile and teratogenicity.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'guideline',
         tags: ['acne-vulgaris'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'derm-11',
@@ -215,7 +209,7 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Nail pitting, the "oil-drop" sign (a translucent yellow-red discoloration under the nail plate), and onycholysis (nail plate separation) are classic nail findings in psoriasis, and their presence should raise consideration for associated psoriatic arthritis.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['nail-changes', 'psoriasis'],
       },
@@ -232,7 +226,7 @@ export const dermatologyTopics: Topic[] = [
         explanation:
           'Vitiligo is understood to be autoimmune in nature, with T-cell mediated destruction of melanocytes; patients with vitiligo have an increased incidence of other autoimmune conditions (autoimmune thyroiditis, pernicious anemia, Addison disease), reflecting a shared predisposition to autoimmunity.',
         reference: 'IADVL Textbook of Dermatology',
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['vitiligo', 'autoimmunity'],
       },

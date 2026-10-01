@@ -3,7 +3,8 @@ import PageHeader from '../components/PageHeader'
 import ProgressBar from '../components/ProgressBar'
 import { getSubject } from '../data/subjects'
 import { difficultySetCount, pooledPYQQuestions } from '../lib/quizEngine'
-import { DIFFICULTIES, DIFFICULTY_DESCRIPTIONS } from '../lib/difficulty'
+import { DIFFICULTIES, DIFFICULTY_DESCRIPTIONS, DIFFICULTY_LABELS } from '../lib/difficulty'
+import SyllabusTree from '../components/SyllabusTree'
 import { getSyllabusProgress, toggleSyllabusItem } from '../lib/syllabusProgress'
 import { SubjectIcon, SUBJECT_COLOR_CLASSES } from '../components/icons'
 import { useState } from 'react'
@@ -55,18 +56,25 @@ export default function SubjectDetail() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {DIFFICULTIES.map((level) => {
               const count = difficultySetCount(subject.slug as SubjectSlug, level)
-              return (
-                <Link
-                  key={level}
-                  to={`/subjects/${subject.slug}/level/${level}`}
-                  className="card card-hover p-5 flex flex-col gap-2"
-                >
-                  <span className={`tag w-fit ${LEVEL_STYLES[level]}`}>{level}</span>
+              const body = (
+                <>
+                  <span className={`tag w-fit ${LEVEL_STYLES[level]}`}>{DIFFICULTY_LABELS[level]}</span>
                   <p className="text-xs text-muted-foreground flex-1" style={{ lineHeight: 1.5 }}>
                     {DIFFICULTY_DESCRIPTIONS[level]}
                   </p>
-                  <span className="text-xs font-semibold text-primary">{count} set{count === 1 ? '' : 's'} &rarr;</span>
+                  <span className={`text-xs font-semibold ${count ? 'text-primary' : 'text-muted-foreground'}`}>
+                    {count ? `${count} set${count === 1 ? '' : 's'} →` : 'Questions coming soon'}
+                  </span>
+                </>
+              )
+              return count ? (
+                <Link key={level} to={`/subjects/${subject.slug}/level/${level}`} className="card card-hover p-5 flex flex-col gap-2">
+                  {body}
                 </Link>
+              ) : (
+                <div key={level} className="card p-5 flex flex-col gap-2 opacity-60" aria-disabled="true">
+                  {body}
+                </div>
               )
             })}
           </div>
@@ -75,15 +83,17 @@ export default function SubjectDetail() {
         {pyqCount > 0 && (
           <Link to={`/pyqs?subject=${subject.slug}`} className="card card-hover p-5 flex items-center justify-between gap-4">
             <div>
-              <h3 className="font-semibold">PYQ-Style Practice</h3>
-              <p className="text-sm text-muted-foreground mt-1">Pattern-based practice questions for {subject.shortName}</p>
+              <h3 className="font-semibold">PYQ-Pattern Practice</h3>
+              <p className="text-sm text-muted-foreground mt-1">Questions modelled on historical INI-CET concepts for {subject.shortName}</p>
             </div>
             <span className="tag bg-secondary text-muted-foreground shrink-0">{pyqCount} question{pyqCount === 1 ? '' : 's'}</span>
           </Link>
         )}
 
+        <SyllabusTree slug={subject.slug as SubjectSlug} />
+
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Topics</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Practice topics</h2>
           <div className="flex flex-col gap-3">
             {subject.topics.map((topic) => {
               const key = `${subject.slug}:${topic.id}`

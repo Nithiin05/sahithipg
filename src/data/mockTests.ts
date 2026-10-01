@@ -24,7 +24,7 @@ export interface MockTestConfig {
   subjectSlug?: SubjectSlug
   /** Which topic this test belongs to — only set for 'topic' kind. */
   topicId?: string
-  /** PYQ-style metadata, only set when kind === 'pyq'. */
+  /** PYQ metadata, only set when kind === 'pyq'. */
   year?: number
   description: string
   marksCorrect: number
@@ -140,10 +140,8 @@ function buildMixedTests(sizes: number[], perSize: number): MockTestConfig[] {
 }
 
 // ---------------------------------------------------------------------------
-// PYQ-style tests, grouped by year. These are ORIGINAL practice questions
-// written in the pattern/style reported for that year — never a reproduction
-// of an official paper. Only years with authored content appear here; the
-// PYQs page still lists every year so students can see what's coming.
+// PYQ tests, grouped by year (verified PYQs and PYQ-pattern questions that carry a year).
+// Only years with content appear.
 // ---------------------------------------------------------------------------
 
 function buildPYQTests(): MockTestConfig[] {

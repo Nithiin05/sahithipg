@@ -4,6 +4,7 @@
  */
 import { subjects } from '../src/data/subjects'
 import { sourceTypeOf } from '../src/lib/questionSource'
+import { syllabus } from '../src/data/syllabus'
 
 const errors: string[] = []
 const warnings: string[] = []
@@ -12,6 +13,8 @@ const texts = new Map<string, string>()
 const positions = [0, 0, 0, 0]
 const sequence: number[] = []
 const sourceCounts: Record<string, number> = {}
+const arKey = [0, 0, 0, 0]
+const diffCounts: Record<string, number> = {}
 let total = 0
 
 for (const s of subjects) {
@@ -37,6 +40,9 @@ for (const s of subjects) {
 
       const st = sourceTypeOf(q)
       sourceCounts[st] = (sourceCounts[st] ?? 0) + 1
+      diffCounts[q.difficulty ?? 'untagged'] = (diffCounts[q.difficulty ?? 'untagged'] ?? 0) + 1
+      if (!q.difficulty) warnings.push(`${where}: no explicit difficulty`)
+      if (q.type === 'assertion-reason') arKey[q.correctIndex]++
       if (q.type !== 'assertion-reason') {
         positions[q.correctIndex]++
         sequence.push(q.correctIndex)
@@ -61,6 +67,32 @@ console.log(
   positions.map((c, i) => `${'ABCD'[i]} ${c} (${((c / n) * 100).toFixed(1)}%)`).join('  '),
 )
 console.log(`Longest same-position run in bank order: ${maxRun}`)
+console.log('Difficulty:', diffCounts)
+const arTotal = arKey.reduce((a, b) => a + b, 0)
+console.log(`Assertion–reason key (fixed order) A/B/C/D: ${arKey.join(' / ')}`)
+arKey.forEach((c, i) => {
+  if (arTotal >= 8 && c / arTotal > 0.4) warnings.push(`Assertion–reason answer ${'ABCD'[i]} is ${c}/${arTotal} — too predictable`)
+})
+
+// Syllabus ↔ question-bank links
+let mods = 0
+let covered = 0
+for (const sub of subjects) {
+  const tree = syllabus[sub.slug]
+  if (!tree) { errors.push(`No syllabus for ${sub.slug}`); continue }
+  const topicIds = new Set(sub.topics.map((t) => t.id))
+  const linked = new Set<string>()
+  for (const m of tree) {
+    mods++
+    if (m.practice.length) covered++
+    for (const id of m.practice) {
+      if (!topicIds.has(id)) errors.push(`Syllabus ${sub.slug}/${m.id} links unknown topic "${id}"`)
+      linked.add(id)
+    }
+  }
+  for (const id of topicIds) if (!linked.has(id)) warnings.push(`Topic ${sub.slug}/${id} is not linked from any syllabus module`)
+}
+console.log(`Syllabus: ${mods} modules, ${covered} with practice questions linked`)
 
 const expected = n / 4
 for (let i = 0; i < 4; i++) {

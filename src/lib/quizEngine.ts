@@ -2,6 +2,8 @@ import type { Difficulty, Question, SubjectSlug } from '../types'
 import { getSubject, subjects } from '../data/subjects'
 import type { MockSection, MockTestConfig } from '../data/mockTests'
 import { questionDifficulty } from './difficulty'
+import { sourceTypeOf } from './questionSource'
+import type { SourceType } from '../types'
 
 export interface QuizQuestionItem {
   question: Question
@@ -97,24 +99,27 @@ export function buildDifficultyQuiz(subjectSlug: SubjectSlug, difficulty: Diffic
 }
 
 // ---------------------------------------------------------------------------
-// PYQ-style practice — pools every question marked isPYQ, either within one
-// subject or across all subjects for a given year. These are ORIGINAL
-// practice questions written in the pattern/style/structure reported for
-// that year — never a reproduction of an official paper.
+// Source-based pools. Verified PYQs (sourceType 'PYQ' with a named paper) and
+// PYQ-pattern questions (original, modelled on historical concepts) are kept
+// strictly separate — see src/lib/questionSource.ts.
 // ---------------------------------------------------------------------------
 
-export function pooledPYQQuestions(subjectSlug?: SubjectSlug, year?: number): QuizQuestionItem[] {
+export function pooledBySource(source: SourceType, subjectSlug?: SubjectSlug): QuizQuestionItem[] {
   const pool = subjectSlug ? pooledSubjectQuestions(subjectSlug) : pooledAllSubjectsQuestions()
-  return pool
-    .filter((it) => it.question.isPYQ && (year === undefined || it.question.year === year))
-    .sort((a, b) => a.question.id.localeCompare(b.question.id))
+  return pool.filter((it) => sourceTypeOf(it.question) === source).sort((a, b) => a.question.id.localeCompare(b.question.id))
 }
 
+/** Verified PYQs plus PYQ-pattern questions, optionally for one year. */
+export function pooledPYQQuestions(subjectSlug?: SubjectSlug, year?: number): QuizQuestionItem[] {
+  return [...pooledBySource('PYQ', subjectSlug), ...pooledBySource('PYQ_PATTERN', subjectSlug)].filter(
+    (it) => year === undefined || it.question.year === year,
+  )
+}
+
+/** Years that have verified or pattern questions tagged with a year. */
 export function pyqYears(): number[] {
   const years = new Set<number>()
-  for (const it of pooledAllSubjectsQuestions()) {
-    if (it.question.isPYQ && it.question.year) years.add(it.question.year)
-  }
+  for (const it of pooledPYQQuestions()) if (it.question.year) years.add(it.question.year)
   return [...years].sort((a, b) => b - a)
 }
 

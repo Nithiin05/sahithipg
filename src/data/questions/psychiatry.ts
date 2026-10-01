@@ -39,8 +39,6 @@ export const psychiatryTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['bipolar-disorder'],
-        isPYQ: true,
-        year: 2023,
       },
       {
         id: 'psych-3',
@@ -55,24 +53,24 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'DSM-5 requires continuous signs of disturbance for at least 6 months, including at least 1 month of active-phase symptoms (two or more of: delusions, hallucinations, disorganized speech, grossly disorganized/catatonic behavior, negative symptoms) — distinguishing schizophrenia from briefer psychotic disorders.',
         reference: 'DSM-5-TR',
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['schizophrenia'],
       },
       {
         id: 'psych-4',
-        text: 'Assertion (A): Lithium requires regular monitoring of serum levels and renal/thyroid function during long-term treatment.\nReason (R): Lithium has a narrow therapeutic index and can cause nephrogenic diabetes insipidus and hypothyroidism with chronic use.',
+        text: "Assertion (A): Lithium requires regular monitoring of serum levels and of renal and thyroid function during long-term treatment.\nReason (R): Lithium is extensively metabolised by the liver.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
-          'Lithium\'s narrow therapeutic index (toxicity closely follows therapeutic levels) necessitates regular serum level monitoring; chronic use can impair renal concentrating ability (nephrogenic DI) and thyroid function (hypothyroidism), justifying periodic renal and thyroid function tests alongside lithium levels.',
+          "A is true; R is false. Lithium is not metabolised; it is excreted unchanged by the kidneys. Monitoring is needed because of its narrow therapeutic index and its chronic effects on the kidney (nephrogenic diabetes insipidus) and thyroid (hypothyroidism).",
         reference: "Kaplan & Sadock's Synopsis of Psychiatry",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['lithium'],
       },
@@ -113,11 +111,9 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'OCD involves obsessions (intrusive, unwanted, anxiety-provoking thoughts, e.g., contamination fears) and/or compulsions (repetitive behaviors like handwashing performed to reduce the anxiety), typically with retained insight that the thoughts/behaviors are excessive or unreasonable.',
         reference: 'DSM-5-TR',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['ocd'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'psych-7',
@@ -132,7 +128,7 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'SSRIs are first-line, evidence-based pharmacotherapy for most anxiety disorders (GAD, panic disorder, social anxiety disorder, OCD — though OCD often requires higher doses/longer trials); benzodiazepines may provide rapid short-term relief but are avoided long-term due to dependence risk.',
         reference: "Kaplan & Sadock's Synopsis of Psychiatry",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['ssri', 'anxiety-treatment'],
       },
@@ -140,16 +136,16 @@ export const psychiatryTopics: Topic[] = [
         id: 'psych-8',
         text: 'Match each anxiety-spectrum disorder with a distinguishing clinical feature:',
         options: [
-          'Panic disorder → discrete attacks with physical symptoms and fear of recurrence; OCD → obsessions with compulsions performed to reduce anxiety; PTSD → re-experiencing symptoms following a trauma with hyperarousal',
-          'Panic disorder → obsessions and compulsions',
-          'OCD → re-experiencing trauma symptoms',
-          'PTSD → discrete unprovoked panic attacks only',
+          "Panic disorder → discrete attacks with physical symptoms and fear of recurrence; OCD → obsessions with compulsions performed to reduce anxiety; PTSD → re-experiencing after a trauma with hyperarousal",
+          "Panic disorder → re-experiencing after a trauma with hyperarousal; OCD → obsessions with compulsions performed to reduce anxiety; PTSD → discrete attacks with physical symptoms and fear of recurrence",
+          "Panic disorder → discrete attacks with physical symptoms and fear of recurrence; OCD → re-experiencing after a trauma with hyperarousal; PTSD → obsessions with compulsions performed to reduce anxiety",
+          "Panic disorder → obsessions with compulsions performed to reduce anxiety; OCD → discrete attacks with physical symptoms and fear of recurrence; PTSD → re-experiencing after a trauma with hyperarousal",
         ],
         correctIndex: 0,
         explanation:
           'Panic disorder features discrete, often unprovoked panic attacks with somatic symptoms and anticipatory anxiety; OCD features obsessions relieved by compulsions; PTSD follows exposure to a traumatic event and includes intrusive re-experiencing (flashbacks/nightmares), avoidance, negative mood/cognition changes, and hyperarousal.',
         reference: 'DSM-5-TR',
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['anxiety-disorders-overview'],
         matchPairs: [
@@ -178,7 +174,7 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'Delirium tremens is a severe, potentially life-threatening alcohol withdrawal syndrome typically emerging 48-96 hours after the last drink, featuring confusion/delirium, marked autonomic instability (tachycardia, hypertension, fever), tremor, and hallucinations — requiring urgent benzodiazepine treatment.',
         reference: "Kaplan & Sadock's Synopsis of Psychiatry",
-        difficulty: 'Easy',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['alcohol-withdrawal'],
       },
@@ -195,11 +191,9 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'ADHD requires a persistent pattern of inattention and/or hyperactivity-impulsivity present in multiple settings (e.g., home and school), causing functional impairment, with several symptoms present before age 12 — distinguishing it from disorders defined primarily by defiance (ODD) or antisocial behavior (conduct disorder).',
         reference: 'DSM-5-TR',
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['adhd'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'psych-11',
@@ -214,7 +208,7 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'Opioid agonist maintenance therapy with methadone (full agonist) or buprenorphine (partial agonist, often combined with naloxone) is first-line, evidence-based treatment for opioid use disorder, reducing withdrawal, cravings, illicit use, and overdose mortality; disulfiram is instead used for alcohol use disorder.',
         reference: "Kaplan & Sadock's Synopsis of Psychiatry",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'guideline',
         tags: ['opioid-use-disorder'],
       },
@@ -231,7 +225,7 @@ export const psychiatryTopics: Topic[] = [
         explanation:
           'Alcohol potentiates GABA-A receptor activity; benzodiazepines act on the same receptor system, providing effective cross-tolerance that prevents/treats the hyperexcitable withdrawal state (including seizures and delirium tremens), making them the evidence-based first-line agents for alcohol withdrawal management.',
         reference: "Kaplan & Sadock's Synopsis of Psychiatry",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['alcohol-withdrawal', 'benzodiazepines'],
       },

@@ -39,8 +39,6 @@ export const microbiologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['diphtheria', 'exotoxins'],
-        isPYQ: true,
-        year: 2023,
         clinicalPearl: 'Same EF-2 ADP-ribosylation mechanism is used by Pseudomonas aeruginosa exotoxin A.',
       },
       {
@@ -56,24 +54,24 @@ export const microbiologyTopics: Topic[] = [
         explanation:
           'The Ghon complex — a peripheral (often subpleural) parenchymal lesion with ipsilateral hilar/mediastinal lymphadenopathy — represents primary TB infection. Secondary (reactivation) TB classically affects the lung apices (Simon focus) without prominent lymphadenopathy.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['tuberculosis'],
       },
       {
         id: 'micro-4',
-        text: 'Assertion (A): Clostridium tetani exotoxin causes spastic (rather than flaccid) paralysis.\nReason (R): Tetanospasmin blocks release of inhibitory neurotransmitters (GABA and glycine) from Renshaw cells in the spinal cord.',
+        text: "Assertion (A): Clostridium tetani exotoxin causes flaccid paralysis.\nReason (R): Tetanospasmin blocks release of the inhibitory neurotransmitters glycine and GABA from inhibitory interneurons in the spinal cord.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
-          'Tetanospasmin blocks release of the inhibitory neurotransmitters glycine and GABA from inhibitory interneurons (Renshaw cells), removing inhibitory control over motor neurons and producing sustained muscle contraction (spastic paralysis, e.g., lockjaw/risus sardonicus) — the opposite mechanism to botulinum toxin, which causes flaccid paralysis by blocking ACh release.',
+          "A is false: tetanus causes SPASTIC paralysis (trismus, risus sardonicus, opisthotonus). R is true, and it explains the spasticity: tetanospasmin blocks glycine and GABA release from inhibitory interneurons (including Renshaw cells), removing inhibition of motor neurons. Botulinum toxin, which blocks acetylcholine release at the neuromuscular junction, causes flaccid paralysis.",
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['clostridium', 'tetanus'],
       },
@@ -117,8 +115,6 @@ export const microbiologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['hepatitis-b', 'serology'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'micro-7',
@@ -133,7 +129,7 @@ export const microbiologyTopics: Topic[] = [
         explanation:
           'SSPE is a rare, fatal, delayed complication of measles (rubeola) infection, caused by a persistent, defective measles virus in the CNS, presenting years after the acute illness with progressive neurologic deterioration.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['measles', 'sspe'],
       },
@@ -150,7 +146,7 @@ export const microbiologyTopics: Topic[] = [
         explanation:
           'Dengue virus (Flaviviridae) causes dengue fever/hemorrhagic fever; Rubella virus (Togaviridae) causes congenital rubella syndrome when acquired in early pregnancy; Poliovirus (Picornaviridae) causes asymmetric flaccid paralysis via anterior horn cell destruction.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['virus-classification'],
         matchPairs: [
@@ -199,8 +195,6 @@ export const microbiologyTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['fungal-infections', 'aspergillus'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'micro-11',
@@ -215,7 +209,7 @@ export const microbiologyTopics: Topic[] = [
         explanation:
           'Wuchereria bancrofti (transmitted by Culex mosquitoes) causes lymphatic filariasis, with chronic lymphatic obstruction leading to lymphedema and elephantiasis, often accompanied by tropical pulmonary eosinophilia.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['filariasis'],
       },
@@ -232,7 +226,7 @@ export const microbiologyTopics: Topic[] = [
         explanation:
           'E. histolytica trophozoites invade the colonic mucosa (causing amoebic colitis/dysentery) and can enter the portal circulation, seeding the liver to form an "anchovy paste" abscess — the classic extraintestinal manifestation.',
         reference: "Jawetz, Melnick & Adelberg's Medical Microbiology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['amoebiasis'],
       },

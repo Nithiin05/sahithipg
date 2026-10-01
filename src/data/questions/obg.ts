@@ -36,11 +36,9 @@ export const obgTopics: Topic[] = [
         explanation:
           'New-onset hypertension (≥140/90) after 20 weeks gestation with proteinuria (or other end-organ involvement) defines pre-eclampsia — a hypertensive disorder specific to pregnancy requiring close monitoring for progression to eclampsia/HELLP syndrome.',
         reference: "Williams Obstetrics",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['pre-eclampsia'],
-        isPYQ: true,
-        year: 2023,
         clinicalPearl: 'Magnesium sulfate is the drug of choice for both treatment and prophylaxis of eclamptic seizures.',
       },
       {
@@ -56,24 +54,24 @@ export const obgTopics: Topic[] = [
         explanation:
           'The second-trimester triple test (AFP, hCG, unconjugated estriol; quadruple test adds inhibin-A) is a screening tool estimating risk of Down syndrome and other aneuploidies, and elevated AFP alone can flag neural tube defects.',
         reference: "Williams Obstetrics",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['antenatal-screening'],
       },
       {
         id: 'obg-4',
-        text: "Assertion (A): Anti-D immunoglobulin is given to Rh-negative mothers after delivery of an Rh-positive baby.\nReason (R): It prevents maternal sensitization by neutralizing fetal Rh-positive cells that entered maternal circulation, protecting future pregnancies from hemolytic disease of the newborn.",
+        text: "Assertion (A): Anti-D immunoglobulin is given to Rh-positive mothers after delivery of an Rh-negative baby.\nReason (R): Anti-D immunoglobulin clears fetal Rh-positive red cells from the maternal circulation before the mother forms her own anti-D antibodies.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 3,
         explanation:
-          'Anti-D immunoglobulin given to Rh-negative mothers (after delivery of an Rh-positive infant, or after any sensitizing event) clears fetal Rh-positive red cells from maternal circulation before the mother\'s immune system can mount its own anti-D response, preventing alloimmunization and protecting subsequent pregnancies from hemolytic disease of the fetus/newborn.',
+          "A is false: anti-D is given to Rh-NEGATIVE, unsensitised mothers after delivery of an Rh-POSITIVE baby (and after other sensitising events). R is true and is the reason it works: it removes fetal Rh-positive cells before maternal alloimmunisation, protecting future pregnancies.",
         reference: "Williams Obstetrics",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['rh-isoimmunization'],
       },
@@ -114,11 +112,9 @@ export const obgTopics: Topic[] = [
         explanation:
           'Endometriosis (ectopic endometrial tissue outside the uterus) classically causes cyclical pelvic pain, dysmenorrhea, dyspareunia, and infertility, with ovarian endometriomas appearing as "chocolate cysts" filled with old altered blood.',
         reference: "Williams Gynecology",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['endometriosis'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'obg-7',
@@ -133,7 +129,7 @@ export const obgTopics: Topic[] = [
         explanation:
           'Uterine leiomyomas (fibroids) — benign smooth-muscle tumors — are the most common pelvic tumor in women, often presenting with menorrhagia, pelvic pressure, or infertility depending on size/location (submucosal, intramural, or subserosal).',
         reference: "Williams Gynecology",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['fibroids'],
       },
@@ -150,7 +146,7 @@ export const obgTopics: Topic[] = [
         explanation:
           'PCOS is defined by hyperandrogenism and chronic anovulation with polycystic ovarian morphology; endometriosis causes chocolate cysts (endometriomas) and cyclical pelvic pain; fibroids are benign myometrial smooth-muscle tumors that commonly cause menorrhagia and bulk symptoms.',
         reference: "Williams Gynecology",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['gynecology-overview'],
         matchPairs: [
@@ -199,8 +195,6 @@ export const obgTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['abruptio-placentae'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'obg-11',
@@ -215,7 +209,7 @@ export const obgTopics: Topic[] = [
         explanation:
           "The McRoberts maneuver (hyperflexing the mother's hips onto her abdomen) combined with suprapubic pressure is the first-line approach to shoulder dystocia, straightening the sacrum and often freeing the impacted anterior shoulder; fundal pressure is avoided as it can worsen impaction.",
         reference: "Williams Obstetrics / ACOG Guidelines",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['shoulder-dystocia'],
       },
@@ -232,7 +226,7 @@ export const obgTopics: Topic[] = [
         explanation:
           'Both statements are true — uterine atony is indeed the leading cause of primary PPH, and massage plus uterotonics (oxytocin first-line, followed by additional agents if needed) is the correct initial approach — but R explains WHY atony is common/important, not why massage/uterotonics specifically work, so it is not the direct explanation of A.',
         reference: "Williams Obstetrics",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['postpartum-hemorrhage'],
       },

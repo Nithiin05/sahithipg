@@ -32,8 +32,8 @@ const FEATURES = [
     Icon: BrainCircuit,
   },
   {
-    title: 'PYQ-Style Practice by Year',
-    desc: 'Original, pattern-based practice questions organized by year — clearly labeled, never a reproduction of an official paper.',
+    title: 'Verified PYQs & PYQ-Pattern Practice',
+    desc: 'Actual previous-year questions are tagged with their session; original pattern questions are labelled as such — never mixed up.',
     to: '/pyqs',
     cta: 'Practice PYQs',
     Icon: CalendarClock,

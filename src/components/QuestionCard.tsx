@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Bookmark, Lightbulb, Maximize2, Sparkles, X } from 'lucide-react'
 import type { Question, SourceType } from '../types'
 import { SOURCE_LABELS, sourceLine, sourceTypeOf } from '../lib/questionSource'
+import { DIFFICULTY_LABELS } from '../lib/difficulty'
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
@@ -71,7 +72,7 @@ export default function QuestionCard({
             Question {index + 1} of {total}
           </span>
           {typeLabel && <span className="tag bg-accent/10 text-accent font-semibold">{typeLabel}</span>}
-          {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{question.difficulty}</span>}
+          {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{DIFFICULTY_LABELS[question.difficulty]}</span>}
           <span className={`tag font-semibold ${SOURCE_STYLES[source]}`} title={sourceLine(question)}>
             {SOURCE_LABELS[source].label}
             {source === 'PYQ' && question.sourceDetail ? ` · ${question.sourceDetail}` : ''}

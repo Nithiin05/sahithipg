@@ -3,14 +3,16 @@ import { useCountUp } from '../hooks/useCountUp'
 import { subjects, totalPYQCount, totalQuestionsAcrossAllSubjects, totalTopicsAcrossAllSubjects } from '../data/subjects'
 import { grandTests } from '../data/grandTests'
 
-const STATS = [
+const ALL_STATS = [
   { value: subjects.length, suffix: '', label: 'Subjects covered' },
   { value: totalQuestionsAcrossAllSubjects(), suffix: '+', label: 'High-yield questions' },
   { value: totalTopicsAcrossAllSubjects(), suffix: '', label: 'Focused topics' },
   { value: grandTests.length, suffix: '+', label: 'Grand Tests' },
-  { value: totalPYQCount(), suffix: '', label: 'PYQ-style questions' },
+  { value: totalPYQCount(), suffix: '', label: 'PYQ & PYQ-pattern questions' },
   { value: 20, suffix: '/day', label: 'Daily Challenge questions' },
 ]
+/** Never show a zero stat on the landing page. */
+const STATS = ALL_STATS.filter((s) => s.value > 0)
 
 function StatItem({ value, suffix, label, trigger }: { value: number; suffix: string; label: string; trigger: boolean }) {
   const { value: count, done } = useCountUp(value, trigger)

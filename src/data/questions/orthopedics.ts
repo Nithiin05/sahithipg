@@ -8,7 +8,7 @@ export const orthopedicsTopics: Topic[] = [
     questions: [
       {
         id: 'ortho-1',
-        text: 'A child falls on an outstretched hand and has a fracture of the distal radius with dorsal angulation of the distal fragment. This classic injury is called:',
+        text: "A 64-year-old woman with osteoporosis falls on an outstretched hand and sustains a fracture of the distal radius with dorsal displacement and angulation of the distal fragment. This classic injury is called:",
         options: [
           'Galeazzi fracture',
           'Monteggia fracture',
@@ -17,7 +17,7 @@ export const orthopedicsTopics: Topic[] = [
         ],
         correctIndex: 2,
         explanation:
-          'A Colles fracture is a distal radius fracture with dorsal displacement/angulation of the distal fragment ("dinner-fork deformity"), typically from a fall on an outstretched hand. Smith\'s fracture is the reverse (volar angulation).',
+          "A Colles fracture is a distal radius fracture with dorsal displacement/angulation of the distal fragment (\"dinner-fork\" deformity), classically after a fall on an outstretched hand in an older woman with osteoporotic bone. Smith's fracture is the reverse (volar angulation). In children, the same mechanism more often produces a torus (buckle) or greenstick fracture.",
         reference: 'Apley\'s System of Orthopaedics and Fractures',
         difficulty: 'Easy',
         type: 'standard',
@@ -40,8 +40,6 @@ export const orthopedicsTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['compartment-syndrome'],
-        isPYQ: true,
-        year: 2023,
         clinicalPearl: 'Compartment syndrome pain is classically OUT OF PROPORTION to the injury and worsens with passive stretch of the involved muscles.',
       },
       {
@@ -57,7 +55,7 @@ export const orthopedicsTopics: Topic[] = [
         explanation:
           'Fracture healing progresses through: hematoma formation → soft (fibrocartilaginous) callus → hard (bony) callus (via endochondral ossification) → remodeling. The soft callus stage provides initial, though weak, stability bridging the fracture gap.',
         reference: "Apley's System of Orthopaedics and Fractures",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['fracture-healing'],
       },
@@ -74,7 +72,7 @@ export const orthopedicsTopics: Topic[] = [
         explanation:
           'In open fractures, the skin/soft tissue breach directly exposes bone to the environment and contaminants, dramatically raising infection risk; hence urgent thorough wound debridement, irrigation, fracture stabilization, and early broad-spectrum antibiotics (per Gustilo-Anderson classification-guided protocols) are standard of care.',
         reference: "Apley's System of Orthopaedics and Fractures",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['open-fractures'],
       },
@@ -118,8 +116,6 @@ export const orthopedicsTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['septic-arthritis'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'ortho-7',
@@ -134,7 +130,7 @@ export const orthopedicsTopics: Topic[] = [
         explanation:
           'Chronic osteomyelitis classically shows a sequestrum (necrotic, devascularized bone fragment) surrounded by an involucrum (living reactive new bone laid down by the periosteum), reflecting a persistent, walled-off infection resistant to antibiotics alone and often requiring surgical debridement.',
         reference: "Apley's System of Orthopaedics and Fractures",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'standard',
         tags: ['chronic-osteomyelitis'],
       },
@@ -151,7 +147,7 @@ export const orthopedicsTopics: Topic[] = [
         explanation:
           'Salmonella osteomyelitis is classically over-represented in sickle cell disease (though S. aureus remains the single most common cause even here); IV drug users are at risk for vertebral osteomyelitis (often S. aureus, sometimes Pseudomonas); Pasteurella multocida is classic after cat/dog bites due to oral flora inoculation.',
         reference: "Apley's System of Orthopaedics and Fractures / Harrison's",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['osteomyelitis-organisms'],
         matchPairs: [
@@ -200,8 +196,6 @@ export const orthopedicsTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['osteoporosis', 'dexa'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'ortho-11',
@@ -216,24 +210,24 @@ export const orthopedicsTopics: Topic[] = [
         explanation:
           'Osteomalacia (the adult counterpart of rickets) involves impaired mineralization of newly formed osteoid — typically from vitamin D deficiency or phosphate wasting — leaving excess unmineralized bone matrix; osteoporosis, by contrast, involves reduced bone mass with normally mineralized bone.',
         reference: "Harrison's Principles of Internal Medicine",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['osteomalacia'],
       },
       {
         id: 'ortho-12',
-        text: "Assertion (A): Bisphosphonates are first-line pharmacotherapy for postmenopausal osteoporosis.\nReason (R): They inhibit osteoclast-mediated bone resorption, increasing bone mineral density over time.",
+        text: "Assertion (A): Bisphosphonates are first-line pharmacotherapy for postmenopausal osteoporosis.\nReason (R): Bisphosphonates act by stimulating osteoblasts to lay down new bone.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
-          'Bisphosphonates (e.g., alendronate, zoledronic acid) bind hydroxyapatite and are taken up by osteoclasts during resorption, inducing osteoclast apoptosis/dysfunction; this reduces bone turnover and increases bone mineral density over time, making them first-line for postmenopausal osteoporosis.',
+          "A is true: oral or IV bisphosphonates are first-line for postmenopausal osteoporosis. R is false: bisphosphonates are anti-resorptive. They bind hydroxyapatite and are taken up by osteoclasts, where nitrogen-containing agents inhibit farnesyl pyrophosphate synthase and impair osteoclast function. Anabolic (bone-forming) agents are teriparatide and romosozumab.",
         reference: "Harrison's Principles of Internal Medicine",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['bisphosphonates'],
       },

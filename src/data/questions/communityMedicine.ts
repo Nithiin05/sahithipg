@@ -39,8 +39,6 @@ export const communityMedicineTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['screening', 'sensitivity-specificity'],
-        isPYQ: true,
-        year: 2023,
         highYieldNote: '"SnNout": high Sensitivity, Negative result rules OUT disease. "SpPin": high Specificity, Positive result rules IN disease.',
       },
       {
@@ -56,24 +54,24 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'Because case-control studies select participants by disease status (not exposure), true incidence/risk cannot be calculated directly, so the odds ratio is used as the measure of association, approximating relative risk when the disease is rare.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['odds-ratio', 'biostatistics'],
       },
       {
         id: 'cm-4',
-        text: 'Assertion (A): Prevalence of a chronic disease can be much higher than its incidence.\nReason (R): Prevalence reflects both new cases and existing cases who survive for a long duration with the disease.',
+        text: "Assertion (A): The prevalence of a chronic disease can be much higher than its incidence.\nReason (R): Prevalence counts only the new cases that arise during a specified period.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 2,
         explanation:
-          'Prevalence = Incidence × average duration of disease (approximately, in steady state). For a chronic disease with long survival (e.g., diabetes, hypertension), accumulated existing cases make prevalence far exceed the number of new cases (incidence) in a given period.',
+          "A is true: for long-lasting diseases, existing cases accumulate, so prevalence greatly exceeds incidence (prevalence ≈ incidence × average duration). R is false: counting only new cases in a period defines incidence. Prevalence counts all existing cases, old and new, at a point or over a period.",
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['prevalence-incidence'],
       },
@@ -114,11 +112,9 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'NVBDCP is India\'s umbrella program addressing major vector-borne diseases: malaria, dengue, chikungunya, lymphatic filariasis, kala-azar (visceral leishmaniasis), and Japanese encephalitis.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['national-programs'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'cm-7',
@@ -133,7 +129,7 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'Pulse Polio involved repeated national immunization days administering OPV to ALL children under 5 (regardless of prior vaccination status) in a short period, rapidly boosting population immunity and interrupting wild poliovirus circulation — India was certified polio-free in 2014.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['polio-eradication'],
       },
@@ -150,7 +146,7 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'Janani Suraksha Yojana promotes institutional delivery through conditional cash transfers to reduce maternal/neonatal mortality; Rashtriya Bal Swasthya Karyakram (RBSK) screens children for defects/diseases/deficiencies/developmental delays; POSHAN Abhiyaan targets reducing stunting, undernutrition, and anemia.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['national-programs', 'rch'],
         matchPairs: [
@@ -196,11 +192,9 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'MMR = (Number of maternal deaths during pregnancy/childbirth/puerperium ÷ Number of live births) × 100,000, over a defined time period — a key indicator of a health system\'s maternal care quality.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['mch-indicators'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'cm-11',
@@ -215,7 +209,7 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'Severe iodine deficiency during pregnancy is the leading preventable cause of cretinism — irreversible intellectual disability, growth failure, and neurological deficits in the child — underscoring the importance of universal salt iodization programs.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Hard',
+        difficulty: 'Easy',
         type: 'standard',
         tags: ['iodine-deficiency'],
       },
@@ -232,7 +226,7 @@ export const communityMedicineTopics: Topic[] = [
         explanation:
           'WHO recommends exclusive breastfeeding (no other food or fluids, including water) for the first 6 months because breast milk supplies complete nutrition plus maternal antibodies (especially secretory IgA), significantly reducing infant diarrheal and respiratory infection risk and mortality.',
         reference: "Park's Textbook of Preventive and Social Medicine",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['breastfeeding'],
       },
