@@ -1,13 +1,16 @@
 import type { Difficulty, Question, SubjectSlug } from '../types'
 import { getSubject, subjects } from '../data/subjects'
-import type { MockSection, MockTestConfig } from '../data/mockTests'
 import { questionDifficulty } from './difficulty'
+import { sourceTypeOf } from './questionSource'
+import type { SourceType } from '../types'
 
 export interface QuizQuestionItem {
   question: Question
   subject: SubjectSlug
   subjectName: string
   topic: string
+  /** Stable topic id (topic names can change; ids don't). */
+  topicId?: string
 }
 
 export function shuffle<T>(arr: T[]): T[] {
@@ -29,6 +32,7 @@ export function buildTopicQuiz(subjectSlug: SubjectSlug, topicId: string): QuizQ
     subject: subject.slug,
     subjectName: subject.shortName,
     topic: topic.name,
+    topicId: topic.id,
   }))
 }
 
@@ -39,7 +43,7 @@ export function pooledSubjectQuestions(subjectSlug: SubjectSlug): QuizQuestionIt
   const pool: QuizQuestionItem[] = []
   for (const topic of subject.topics) {
     for (const question of topic.questions) {
-      pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name })
+      pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name, topicId: topic.id })
     }
   }
   return pool
@@ -52,7 +56,7 @@ export function pooledAllSubjectsQuestions(subjectSlugs?: SubjectSlug[]): QuizQu
   for (const subject of scope) {
     for (const topic of subject.topics) {
       for (const question of topic.questions) {
-        pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name })
+        pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name, topicId: topic.id })
       }
     }
   }
@@ -76,7 +80,7 @@ export function pooledDifficultyQuestions(subjectSlug: SubjectSlug, difficulty: 
   for (const topic of subject.topics) {
     for (const question of topic.questions) {
       if (questionDifficulty(question) === difficulty) {
-        pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name })
+        pool.push({ question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name, topicId: topic.id })
       }
     }
   }
@@ -97,45 +101,28 @@ export function buildDifficultyQuiz(subjectSlug: SubjectSlug, difficulty: Diffic
 }
 
 // ---------------------------------------------------------------------------
-// PYQ-style practice — pools every question marked isPYQ, either within one
-// subject or across all subjects for a given year. These are ORIGINAL
-// practice questions written in the pattern/style/structure reported for
-// that year — never a reproduction of an official paper.
+// Source-based pools. Verified PYQs (sourceType 'PYQ' with a named paper) and
+// PYQ-pattern questions (original, modelled on historical concepts) are kept
+// strictly separate — see src/lib/questionSource.ts.
 // ---------------------------------------------------------------------------
 
-export function pooledPYQQuestions(subjectSlug?: SubjectSlug, year?: number): QuizQuestionItem[] {
+export function pooledBySource(source: SourceType, subjectSlug?: SubjectSlug): QuizQuestionItem[] {
   const pool = subjectSlug ? pooledSubjectQuestions(subjectSlug) : pooledAllSubjectsQuestions()
-  return pool
-    .filter((it) => it.question.isPYQ && (year === undefined || it.question.year === year))
-    .sort((a, b) => a.question.id.localeCompare(b.question.id))
+  return pool.filter((it) => sourceTypeOf(it.question) === source).sort((a, b) => a.question.id.localeCompare(b.question.id))
 }
 
+/** Verified PYQs plus PYQ-pattern questions, optionally for one year. */
+export function pooledPYQQuestions(subjectSlug?: SubjectSlug, year?: number): QuizQuestionItem[] {
+  return [...pooledBySource('PYQ', subjectSlug), ...pooledBySource('PYQ_PATTERN', subjectSlug)].filter(
+    (it) => year === undefined || it.question.year === year,
+  )
+}
+
+/** Years that have verified or pattern questions tagged with a year. */
 export function pyqYears(): number[] {
   const years = new Set<number>()
-  for (const it of pooledAllSubjectsQuestions()) {
-    if (it.question.isPYQ && it.question.year) years.add(it.question.year)
-  }
+  for (const it of pooledPYQQuestions()) if (it.question.year) years.add(it.question.year)
   return [...years].sort((a, b) => b - a)
-}
-
-export interface MockSectionRuntime {
-  section: MockSection
-  items: QuizQuestionItem[]
-}
-
-function sectionPool(section: MockSection): QuizQuestionItem[] {
-  if (section.subject && section.topicId) return buildTopicQuiz(section.subject, section.topicId)
-  if (section.subject) return pooledSubjectQuestions(section.subject)
-  return pooledAllSubjectsQuestions()
-}
-
-/** Build randomized, non-repeating question sets for every section of a mock/grand test. */
-export function buildMockQuestions(config: MockTestConfig): MockSectionRuntime[] {
-  return config.sections.map((section) => {
-    const pool = shuffle(sectionPool(section))
-    const items = pool.slice(0, Math.min(section.questionCount, pool.length))
-    return { section, items }
-  })
 }
 
 /** Look up a single question (with its subject/topic context) by id, searching every subject. */
@@ -143,21 +130,8 @@ export function findQuestionItem(questionId: string): QuizQuestionItem | null {
   for (const subject of subjects) {
     for (const topic of subject.topics) {
       const question = topic.questions.find((q) => q.id === questionId)
-      if (question) return { question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name }
+      if (question) return { question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name, topicId: topic.id }
     }
   }
   return null
-}
-
-/**
- * Rebuild the exact same mock/grand-test question set from a previously-saved
- * list of question ids (one array per section) — used to resume a test after
- * a refresh without re-rolling a fresh random question set.
- */
-export function buildMockQuestionsFromIds(config: MockTestConfig, sectionQuestionIds: string[][]): MockSectionRuntime[] {
-  return config.sections.map((section, i) => {
-    const ids = sectionQuestionIds[i] ?? []
-    const items = ids.map((id) => findQuestionItem(id)).filter((it): it is QuizQuestionItem => it !== null)
-    return { section, items }
-  })
 }

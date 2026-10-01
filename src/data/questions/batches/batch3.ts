@@ -1,0 +1,257 @@
+import type { SubjectSlug } from '../../../types'
+import type { BatchAdditions } from './batch1'
+import { q } from './helpers'
+
+/**
+ * INI-CET question batch 3 — Anatomy, Physiology, Biochemistry, Microbiology.
+ * All questions are ORIGINAL; none is presented as an actual INI-CET question.
+ * Correct answer is written first; display order is randomised.
+ */
+
+// ============================================================================ ANATOMY
+const anatomy: BatchAdditions = {
+  addTo: {
+    'upper-limb-thorax': [
+      q('anat-103',
+        'After a difficult breech delivery, a newborn’s right hand is held in a claw posture with wasting of the intrinsic muscles over the following weeks, and the right pupil is smaller with mild ptosis. Which part of the brachial plexus is injured?',
+        ["Lower trunk (C8–T1)", "Upper trunk (C5–C6)", "Posterior cord of the plexus", "Lateral cord of the plexus"],
+        'Traction on an abducted arm injures the lower trunk (C8–T1): Klumpke palsy. It weakens the intrinsic hand muscles (claw hand) and causes sensory loss along the medial forearm. Ipsilateral Horner syndrome (miosis, ptosis) means the T1 root is avulsed proximally, interrupting the preganglionic sympathetic fibres to the head. Upper trunk injury (Erb palsy) causes the "waiter’s tip" posture.',
+        { reference: "Snell's Clinical Anatomy; BD Chaurasia's Human Anatomy", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Pediatrics'], system: 'Musculoskeletal', tags: ['brachial-plexus', 'klumpke', 'horner'] }),
+    ],
+    'abdomen-pelvis': [
+      q('anat-107',
+        'For a transvaginal pudendal nerve block during assisted vaginal delivery, which bony landmark guides the needle?',
+        ['Ischial spine', 'Ischial tuberosity', 'Pubic tubercle', 'Sacral promontory'],
+        'The pudendal nerve (S2–S4) leaves the pelvis through the greater sciatic foramen, hooks around the ischial spine and sacrospinous ligament, and re-enters through the lesser sciatic foramen into the pudendal (Alcock) canal. In a transvaginal block the ischial spine is felt per vaginam and local anaesthetic is injected just medial and posterior to it, giving perineal analgesia.',
+        { reference: "Snell's Clinical Anatomy; Williams Obstetrics", difficulty: 'Medium', type: 'standard', integratedSubjects: ['Anatomy', 'Obstetrics & Gynaecology'], system: 'Reproductive & Obstetrics', tags: ['pudendal-nerve', 'perineum', 'regional-block'] }),
+      q('anat-108',
+        'A 2-year-old has painless, brisk, maroon rectal bleeding. Colonoscopy and upper endoscopy are normal. A technetium-99m pertechnetate scan shows a focus of uptake in the right lower abdomen. This lesion is a remnant of the:',
+        ["Vitello-intestinal duct", "Urachus (allantoic remnant)", "Ventral mesogastrium", "Dorsal pancreatic bud remnant"],
+        'A Meckel diverticulum is a persistent part of the vitello-intestinal duct on the antimesenteric border of the ileum (the "rule of 2s": about 2% of people, about 2 feet from the ileocaecal valve, about 2 inches long, often symptomatic before age 2). Ectopic gastric mucosa secretes acid that ulcerates adjacent ileum and causes painless bleeding; pertechnetate is taken up by gastric mucosa, which is why the scan lights up. A persistent urachus causes umbilical urine leak.',
+        { reference: "Langman's Medical Embryology; Bailey & Love", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Surgery'], system: 'Gastrointestinal', tags: ['meckel-diverticulum', 'embryology', 'gi-bleed'] }),
+    ],
+    'head-neck-neuro': [
+      q('anat-104',
+        'A 30-year-old with a boil on the upper lip develops fever, chemosis, proptosis and diplopia. Which eye movement is typically affected first?',
+        ['Abduction, due to abducens (VI) involvement', 'Elevation, due to oculomotor (III) involvement', 'Depression in adduction, due to trochlear (IV) involvement', 'Pupillary constriction, due to sympathetic involvement'],
+        'Facial infection in the "danger triangle" spreads through valveless facial and ophthalmic veins to the cavernous sinus. Cranial nerves III, IV, V1 and V2 run in its lateral wall, but the abducens nerve runs through the middle of the sinus beside the internal carotid artery, so it is usually affected first, giving lateral rectus palsy (failure of abduction).',
+        { reference: "Snell's Clinical Anatomy; BD Chaurasia", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Ophthalmology'], system: 'Nervous system', tags: ['cavernous-sinus', 'abducens', 'cranial-nerves'] }),
+      q('anat-106',
+        'A cricket ball strikes a 19-year-old on the side of the head. After a brief lucid interval he becomes drowsy, and CT shows a biconvex extradural haematoma beneath a fracture at the pterion. The bleeding vessel is a branch of which artery?',
+        ['Maxillary artery', 'Superficial temporal artery', 'Internal carotid artery', 'Occipital artery'],
+        'The pterion, where the frontal, parietal, temporal and sphenoid bones meet, is the thinnest part of the lateral skull and overlies the anterior division of the middle meningeal artery. The middle meningeal artery arises from the first part of the maxillary artery and enters the skull through the foramen spinosum. Arterial bleeding between bone and dura forms a biconvex extradural haematoma limited by suture lines.',
+        { reference: "Snell's Clinical Anatomy", difficulty: 'Medium', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Radiology'], system: 'Nervous system', tags: ['pterion', 'middle-meningeal-artery', 'extradural-haematoma'] }),
+    ],
+  },
+  newTopics: [
+    {
+      id: 'embryology-lower-limb',
+      name: 'Embryology & Lower Limb',
+      description: 'Pharyngeal arches and pouches, developmental anomalies and lower-limb nerve injuries.',
+      questions: [
+        q('anat-101',
+          'A newborn develops tetany on day 3 with serum calcium 6.2 mg/dL. Echocardiography shows truncus arteriosus, and the chest X-ray shows no thymic shadow. Abnormal development of which embryological structures explains these findings?',
+          ['Third and fourth pharyngeal pouches', 'First and second pharyngeal arches', 'First pharyngeal cleft', 'Second pharyngeal pouch'],
+          'DiGeorge syndrome (22q11.2 deletion) disrupts the third and fourth pharyngeal pouches and neural crest migration. The third pouch forms the inferior parathyroids and thymus; the fourth forms the superior parathyroids. This gives hypocalcaemia (absent parathyroids), T-cell deficiency (absent thymus) and conotruncal heart defects, the "CATCH-22" features. The second pouch forms the palatine tonsil, and the first pharyngeal cleft forms the external acoustic meatus.',
+          { reference: "Langman's Medical Embryology", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Pediatrics'], system: 'Paediatrics', tags: ['pharyngeal-pouches', 'digeorge', 'embryology'] }),
+        q('anat-102',
+          'Which muscle develops from the first pharyngeal arch?',
+          ['Tensor tympani', 'Stapedius', 'Stylopharyngeus', 'Cricothyroid'],
+          'First-arch (mandibular) muscles are supplied by the mandibular nerve (V3): the muscles of mastication, mylohyoid, anterior belly of digastric, tensor tympani and tensor veli palatini. Stapedius is a second-arch muscle (facial nerve), stylopharyngeus is third arch (glossopharyngeal), and cricothyroid is fourth arch (superior laryngeal branch of the vagus).',
+          { reference: "Langman's Medical Embryology", difficulty: 'Medium', type: 'standard', system: 'Nervous system', tags: ['pharyngeal-arches', 'embryology'] }),
+        q('anat-105',
+          'A man who sat cross-legged for a long time cannot dorsiflex his right foot or evert it, and sensation is lost over the dorsum of the foot. Inversion is preserved. Where is the nerve most likely compressed?',
+          ['Common peroneal nerve at the neck of the fibula', 'Sciatic nerve at the greater sciatic notch', 'L5 nerve root at the intervertebral foramen', 'Tibial nerve in the popliteal fossa'],
+          'The common peroneal (fibular) nerve winds superficially around the neck of the fibula, where it is easily compressed. Its deep branch supplies the dorsiflexors (foot drop) and its superficial branch the evertors, with sensation over most of the dorsum of the foot. Inversion is preserved because tibialis posterior is supplied by the tibial nerve. An L5 root lesion weakens both eversion and inversion (tibialis posterior is also L5) and often hip abduction.',
+          { reference: "Snell's Clinical Anatomy; BD Chaurasia", difficulty: 'Medium', type: 'clinical-case', integratedSubjects: ['Anatomy', 'Orthopedics'], system: 'Musculoskeletal', tags: ['common-peroneal-nerve', 'foot-drop'] }),
+      ],
+    },
+  ],
+}
+
+// ============================================================================ PHYSIOLOGY
+const physiology: BatchAdditions = {
+  addTo: {
+    'cvs-resp': [
+      q('phys-101',
+        'On a left-ventricular pressure–volume loop, what happens immediately after a sudden rise in afterload, with preload and contractility unchanged?',
+        ['End-systolic volume rises and stroke volume falls', 'End-diastolic volume falls and stroke volume rises', 'The loop shifts left with a larger stroke volume', 'End-systolic volume falls and ejection fraction rises'],
+        'Higher afterload raises the aortic pressure the ventricle must exceed, so the aortic valve opens later and ejection stops sooner, at a higher end-systolic volume (the end-systolic point moves along the unchanged end-systolic pressure–volume line). The loop becomes taller and narrower: stroke volume and ejection fraction fall. Increased contractility does the opposite, shifting the end-systolic line up and left.',
+        { reference: "Guyton & Hall Textbook of Medical Physiology", difficulty: 'Hard', type: 'standard', system: 'Cardiovascular', tags: ['pressure-volume-loop', 'afterload', 'cardiac-cycle'] }),
+      q('phys-102',
+        'A patient’s hypoxaemia barely improves when breathing 100% oxygen. Which mechanism best explains this?',
+        ['Right-to-left shunt', 'Alveolar hypoventilation', 'Low ventilation–perfusion (V/Q) units', 'Diffusion impairment'],
+        'In a true shunt (V/Q = 0) blood passes through unventilated alveoli or bypasses the lungs entirely, so extra inspired oxygen never meets it and PaO2 rises very little. Hypoxaemia from low V/Q units, hypoventilation or diffusion limitation improves markedly with supplemental oxygen. Examples of shunt include intracardiac right-to-left shunts, collapsed or consolidated lung, and ARDS.',
+        { reference: "West's Respiratory Physiology; Guyton & Hall", difficulty: 'Medium', type: 'standard', system: 'Respiratory', tags: ['shunt', 'v-q', 'hypoxaemia'] }),
+      q('phys-103',
+        'At sea level (barometric pressure 760 mmHg) on room air, a patient has PaO2 60 mmHg and PaCO2 40 mmHg. Using a respiratory quotient of 0.8 and water vapour pressure of 47 mmHg, what is the alveolar–arterial (A–a) oxygen gradient?',
+        ['About 40 mmHg — raised', 'About 10 mmHg — normal', 'About 90 mmHg — raised', 'About 60 mmHg — raised'],
+        'Alveolar PO2 = FiO2 × (Patm − PH2O) − PaCO2 / RQ = 0.21 × (760 − 47) − 40 / 0.8 = 149.7 − 50 ≈ 100 mmHg. A–a gradient = 100 − 60 ≈ 40 mmHg, above the normal of roughly 5–15 mmHg in young adults (about age/4 + 4). A raised gradient with a normal PaCO2 points to V/Q mismatch, shunt or diffusion impairment rather than pure hypoventilation, which keeps the gradient normal.',
+        { reference: "West's Respiratory Physiology", difficulty: 'Hard', type: 'standard', integratedSubjects: ['Physiology', 'Medicine'], system: 'Respiratory', tags: ['a-a-gradient', 'alveolar-gas-equation', 'calculation'] }),
+      q('phys-108',
+        'A patient has haemoglobin 10 g/dL, SaO2 98% and PaO2 100 mmHg. What is the arterial oxygen content?',
+        ['About 13.4 mL O2/dL', 'About 13.1 mL O2/dL', 'About 14.7 mL O2/dL', 'About 16.4 mL O2/dL'],
+        'CaO2 = (1.34 × Hb × SaO2) + (0.003 × PaO2) = (1.34 × 10 × 0.98) + (0.003 × 100) = 13.13 + 0.30 ≈ 13.4 mL O2/dL. Almost all of the oxygen is carried bound to haemoglobin; dissolved oxygen contributes very little. This is why anaemia lowers oxygen content even when SaO2 and PaO2 are normal.',
+        { reference: "Guyton & Hall Textbook of Medical Physiology", difficulty: 'Medium', type: 'standard', system: 'Respiratory', tags: ['oxygen-content', 'calculation'] }),
+    ],
+    'renal-endocrine': [
+      q('phys-104',
+        'A subject has an inulin clearance of 120 mL/min and a para-aminohippurate (PAH) clearance of 600 mL/min. What is the filtration fraction?',
+        ['0.20', '0.50', '5.0', '0.12'],
+        'Inulin clearance measures GFR, and PAH clearance measures effective renal plasma flow (RPF), because PAH is almost completely cleared in one pass by filtration plus secretion. Filtration fraction = GFR / RPF = 120 / 600 = 0.20, close to the normal value of about 20%.',
+        { reference: "Guyton & Hall Textbook of Medical Physiology", difficulty: 'Medium', type: 'standard', system: 'Renal', tags: ['clearance', 'filtration-fraction', 'calculation'] }),
+      q('phys-105',
+        'A woman on long-term lithium has polyuria with dilute urine. During a water deprivation test her urine osmolality stays low, and it rises by less than 10% after desmopressin. What is the mechanism?',
+        ['Collecting-duct resistance to ADH, reducing aquaporin-2 insertion', 'Failure of ADH secretion from the posterior pituitary', 'Excessive water intake suppressing ADH', 'Osmotic diuresis from glycosuria'],
+        'Failure to concentrate urine on water deprivation that is not corrected by desmopressin indicates nephrogenic diabetes insipidus. Lithium enters principal cells through ENaC channels and impairs ADH (V2 receptor) signalling, reducing aquaporin-2 expression in the collecting duct. In central DI, urine osmolality rises sharply (often by more than 50%) after desmopressin. Thiazides and amiloride are used in lithium-induced nephrogenic DI.',
+        { reference: "Guyton & Hall; Harrison's Principles of Internal Medicine", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Physiology', 'Pharmacology'], system: 'Renal', tags: ['diabetes-insipidus', 'lithium', 'aquaporin'] }),
+      q('phys-107',
+        'A 35-year-old woman has central obesity, purple striae and hypertension. Urinary free cortisol is high, plasma ACTH is high-normal, and cortisol fails to suppress with low-dose dexamethasone but falls by more than 50% with high-dose dexamethasone. What is the most likely source of the cortisol excess?',
+        ['An ACTH-secreting pituitary adenoma', 'An ectopic ACTH-secreting tumour', 'A cortisol-secreting adrenal adenoma', 'Exogenous glucocorticoid use'],
+        'ACTH-dependent Cushing syndrome (ACTH not suppressed) points to a pituitary or ectopic source. Pituitary corticotroph adenomas keep partial sensitivity to glucocorticoid feedback, so high-dose dexamethasone suppresses cortisol; ectopic ACTH (e.g. from lung carcinoid or small-cell carcinoma) usually does not. Adrenal adenomas and exogenous steroids suppress ACTH. In practice, pituitary MRI and inferior petrosal sinus sampling confirm the source.',
+        { reference: "Guyton & Hall; Harrison's Principles of Internal Medicine", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Physiology', 'Medicine'], system: 'Endocrine', tags: ['cushing', 'dexamethasone-suppression', 'feedback'] }),
+    ],
+    'nerve-muscle-cns': [
+      q('phys-106',
+        'A 60-year-old smoker has proximal leg weakness that briefly improves after repeated effort, a dry mouth and absent tendon reflexes. On repetitive nerve stimulation at high frequency, the compound muscle action potential increases markedly. What is the underlying defect?',
+        ['Antibodies against presynaptic voltage-gated calcium channels', 'Antibodies against postsynaptic nicotinic acetylcholine receptors', 'Inhibition of acetylcholinesterase', 'Demyelination of peripheral motor nerves'],
+        'Lambert–Eaton myasthenic syndrome, often paraneoplastic with small-cell lung cancer, is caused by antibodies against presynaptic P/Q-type voltage-gated calcium channels, reducing acetylcholine release. Repeated stimulation lets calcium build up in the nerve terminal, so strength and the CMAP increase (facilitation), unlike the decrement seen in myasthenia gravis, which is due to postsynaptic AChR antibodies. Autonomic features (dry mouth) and reduced reflexes are typical.',
+        { reference: "Guyton & Hall; Harrison's Principles of Internal Medicine", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Physiology', 'Medicine'], system: 'Nervous system', tags: ['neuromuscular-junction', 'lambert-eaton', 'paraneoplastic'] }),
+    ],
+  },
+}
+
+// ============================================================================ BIOCHEMISTRY
+const biochemistry: BatchAdditions = {
+  addTo: {
+    'enzymes-metabolism': [
+      q('bioc-104',
+        'A drug reduces the Vmax of an enzyme without changing its Km, and the effect is not overcome by adding more substrate. What type of inhibition is this?',
+        ['Non-competitive inhibition', 'Competitive inhibition', 'Uncompetitive inhibition', 'Suicide (mechanism-based) inhibition'],
+        'A non-competitive inhibitor binds a site other than the active site, equally to free enzyme and the enzyme–substrate complex. It effectively removes active enzyme, so Vmax falls while substrate affinity (Km) is unchanged; on a Lineweaver–Burk plot the lines cross on the x-axis. Competitive inhibition raises Km with the same Vmax. Uncompetitive inhibition lowers both Vmax and Km (parallel lines).',
+        { reference: "Harper's Illustrated Biochemistry; Lippincott Biochemistry", difficulty: 'Medium', type: 'standard', system: 'General principles', tags: ['enzyme-kinetics', 'inhibition'] }),
+      q('bioc-105',
+        'A young woman taking an unregulated "fat-burning" supplement develops high fever, sweating and tachycardia. Her oxygen consumption is markedly raised while ATP synthesis falls. The supplement most likely acts by:',
+        ["Uncoupling of oxidative phosphorylation", "Inhibition of cytochrome c oxidase (complex IV)", "Direct inhibition of ATP synthase (complex V)", "Inhibition of NADH dehydrogenase (complex I)"],
+        'Uncouplers such as 2,4-dinitrophenol carry protons back across the inner mitochondrial membrane, collapsing the proton gradient. The electron transport chain runs faster (oxygen consumption rises) but the energy is released as heat instead of ATP — hence hyperthermia, which can be fatal. Inhibitors of complex IV (cyanide), complex I (rotenone) or ATP synthase (oligomycin) all REDUCE oxygen consumption.',
+        { reference: "Harper's Illustrated Biochemistry; Lippincott Biochemistry", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Biochemistry', 'Forensic Medicine'], system: 'General principles', tags: ['etc', 'uncouplers', 'oxidative-phosphorylation'] }),
+      q('bioc-109',
+        'A 20-year-old gets painful muscle cramps and dark urine during intense exercise; symptoms ease if he rests briefly and then continues ("second wind"). In a forearm exercise test, blood ammonia rises but lactate does not. Which enzyme is deficient?',
+        ["Muscle glycogen phosphorylase", "Hepatic glucose-6-phosphatase", "Lysosomal acid α-glucosidase", "Glycogen debranching enzyme (amylo-1,6-glucosidase)"],
+        'McArdle disease (glycogen storage disease type V) is a deficiency of muscle glycogen phosphorylase, so exercising muscle cannot break down glycogen for glycolysis: no lactate rise on exercise, exercise intolerance, cramps and myoglobinuria. The "second wind" comes as blood glucose and free fatty acids become available. Glucose-6-phosphatase deficiency (von Gierke) causes fasting hypoglycaemia; acid α-glucosidase deficiency (Pompe) causes cardiomyopathy; debranching enzyme deficiency (Cori) affects both liver and muscle.',
+        { reference: "Harper's Illustrated Biochemistry", difficulty: 'Hard', type: 'clinical-case', system: 'Musculoskeletal', tags: ['glycogen-storage-disease', 'mcardle'] }),
+    ],
+    'molecular-genetics': [
+      q('bioc-106',
+        'Which property of the DNA polymerase used in PCR makes repeated amplification cycles possible without adding fresh enzyme each cycle?',
+        ["It is heat-stable through denaturation", "It has 3′→5′ exonuclease proofreading activity", "It needs no primer to begin synthesis", "It can copy an RNA template directly"],
+        'Each PCR cycle denatures DNA at about 94–95 °C, anneals primers at about 50–65 °C and extends at about 72 °C. Taq polymerase from Thermus aquaticus is heat-stable, so it survives denaturation and works through every cycle. Taq actually lacks proofreading activity (high-fidelity polymerases such as Pfu add it), it needs primers like all DNA polymerases, and amplifying RNA requires a reverse-transcription step (RT-PCR).',
+        { reference: "Harper's Illustrated Biochemistry", difficulty: 'Medium', type: 'standard', system: 'General principles', tags: ['pcr', 'molecular-techniques'] }),
+      q('bioc-108',
+        'A boy has intellectual disability, a long face with large ears, macro-orchidism and hyperextensible joints. Molecular testing will most likely show:',
+        ["CGG repeat expansion in FMR1", "CTG repeat expansion in DMPK", "CAG repeat expansion in the HTT coding region", "GAA repeat expansion in the frataxin gene"],
+        'Fragile X syndrome results from more than 200 CGG repeats in the 5′ UTR of FMR1 (full mutation), which leads to hypermethylation and silencing of the gene. Premutations (55–200 repeats) can expand when passed on by the mother. The other repeat disorders are myotonic dystrophy (CTG, DMPK), Huntington disease (CAG, polyglutamine) and Friedreich ataxia (GAA, intronic).',
+        { reference: "Thompson & Thompson Genetics in Medicine; Harper's Illustrated Biochemistry", difficulty: 'Medium', type: 'clinical-case', integratedSubjects: ['Biochemistry', 'Pediatrics'], system: 'Paediatrics', tags: ['trinucleotide-repeat', 'fragile-x'] }),
+    ],
+    'vitamins-nutrition': [
+      q('bioc-107',
+        'A 10-year-old has a photosensitive pellagra-like rash and episodes of cerebellar ataxia. Diet is adequate. Urine shows excess neutral amino acids, with normal plasma levels of these amino acids. What is the defect?',
+        ["Neutral amino acid transporter (SLC6A19)", "Dietary niacin deficiency from maize diet", "Phenylalanine hydroxylase deficiency", "Cystathionine β-synthase deficiency"],
+        'Hartnup disease is an autosomal recessive defect in the B0AT1 transporter (SLC6A19) for neutral amino acids in the kidney and gut. Tryptophan is lost in urine and poorly absorbed, so less is available for endogenous niacin synthesis, producing a pellagra-like rash, ataxia and psychiatric features. It responds to nicotinamide and a high-protein diet. Phenylketonuria and homocystinuria cause raised plasma levels of specific amino acids.',
+        { reference: "Harper's Illustrated Biochemistry", difficulty: 'Hard', type: 'clinical-case', system: 'General principles', tags: ['hartnup', 'niacin', 'amino-acid-transport'] }),
+    ],
+  },
+  newTopics: [
+    {
+      id: 'inborn-errors',
+      name: 'Inborn Errors of Metabolism',
+      description: 'Urea cycle, lysosomal storage and other metabolic disorders.',
+      questions: [
+        q('bioc-101',
+          'A 3-day-old boy, well at birth, becomes lethargic and starts vomiting. Plasma ammonia is 450 µmol/L, there is respiratory alkalosis, blood glucose is normal, and urinary orotic acid is markedly raised. A maternal uncle died in the newborn period. Which enzyme is most likely deficient?',
+          ['Ornithine transcarbamylase', 'Carbamoyl phosphate synthetase I', 'UMP synthase (hereditary orotic aciduria)', 'Argininosuccinate lyase'],
+          'Neonatal hyperammonaemia with respiratory alkalosis suggests a urea cycle disorder. In OTC deficiency, carbamoyl phosphate cannot enter the urea cycle and spills into pyrimidine synthesis, raising orotic acid; OTC deficiency is X-linked, which fits a male infant with an affected maternal uncle. CPS-I deficiency gives low or normal orotic acid. Hereditary orotic aciduria causes megaloblastic anaemia without hyperammonaemia. Argininosuccinate lyase deficiency raises argininosuccinic acid and causes trichorrhexis nodosa.',
+          { reference: "Harper's Illustrated Biochemistry; Nelson Textbook of Pediatrics", difficulty: 'Expert', type: 'clinical-case', integratedSubjects: ['Biochemistry', 'Pediatrics'], system: 'Paediatrics', tags: ['urea-cycle', 'otc-deficiency', 'hyperammonaemia'], clinicalPearl: 'Hyperammonaemia + high orotic acid = OTC; + low orotic acid = CPS-I.' }),
+        q('bioc-102',
+          'A 25-year-old has massive splenomegaly, episodes of severe bone pain and pancytopenia. Bone-marrow macrophages have abundant "crumpled tissue paper" cytoplasm. Which enzyme is deficient, and what is the established specific therapy?',
+          ['Glucocerebrosidase; enzyme replacement with imiglucerase', 'Sphingomyelinase; hematopoietic stem cell transplant', 'Hexosaminidase A; substrate reduction with miglustat', 'α-Galactosidase A; enzyme replacement with agalsidase'],
+          'Type 1 Gaucher disease, the commonest lysosomal storage disorder, is due to glucocerebrosidase deficiency: glucocerebroside accumulates in macrophages (Gaucher cells with crumpled-paper cytoplasm), causing hepatosplenomegaly, cytopenias and bone crises. Recombinant enzyme replacement (imiglucerase, velaglucerase) is established therapy, with substrate-reduction drugs (eliglustat) as an alternative. Sphingomyelinase deficiency is Niemann–Pick disease, hexosaminidase A deficiency is Tay–Sachs, and α-galactosidase A deficiency is Fabry disease.',
+          { reference: "Harper's Illustrated Biochemistry; Robbins & Cotran", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Biochemistry', 'Pathology'], system: 'Haematology', tags: ['lysosomal-storage', 'gaucher', 'enzyme-replacement'] }),
+        q('bioc-103',
+          'A 6-month-old has developmental regression, hepatosplenomegaly and a cherry-red spot at the macula. Which enzyme is most likely deficient?',
+          ['Sphingomyelinase', 'Hexosaminidase A', 'Glucocerebrosidase', 'Galactocerebrosidase'],
+          'A cherry-red spot occurs in both Niemann–Pick disease type A and Tay–Sachs disease, but hepatosplenomegaly separates them: Niemann–Pick (sphingomyelinase deficiency, with foam cells) has organomegaly, whereas Tay–Sachs (hexosaminidase A deficiency) does not. Gaucher disease causes organomegaly without a cherry-red spot, and Krabbe disease (galactocerebrosidase deficiency) causes leukodystrophy with globoid cells.',
+          { reference: "Harper's Illustrated Biochemistry; Nelson Textbook of Pediatrics", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Biochemistry', 'Pediatrics'], system: 'Paediatrics', tags: ['lysosomal-storage', 'niemann-pick', 'cherry-red-spot'] }),
+      ],
+    },
+  ],
+}
+
+// ============================================================================ MICROBIOLOGY
+const micro: BatchAdditions = {
+  addTo: {
+    bacteriology: [
+      q('micro-101',
+        'During a monsoon outbreak, a man has profuse painless "rice-water" stools and severe dehydration. Stool culture on TCBS agar grows yellow, sucrose-fermenting colonies of oxidase-positive, curved Gram-negative rods. What is the organism?',
+        ['Vibrio cholerae', 'Vibrio parahaemolyticus', 'Enterotoxigenic Escherichia coli', 'Campylobacter jejuni'],
+        'Thiosulfate–citrate–bile salts–sucrose (TCBS) agar is selective for vibrios. V. cholerae ferments sucrose, giving yellow colonies, whereas V. parahaemolyticus does not (green colonies) and is linked to seafood. Cholera toxin raises cAMP in enterocytes, driving secretory diarrhoea. ETEC also causes watery diarrhoea but does not grow as yellow colonies on TCBS, and Campylobacter is a curved rod causing bloody diarrhoea.',
+        { reference: "Ananthanarayan & Paniker's Textbook of Microbiology", difficulty: 'Medium', type: 'clinical-case', system: 'Infectious disease', tags: ['vibrio', 'culture-media', 'tcbs'] }),
+      q('micro-102',
+        'A farmer has fever, severe calf muscle tenderness and conjunctival suffusion 10 days after wading through flood water. He then develops jaundice, oliguria and haemoptysis. What is the most likely organism, and how is it acquired?',
+        ["Leptospira interrogans, via water contaminated with rodent urine", "Orientia tsutsugamushi, via the bite of a larval trombiculid mite", "Hepatitis E virus, via faecally contaminated drinking water", "Plasmodium falciparum, via the bite of a female Anopheles mosquito"],
+        'Weil disease (severe leptospirosis) combines jaundice, acute kidney injury and pulmonary haemorrhage after exposure to water contaminated with the urine of rodents and other animals, which is common after floods and in rice farmers. Calf tenderness and conjunctival suffusion are characteristic. Severe disease is treated with IV penicillin G or ceftriaxone, and mild disease with doxycycline. Scrub typhus causes an eschar, and hepatitis E does not cause calf tenderness or haemoptysis.',
+        { reference: "Ananthanarayan & Paniker's; Harrison's Principles of Internal Medicine", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Infectious disease', tags: ['leptospirosis', 'zoonosis', 'acute-febrile-illness'] }),
+      q('micro-103',
+        'A 35-year-old from a rural hilly area has had 7 days of fever, headache and generalised lymphadenopathy. There is a painless black eschar with a red rim in the groin. Platelets are low and liver enzymes raised. What is the drug of choice?',
+        ['Doxycycline', 'Ceftriaxone', 'Ciprofloxacin', 'Chloroquine'],
+        'Fever with an eschar (often in skin folds such as the groin or axilla) and lymphadenopathy suggests scrub typhus, caused by Orientia tsutsugamushi and transmitted by larval trombiculid mites (chiggers). It is a leading cause of acute febrile illness in India and can cause ARDS, myocarditis and meningoencephalitis. Doxycycline is the drug of choice (azithromycin in pregnancy and young children); β-lactams are ineffective because Orientia is intracellular and lacks peptidoglycan. Diagnosis is by IgM ELISA or PCR.',
+        { reference: "Ananthanarayan & Paniker's; ICMR guidance on scrub typhus", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Infectious disease', tags: ['scrub-typhus', 'rickettsia', 'eschar'] }),
+      q('micro-108',
+        'Two weeks after a streptococcal sore throat, a child develops haematuria, oedema and hypertension with low C3. What type of hypersensitivity reaction causes this?',
+        ['Type III (immune-complex mediated)', 'Type I (IgE mediated)', 'Type II (antibody against fixed antigen)', 'Type IV (T-cell mediated, delayed)'],
+        'Post-streptococcal glomerulonephritis is a type III reaction: circulating or in-situ immune complexes of streptococcal antigen and antibody deposit in glomeruli (subepithelial humps), activate complement (low C3) and cause inflammation. Acute rheumatic fever, by contrast, is a type II reaction caused by molecular mimicry. The tuberculin (PPD) reaction is type IV.',
+        { reference: "Ananthanarayan & Paniker's; Robbins & Cotran", difficulty: 'Medium', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Pathology'], system: 'Renal', tags: ['hypersensitivity', 'immunology', 'psgn'] }),
+      q('micro-109',
+        'An inpatient develops hospital-acquired Clostridioides difficile diarrhoea. Which hand-hygiene practice should staff use after caring for this patient?',
+        ['Wash hands with soap and water', 'Alcohol-based hand rub only', 'Chlorhexidine alcohol rub only', 'Hand hygiene is unnecessary if gloves are worn'],
+        'C. difficile forms spores, which alcohol does not kill. Mechanical washing with soap and running water removes spores from the hands, so contact precautions (gloves, gown) and soap-and-water hand washing are used, with sporicidal (chlorine-based) cleaning of the environment. Gloves reduce but do not remove the need for hand hygiene after removal.',
+        { reference: 'WHO Guidelines on Hand Hygiene in Health Care; CDC infection-control guidance', difficulty: 'Medium', type: 'standard', system: 'Infectious disease', tags: ['infection-control', 'hand-hygiene', 'c-difficile'] }),
+    ],
+    virology: [
+      q('micro-104',
+        'A 6-week-old infant is born to a mother with HIV infection. Which test is used to diagnose HIV infection in the infant?',
+        ["HIV-1 DNA PCR", "HIV antibody ELISA", "HIV antibody rapid card test", "CD4 T-cell count"],
+        'Maternal IgG antibodies cross the placenta and can persist for up to 18 months, so antibody tests cannot diagnose HIV in infants. Nucleic acid testing (HIV-1 DNA PCR on dried blood spots, under the NACO Early Infant Diagnosis programme) is used from 6 weeks, with confirmatory testing; antibody testing becomes reliable after 18 months. CD4 count does not diagnose infection.',
+        { reference: "Ananthanarayan & Paniker's; NACO Early Infant Diagnosis guidelines", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Pediatrics'], system: 'Infectious disease', tags: ['hiv', 'early-infant-diagnosis'] }),
+      q('micro-105',
+        'A patient recovering from acute hepatitis has these results: HBsAg negative, anti-HBs negative, IgM anti-HBc positive. How should this be interpreted?',
+        ['Window period of acute hepatitis B infection', 'Immunity from hepatitis B vaccination', 'Chronic hepatitis B carrier state', 'No exposure to hepatitis B'],
+        'In the window period, HBsAg has been cleared but anti-HBs is not yet detectable; IgM anti-HBc is then the only marker of acute infection. Vaccination produces anti-HBs only (anti-HBc is negative, because the vaccine contains surface antigen alone). Chronic infection shows persistent HBsAg with IgG anti-HBc. Recovered past infection shows anti-HBs with IgG anti-HBc.',
+        { reference: "Ananthanarayan & Paniker's; Harrison's", difficulty: 'Expert', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Infectious disease', tags: ['hepatitis-b', 'serology', 'window-period'] }),
+      q('micro-110',
+        'A patient presents on the second day of an acute febrile illness during a dengue outbreak. Which test is most appropriate to confirm dengue at this stage?',
+        ['NS1 antigen detection', 'IgG antibody ELISA', 'IgM antibody ELISA', 'Haemagglutination inhibition on paired sera'],
+        'NS1 antigen (or RT-PCR) is detectable from day 1 to about day 5 of illness, so it is the test of choice early on. IgM antibodies usually appear after day 5, so an early IgM test may be falsely negative. IgG indicates past or secondary infection, and paired-serum tests are retrospective. Under the national vector-borne disease programme, NS1 ELISA is used up to day 5 and MAC-ELISA (IgM) after day 5.',
+        { reference: "Ananthanarayan & Paniker's; NCVBDC dengue guidelines", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Infectious disease', tags: ['dengue', 'ns1', 'diagnostic-tests'] }),
+    ],
+    'parasitology-mycology': [
+      q('micro-106',
+        'A 55-year-old with poorly controlled diabetes presents in ketoacidosis with facial pain, nasal discharge and a black necrotic eschar on the palate. Biopsy shows broad, ribbon-like, pauci-septate hyphae branching at right angles. Along with surgical debridement, which antifungal is first-line?',
+        ["Liposomal amphotericin B", "Voriconazole", "High-dose fluconazole", "Caspofungin"],
+        'Broad, ribbon-like, pauci-septate hyphae with right-angle branching invading tissue indicate mucormycosis (Mucorales such as Rhizopus), favoured by DKA, iron overload and high-dose steroids (seen widely in India during COVID-19). Treatment is urgent surgical debridement, correction of the underlying condition and liposomal amphotericin B; isavuconazole or posaconazole are used for step-down or salvage. Voriconazole has no activity against Mucorales, and fluconazole and echinocandins are ineffective.',
+        { reference: "Ananthanarayan & Paniker's; ECMM/MSG Global Guideline for Mucormycosis", difficulty: 'Expert', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Infectious disease', tags: ['mucormycosis', 'fungal-morphology', 'antifungals'] }),
+      q('micro-107',
+        'A strictly vegetarian woman who has never eaten pork has new-onset seizures. MRI shows several small cystic brain lesions, one containing an eccentric dot (scolex). How did she most likely acquire this infection?',
+        ["Ingesting T. solium eggs (faecal–oral)", "Eating undercooked pork with cysticerci", "Skin penetration by larvae in moist soil", "The bite of an infected Phlebotomus sandfly"],
+        'Neurocysticercosis is caused by the larval stage of Taenia solium. Humans become intermediate hosts by INGESTING EGGS through faecal–oral contamination from a person carrying the adult tapeworm (or by autoinfection), so it occurs in vegetarians too. Eating undercooked pork containing cysticerci causes intestinal taeniasis (adult worm), not cysticercosis. Neurocysticercosis is a leading cause of acquired epilepsy in India.',
+        { reference: "Ananthanarayan & Paniker's; Paniker's Textbook of Medical Parasitology", difficulty: 'Hard', type: 'clinical-case', integratedSubjects: ['Microbiology', 'Medicine'], system: 'Nervous system', tags: ['neurocysticercosis', 'taenia-solium', 'parasite-life-cycle'], clinicalPearl: 'Pork → tapeworm (taeniasis); eggs → cysticercosis.' }),
+    ],
+  },
+}
+
+export const batch3: Partial<Record<SubjectSlug, BatchAdditions>> = {
+  anatomy,
+  physiology,
+  biochemistry,
+  microbiology: micro,
+}

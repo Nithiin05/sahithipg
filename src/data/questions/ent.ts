@@ -19,7 +19,7 @@ export const entTopics: Topic[] = [
         explanation:
           'A negative Rinne (BC > AC) indicates conductive hearing loss in that ear; Weber lateralizing TO the affected ear confirms a conductive process (sound is perceived louder in the ear with impaired air conduction pathway). In sensorineural loss, Weber lateralizes AWAY from the affected ear.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Easy',
+        difficulty: 'Medium',
         type: 'standard',
         tags: ['hearing-tests'],
       },
@@ -39,40 +39,38 @@ export const entTopics: Topic[] = [
         difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['cholesteatoma'],
-        isPYQ: true,
-        year: 2023,
       },
       {
         id: 'ent-3',
         text: 'A patient presents with sudden severe vertigo, nausea, and brief episodes of torsional (rotatory) nystagmus lasting seconds to a minute, triggered by head position changes (e.g., rolling over in bed), with a positive Dix-Hallpike test. The diagnosis is:',
         options: [
-          'Vestibular schwannoma',
-          'Acute vestibular neuritis',
-          "Meniere's disease",
-          'Benign paroxysmal positional vertigo (BPPV)',
+          "Benign paroxysmal positional vertigo",
+          "Acute vestibular neuritis",
+          "Ménière's disease",
+          "Vestibular schwannoma",
         ],
-        correctIndex: 3,
+        correctIndex: 0,
         explanation:
           'BPPV, caused by displaced otoconia (canalithiasis) in the semicircular canals — most commonly the posterior canal — produces brief, positionally-triggered vertigo with torsional, upbeating nystagmus, confirmed by a positive Dix-Hallpike maneuver; it is managed with canalith repositioning maneuvers (e.g., Epley maneuver) rather than long-term medication.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['bppv', 'vertigo'],
       },
       {
         id: 'ent-4',
-        text: "Assertion (A): Meniere's disease presents with the triad of episodic vertigo, sensorineural hearing loss, and tinnitus.\nReason (R): It results from endolymphatic hydrops (excess endolymph in the inner ear).",
+        text: "Assertion (A): Meniere's disease presents with episodic vertigo, fluctuating sensorineural hearing loss and tinnitus.\nReason (R): Meniere's disease most commonly begins in adults aged 40–60 years.",
         options: [
-          'Both A and R are true, and R is the correct explanation of A',
-          'Both A and R are true, but R is NOT the correct explanation of A',
-          'A is true but R is false',
-          'A is false but R is true',
+          "Both A and R are true, and R is the correct explanation of A",
+          "Both A and R are true, but R is NOT the correct explanation of A",
+          "A is true but R is false",
+          "A is false but R is true",
         ],
-        correctIndex: 0,
+        correctIndex: 1,
         explanation:
-          "Meniere's disease is attributed to endolymphatic hydrops — excess accumulation of endolymph distending the membranous labyrinth — producing the classic triad of episodic vertigo, fluctuating low-frequency sensorineural hearing loss, and tinnitus, often with a sensation of aural fullness.",
+          "Both are true, but R does not explain A. The symptoms arise from endolymphatic hydrops distending the membranous labyrinth. R is an epidemiological fact about age of onset.",
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'assertion-reason',
         tags: ['menieres-disease'],
       },
@@ -113,11 +111,9 @@ export const entTopics: Topic[] = [
         explanation:
           'Persistent purulent nasal discharge and facial pain beyond 10 days (or worsening after initial improvement — "double-worsening") favors acute bacterial rhinosinusitis over a simple viral URI, which typically improves within 7-10 days.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['sinusitis'],
-        isPYQ: true,
-        year: 2022,
       },
       {
         id: 'ent-7',
@@ -132,7 +128,7 @@ export const entTopics: Topic[] = [
         explanation:
           'Bilateral nasal polyps in a child/young adult, especially with recurrent chest infections and failure to thrive, should prompt evaluation for cystic fibrosis, which causes thick mucus predisposing to chronic sinonasal and pulmonary disease.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['nasal-polyps', 'cystic-fibrosis'],
       },
@@ -149,7 +145,7 @@ export const entTopics: Topic[] = [
         explanation:
           'Maxillary and ethmoid sinuses are present (though small) at birth; the frontal sinus begins developing around age 7-8 and continues into adolescence; the sphenoid sinus pneumatizes gradually, reaching adult size around puberty — relevant to why frontal/sphenoid sinusitis is rare in young children.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Expert',
+        difficulty: 'Medium',
         type: 'match-following',
         tags: ['paranasal-sinus-development'],
         matchPairs: [
@@ -167,19 +163,19 @@ export const entTopics: Topic[] = [
     questions: [
       {
         id: 'ent-9',
-        text: 'A child has recurrent severe tonsillitis (7+ episodes/year) causing school absence. The most appropriate management per standard indications is:',
+        text: "A 9-year-old has had 7 documented episodes of severe tonsillitis in the past year, each treated with antibiotics and causing school absence. The most appropriate next step is:",
         options: [
-          'No treatment is ever indicated regardless of frequency',
-          'Immediate radiotherapy',
-          'Tonsillectomy (per Paradise criteria)',
-          'Lifelong prophylactic antibiotics as the only option',
+          "Tonsillectomy, as the episode frequency meets the Paradise criteria",
+          "Watchful waiting for another 12 months before considering surgery",
+          "Long-term penicillin prophylaxis as definitive management",
+          "Adenoidectomy alone",
         ],
-        correctIndex: 2,
+        correctIndex: 0,
         explanation:
-          'Tonsillectomy is indicated for recurrent tonsillitis meeting criteria such as the Paradise criteria (e.g., ≥7 episodes in 1 year, or ≥5/year for 2 years, or ≥3/year for 3 years) due to significant impact on quality of life/school attendance.',
+          "Recurrent tonsillitis meeting the Paradise criteria (≥7 documented episodes in 1 year, ≥5 per year for 2 years, or ≥3 per year for 3 years) is an accepted indication for tonsillectomy. Watchful waiting is advised for children with fewer episodes. Long-term antibiotic prophylaxis is not a definitive treatment, and adenoidectomy alone does not address recurrent tonsillitis.",
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
         difficulty: 'Easy',
-        type: 'guideline',
+        type: 'clinical-case',
         tags: ['tonsillectomy'],
       },
       {
@@ -195,11 +191,9 @@ export const entTopics: Topic[] = [
         explanation:
           'Hoarseness persisting beyond 2-3 weeks, particularly in smokers/heavy alcohol users, is a red flag warranting laryngoscopy to exclude laryngeal carcinoma, since early glottic cancers often present with isolated, persistent voice change.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Medium',
+        difficulty: 'Easy',
         type: 'clinical-case',
         tags: ['laryngeal-cancer'],
-        isPYQ: true,
-        year: 2024,
       },
       {
         id: 'ent-11',
@@ -214,7 +208,7 @@ export const entTopics: Topic[] = [
         explanation:
           'Peritonsillar abscess classically causes trismus (difficulty opening the mouth from pterygoid muscle irritation), a muffled "hot potato" voice, severe throat pain, and deviation of the uvula away from the affected, bulging peritonsillar region — requiring drainage plus antibiotics.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat",
-        difficulty: 'Hard',
+        difficulty: 'Medium',
         type: 'clinical-case',
         tags: ['peritonsillar-abscess'],
       },
@@ -231,7 +225,7 @@ export const entTopics: Topic[] = [
         explanation:
           'Both statements are independently true — tobacco/alcohol remain the classic risk factors for most head and neck squamous cell carcinomas, and HPV-16 driven oropharyngeal cancer is a distinct, growing subgroup with better prognosis — but R describes a separate epidemiological subtype rather than explaining WHY tobacco/alcohol-related cancers occur, so it is not the direct explanation of A.',
         reference: "Dhingra's Diseases of Ear, Nose and Throat / Harrison's",
-        difficulty: 'Expert',
+        difficulty: 'Hard',
         type: 'assertion-reason',
         tags: ['head-neck-cancer', 'hpv'],
       },

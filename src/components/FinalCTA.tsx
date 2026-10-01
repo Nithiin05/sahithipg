@@ -8,13 +8,13 @@ export default function FinalCTA() {
           Get started today
         </span>
         <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.8rem, 5vw, 2.6rem)', letterSpacing: '-0.02em' }}>
-          Your NEET PG 2026 attempt starts here.
+          Your INI-CET November 2026 attempt starts here.
         </h2>
         <p className="text-muted-foreground mt-4 max-w-md mx-auto">
-          Completely free — no sign-up, no paywalls. Just open a Grand Test and start practicing.
+          Completely free — no sign-up, no paywalls. Open a full INI-CET mock and see where you stand.
         </p>
         <Link
-          to="/grand-tests"
+          to="/tests"
           className="inline-block mt-8 gradient-primary text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm"
         >
           Start Free Mock

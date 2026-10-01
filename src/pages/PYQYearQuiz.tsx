@@ -10,6 +10,7 @@ import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
 import type { AttemptRecord, SubjectSlug } from '../types'
+import { examConfig } from '../config/examConfig'
 
 export default function PYQYearQuiz() {
   const { year: yearParam } = useParams()
@@ -55,7 +56,7 @@ export default function PYQYearQuiz() {
     setBookmarkTick((t) => t + 1)
   }
 
-  const label = `PYQ-Style ${year}${subject ? ` · ${subject.shortName}` : ''}`
+  const label = `PYQ ${year}${subject ? ` · ${subject.shortName}` : ''}`
 
   const submit = () => {
     const durationSec = Math.round((Date.now() - startTime) / 1000)
@@ -65,8 +66,8 @@ export default function PYQYearQuiz() {
       label,
       items,
       answers,
-      marksCorrect: 4,
-      marksWrong: 1,
+      marksCorrect: examConfig.marking.correct,
+      marksWrong: examConfig.marking.wrong,
       durationSec,
       sourceRoute: `/pyqs/${year}${subjectSlug ? `?subject=${subjectSlug}` : ''}`,
     })
@@ -132,7 +133,7 @@ export default function PYQYearQuiz() {
     <div className="pb-20">
       <PageHeader
         eyebrow={label}
-        title="PYQ-Style Practice"
+        title="PYQ Practice"
         description={`${items.length} questions · untimed`}
         actions={
           <button onClick={submit} className="bg-primary text-primary-foreground rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90">

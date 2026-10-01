@@ -5,8 +5,10 @@ import ExamPattern from '../components/ExamPattern'
 import HowItWorks from '../components/HowItWorks'
 import FinalCTA from '../components/FinalCTA'
 import ResumeBanner from '../components/ResumeBanner'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function Home() {
+  usePageTitle()
   return (
     <>
       <Hero />

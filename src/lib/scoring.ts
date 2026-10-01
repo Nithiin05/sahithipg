@@ -15,8 +15,11 @@ export function computeAttempt(params: {
   grandTestId?: string
   /** Per-question time spent, keyed by question id — enables speed vs. accuracy analytics. */
   timeSpent?: Record<string, number | undefined>
+  /** Questions marked for review at submission. */
+  marked?: Record<string, boolean | undefined>
+  testId?: string
 }): AttemptRecord {
-  const { kind, label, items, answers, marksCorrect, marksWrong, durationSec, sourceRoute, mockKind, grandTestId, timeSpent } = params
+  const { kind, label, items, answers, marksCorrect, marksWrong, durationSec, sourceRoute, mockKind, grandTestId, timeSpent, marked, testId } = params
   let correct = 0
   let wrong = 0
   let skipped = 0
@@ -35,6 +38,7 @@ export function computeAttempt(params: {
         correctIndex: item.question.correctIndex,
         isCorrect: null,
         timeSpentSec,
+        marked: !!marked?.[item.question.id],
       }
     }
     const isCorrect = selected === item.question.correctIndex
@@ -49,6 +53,7 @@ export function computeAttempt(params: {
       correctIndex: item.question.correctIndex,
       isCorrect,
       timeSpentSec,
+      marked: !!marked?.[item.question.id],
     }
   })
 
@@ -72,6 +77,7 @@ export function computeAttempt(params: {
     sourceRoute,
     mockKind,
     grandTestId,
+    testId,
     marksCorrect,
     marksWrong,
   }

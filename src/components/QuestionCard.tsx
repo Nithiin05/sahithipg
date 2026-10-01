@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Bookmark, Lightbulb, Maximize2, Sparkles, X } from 'lucide-react'
-import type { Question } from '../types'
+import type { Question, SourceType } from '../types'
+import { SOURCE_LABELS, sourceLine, sourceTypeOf } from '../lib/questionSource'
+import { DIFFICULTY_LABELS } from '../lib/difficulty'
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
@@ -19,13 +21,21 @@ const TYPE_LABELS: Record<string, string> = {
   inicet: 'INI-CET Pattern',
 }
 
+const SOURCE_STYLES: Record<SourceType, string> = {
+  PYQ: 'bg-success-bg text-success',
+  PYQ_PATTERN: 'bg-primary/10 text-primary',
+  PRACTICE: 'bg-secondary text-muted-foreground',
+  IMAGE: 'bg-accent/10 text-accent',
+  INTEGRATED: 'bg-warning-bg text-warning',
+}
+
 function ImageViewer({ src, alt, onClose }: { src: string; alt?: string; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6" onClick={onClose}>
       <button className="absolute top-5 right-5 text-white/80 hover:text-white" onClick={onClose} aria-label="Close">
         <X size={28} />
       </button>
-      <img src={src} alt={alt ?? ''} className="max-w-full max-h-full rounded-lg" onClick={(e) => e.stopPropagation()} />
+      <img src={src} alt={alt ?? ''} className="w-full max-w-6xl max-h-full object-contain rounded-lg bg-white" onClick={(e) => e.stopPropagation()} />
     </div>
   )
 }
@@ -52,6 +62,7 @@ export default function QuestionCard({
 }) {
   const [zoomed, setZoomed] = useState(false)
   const typeLabel = question.type && question.type !== 'standard' ? TYPE_LABELS[question.type] : undefined
+  const source = sourceTypeOf(question)
 
   return (
     <div className="card p-6">
@@ -61,8 +72,11 @@ export default function QuestionCard({
             Question {index + 1} of {total}
           </span>
           {typeLabel && <span className="tag bg-accent/10 text-accent font-semibold">{typeLabel}</span>}
-          {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{question.difficulty}</span>}
-          {question.isPYQ && <span className="tag bg-primary/10 text-primary font-semibold">PYQ-style{question.year ? ` · ${question.year}` : ''}</span>}
+          {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{DIFFICULTY_LABELS[question.difficulty]}</span>}
+          <span className={`tag font-semibold ${SOURCE_STYLES[source]}`} title={sourceLine(question)}>
+            {SOURCE_LABELS[source].label}
+            {source === 'PYQ' && question.sourceDetail ? ` · ${question.sourceDetail}` : ''}
+          </span>
         </div>
         {onToggleBookmark && (
           <button
@@ -84,22 +98,33 @@ export default function QuestionCard({
       </p>
 
       {question.imageUrl && (
-        <div className="relative mb-6 inline-block">
-          <img
-            src={question.imageUrl}
-            alt={question.imageAlt ?? 'Question image'}
-            className="max-w-full rounded-lg border border-border cursor-zoom-in"
-            onClick={() => setZoomed(true)}
-          />
-          <button
-            type="button"
-            onClick={() => setZoomed(true)}
-            className="absolute bottom-2 right-2 bg-black/60 text-white rounded-md p-1.5 hover:bg-black/80"
-            aria-label="Zoom image"
-          >
-            <Maximize2 size={14} />
-          </button>
-        </div>
+        <figure className="mb-6 max-w-full">
+          <div className="relative w-full max-w-2xl">
+            <img
+              src={question.imageUrl}
+              alt={question.imageAlt ?? 'Question image'}
+              loading="lazy"
+              decoding="async"
+              className="block w-full h-auto max-h-[460px] object-contain rounded-lg border border-border cursor-zoom-in bg-white"
+              onClick={() => setZoomed(true)}
+            />
+            <button
+              type="button"
+              onClick={() => setZoomed(true)}
+              className="absolute bottom-2 right-2 bg-black/60 text-white rounded-md p-1.5 hover:bg-black/80"
+              aria-label="Zoom image"
+            >
+              <Maximize2 size={14} />
+            </button>
+          </div>
+          {(question.imageCaption || question.imageSource) && (
+            <figcaption className="mt-1.5 text-xs text-muted-foreground">
+              {question.imageCaption}
+              {question.imageCaption && question.imageSource ? ' · ' : ''}
+              {question.imageSource && <span className="italic">Source: {question.imageSource}</span>}
+            </figcaption>
+          )}
+        </figure>
       )}
       {zoomed && question.imageUrl && (
         <ImageViewer src={question.imageUrl} alt={question.imageAlt} onClose={() => setZoomed(false)} />
@@ -152,6 +177,9 @@ export default function QuestionCard({
             <span className="font-semibold text-foreground">Explanation: </span>
             {question.explanation}
             {question.reference && <p className="mt-2 text-xs italic">Reference: {question.reference}</p>}
+            <p className="mt-1 text-xs">
+              <span className="font-semibold">{SOURCE_LABELS[source].label}:</span> {sourceLine(question)}
+            </p>
           </div>
           {question.clinicalPearl && (
             <div className="rounded-lg bg-warning-bg px-4 py-3 text-sm flex gap-2.5">

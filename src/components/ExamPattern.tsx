@@ -1,75 +1,98 @@
-import { useInView } from '../hooks/useInView'
-import { useCountUp } from '../hooks/useCountUp'
+import { AlertTriangle, CheckCircle2 } from 'lucide-react'
 import { subjectsByCategory, totalQuestionCount } from '../data/subjects'
 import { SubjectIcon, SUBJECT_COLOR_CLASSES } from './icons'
+import { examConfig, examDate, markingLabel, navigationLabel } from '../config/examConfig'
 
-const GRAND_TEST_STATS = [
-  { value: 200, suffix: '', label: 'Max questions per Grand Test' },
-  { value: 3.5, suffix: ' hrs', label: 'Total duration', isDecimal: true },
-  { value: 4, suffix: '', label: 'Mark per correct answer' },
-  { value: 1, suffix: '', label: 'Negative marking (matches real NEET PG)' },
-]
-
-function StatItem({
-  value,
-  suffix,
-  label,
-  isDecimal,
-  trigger,
-}: {
-  value: number
-  suffix: string
-  label: string
-  isDecimal?: boolean
-  trigger: boolean
-}) {
-  const { value: count, done } = useCountUp(isDecimal ? Math.round(value * 10) : value, trigger)
-  const display = isDecimal ? (count / 10).toFixed(1) : count
-
-  return (
-    <div className="text-center">
-      <div
-        className="font-display font-extrabold text-primary"
-        style={{
-          fontSize: 'clamp(1.6rem, 4.5vw, 2.4rem)',
-          letterSpacing: '-0.02em',
-          animation: done ? 'counter-bounce 0.4s ease-out' : 'none',
-        }}
-      >
-        {display}
-        {suffix}
-      </div>
-      <p className="text-sm text-muted-foreground mt-1">{label}</p>
-    </div>
-  )
+function infoRows() {
+  const c = examConfig
+  const sections =
+    c.sections.length === 1
+      ? `Single paper — ${c.sections[0].questionCount} questions`
+      : c.sections
+          .map((s) => `${s.label}: ${s.questionCount} Qs${s.minutes ? ` / ${s.minutes} min` : ''}`)
+          .join(' · ')
+  return [
+    ['Exam', `${c.shortName} — ${c.examName}`],
+    ['Conducted by', c.conductingBody],
+    ['Session', c.session],
+    [
+      'Exam date',
+      examDate.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' }),
+    ],
+    ['Mode', `${c.mode}, ${c.language}`],
+    ['Duration', `${c.durationMinutes} minutes (${c.durationMinutes / 60} hours)`],
+    ['Questions', `${c.totalQuestions} — ${c.questionFormat}`],
+    ['Marking', `${markingLabel()} · unattempted ${c.marking.unattempted}`],
+    ['Negative marking', `Yes — ${markingLabel().split(' / ')[1]} per wrong answer`],
+    ['Section structure', sections],
+    ['Navigation', navigationLabel(c.navigation)],
+  ] as const
 }
 
 export default function ExamPattern() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.3)
   const categories = subjectsByCategory()
 
   return (
-    <section ref={ref} id="exam-pattern" className="py-16 px-6 border-y border-border scroll-mt-16">
+    <section id="exam-pattern" className="py-16 px-6 border-y border-border scroll-mt-16">
       <div className="max-w-5xl mx-auto">
         <div className="text-center">
           <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.4rem, 3.5vw, 1.9rem)' }}>
-            Grand Tests built to feel like the real thing
+            {examConfig.shortName} Exam Information
           </h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
-            NEET PG itself carries no negative marking (+4 per correct answer, -1 for wrong/unattempted) — reflected
-            exactly here.
+            Every mock and Grand Test on this platform uses exactly these settings.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-10">
-          {GRAND_TEST_STATS.map((s) => (
-            <StatItem key={s.label} {...s} trigger={inView} />
-          ))}
+        <div className="grid gap-6 lg:grid-cols-5 mt-10">
+          <dl className="card p-0 overflow-hidden lg:col-span-3 divide-y divide-border">
+            {infoRows().map(([k, v]) => (
+              <div key={k} className="grid grid-cols-[130px_1fr] sm:grid-cols-[170px_1fr] gap-3 px-5 py-3 text-sm">
+                <dt className="text-muted-foreground font-medium">{k}</dt>
+                <dd className="text-foreground">{v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <div className="card p-5">
+              <h3 className="font-display font-bold mb-3 text-sm uppercase tracking-wide">Important instructions</h3>
+              <ul className="flex flex-col gap-2 text-sm text-muted-foreground list-disc pl-4">
+                {examConfig.instructions.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
+            {examConfig.verified && examConfig.officialSource ? (
+              <div className="rounded-lg bg-success-bg px-4 py-3 text-sm flex gap-2.5">
+                <CheckCircle2 size={16} className="text-success shrink-0 mt-0.5" />
+                <span>
+                  Verified against{' '}
+                  <a className="underline" href={examConfig.officialSource.url} target="_blank" rel="noreferrer">
+                    {examConfig.officialSource.label}
+                  </a>
+                  .
+                </span>
+              </div>
+            ) : (
+              <div className="rounded-lg bg-warning-bg px-4 py-3 text-sm flex gap-2.5">
+                <AlertTriangle size={16} className="text-warning shrink-0 mt-0.5" />
+                <span>
+                  Pending official confirmation. These values match published reports for this session but have not yet
+                  been checked against the AIIMS prospectus. Always confirm on{' '}
+                  <a className="underline" href="https://www.aiimsexams.ac.in/" target="_blank" rel="noreferrer">
+                    aiimsexams.ac.in
+                  </a>
+                  .
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="mt-14">
           <span className="block text-xs uppercase tracking-widest text-primary font-semibold mb-4 text-center">
-            All 19 subjects, organized by year
+            All 19 subjects, organized by MBBS phase
           </span>
           <div className="grid gap-6 sm:grid-cols-3">
             {(['Pre-Clinical', 'Para-Clinical', 'Clinical'] as const).map((cat) => (
@@ -94,8 +117,8 @@ export default function ExamPattern() {
         </div>
 
         <p className="text-xs text-muted-foreground mt-8 max-w-2xl mx-auto text-center">
-          Question counts shown are the current, real size of the bank — growing over time. Cross-check the exam
-          date and pattern against the official NBEMS notification closer to your exam.
+          Question counts are the real, current size of this bank. AIIMS does not publish official subject-wise
+          weightage; topic priorities on this platform come from analysis of past papers and are labelled as such.
         </p>
       </div>
     </section>

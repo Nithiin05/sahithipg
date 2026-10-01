@@ -1,28 +1,28 @@
 import type { Difficulty, Question } from '../types'
 
+/** Internal keys (stable — used in URLs and saved data). Display names come from DIFFICULTY_LABELS. */
 export const DIFFICULTIES: Difficulty[] = ['Easy', 'Medium', 'Hard', 'Expert']
 
-function hashString(s: string): number {
-  let h = 0
-  for (let i = 0; i < s.length; i++) {
-    h = (h * 31 + s.charCodeAt(i)) >>> 0
-  }
-  return h
+export const DIFFICULTY_LABELS: Record<Difficulty, string> = {
+  Easy: 'Easy',
+  Medium: 'Moderate',
+  Hard: 'Difficult',
+  Expert: 'INI-CET Level',
 }
 
 /**
- * Every question resolves to a difficulty. An explicit `difficulty` tag wins;
- * otherwise a stable hash of the question's id assigns one, so older,
- * untagged questions still slot cleanly into Easy/Medium/Hard/Expert sets —
- * and always land in the same bucket across sessions.
+ * Difficulty is assigned by the question author against these criteria —
+ * never randomly. Questions without an explicit tag are treated as Moderate
+ * and flagged by `npm run check:questions`.
  */
 export function questionDifficulty(q: Question): Difficulty {
-  return q.difficulty ?? DIFFICULTIES[hashString(q.id) % DIFFICULTIES.length]
+  return q.difficulty ?? 'Medium'
 }
 
 export const DIFFICULTY_DESCRIPTIONS: Record<Difficulty, string> = {
-  Easy: 'Foundational, single-concept recall questions to build accuracy.',
-  Medium: 'Standard NEET PG-level questions mixing two or more concepts.',
-  Hard: 'Applied, clinically-integrated questions at real exam difficulty.',
-  Expert: 'AIIMS/INI-CET-caliber questions testing deep integration and reasoning.',
+  Easy: 'One step: direct recall of a single fact or definition.',
+  Medium: 'One interpretation step: a short vignette to diagnosis, a single calculation, or applying one concept.',
+  Hard: 'Two or more reasoning steps: diagnosis → mechanism/management, close differentials, or judging a causal link.',
+  Expert:
+    'INI-CET level: a full clinical vignette with labs/imaging, several reasoning steps, and integration across subjects.',
 }

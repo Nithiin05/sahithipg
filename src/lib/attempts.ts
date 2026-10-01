@@ -1,4 +1,5 @@
 import type { AttemptRecord } from '../types'
+import { getDueRevision, recordRevisionResult } from './revisionQueue'
 
 const KEY = 'drsahithi:attempts'
 const MAX_STORED = 300
@@ -20,6 +21,11 @@ export function saveAttempt(record: AttemptRecord) {
     localStorage.setItem(KEY, JSON.stringify(next))
   } catch {
     // ignore storage errors
+  }
+  // Advance spaced-repetition for any due revision questions answered in this attempt.
+  const due = new Set(getDueRevision().map((e) => e.questionId))
+  for (const a of record.answers) {
+    if (a.isCorrect !== null && due.has(a.questionId)) recordRevisionResult(a.questionId, a.isCorrect)
   }
 }
 

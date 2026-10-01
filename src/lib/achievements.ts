@@ -45,7 +45,7 @@ export function getAchievements(attempts: AttemptRecord[]): Achievement[] {
   const totalQuestionsSolved = attempts.reduce((s, a) => s + a.attempted, 0)
   const streak = getStudyStreak()
   const mockOrGrandCompleted = attempts.filter((a) => a.kind === 'mock' || a.kind === 'grand').length
-  const grandCompleted = attempts.filter((a) => a.kind === 'grand').length
+  const grandCompleted = attempts.filter((a) => a.kind === 'grand' || a.mockKind === 'grand' || a.mockKind === 'full').length
 
   const medicine = subjectAccuracy(attempts, 'medicine')
   const surgery = subjectAccuracy(attempts, 'surgery')
@@ -126,8 +126,8 @@ export function getAchievements(attempts: AttemptRecord[]): Achievement[] {
     {
       id: 'grand-test-expert',
       icon: '🏅',
-      title: 'Grand Test Expert',
-      description: 'Complete 5 full-length Grand Tests.',
+      title: 'Full-Length Test Expert',
+      description: 'Complete 5 full INI-CET mocks or Grand Tests.',
       unlocked: grandCompleted >= 5,
       progress: `${Math.min(grandCompleted, 5)}/5`,
     },

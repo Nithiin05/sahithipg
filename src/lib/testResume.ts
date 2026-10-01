@@ -22,6 +22,8 @@ export interface ResumeState {
   markedForReview: string[]
   currentIndex: number
   calculatorOpen?: boolean
+  /** Seconds spent per question so far. */
+  timeSpent?: Record<string, number>
 }
 
 export function saveResumeState(state: Omit<ResumeState, 'savedAt'>) {

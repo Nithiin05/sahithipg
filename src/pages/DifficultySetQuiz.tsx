@@ -6,10 +6,12 @@ import QuestionPalette from '../components/QuestionPalette'
 import ProgressBar from '../components/ProgressBar'
 import { getSubject } from '../data/subjects'
 import { buildDifficultyQuiz } from '../lib/quizEngine'
+import { DIFFICULTY_LABELS } from '../lib/difficulty'
 import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
 import type { AttemptRecord, Difficulty, SubjectSlug } from '../types'
+import { examConfig } from '../config/examConfig'
 
 /** Runs one Easy/Medium/Hard/Expert difficulty set for a subject. */
 export default function DifficultySetQuiz() {
@@ -44,7 +46,7 @@ export default function DifficultySetQuiz() {
   if (items.length === 0) return null
 
   const backPath = `/subjects/${subject.slug}/level/${diff}`
-  const label = `${subject.shortName} · ${diff} · Set ${set}`
+  const label = `${subject.shortName} · ${DIFFICULTY_LABELS[diff]} · Set ${set}`
 
   const currentItem = items[current]
   const answeredMask = items.map((it) => answers[it.question.id] !== undefined)
@@ -67,8 +69,8 @@ export default function DifficultySetQuiz() {
       label,
       items,
       answers,
-      marksCorrect: 4,
-      marksWrong: 1,
+      marksCorrect: examConfig.marking.correct,
+      marksWrong: examConfig.marking.wrong,
       durationSec,
       sourceRoute: `/subjects/${subject.slug}/level/${diff}/${set}`,
     })

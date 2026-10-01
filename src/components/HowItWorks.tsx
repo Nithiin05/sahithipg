@@ -1,32 +1,33 @@
 import { Link } from 'react-router-dom'
 import { useInView } from '../hooks/useInView'
+import { examConfig, markingLabel } from '../config/examConfig'
 
 const STEPS = [
   {
     n: '01',
     title: 'Set your study plan',
-    desc: 'Enter your exam date (default: NEET PG 2026, August 30), pick focus subjects, and set a daily question/time goal.',
+    desc: 'Enter your exam date (default: INI-CET, 1 November 2026), mark weak and strong subjects and your hours per day — the planner builds each day’s tasks.',
     to: '/planner',
     cta: 'Open the Study Planner',
   },
   {
     n: '02',
     title: 'Practice by subject & topic',
-    desc: 'Work through all 19 subjects — Easy to Expert — plus clinical cases, image-based questions, and PYQ-style sets.',
+    desc: 'Work through all 19 subjects by syllabus module and difficulty — Easy to INI-CET Level — with clinical cases and image-based questions.',
     to: '/subjects',
     cta: 'Start subject-wise practice',
   },
   {
     n: '03',
     title: 'Simulate the real exam',
-    desc: 'Sit full-length Grand Tests — up to 200 questions, one 3.5-hour timer, question palette, mark-for-review.',
-    to: '/grand-tests',
+    desc: `Sit the full INI-CET mock — ${examConfig.totalQuestions} questions, one ${examConfig.durationMinutes}-minute timer, ${markingLabel()} marking, question palette and mark-for-review.`,
+    to: '/tests',
     cta: 'Take a Grand Test',
   },
   {
     n: '04',
     title: 'Review, revise, repeat',
-    desc: 'See your weak-topic breakdown, run a Smart Revision test targeting the gaps, and retest until it sticks.',
+    desc: 'See your weak areas, revise incorrect and marked questions in My Revision, and use “Revise again” to space repeats until they stick.',
     to: '/analytics',
     cta: 'View your analytics',
   },

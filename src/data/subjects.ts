@@ -1,4 +1,10 @@
-import type { Subject } from '../types'
+import type { Subject, SubjectSlug } from '../types'
+import { randomizeOptions } from '../lib/optionShuffle'
+import { sourceTypeOf } from '../lib/questionSource'
+import { batch1, type BatchAdditions } from './questions/batches/batch1'
+import { batch2 } from './questions/batches/batch2'
+import { batch3 } from './questions/batches/batch3'
+import { batch4 } from './questions/batches/batch4'
 import { anatomyTopics } from './questions/anatomy'
 import { physiologyTopics } from './questions/physiology'
 import { biochemistryTopics } from './questions/biochemistry'
@@ -19,7 +25,7 @@ import { psychiatryTopics } from './questions/psychiatry'
 import { radiologyTopics } from './questions/radiology'
 import { anesthesiaTopics } from './questions/anesthesia'
 
-export const subjects: Subject[] = [
+const rawSubjects: Subject[] = [
   // ---------------------------------------------------------------- Pre-Clinical
   {
     slug: 'anatomy',
@@ -215,6 +221,26 @@ export const subjects: Subject[] = [
   },
 ]
 
+/** Question batches (structured data files under questions/batches), applied in order. */
+const BATCHES: Partial<Record<SubjectSlug, BatchAdditions>>[] = [batch1, batch2, batch3, batch4]
+
+function withBatches(subject: Subject): Subject {
+  let topics = subject.topics
+  for (const batch of BATCHES) {
+    const add = batch[subject.slug]
+    if (!add) continue
+    topics = topics.map((t) => (add.addTo?.[t.id] ? { ...t, questions: [...t.questions, ...add.addTo[t.id]] } : t))
+    if (add.newTopics) topics = [...topics, ...add.newTopics]
+  }
+  return { ...subject, topics }
+}
+
+/** Subjects with batches merged and every question's options position-randomized (see lib/optionShuffle.ts). */
+export const subjects: Subject[] = rawSubjects.map(withBatches).map((s) => ({
+  ...s,
+  topics: s.topics.map((t) => ({ ...t, questions: t.questions.map(randomizeOptions) })),
+}))
+
 export function getSubject(slug: string) {
   return subjects.find((s) => s.slug === slug)
 }
@@ -247,7 +273,7 @@ export function totalTopicsAcrossAllSubjects() {
 
 export function totalPYQCount() {
   return subjects.reduce(
-    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.isPYQ).length, 0),
+    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => ['PYQ', 'PYQ_PATTERN'].includes(sourceTypeOf(q))).length, 0),
     0,
   )
 }
@@ -262,7 +288,7 @@ export function totalClinicalCaseCount() {
 export function totalImageBasedCount() {
   const imageTypes = new Set(['image', 'radiology', 'ecg', 'histopath', 'anatomy-image', 'instrument'])
   return subjects.reduce(
-    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.type && imageTypes.has(q.type)).length, 0),
+    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => q.imageUrl && q.type && imageTypes.has(q.type)).length, 0),
     0,
   )
 }
