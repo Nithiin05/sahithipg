@@ -13,6 +13,7 @@ import type { ReservedEntry } from './questions/fullLength/helpers'
  */
 const PACKS: Record<string, () => Promise<ReservedEntry[]>> = {
   gt3: () => import('./questions/fullLength/gt3').then((m) => m.gt3),
+  gt4: () => import('./questions/fullLength/gt4').then((m) => m.gt4),
 }
 
 const store = new Map<string, ReservedEntry>()

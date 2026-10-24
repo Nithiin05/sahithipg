@@ -1,5 +1,6 @@
 import { LEGACY_GRAND_1, LEGACY_GRAND_2 } from './legacyGrandSnapshots'
 import { GRAND_TEST_3_IDS } from './grandTest3'
+import { GRAND_TEST_4_IDS } from './grandTest4'
 
 /**
  * Curated test library — fixed, versioned tests whose questions never change
@@ -47,6 +48,24 @@ export const CATEGORY_LABELS: Record<TestCategory, string> = {
   revision: 'Revision',
 }
 
+const REVIEW_NOTE = 'Original questions, answer keys re-checked against the cited references. Expert medical review pending.'
+
+/** A new full-length Grand Test in the official 4-part pattern (200 test-reserved questions). */
+function fullLengthGrand(n: number, questionIds: string[], status: TestStatus = 'review'): CuratedTest {
+  return {
+    id: `grand-${n}`,
+    version: 1,
+    title: `Grand Test ${n} — Full Length`,
+    category: 'grand',
+    status,
+    description: `Complete INI-CET simulation: 200 new questions in 4 timed parts of 50 (45 min each), parts lock once closed, +1 / −⅓. Moderate-to-hard questions across all 19 subjects; no overlap with any other Grand Test.`,
+    pattern: 'inicet-cbt',
+    difficultyLabel: 'Moderate–Hard',
+    questionIds,
+    note: status === 'review' ? REVIEW_NOTE : undefined,
+  }
+}
+
 export const CURATED_TESTS: CuratedTest[] = [
   {
     id: 'grand-1',
@@ -81,6 +100,7 @@ export const CURATED_TESTS: CuratedTest[] = [
     pattern: 'inicet-cbt',
     difficultyLabel: 'Moderate–Hard',
     questionIds: GRAND_TEST_3_IDS,
-    note: 'Original questions, answer keys re-checked against the cited references. Expert medical review pending.',
+    note: REVIEW_NOTE,
   },
+  fullLengthGrand(4, GRAND_TEST_4_IDS),
 ]

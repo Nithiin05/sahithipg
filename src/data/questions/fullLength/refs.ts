@@ -1,0 +1,25 @@
+/** Standard reference strings shared by full-length test packs. */
+export const GRAYS = "Gray's Anatomy for Students; BD Chaurasia's Human Anatomy"
+export const LANGMAN = "Langman's Medical Embryology"
+export const SNELL = "Snell's Clinical Neuroanatomy"
+export const GUYTON = 'Guyton & Hall Textbook of Medical Physiology'
+export const HARPER = "Harper's Illustrated Biochemistry; Lippincott Illustrated Reviews: Biochemistry"
+export const ROBBINS = 'Robbins & Cotran Pathologic Basis of Disease'
+export const KDT = "KD Tripathi's Essentials of Medical Pharmacology; Goodman & Gilman's The Pharmacological Basis of Therapeutics"
+export const ANANTH = "Ananthanarayan & Paniker's Textbook of Microbiology"
+export const REDDY = "K.S. Narayan Reddy's The Essentials of Forensic Medicine and Toxicology"
+export const PARK = "Park's Textbook of Preventive and Social Medicine"
+export const HARRISON = "Harrison's Principles of Internal Medicine, 21st ed."
+export const BAILEY = "Bailey & Love's Short Practice of Surgery, 28th ed."
+export const ATLS = 'ATLS Advanced Trauma Life Support, 10th ed.'
+export const WILLIAMS = 'Williams Obstetrics, 26th ed.'
+export const DUTTA = "DC Dutta's Textbook of Obstetrics / Gynecology"
+export const NELSON = 'Nelson Textbook of Pediatrics'
+export const GHAI = 'Ghai Essential Pediatrics'
+export const ORTHO = "Maheshwari & Mhaskar's Essential Orthopaedics; Apley & Solomon's System of Orthopaedics and Trauma"
+export const DHINGRA = "Dhingra's Diseases of Ear, Nose and Throat"
+export const KHURANA = "AK Khurana's Comprehensive Ophthalmology; Kanski's Clinical Ophthalmology"
+export const ROOK = "Rook's Textbook of Dermatology; IADVL Textbook of Dermatology"
+export const NIRAJ = "Niraj Ahuja's A Short Textbook of Psychiatry; Kaplan & Sadock's Synopsis of Psychiatry"
+export const GRAINGER = "Grainger & Allison's Diagnostic Radiology; Sutton's Textbook of Radiology"
+export const MILLER = "Miller's Anesthesia; Morgan & Mikhail's Clinical Anesthesiology"
