@@ -2,6 +2,7 @@ import { LEGACY_GRAND_1, LEGACY_GRAND_2 } from './legacyGrandSnapshots'
 import { GRAND_TEST_3_IDS } from './grandTest3'
 import { GRAND_TEST_4_IDS } from './grandTest4'
 import { GRAND_TEST_5_IDS } from './grandTest5'
+import { GRAND_TEST_6_IDS } from './grandTest6'
 
 /**
  * Curated test library — fixed, versioned tests whose questions never change
@@ -105,4 +106,5 @@ export const CURATED_TESTS: CuratedTest[] = [
   },
   fullLengthGrand(4, GRAND_TEST_4_IDS),
   fullLengthGrand(5, GRAND_TEST_5_IDS),
+  fullLengthGrand(6, GRAND_TEST_6_IDS),
 ]

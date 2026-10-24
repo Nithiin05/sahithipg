@@ -15,6 +15,7 @@ const PACKS: Record<string, () => Promise<ReservedEntry[]>> = {
   gt3: () => import('./questions/fullLength/gt3').then((m) => m.gt3),
   gt4: () => import('./questions/fullLength/gt4').then((m) => m.gt4),
   gt5: () => import('./questions/fullLength/gt5').then((m) => m.gt5),
+  gt6: () => import('./questions/fullLength/gt6').then((m) => m.gt6),
 }
 
 const store = new Map<string, ReservedEntry>()
