@@ -76,7 +76,9 @@ test('all wrong gives the expected negative score', () => {
 })
 
 test('reserved packs are loaded', () => {
-  assert.equal(reservedEntries.length, 200)
+  const expected = CURATED_TESTS.filter((t) => t.pattern === 'inicet-cbt').reduce((n, t) => n + t.questionIds.length, 0)
+  assert.equal(reservedEntries.length, expected)
+  assert.equal(new Set(reservedEntries.map((e) => e.question.id)).size, reservedEntries.length)
 })
 
 test('option shuffling preserves the answer key', () => {
@@ -123,14 +125,16 @@ test('every listed curated test is complete with no duplicate questions', () => 
   }
 })
 
-test('Grand Test 3 uses 4 timed, locked parts of 50', () => {
-  const def = getTestDef('grand-3', new URLSearchParams())!
+test('every full-length Grand Test uses 4 timed, locked parts of 50', () => {
+  for (const t of CURATED_TESTS.filter((x) => x.pattern === 'inicet-cbt')) {
+  const def = getTestDef(t.id, new URLSearchParams())!
   assert.equal(def.sections.length, 4)
   assert.ok(def.sections.every((s) => s.questionCount === 50 && s.minutes === 45))
   assert.equal(def.navigation, 'within-section')
   assert.equal(def.allowEarlySectionSubmit, false)
   const built = buildTest(def)
   assert.ok(built.every((b) => b.items.length === 50))
+  }
 })
 
 test('test-reserved questions stay out of practice pools', () => {
