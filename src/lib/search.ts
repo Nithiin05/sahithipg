@@ -55,7 +55,7 @@ function buildStatic(): Doc[] {
   for (const it of pooledAllSubjectsQuestions()) {
     const q = it.question
     const src = sourceTypeOf(q)
-    const group: ResultGroup = src === 'PYQ' || src === 'PYQ_PATTERN' ? 'PYQs' : q.imageUrl ? 'Image questions' : isClinical(q) ? 'Clinical questions' : 'Questions'
+    const group: ResultGroup = src === 'PYQ' || src === 'PYQ_RECALL' || src === 'PYQ_PATTERN' ? 'PYQs' : q.imageUrl ? 'Image questions' : isClinical(q) ? 'Clinical questions' : 'Questions'
     docs.push({
       group,
       title: q.text.length > 120 ? `${q.text.slice(0, 117)}…` : q.text,

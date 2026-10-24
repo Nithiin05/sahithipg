@@ -1,6 +1,6 @@
 import type { Question, SubjectSlug } from '../types'
 import { syllabus } from './syllabus'
-import { sourceTypeOf } from '../lib/questionSource'
+import { isActualPYQ, sourceTypeOf } from '../lib/questionSource'
 import type { QuizQuestionItem } from '../lib/quizEngine'
 
 /**
@@ -185,7 +185,7 @@ export function inCategory(item: QuizQuestionItem, c: QuestionCategory): boolean
   const q = item.question
   switch (c) {
     case 'pyq':
-      return sourceTypeOf(q) === 'PYQ'
+      return isActualPYQ(q)
     case 'pyq-pattern':
       return sourceTypeOf(q) === 'PYQ_PATTERN'
     case 'clinical':

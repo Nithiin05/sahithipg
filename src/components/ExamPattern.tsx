@@ -78,8 +78,18 @@ export default function ExamPattern() {
               <div className="rounded-lg bg-warning-bg px-4 py-3 text-sm flex gap-2.5">
                 <AlertTriangle size={16} className="text-warning shrink-0 mt-0.5" />
                 <span>
-                  Pending official confirmation. These values match published reports for this session but have not yet
-                  been checked against the AIIMS prospectus. Always confirm on{' '}
+                  {examConfig.officialSource ? (
+                    <>
+                      Pattern taken from the{' '}
+                      <a className="underline" href={examConfig.officialSource.url} target="_blank" rel="noreferrer">
+                        {examConfig.officialSource.label}
+                      </a>
+                      ; the prospectus for this session has not yet been checked line by line.{' '}
+                    </>
+                  ) : (
+                    'Pending official confirmation. These values match published reports for this session but have not yet been checked against the AIIMS prospectus. '
+                  )}
+                  Always confirm on{' '}
                   <a className="underline" href="https://www.aiimsexams.ac.in/" target="_blank" rel="noreferrer">
                     aiimsexams.ac.in
                   </a>

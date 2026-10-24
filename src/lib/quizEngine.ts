@@ -1,5 +1,6 @@
 import type { Difficulty, Question, SubjectSlug } from '../types'
-import { getSubject, subjects } from '../data/subjects'
+import { getSubject, getTopic, subjects } from '../data/subjects'
+import { findReserved } from '../data/reservedQuestions'
 import { questionDifficulty } from './difficulty'
 import { sourceTypeOf } from './questionSource'
 import type { SourceType } from '../types'
@@ -131,6 +132,19 @@ export function findQuestionItem(questionId: string): QuizQuestionItem | null {
     for (const topic of subject.topics) {
       const question = topic.questions.find((q) => q.id === questionId)
       if (question) return { question, subject: subject.slug, subjectName: subject.shortName, topic: topic.name, topicId: topic.id }
+    }
+  }
+  const reserved = findReserved(questionId)
+  if (reserved) {
+    const { subject, topic } = getTopic(reserved.subject, reserved.topicId)
+    if (subject) {
+      return {
+        question: reserved.question,
+        subject: subject.slug,
+        subjectName: subject.shortName,
+        topic: topic?.name ?? reserved.topicId,
+        topicId: reserved.topicId,
+      }
     }
   }
   return null

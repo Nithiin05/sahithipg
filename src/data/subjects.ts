@@ -273,7 +273,7 @@ export function totalTopicsAcrossAllSubjects() {
 
 export function totalPYQCount() {
   return subjects.reduce(
-    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => ['PYQ', 'PYQ_PATTERN'].includes(sourceTypeOf(q))).length, 0),
+    (sum, s) => sum + s.topics.reduce((tSum, t) => tSum + t.questions.filter((q) => ['PYQ', 'PYQ_RECALL', 'PYQ_PATTERN'].includes(sourceTypeOf(q))).length, 0),
     0,
   )
 }

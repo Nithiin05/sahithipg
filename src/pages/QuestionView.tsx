@@ -6,10 +6,19 @@ import QuestionCard from '../components/QuestionCard'
 import { findQuestionItem } from '../lib/quizEngine'
 import { getBookmark, getCollections, isBookmarked, setBookmarkNote, toggleBookmark, toggleInCollection, createCollection } from '../lib/bookmarks'
 import { isQueued, toggleRevision } from '../lib/revisionQueue'
+import ReservedGate from '../components/ReservedGate'
 
 /** A single question: answer it, see the explanation, bookmark, note, collect, or queue for revision. */
 export default function QuestionView() {
   const { questionId = '' } = useParams()
+  return (
+    <ReservedGate ids={[questionId]}>
+      <QuestionViewInner key={questionId} questionId={questionId} />
+    </ReservedGate>
+  )
+}
+
+function QuestionViewInner({ questionId }: { questionId: string }) {
   const item = findQuestionItem(questionId)
   const [selected, setSelected] = useState<number | null>(null)
   const [, setTick] = useState(0)

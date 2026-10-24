@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import { Bookmark, Lightbulb, Maximize2, Sparkles, X } from 'lucide-react'
-import type { Question, SourceType } from '../types'
+import type { Question, ReviewStatus, SourceType } from '../types'
 import { SOURCE_LABELS, sourceLine, sourceTypeOf } from '../lib/questionSource'
 import { DIFFICULTY_LABELS } from '../lib/difficulty'
 
-const LETTERS = ['A', 'B', 'C', 'D']
+const LETTERS = ['A', 'B', 'C', 'D', 'E']
+
+const REVIEW_LABELS: Record<ReviewStatus, string> = {
+  unreviewed: 'Not yet reviewed by a medical expert',
+  'author-checked': 'Answer key re-checked by the author against the cited references; expert review pending',
+  'expert-verified': 'Verified by a medical reviewer',
+  flagged: 'Flagged for review — answer may be disputed or outdated',
+}
 
 const TYPE_LABELS: Record<string, string> = {
   'clinical-case': 'Clinical Case',
@@ -16,6 +23,7 @@ const TYPE_LABELS: Record<string, string> = {
   instrument: 'Instrument ID',
   'assertion-reason': 'Assertion & Reason',
   'match-following': 'Match the Following',
+  'multiple-correct': 'Multiple Correct',
   guideline: 'Guideline Based',
   aiims: 'AIIMS Pattern',
   inicet: 'INI-CET Pattern',
@@ -23,6 +31,7 @@ const TYPE_LABELS: Record<string, string> = {
 
 const SOURCE_STYLES: Record<SourceType, string> = {
   PYQ: 'bg-success-bg text-success',
+  PYQ_RECALL: 'bg-success-bg text-success',
   PYQ_PATTERN: 'bg-primary/10 text-primary',
   PRACTICE: 'bg-secondary text-muted-foreground',
   IMAGE: 'bg-accent/10 text-accent',
@@ -75,7 +84,7 @@ export default function QuestionCard({
           {question.difficulty && <span className="tag bg-secondary text-muted-foreground">{DIFFICULTY_LABELS[question.difficulty]}</span>}
           <span className={`tag font-semibold ${SOURCE_STYLES[source]}`} title={sourceLine(question)}>
             {SOURCE_LABELS[source].label}
-            {source === 'PYQ' && question.sourceDetail ? ` · ${question.sourceDetail}` : ''}
+            {(source === 'PYQ' || source === 'PYQ_RECALL') && question.sourceDetail ? ` · ${question.sourceDetail}` : ''}
           </span>
         </div>
         {onToggleBookmark && (
@@ -179,6 +188,11 @@ export default function QuestionCard({
             {question.reference && <p className="mt-2 text-xs italic">Reference: {question.reference}</p>}
             <p className="mt-1 text-xs">
               <span className="font-semibold">{SOURCE_LABELS[source].label}:</span> {sourceLine(question)}
+            </p>
+            {question.guidelineVersion && <p className="mt-1 text-xs">Guideline basis: {question.guidelineVersion}</p>}
+            <p className="mt-1 text-xs">
+              <span className="font-semibold">Review:</span> {REVIEW_LABELS[question.reviewStatus ?? 'unreviewed']}
+              {question.lastReviewed ? ` (${question.lastReviewed})` : ''}
             </p>
           </div>
           {question.clinicalPearl && (

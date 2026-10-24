@@ -1,16 +1,18 @@
 import { subjects, totalPYQCount, totalQuestionsAcrossAllSubjects } from '../data/subjects'
 import { syllabus } from '../data/syllabus'
-import { getCatalog, poolFor } from '../lib/testEngine'
+import { getCatalog, isListed, poolFor } from '../lib/testEngine'
+import { packOf } from '../data/reservedQuestions'
+import { CURATED_TESTS } from '../data/tests/catalog'
 
 /** Real, live counts from the bank — no rounding up, no "+". */
 const ALL_STATS = [
   { value: subjects.length, suffix: '', label: 'Subjects' },
   { value: Object.values(syllabus).reduce((n, m) => n + m.length, 0), suffix: '', label: 'Syllabus modules' },
-  { value: totalQuestionsAcrossAllSubjects(), suffix: '', label: 'Questions' },
+  { value: totalQuestionsAcrossAllSubjects() + new Set(CURATED_TESTS.flatMap((t) => t.questionIds).filter((id) => packOf(id))).size, suffix: '', label: 'Questions' },
   { value: poolFor({ categories: ['clinical'] }).length, suffix: '', label: 'Clinical vignettes' },
   { value: poolFor({ categories: ['integrated'] }).length, suffix: '', label: 'Integrated questions' },
   { value: poolFor({ categories: ['image'] }).length, suffix: '', label: 'Image-based questions' },
-  { value: getCatalog().filter((t) => t.group === 'grand').length, suffix: '', label: 'Grand Tests' },
+  { value: getCatalog().filter((t) => (t.group === 'grand' || t.group === 'full') && isListed(t.status)).length, suffix: '', label: 'Full-length & Grand Tests' },
   { value: totalPYQCount(), suffix: '', label: 'PYQ & PYQ-pattern questions' },
 ]
 /** Never show a zero stat on the landing page. */
