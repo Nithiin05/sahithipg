@@ -8,6 +8,7 @@ import { GRAND_TEST_8_IDS } from './grandTest8'
 import { GRAND_TEST_9_IDS } from './grandTest9'
 import { GRAND_TEST_10_IDS } from './grandTest10'
 import { GRAND_TEST_11_IDS } from './grandTest11'
+import { GRAND_TEST_12_IDS } from './grandTest12'
 
 /**
  * Curated test library — fixed, versioned tests whose questions never change
@@ -117,4 +118,5 @@ export const CURATED_TESTS: CuratedTest[] = [
   fullLengthGrand(9, GRAND_TEST_9_IDS),
   fullLengthGrand(10, GRAND_TEST_10_IDS),
   fullLengthGrand(11, GRAND_TEST_11_IDS),
+  fullLengthGrand(12, GRAND_TEST_12_IDS),
 ]
