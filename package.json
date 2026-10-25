@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "check:questions": "tsx scripts/check-question-bank.ts"
+    "check:questions": "tsx scripts/check-question-bank.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "npm run check:questions && npm test && npm run lint && npm run build",
+    "qbank": "tsx scripts/question-bank-io.ts"
   },
   "dependencies": {
     "lucide-react": "^1.28.0",

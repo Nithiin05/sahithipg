@@ -7,6 +7,7 @@ import { getRevisionQueue, getDueRevision } from '../lib/revisionQueue'
 import { pooledAllSubjectsQuestions, findQuestionItem, type QuizQuestionItem } from '../lib/quizEngine'
 import { inCategory } from '../data/taxonomy'
 import { sessionUrl } from '../lib/testEngine'
+import ReservedGate from '../components/ReservedGate'
 
 type ListKey = 'incorrect' | 'marked' | 'due' | 'weak' | 'high-yield' | 'pyq' | 'image'
 
@@ -23,6 +24,18 @@ const LISTS: { key: ListKey; label: string; description: string }[] = [
 const SESSION_MAX = 50
 
 export default function Revision() {
+  const ids = useMemo(
+    () => [...getAttempts().flatMap((a) => a.answers.map((x) => x.questionId)), ...getRevisionQueue().map((e) => e.questionId)],
+    [],
+  )
+  return (
+    <ReservedGate ids={ids}>
+      <RevisionView />
+    </ReservedGate>
+  )
+}
+
+function RevisionView() {
   const [params, setParams] = useSearchParams()
   const active = (params.get('list') as ListKey) ?? 'incorrect'
   const attempts = useMemo(() => getAttempts(), [])

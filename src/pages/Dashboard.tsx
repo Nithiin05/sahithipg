@@ -12,6 +12,7 @@ import { getProfileName, setProfileName, greeting } from '../lib/profile'
 import { examConfig } from '../config/examConfig'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { getTodayPlan } from '../lib/studyPlanner'
+import { getCatalog, isListed } from '../lib/testEngine'
 
 export default function Dashboard() {
   usePageTitle('Dashboard')
@@ -29,6 +30,12 @@ export default function Dashboard() {
   const marked = [...latest.values()].filter((a) => a.marked).length
   const due = getDueRevision().length
   const plan = getTodayPlan(attempts)
+
+  // Full-length tests: the next one not yet taken, plus recent full-length scores.
+  const fullLength = getCatalog().filter((d) => (d.group === 'grand' || d.group === 'full') && isListed(d.status))
+  const takenIds = new Set(attempts.map((a) => a.testId).filter(Boolean))
+  const nextTest = fullLength.find((d) => d.fixedIds && !takenIds.has(d.id)) ?? fullLength[0]
+  const recentFull = attempts.filter((a) => a.testId && fullLength.some((d) => d.id === a.testId)).slice(0, 3)
 
   const queue = [
     { label: 'Incorrect questions', count: incorrect, to: '/revision?list=incorrect', Icon: XCircle },
@@ -73,6 +80,40 @@ export default function Dashboard() {
           </div>
           <ExamCountdown compact />
         </div>
+
+        {nextTest && (
+          <section className="card p-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div className="min-w-0">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold">Next full-length test</p>
+              <p className="font-display font-bold text-lg mt-1">{nextTest.title}</p>
+              <p className="text-sm text-muted-foreground">
+                {nextTest.sections.reduce((n, x) => n + x.questionCount, 0)} questions · {nextTest.totalMinutes} min
+                {nextTest.sections.length > 1 ? ` · ${nextTest.sections.length} timed parts` : ''}
+              </p>
+              {recentFull.length > 0 && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  Recent:{' '}
+                  {recentFull.map((a, i) => (
+                    <span key={a.id}>
+                      {i > 0 && ' · '}
+                      <Link to={`/tests/${a.testId}/result`} className="hover:text-primary">
+                        {a.label} {a.score}/{a.maxScore}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
+              )}
+            </div>
+            <div className="flex gap-2 shrink-0">
+              <Link to="/tests" className="border border-border rounded-lg px-4 py-2 text-sm font-medium hover:bg-secondary">
+                All tests ({fullLength.length})
+              </Link>
+              <Link to={`/tests/${nextTest.id}`} className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm font-semibold">
+                Start
+              </Link>
+            </div>
+          </section>
+        )}
 
         <section>
           <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Today's progress</h2>

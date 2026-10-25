@@ -5,13 +5,14 @@ import QuestionCard from '../components/QuestionCard'
 import QuestionPalette from '../components/QuestionPalette'
 import Timer from '../components/Timer'
 import FloatingCalculator from '../components/FloatingCalculator'
-import { buildTest, getTestDef, rebuildFromIds, type BuiltSection } from '../lib/testEngine'
+import { buildTest, getTestDef, rebuildFromIds, type BuiltSection, type TestDef } from '../lib/testEngine'
 import { computeAttempt } from '../lib/scoring'
 import { saveAttempt } from '../lib/attempts'
 import { clearResumeState, readResumeStateFor, saveResumeState } from '../lib/testResume'
 import { isBookmarked, toggleBookmark } from '../lib/bookmarks'
-import { markingLabel, navigationLabel } from '../config/examConfig'
+import { examConfig, markingLabel, navigationLabel } from '../config/examConfig'
 import { usePageTitle } from '../hooks/usePageTitle'
+import ReservedGate from '../components/ReservedGate'
 
 function fmtElapsed(sec: number) {
   const m = Math.floor(sec / 60)
@@ -28,16 +29,110 @@ function fmtElapsed(sec: number) {
 export default function TestRunner() {
   const { testId = '' } = useParams()
   const [search] = useSearchParams()
-  const location = useLocation()
-  const navigate = useNavigate()
   const resumeKey = `${testId}?${search.toString()}`
   const def = useMemo(() => getTestDef(testId, search), [testId, search])
   usePageTitle(def?.title ?? 'Test')
+  const hasResume = useMemo(() => !!readResumeStateFor((s) => s.kind === 'mock' && s.mockId === resumeKey), [resumeKey])
+  // Full-length tests open on an instructions screen; resumed attempts go straight back in.
+  const needsIntro = !!def && (def.group === 'full' || def.group === 'grand') && !hasResume
+  const [begun, setBegun] = useState(false)
+
+  // Question ids this attempt may need, so test-reserved packs can be loaded first.
+  const neededIds = useMemo(() => {
+    const resume = readResumeStateFor((s) => s.kind === 'mock' && s.mockId === resumeKey)
+    return [...(def?.fixedIds?.flat() ?? []), ...(search.get('ids') ?? '').split(',').filter(Boolean), ...(resume?.sectionQuestionIds?.flat() ?? [])]
+  }, [def, search, resumeKey])
+
+  if (!def) return <Navigate to="/tests" replace />
+  if (needsIntro && !begun) return <Instructions def={def} onStart={() => setBegun(true)} />
+  return (
+    <ReservedGate ids={neededIds}>
+      <Runner key={resumeKey} def={def} resumeKey={resumeKey} />
+    </ReservedGate>
+  )
+}
+
+function Instructions({ def, onStart }: { def: TestDef; onStart: () => void }) {
+  const total = def.sections.reduce((n, s) => n + s.questionCount, 0)
+  const sectional = def.sections.length > 1 && def.sections.every((s) => s.minutes !== null)
+  const [agreed, setAgreed] = useState(false)
+  if (def.available === 0 || total === 0) {
+    return (
+      <div className="max-w-lg mx-auto px-6 py-24 text-center">
+        <p className="font-display font-bold text-lg mb-2">This test has no questions yet</p>
+        <Link to="/tests" className="text-primary font-semibold hover:underline">
+          Back to tests
+        </Link>
+      </div>
+    )
+  }
+  const rules = [
+    sectional
+      ? `${total} questions in ${def.sections.length} parts of ${def.sections[0].questionCount}. Each part has its own ${def.sections[0].minutes}-minute timer (${def.totalMinutes} minutes in all).`
+      : `${total} questions${def.totalMinutes ? ` · ${def.totalMinutes} minutes` : ' · untimed'}.`,
+    navigationLabel(def.navigation) + '.',
+    sectional && def.allowEarlySectionSubmit === false
+      ? 'A part closes only when its timer reaches zero; the next part then opens automatically. Use spare time to review the current part.'
+      : null,
+    `Marking: ${markingLabel()} — unanswered questions score 0.`,
+    def.markedForReviewEvaluated === false
+      ? 'Questions still marked for review when a part closes score 0, even if an option is selected (as in the AIIMS prospectus). Unmark a question to have it scored.'
+      : 'Questions marked for review are scored if an option is selected.',
+    'Your progress is saved in this browser. If the page reloads, use "Resume" to continue where you left off.',
+  ].filter(Boolean) as string[]
+
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="card p-6 sm:p-8 flex flex-col gap-5">
+        <div>
+          <p className="text-xs uppercase tracking-widest text-primary font-semibold">Instructions</p>
+          <h1 className="font-display font-extrabold text-2xl mt-1">{def.title}</h1>
+          <p className="text-sm text-muted-foreground mt-2" style={{ lineHeight: 1.6 }}>
+            {def.description}
+          </p>
+        </div>
+        <ul className="list-disc pl-5 flex flex-col gap-2 text-sm" style={{ lineHeight: 1.6 }}>
+          {rules.map((r) => (
+            <li key={r}>{r}</li>
+          ))}
+        </ul>
+        {def.note && <p className="rounded-lg bg-warning-bg px-4 py-3 text-sm">{def.note}</p>}
+        {sectional && (
+          <p className="text-xs text-muted-foreground">
+            Pattern source: {examConfig.officialSource?.label ?? 'published reports'}
+            {examConfig.verified ? '' : ' — confirm details for your session on aiimsexams.ac.in'}.
+          </p>
+        )}
+        <label className="flex items-center gap-2 text-sm">
+          <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="w-4 h-4" />
+          I have read the instructions
+        </label>
+        <div className="flex flex-wrap justify-between gap-3">
+          <Link to="/tests" className="border border-border rounded-lg px-4 py-2 text-sm font-medium hover:bg-secondary">
+            Back
+          </Link>
+          <button
+            disabled={!agreed}
+            onClick={onStart}
+            className="bg-primary text-primary-foreground rounded-lg px-6 py-2 text-sm font-semibold disabled:opacity-40"
+          >
+            Start test
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Runner({ def, resumeKey }: { def: TestDef; resumeKey: string }) {
+  const [search] = useSearchParams()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const resume = useMemo(
-    () => (def ? readResumeStateFor((s) => s.kind === 'mock' && s.mockId === resumeKey) : null),
+    () => readResumeStateFor((s) => s.kind === 'mock' && s.mockId === resumeKey),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [def],
+    [],
   )
 
   const built: BuiltSection[] = useMemo(() => {
@@ -115,6 +210,8 @@ export default function TestRunner() {
       sourceRoute: `${location.pathname}${location.search}`,
       mockKind: def.kind,
       testId: def.id,
+      testVersion: def.version,
+      markedForReviewEvaluated: def.markedForReviewEvaluated,
     })
     saveAttempt(attempt)
     navigate(`/tests/${def.id}/result`, { state: { attempt }, replace: true })
@@ -174,7 +271,6 @@ export default function TestRunner() {
     return () => window.clearInterval(id)
   }, [def, flat.length, timed, perSectionTiming, goToSection, finalize, started])
 
-  if (!def) return <Navigate to="/tests" replace />
   if (flat.length === 0) {
     return (
       <div className="max-w-lg mx-auto px-6 py-24 text-center">
@@ -212,11 +308,22 @@ export default function TestRunner() {
   const answeredCount = Object.keys(answers).filter((id) => answers[id] !== undefined).length
   const markedCount = Object.values(marked).filter(Boolean).length
 
+  const markedNotScored = def.markedForReviewEvaluated === false ? flat.filter((f) => marked[f.item.question.id] && answers[f.item.question.id] !== undefined).length : 0
   const confirmSubmit = () => {
     const unanswered = flat.length - answeredCount
-    const msg = `Submit the test?\n\nAnswered: ${answeredCount}\nNot answered: ${unanswered}\nMarked for review: ${markedCount}\n\nThis cannot be undone.`
-    if (window.confirm(msg)) finalize()
+    const lines = [
+      'Submit the whole test now?',
+      '',
+      `Answered: ${answeredCount}`,
+      `Not answered: ${unanswered}`,
+      `Marked for review: ${markedCount}`,
+    ]
+    if (markedNotScored) lines.push(`${markedNotScored} answered question(s) are still marked for review and will score 0.`)
+    if (sectionIdx < built.length - 1) lines.push(`Parts ${sectionIdx + 2}–${built.length} have not been opened; their questions will count as not answered.`)
+    lines.push('', 'This cannot be undone.')
+    if (window.confirm(lines.join('\n'))) finalize()
   }
+  const earlyNext = def.allowEarlySectionSubmit !== false
 
   // Palette: free navigation shows every question; otherwise only the current section.
   const paletteSections = nav === 'free' ? built.map((_, i) => i) : [sectionIdx]
@@ -306,13 +413,21 @@ export default function TestRunner() {
                   {marked[q.id] ? '★ Marked' : '☆ Mark for review'}
                 </button>
               </div>
+              {def.markedForReviewEvaluated === false && marked[q.id] && answers[q.id] !== undefined && (
+                <p className="w-full text-xs text-warning order-last">Marked for review — this answer will score 0 unless you unmark it.</p>
+              )}
               <div className="flex gap-2">
                 {!isLastInSection && (
                   <button onClick={() => go(current + 1)} className="bg-primary text-primary-foreground rounded-lg px-5 py-2 text-sm font-semibold">
                     Save &amp; Next &rarr;
                   </button>
                 )}
-                {isLastInSection && !isLastOverall && (
+                {isLastInSection && !isLastOverall && !earlyNext && (
+                  <span className="text-xs text-muted-foreground self-center max-w-[16rem] text-right">
+                    Last question of this part. The next part opens when the timer reaches zero.
+                  </span>
+                )}
+                {isLastInSection && !isLastOverall && earlyNext && (
                   <button
                     onClick={() => {
                       const warn = nav === 'free' ? '' : ' You cannot return to this section afterwards.'

@@ -4,6 +4,7 @@ import { subjects, getSubject } from '../data/subjects'
 import { SYSTEMS, inCategory, systemOf, type QuestionCategory, type SystemName } from '../data/taxonomy'
 import { pooledAllSubjectsQuestions, shuffle, findQuestionItem, type QuizQuestionItem } from './quizEngine'
 import { questionDifficulty } from './difficulty'
+import { CURATED_TESTS, type CuratedTest, type PatternId, type TestCategory, type TestStatus } from '../data/tests/catalog'
 
 /**
  * Test engine. Every test on the platform — full INI-CET mock, grand tests,
@@ -40,10 +41,20 @@ export interface TestDef {
   totalMinutes: number | null
   navigation: NavigationRule
   marking: { correct: number; wrong: number }
-  /** Grand tests use a fixed, non-overlapping slice of a seeded order of the bank. */
-  partition?: { index: number; size: number }
+  /** Curated tests: the exact question ids per section (order within a section is shuffled per attempt). */
+  fixedIds?: string[][]
   /** Number of questions actually available (may be below the nominal count). */
   available: number
+  /** false = answered questions still marked for review at submission score 0. Default true. */
+  markedForReviewEvaluated?: boolean
+  /** false = sections end only when their timer runs out. Default true. */
+  allowEarlySectionSubmit?: boolean
+  /** Curated-test metadata. */
+  category?: TestCategory
+  status?: TestStatus
+  version?: number
+  difficultyLabel?: string
+  note?: string
 }
 
 export interface BuiltSection {
@@ -56,31 +67,6 @@ export interface BuiltSection {
 const MIN_PER_Q = examConfig.durationMinutes / examConfig.totalQuestions
 const minutesFor = (n: number) => Math.max(5, Math.round(n * MIN_PER_Q))
 const MARKING = { correct: examConfig.marking.correct, wrong: examConfig.marking.wrong }
-
-function hashString(s: string): number {
-  let h = 2166136261
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i)
-    h = Math.imul(h, 16777619)
-  }
-  return h >>> 0
-}
-
-function seededShuffle<T>(arr: T[], seed: string): T[] {
-  let a = hashString(seed)
-  const rand = () => {
-    a = (a + 0x6d2b79f5) | 0
-    let t = Math.imul(a ^ (a >>> 15), 1 | a)
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-  }
-  const copy = [...arr]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-}
 
 export function poolFor(filter: PoolFilter): QuizQuestionItem[] {
   return pooledAllSubjectsQuestions(filter.subjects).filter((it) => {
@@ -141,27 +127,74 @@ function fullMock(): TestDef {
     navigation: examConfig.navigation,
     marking: MARKING,
     available,
+    markedForReviewEvaluated: examConfig.markedForReviewEvaluated,
+    allowEarlySectionSubmit: examConfig.allowEarlySectionSubmit,
+    category: 'full-mock',
+    difficultyLabel: 'Mixed',
   }
 }
 
-const GRAND_SIZE = 150
+// ---------------------------------------------------------------- curated (fixed, versioned) tests
 
-function grandTests(): TestDef[] {
-  const available = poolFor({}).length
-  const count = Math.floor(available / GRAND_SIZE)
-  return Array.from({ length: count }, (_, index) => ({
-    id: `grand-${index + 1}`,
-    title: `Grand Test ${index + 1}`,
-    group: 'grand' as const,
-    kind: 'grand' as const,
-    description: `${GRAND_SIZE} mixed questions with no overlap with other Grand Tests, ${minutesFor(GRAND_SIZE)} minutes, exam marking. The same questions every attempt, so you can track improvement.`,
-    sections: [{ id: 'all', label: 'All subjects', questionCount: GRAND_SIZE, minutes: null, filter: {} }],
-    totalMinutes: minutesFor(GRAND_SIZE),
-    navigation: 'free' as const,
+/** Split curated ids into sections according to the test's pattern. */
+function curatedSections(t: CuratedTest): { sections: TestSectionDef[]; ids: string[][] } {
+  if (t.pattern === 'inicet-cbt') {
+    let at = 0
+    const sections = examConfig.sections.map((s) => ({ id: s.id, label: s.label, questionCount: s.questionCount, minutes: s.minutes, filter: {} }))
+    const ids = sections.map((s) => {
+      const chunk = t.questionIds.slice(at, at + s.questionCount)
+      at += s.questionCount
+      return chunk
+    })
+    return { sections, ids }
+  }
+  return {
+    sections: [{ id: 'all', label: 'All subjects', questionCount: t.questionIds.length, minutes: null, filter: {} }],
+    ids: [t.questionIds],
+  }
+}
+
+const PATTERN_RULES: Record<PatternId, Pick<TestDef, 'totalMinutes' | 'navigation' | 'markedForReviewEvaluated' | 'allowEarlySectionSubmit'>> = {
+  'inicet-cbt': {
+    totalMinutes: examConfig.durationMinutes,
+    navigation: examConfig.navigation,
+    markedForReviewEvaluated: examConfig.markedForReviewEvaluated,
+    allowEarlySectionSubmit: examConfig.allowEarlySectionSubmit,
+  },
+  // The original Grand Tests 1–2: one 150-question paper, free navigation, marked answers scored.
+  'legacy-grand-150': { totalMinutes: minutesFor(150), navigation: 'free', markedForReviewEvaluated: true, allowEarlySectionSubmit: true },
+}
+
+export function curatedDef(t: CuratedTest): TestDef {
+  const { sections, ids } = curatedSections(t)
+  return {
+    id: t.id,
+    title: t.title,
+    group: 'grand',
+    kind: t.category === 'grand' ? 'grand' : t.category === 'pyq' ? 'pyq' : t.category === 'pyq-inspired' ? 'pyq-pattern' : 'full',
+    description: t.description,
+    sections,
     marking: MARKING,
-    partition: { index, size: GRAND_SIZE },
-    available: GRAND_SIZE,
-  }))
+    fixedIds: ids,
+    available: t.questionIds.length,
+    category: t.category,
+    status: t.status,
+    version: t.version,
+    difficultyLabel: t.difficultyLabel,
+    note: t.note,
+    ...PATTERN_RULES[t.pattern],
+  }
+}
+
+/** Students see published and in-review tests; drafts appear only in preview mode. */
+export function isListed(status: TestStatus | undefined, preview = false): boolean {
+  if (!status) return true
+  if (status === 'published' || status === 'review') return true
+  return preview && status === 'draft'
+}
+
+function curatedTests(): TestDef[] {
+  return CURATED_TESTS.map(curatedDef)
 }
 
 function single(
@@ -215,7 +248,7 @@ export function getCatalog(): TestDef[] {
   if (cache) return cache
   cache = [
     fullMock(),
-    ...grandTests(),
+    ...curatedTests(),
     ...subjectTests(),
     ...systemTests(),
     single('rapid-25', 'Rapid Mock', 'rapid', 'rapid', '25 short questions for a quick timed sprint.', { categories: ['rapid'] }, 25),
@@ -298,11 +331,11 @@ export function buildTest(def: TestDef, search?: URLSearchParams): BuiltSection[
     const items = ids.map(findQuestionItem).filter((x): x is QuizQuestionItem => !!x)
     return [{ section: { ...def.sections[0], questionCount: items.length }, items }]
   }
-  if (def.partition) {
-    const ordered = seededShuffle(poolFor({}), 'grand-tests-v1')
-    const { index, size } = def.partition
-    const items = shuffle(ordered.slice(index * size, (index + 1) * size))
-    return [{ section: def.sections[0], items }]
+  if (def.fixedIds) {
+    return def.sections.map((section, i) => ({
+      section,
+      items: shuffle((def.fixedIds![i] ?? []).map(findQuestionItem).filter((x): x is QuizQuestionItem => !!x)),
+    }))
   }
   const used = new Set<string>()
   return def.sections.map((section) => {

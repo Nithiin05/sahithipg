@@ -10,7 +10,11 @@ Built with React 19, Vite, TypeScript, Tailwind CSS and React Router. There is n
 npm install
 npm run dev              # http://localhost:5173
 npm run build            # type-check + production build
-npm run check:questions  # question-bank integrity check
+npm run check:questions  # question-bank + test-library integrity check
+npm test                 # scoring, exam-rule and test-library tests (Node test runner)
+npm run check            # all of the above + lint + build
+npm run qbank -- export out.json            # export every question as JSON
+npm run qbank -- import pack.json gt4       # validate a JSON pack and write it as a test pack
 ```
 
 ## Where things live
@@ -24,7 +28,11 @@ npm run check:questions  # question-bank integrity check
 | `scripts/diagrams/` | Generators for original diagrams (e.g. ECG strips) used by image questions. |
 | `src/data/subjects.ts` | Subject list; merges question batches and applies answer-position randomization. |
 | `src/data/taxonomy.ts` | Organ systems (for system tests) and Question Bank categories (clinical, image, integrated, high-yield, rapid…). |
-| `src/lib/testEngine.ts` | Every test definition (full mock, grand, subject, system, rapid, image, PYQ, custom) and how questions are drawn. |
+| `src/lib/testEngine.ts` | Every test definition (full mock, curated tests, subject, system, rapid, image, PYQ, custom) and how questions are drawn. |
+| `src/data/tests/catalog.ts` | **Curated test library** — fixed, versioned full-length tests with category, status (draft / review / published / archived), pattern and ordered question ids. |
+| `src/data/tests/legacyGrandSnapshots.ts` | Frozen question lists of the original Grand Tests 1–2 (they no longer change when the bank grows). |
+| `src/data/questions/fullLength/` | **Test-reserved questions** written for one full-length test (e.g. `gt3-*.ts` for Grand Test 3). They stay out of the Question Bank and practice pools until a student has taken the test, and load on demand as a separate chunk. |
+| `src/data/reservedQuestions.ts` | Registry and on-demand loader for test-reserved packs. |
 | `src/pages/TestRunner.tsx` | Computer-based-test runner: timers, sections, navigation rules, palette, mark for review, auto-submit, resume. |
 | `src/lib/stats.ts` | All analytics: accuracy, subject/topic performance, weak areas, timing, streaks, mock scores. |
 | `src/lib/studyPlanner.ts` | Adaptive daily plan. |
@@ -43,9 +51,30 @@ Difficulty is assigned by reasoning steps, never randomly:
 - **Difficult** — two or more steps, close differentials, or judging a causal link.
 - **INI-CET Level** — full vignette with labs/imaging, several steps, integration across subjects.
 
+## Adding a full-length test
+
+1. Write 200 questions as a pack: either a TypeScript file in `src/data/questions/fullLength/` using the `r()` helper (copy `gt3-medicine.ts`), or a JSON file imported with `npm run qbank -- import pack.json gt4`. Ids use the pack prefix (`gt4-med-01`).
+2. Register the pack loader in `src/data/reservedQuestions.ts`.
+3. Add the test to `CURATED_TESTS` in `src/data/tests/catalog.ts` with `status: 'draft'` and its ordered `questionIds` (200 for the `inicet-cbt` pattern — split in order into 4 parts of 50).
+4. Run `npm run check`. Preview drafts at `/tests?preview=1`.
+5. Move to `review` (students see it with an "Expert review pending" badge) and to `published` after medical sign-off (set `reviewStatus: 'expert-verified'` and `reviewedBy` on the questions).
+6. Never edit a published test's question list — add a new `version` instead.
+
+## Exam pattern
+
+`src/config/examConfig.ts` follows the official AIIMS prospectus (INI-CET July 2025, Part-A §X-B): 200 questions, **4 parts × 50 questions × 45 minutes**, parts submitted automatically and not revisitable, +1 / −⅓, and "Unanswered / Marked for Review: 0" — so an answered question still marked for review scores 0. Full-length tests (`inicet-cbt` pattern) use these rules; the original Grand Tests 1–2 keep their original 150-question free-navigation format. "Multiple correct choice" questions are rendered as numbered statements with combination options (one selection), because AIIMS has not published a separate scoring rule for multi-select answers.
+
+## What needs a backend
+
+The site is static and keeps progress in the browser. That means:
+- Answer keys ship with the app, so grading happens in the browser — they cannot be hidden from a determined user until a server grades submissions.
+- There are no accounts, so attempts are per-browser and there is no cross-device sync or cohort data (hence no percentiles or ranks).
+- There is no secure admin interface; content is managed through files, the validator and git review. A real admin panel with server-side authorisation needs a backend (for example Supabase/Firebase or a small API with a database).
+
 ## Content rules
 
-- **Source labels.** Every question shows one of: *Verified PYQ*, *PYQ Pattern*, *Practice Question*, *Image-Based* or *Integrated*. A question only displays as **Verified PYQ** when it has `sourceType: 'PYQ'` **and** a `sourceDetail` naming the paper (e.g. `"INI-CET May 2024"`). Anything else falls back to *PYQ Pattern*.
+- **Source labels.** Every question shows one of: *Verified PYQ*, *PYQ Recall*, *PYQ-Inspired*, *Practice Question*, *Image-Based* or *Integrated*. A question only displays as **Verified PYQ** (official material) or **PYQ Recall** (memory-based reconstruction) when it has that `sourceType` **and** a `sourceDetail` naming the session, plus a `sourceUrl` or `license` note; the validator rejects anything less. Everything else falls back to *PYQ-Inspired*.
+- **Review status.** Each question carries `reviewStatus` (`unreviewed`, `author-checked`, `expert-verified`, `flagged`) and `lastReviewed`; flagged questions cannot appear in a live test, and `expert-verified` requires `reviewedBy`. Guideline-dependent answers record `guidelineVersion`.
 - **No official weightage claims.** AIIMS does not publish subject-wise weightage. Topic priorities come from past-paper analysis and are labelled as such.
 - **Images** must carry `imageSource` attribution and be original, public-domain or openly licensed.
 - **Exam pattern.** `examConfig.verified` stays `false` until the values are checked against the official AIIMS prospectus for the session; the UI shows a "pending official confirmation" note until then.

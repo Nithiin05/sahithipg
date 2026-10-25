@@ -5,14 +5,15 @@
  * exam-information card reads from here. If AIIMS changes the pattern, edit
  * this file only.
  *
- * VERIFICATION STATUS
- * -------------------
- * `verified: false` means the values below match what multiple published
- * sources report for the session, but have NOT yet been checked against the
- * official AIIMS prospectus / information bulletin for this session
- * (aiimsexams.ac.in). Once checked, set `verified: true` and fill
- * `officialSource`. The UI shows a "pending official confirmation" note while
- * this is false.
+ * SOURCE
+ * ------
+ * The sectional pattern below is quoted from the official AIIMS prospectus
+ * (INI-CET July 2025 session, Part-A, Section X-B "Mode and Scheme of
+ * Examination"): 200 questions in 4 parts of 50, 45 minutes per part, parts
+ * auto-submitted and not revisitable, +1 / −⅓, and "Unanswered / Marked for
+ * Review: 0". Secondary sources report the same pattern for the November 2026
+ * exam (January 2027 session), but its prospectus has not been checked line by
+ * line here, so `verified` stays false and the UI shows a confirmation note.
  */
 
 export type NavigationRule =
@@ -51,6 +52,10 @@ export interface ExamConfig {
   }
   sections: ExamSection[]
   navigation: NavigationRule
+  /** false = an answered question that is still "marked for review" at submission scores 0. */
+  markedForReviewEvaluated: boolean
+  /** false = a section can only end when its timer runs out (no early move to the next part). */
+  allowEarlySectionSubmit: boolean
   verified: boolean
   officialSource: { label: string; url: string } | null
   instructions: string[]
@@ -66,21 +71,33 @@ export const examConfig: ExamConfig = {
   language: 'English',
   durationMinutes: 180,
   totalQuestions: 200,
-  questionFormat: 'Single-best-answer MCQs (4 options)',
+  questionFormat: 'Objective MCQs — single correct choice and multiple correct choice (combination) questions',
   marking: {
     correct: 1,
     wrong: 1 / 3,
     unattempted: 0,
   },
-  sections: [{ id: 'full', label: 'Full Paper', questionCount: 200, minutes: null }],
-  navigation: 'free',
+  sections: [
+    { id: 'part-1', label: 'Part 1', questionCount: 50, minutes: 45 },
+    { id: 'part-2', label: 'Part 2', questionCount: 50, minutes: 45 },
+    { id: 'part-3', label: 'Part 3', questionCount: 50, minutes: 45 },
+    { id: 'part-4', label: 'Part 4', questionCount: 50, minutes: 45 },
+  ],
+  navigation: 'within-section',
+  markedForReviewEvaluated: false,
+  allowEarlySectionSubmit: false,
   verified: false,
-  officialSource: null,
+  officialSource: {
+    label: 'AIIMS INI-CET Prospectus Part-A, July 2025 session (Section X-B)',
+    url: 'https://docs.aiimsexams.ac.in/sites/2_PROSPECTUS%20PART-A%20INI-CET%20JULY%202025%20SESSION.pdf',
+  },
   instructions: [
-    'Each correct answer earns +1 mark; each wrong answer deducts ⅓ mark. Unattempted questions score 0.',
-    'Answer only when you can eliminate options — blind guessing has a negative expected value at −⅓.',
-    '"Mark for review" does not count as an answer unless an option is also selected.',
-    'The paper auto-submits when time runs out.',
+    'The paper has 200 questions in 4 parts of 50. Each part has its own 45-minute timer; only the active part is visible.',
+    'When a part\'s 45 minutes end it is submitted automatically and the next part opens. You cannot return to an earlier part.',
+    'Each correct answer earns +1 mark; each wrong answer deducts ⅓ mark. Unanswered questions score 0.',
+    'Questions still "marked for review" at submission score 0, even if an option is selected (AIIMS prospectus: "Unanswered / Marked for Review: 0"). Unmark a question to have your answer scored.',
+    'Multiple-correct-choice questions list combinations as options (e.g. "1, 2 and 3"); select the single option with the right combination.',
+    'Answer only when you can eliminate options — a blind guess among four has a negative expected value at −⅓.',
     'Confirm the reporting time, admit-card rules and permitted items in the official AIIMS notice for your session.',
   ],
 }

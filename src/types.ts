@@ -2,13 +2,24 @@ export type Difficulty = 'Easy' | 'Medium' | 'Hard' | 'Expert'
 
 /**
  * Where a question comes from. Shown to the user on every question.
- * - PYQ:          an actual INI-CET question, verified against a named source. Requires `sourceDetail`.
+ * - PYQ:          an actual INI-CET question from official material. Requires `sourceDetail`.
+ * - PYQ_RECALL:   a memory-based reconstruction of a question from a named session (not official wording).
+ *                 Requires `sourceDetail`; `sourceUrl` and `license` should record where it came from.
  * - PYQ_PATTERN:  an original question modelled on concepts/style seen in past papers — never a reproduction.
  * - PRACTICE:     an original educational question.
  * - IMAGE:        an original image-interpretation question.
  * - INTEGRATED:   an original question that deliberately combines two or more subjects.
  */
-export type SourceType = 'PYQ' | 'PYQ_PATTERN' | 'PRACTICE' | 'IMAGE' | 'INTEGRATED'
+export type SourceType = 'PYQ' | 'PYQ_RECALL' | 'PYQ_PATTERN' | 'PRACTICE' | 'IMAGE' | 'INTEGRATED'
+
+/**
+ * Editorial review state of a question.
+ * - unreviewed:      written, structurally validated, not yet checked by a second person.
+ * - author-checked:  answer key and explanation re-checked by the author against the cited references.
+ * - expert-verified: reviewed and signed off by a qualified medical reviewer (set `reviewedBy`).
+ * - flagged:         disputed, ambiguous or possibly outdated — never placed in a published test.
+ */
+export type ReviewStatus = 'unreviewed' | 'author-checked' | 'expert-verified' | 'flagged'
 
 export type ImageCategory =
   | 'histopathology'
@@ -37,6 +48,8 @@ export type QuestionType =
   | 'instrument'
   | 'assertion-reason'
   | 'match-following'
+  /** INI-CET "multiple correct choice": numbered statements, options are combinations; one option is selected. */
+  | 'multiple-correct'
   | 'guideline'
   | 'aiims'
   | 'inicet'
@@ -83,6 +96,17 @@ export interface Question {
   sourceType?: SourceType
   /** Required when sourceType === 'PYQ': the exact paper, e.g. "INI-CET May 2024". */
   sourceDetail?: string
+  /** Where a PYQ / recall came from (URL or publication), and the permission or licence to reuse it. */
+  sourceUrl?: string
+  license?: string
+  /** Editorial review state — see ReviewStatus. Defaults to 'unreviewed'. */
+  reviewStatus?: ReviewStatus
+  /** ISO date (YYYY-MM-DD) of the last answer-key / explanation review. */
+  lastReviewed?: string
+  /** Name or role of the expert who verified the question (only with reviewStatus 'expert-verified'). */
+  reviewedBy?: string
+  /** For answers that depend on a guideline: which guideline and version/date, e.g. "WHO consolidated TB guidelines, 2022". */
+  guidelineVersion?: string
   /** Organ system (e.g. "Cardiovascular") for system-wise tests. */
   system?: string
   /** Subjects combined in an INTEGRATED question, e.g. ['Medicine', 'Pathology']. */
@@ -146,6 +170,9 @@ export interface AnswerRecord {
   timeSpentSec?: number
   /** True if the question was marked for review when the attempt was submitted. */
   marked?: boolean
+  /** True when an answer was selected but not evaluated because the question was still
+   * marked for review and the exam pattern scores marked questions as 0. */
+  notEvaluated?: boolean
 }
 
 export type AttemptKind = 'practice' | 'mock' | 'grand'
@@ -193,6 +220,8 @@ export interface AttemptRecord {
   /** Marking scheme used for this attempt — enables computing marks lost to negative marking later. */
   marksCorrect?: number
   marksWrong?: number
+  /** Test definition version the attempt was taken on (curated tests). */
+  testVersion?: number
 }
 
 export type PrepLevel = 'beginner' | 'intermediate' | 'advanced'

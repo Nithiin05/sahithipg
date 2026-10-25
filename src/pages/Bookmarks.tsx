@@ -5,11 +5,21 @@ import PageHeader from '../components/PageHeader'
 import { getBookmarks, getCollections, createCollection, deleteCollection, removeBookmark } from '../lib/bookmarks'
 import { findQuestionItem } from '../lib/quizEngine'
 import { sessionUrl } from '../lib/testEngine'
+import ReservedGate from '../components/ReservedGate'
 
 const ALL = '__all__'
 const NOTES = '__notes__'
 
 export default function Bookmarks() {
+  const ids = useMemo(() => getBookmarks().map((b) => b.questionId), [])
+  return (
+    <ReservedGate ids={ids}>
+      <BookmarksView />
+    </ReservedGate>
+  )
+}
+
+function BookmarksView() {
   const [tick, setTick] = useState(0)
   const [view, setView] = useState(ALL)
   const [newName, setNewName] = useState('')

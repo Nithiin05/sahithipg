@@ -38,7 +38,7 @@ const NAV: (NavItem | NavGroup)[] = [
   {
     label: 'Tests',
     items: [
-      { to: '/tests?tab=full-grand', label: 'Full INI-CET Mock & Grand Tests' },
+      { to: '/tests?tab=full-grand', label: 'Full-Length Mocks & Grand Tests' },
       { to: '/tests?tab=subject', label: 'Subject Tests' },
       { to: '/tests?tab=system', label: 'System Tests' },
       { to: '/tests?tab=quick', label: 'Rapid & Image Challenge' },
